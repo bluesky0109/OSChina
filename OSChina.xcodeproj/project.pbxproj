@@ -24,6 +24,8 @@
 		3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410B1B4265860074D2EA /* SwipeableViewController.m */; };
 		3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */; };
 		339741121B4265D40074D2EA /* TitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741111B4265D40074D2EA /* TitleBarView.m */; };
+		339741151B4293310074D2EA /* OSCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741141B4293310074D2EA /* OSCNews.m */; };
+		339741181B42949C0074D2EA /* OSCPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741171B42949C0074D2EA /* OSCPost.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,10 @@
 		3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizonalTableViewController.m; sourceTree = "<group>"; };
 		339741101B4265D40074D2EA /* TitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBarView.h; sourceTree = "<group>"; };
 		339741111B4265D40074D2EA /* TitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleBarView.m; sourceTree = "<group>"; };
+		339741131B4293310074D2EA /* OSCNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCNews.h; sourceTree = "<group>"; };
+		339741141B4293310074D2EA /* OSCNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNews.m; sourceTree = "<group>"; };
+		339741161B42949C0074D2EA /* OSCPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCPost.h; sourceTree = "<group>"; };
+		339741171B42949C0074D2EA /* OSCPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPost.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +216,10 @@
 				339740F11B42605E0074D2EA /* OSCTweet.h */,
 				339740F21B42605E0074D2EA /* OSCTweet.m */,
 				339740F31B42605E0074D2EA /* OSCAPI.h */,
+				339741131B4293310074D2EA /* OSCNews.h */,
+				339741141B4293310074D2EA /* OSCNews.m */,
+				339741161B42949C0074D2EA /* OSCPost.h */,
+				339741171B42949C0074D2EA /* OSCPost.m */,
 			);
 			name = "OSC models";
 			sourceTree = "<group>";
@@ -394,6 +404,7 @@
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
+				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
@@ -402,6 +413,7 @@
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
+				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
