@@ -84,10 +84,8 @@ static NSString *kNewsCellID = @"NewsCell";
 }
 
 #pragma mark -- 上拉加载更多
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height)))
-       
-    {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if(scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height))) {
        [self fetchMore];
     }
 }
