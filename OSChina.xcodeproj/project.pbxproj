@@ -10,9 +10,7 @@
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CA1B423F590074D2EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C91B423F590074D2EA /* ViewController.m */; };
-		339740CD1B423F590074D2EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339740CB1B423F590074D2EA /* Main.storyboard */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
-		339740D21B423F590074D2EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339740D01B423F590074D2EA /* LaunchScreen.xib */; };
 		339740DE1B423F590074D2EA /* OSChinaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740DD1B423F590074D2EA /* OSChinaTests.m */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +32,7 @@
 		339740C61B423F590074D2EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		339740C81B423F590074D2EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		339740C91B423F590074D2EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		339740CC1B423F590074D2EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		339740CE1B423F590074D2EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		339740D11B423F590074D2EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		339740D71B423F590074D2EA /* OSChinaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSChinaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740DC1B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740DD1B423F590074D2EA /* OSChinaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSChinaTests.m; sourceTree = "<group>"; };
@@ -85,9 +81,7 @@
 				339740C61B423F590074D2EA /* AppDelegate.m */,
 				339740C81B423F590074D2EA /* ViewController.h */,
 				339740C91B423F590074D2EA /* ViewController.m */,
-				339740CB1B423F590074D2EA /* Main.storyboard */,
 				339740CE1B423F590074D2EA /* Images.xcassets */,
-				339740D01B423F590074D2EA /* LaunchScreen.xib */,
 				339740C11B423F590074D2EA /* Supporting Files */,
 			);
 			path = OSChina;
@@ -199,8 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				339740CD1B423F590074D2EA /* Main.storyboard in Resources */,
-				339740D21B423F590074D2EA /* LaunchScreen.xib in Resources */,
 				339740CF1B423F590074D2EA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,25 +234,6 @@
 			targetProxy = 339740D81B423F590074D2EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		339740CB1B423F590074D2EA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				339740CC1B423F590074D2EA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		339740D01B423F590074D2EA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				339740D11B423F590074D2EA /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		339740DF1B423F590074D2EA /* Debug */ = {
@@ -347,7 +320,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = OSChina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,7 +332,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = OSChina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +393,7 @@
 				339740E31B423F590074D2EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		339740E41B423F590074D2EA /* Build configuration list for PBXNativeTarget "OSChinaTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +402,7 @@
 				339740E61B423F590074D2EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
