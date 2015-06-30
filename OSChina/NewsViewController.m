@@ -9,14 +9,8 @@
 #import "NewsViewController.h"
 #import "NewsCell.h"
 
-#import <AFNetworking.h>
-#import <AFOnoResponseSerializer.h>
-#import <Ono.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-
 #import "OSCNews.h"
-#import "Utils.h"
-#import "OSCAPI.h"
+
 
 
 static NSString *kNewsCellID = @"NewsCell";
@@ -73,11 +67,6 @@ static NSString *kNewsCellID = @"NewsCell";
     self.label = [UILabel new];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,9 +89,6 @@ static NSString *kNewsCellID = @"NewsCell";
     if (indexPath.row < self.objects.count) {
         OSCNews *news = [self.objects objectAtIndex:indexPath.row];
         [self.label setText:news.title];
-        self.label.numberOfLines = 0;
-        self.label.lineBreakMode = NSLineBreakByWordWrapping;
-        self.label.font = [UIFont boldSystemFontOfSize:14];
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
         

@@ -47,6 +47,7 @@
 {
     self.portrait = [UIImageView new];
     self.portrait.contentMode = UIViewContentModeScaleAspectFit;
+    [self.portrait setCornerRadius:5.0];
     [self.contentView addSubview:self.portrait];
 
     self.authorLabel = [UILabel new];
@@ -72,6 +73,7 @@
     self.commentCount = [UILabel new];
     self.commentCount.font = [UIFont systemFontOfSize:14];
     self.commentCount.textColor = [UIColor colorWithHex:0xA0A3A7];
+    self.contentLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:self.commentCount];
     
     self.image = [UIImageView new];

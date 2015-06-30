@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
+		335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E31B42D89200D28C80 /* PostsViewController.m */; };
+		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CA1B423F590074D2EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C91B423F590074D2EA /* ViewController.m */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCObjsViewController.h; sourceTree = "<group>"; };
 		335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCObjsViewController.m; sourceTree = "<group>"; };
+		335EB1E21B42D89200D28C80 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
+		335EB1E31B42D89200D28C80 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
+		335EB1E51B42D8AB00D28C80 /* PostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsCell.h; sourceTree = "<group>"; };
+		335EB1E61B42D8AB00D28C80 /* PostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsCell.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		335EB1E11B42D86D00D28C80 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				335EB1E21B42D89200D28C80 /* PostsViewController.h */,
+				335EB1E31B42D89200D28C80 /* PostsViewController.m */,
+				335EB1E51B42D8AB00D28C80 /* PostsCell.h */,
+				335EB1E61B42D8AB00D28C80 /* PostsCell.m */,
+			);
+			name = Posts;
+			sourceTree = "<group>";
+		};
 		339740B51B423F590074D2EA = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +153,7 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				335EB1E11B42D86D00D28C80 /* Posts */,
 				339741191B4296160074D2EA /* News */,
 				339741021B4260850074D2EA /* Tweets */,
 				339740ED1B4260350074D2EA /* OSC API */,
@@ -429,6 +447,7 @@
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
+				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
@@ -441,6 +460,7 @@
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
+				335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

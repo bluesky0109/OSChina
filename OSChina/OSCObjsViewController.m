@@ -15,10 +15,22 @@
 
 @implementation OSCObjsViewController
 
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        self.objects = [NSMutableArray new];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.objects = [NSMutableArray new];
+    if (!self.objects) {
+        self.objects = [NSMutableArray new];
+    }
     
     self.tableView.backgroundColor = [UIColor themeColor];
     UIView *footer = [UIView new];
@@ -29,6 +41,12 @@
     [self.tableView addSubview:self.refreshControl];
     
     self.lastCell = [[LastCell alloc] initCell];
+    
+    //用于计算cell高度
+    self.label = [UILabel new];
+    self.label.numberOfLines = 0;
+    self.label.lineBreakMode = NSLineBreakByWordWrapping;
+    self.label.font = [UIFont boldSystemFontOfSize:14];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -152,7 +170,11 @@
              }
              
              dispatch_async(dispatch_get_main_queue(), ^{
-                 if (self.tableWillReload) {self.tableWillReload(objectsXML.count);}
+                 if (self.tableWillReload) {
+                     self.tableWillReload(objectsXML.count);
+                 } else {
+                     objectsXML.count < 20? [self.lastCell statusFinished] : [self.lastCell statusMore];
+                 }
                  
                  [self.tableView reloadData];
                  if (refresh) {[self.refreshControl endRefreshing];}

@@ -27,5 +27,6 @@
 
 @property (nonatomic, strong) NSMutableArray *objects;
 @property (nonatomic, strong) LastCell *lastCell;
+@property (nonatomic, strong) UILabel *label;
 
 @end
