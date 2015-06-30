@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "TweetsViewController.h"
 #import "SwipeableViewController.h"
+#import "NewsViewController.h"
 
 @interface OSCTabBarController ()
 
@@ -33,7 +34,7 @@
     
     ViewController *newsSVC = [[ViewController alloc] init];
     TweetsViewController *tweetsSVC = [[TweetsViewController alloc] init];
-    ViewController *discoverVC = [[ViewController alloc] init];
+    NewsViewController *discoverVC = [[NewsViewController alloc] init];
     SwipeableViewController *swipeableVC = [[SwipeableViewController alloc] init];
     
 

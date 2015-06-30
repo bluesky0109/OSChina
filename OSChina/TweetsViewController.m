@@ -72,8 +72,6 @@ static NSString *kTweetCellID = @"TweetCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"最新动弹";
-    
     self.tweets = [NSMutableArray new];
     //NSLog(@"self.tweets的应用计数:%ld", CFGetRetainCount((__bridge CFTypeRef)self.tweets));
     //NSLog(@"self.tweets的应用计数:%ld", CFGetRetainCount((__bridge CFTypeRef)_tweets));
