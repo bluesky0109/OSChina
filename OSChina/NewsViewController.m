@@ -122,6 +122,7 @@ static NSString *kNewsCellID = @"NewsCell";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            newsXML.count < 20? [self.lastCell statusFinished]:[self.lastCell statusMore];
             [self.tableView reloadData];
             if (refresh) {
                 [self.refreshControl endRefreshing];
