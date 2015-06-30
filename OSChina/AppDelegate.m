@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "OSCTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     
-    ViewController *ctl = [[ViewController alloc] init];
+    OSCTabBarController *ctl = [[OSCTabBarController alloc] init];
     
     self.window.rootViewController = ctl;
     
