@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OSCObjsViewController.h"
 
 typedef NS_ENUM(NSUInteger, TweetsType)
 {
@@ -16,7 +17,7 @@ typedef NS_ENUM(NSUInteger, TweetsType)
 };
 
 
-@interface TweetsViewController : UITableViewController
+@interface TweetsViewController : OSCObjsViewController
 
 - (instancetype)initWithTweetsType:(TweetsType)tweetsType;
 

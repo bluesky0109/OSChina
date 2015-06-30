@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CA1B423F590074D2EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C91B423F590074D2EA /* ViewController.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCObjsViewController.h; sourceTree = "<group>"; };
+		335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCObjsViewController.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 			children = (
 				339741091B42654F0074D2EA /* SwipeableViewController */,
 				339740E81B4245B60074D2EA /* Tab Bar */,
+				335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */,
+				335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */,
 			);
 			name = "Main ViewControllers";
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
+				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
