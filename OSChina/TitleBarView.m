@@ -11,8 +11,6 @@
 
 @interface TitleBarView()
 
-@property (nonatomic, assign) NSUInteger     currentIndex;
-@property (nonatomic, strong) NSMutableArray *titleButtons;
 
 @end
 
@@ -27,7 +25,7 @@
         self.titleButtons = [NSMutableArray new];
         
         CGFloat buttonWidth = frame.size.width / titles.count;
-        CGFloat buttonHeight = frame.size.height - 2;
+        CGFloat buttonHeight = frame.size.height;
         
         NSUInteger i = 0;
         for (NSString *title in titles) {
@@ -47,18 +45,23 @@
         
         self.contentSize = CGSizeMake(buttonWidth * i, buttonHeight);
         self.showsHorizontalScrollIndicator = NO;
+        
+        UIButton *firstTitle = self.titleButtons.firstObject;
+        firstTitle.titleLabel.font = [UIFont systemFontOfSize:16];
+        [firstTitle setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }
     
     return self;
 }
 
-- (void)focusTitleAtIndex:(NSUInteger)index {
+- (void)focusTitleAtIndex:(NSUInteger)index ratio:(CGFloat)ration{
     UIButton *preTitle = [self.titleButtons objectAtIndex:self.currentIndex];
     [preTitle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.currentIndex = index;
     
     UIButton *currentTitle = [self.titleButtons objectAtIndex:self.currentIndex];
     [currentTitle setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    currentTitle.titleLabel.font = [UIFont systemFontOfSize:16];
 }
 
 #pragma mark --private 
@@ -66,9 +69,12 @@
     if (self.currentIndex != button.tag) {
         UIButton *preTitle = [self.titleButtons objectAtIndex:self.currentIndex];
         [preTitle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        preTitle.titleLabel.font = [UIFont systemFontOfSize:15];
         self.currentIndex = button.tag;
         
         [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        
         self.titleButtonClicked(button.tag);
     }
 }

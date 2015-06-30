@@ -79,18 +79,25 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
 #pragma mark -- UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.focusViewIndexChanged) {
-        NSUInteger index = self.tableView.contentOffset.y / self.view.frame.size.width;
-        self.focusViewIndexChanged(index);
-    }
+    [self scrollStop:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self scrollStop:NO];
+}
+
+#pragma mark -- private
+- (void)scrollStop:(BOOL)didScrollStop {
+    CGFloat horizontalOffset = self.tableView.contentOffset.y;
+    CGFloat screenWidth = self.tableView.frame.size.width;
+    CGFloat offsetRatio = (NSUInteger)horizontalOffset % (NSUInteger)screenWidth / screenWidth;
+    NSUInteger index = horizontalOffset / screenWidth;
+    
     if (self.scrollView) {
-        CGFloat horizonalOffset = self.tableView.contentOffset.y;
-        CGFloat offsetRatio = horizonalOffset / self.tableView.frame.size.width;
-        
-        self.scrollView(offsetRatio);
+        self.scrollView(offsetRatio,index);
+    }
+    if (didScrollStop && self.changeIndex) {
+        self.changeIndex(index);
     }
 }
 
