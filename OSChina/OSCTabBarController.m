@@ -9,6 +9,7 @@
 #import "OSCTabBarController.h"
 #import "ViewController.h"
 #import "TweetsViewController.h"
+#import "SwipeableViewController.h"
 
 @interface OSCTabBarController ()
 
@@ -33,16 +34,17 @@
     ViewController *newsSVC = [[ViewController alloc] init];
     TweetsViewController *tweetsSVC = [[TweetsViewController alloc] init];
     ViewController *discoverVC = [[ViewController alloc] init];
-
+    SwipeableViewController *swipeableVC = [[SwipeableViewController alloc] init];
+    
 
     self.tabBar.translucent = NO;
     self.viewControllers = @[
-                             newsSVC,tweetsSVC,discoverVC
+                             newsSVC,tweetsSVC,discoverVC,swipeableVC
                              ];
     
     
-    NSArray *titles = @[@"资讯", @"动弹", @"最新动弹"];
-    NSArray *images = @[@"tabbar-news", @"tabbar-tweet", @"tabbar-discover"];
+    NSArray *titles = @[@"资讯", @"动弹", @"最新动弹",@"滑动"];
+    NSArray *images = @[@"tabbar-news", @"tabbar-tweet", @"tabbar-discover",@"tabbar-discover"];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem *item, NSUInteger idx, BOOL *stop) {
         [item setTitle:titles[idx]];
         [item setImage:[UIImage imageNamed:images[idx]]];

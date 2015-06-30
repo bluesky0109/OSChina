@@ -21,6 +21,9 @@
 		339741011B42606C0074D2EA /* LastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740FD1B42606C0074D2EA /* LastCell.m */; };
 		339741071B4260C00074D2EA /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741041B4260C00074D2EA /* TweetsViewController.m */; };
 		339741081B4260C00074D2EA /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741061B4260C00074D2EA /* TweetCell.m */; };
+		3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410B1B4265860074D2EA /* SwipeableViewController.m */; };
+		3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */; };
+		339741121B4265D40074D2EA /* TitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741111B4265D40074D2EA /* TitleBarView.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +68,12 @@
 		339741041B4260C00074D2EA /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		339741051B4260C00074D2EA /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		339741061B4260C00074D2EA /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		3397410A1B4265860074D2EA /* SwipeableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableViewController.h; sourceTree = "<group>"; };
+		3397410B1B4265860074D2EA /* SwipeableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableViewController.m; sourceTree = "<group>"; };
+		3397410D1B4265B50074D2EA /* HorizonalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizonalTableViewController.h; sourceTree = "<group>"; };
+		3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizonalTableViewController.m; sourceTree = "<group>"; };
+		339741101B4265D40074D2EA /* TitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBarView.h; sourceTree = "<group>"; };
+		339741111B4265D40074D2EA /* TitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleBarView.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +164,7 @@
 		339740E71B4245920074D2EA /* Main ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				339741091B42654F0074D2EA /* SwipeableViewController */,
 				339740E81B4245B60074D2EA /* Tab Bar */,
 			);
 			name = "Main ViewControllers";
@@ -213,6 +223,19 @@
 				339741061B4260C00074D2EA /* TweetCell.m */,
 			);
 			name = Tweets;
+			sourceTree = "<group>";
+		};
+		339741091B42654F0074D2EA /* SwipeableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3397410A1B4265860074D2EA /* SwipeableViewController.h */,
+				3397410B1B4265860074D2EA /* SwipeableViewController.m */,
+				3397410D1B4265B50074D2EA /* HorizonalTableViewController.h */,
+				3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */,
+				339741101B4265D40074D2EA /* TitleBarView.h */,
+				339741111B4265D40074D2EA /* TitleBarView.m */,
+			);
+			name = SwipeableViewController;
 			sourceTree = "<group>";
 		};
 		47197FC03D3DCCEC59BC2931 /* Frameworks */ = {
@@ -369,12 +392,15 @@
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
+				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
+				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
+				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 			);
