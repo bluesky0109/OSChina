@@ -13,6 +13,14 @@
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
 		339740DE1B423F590074D2EA /* OSChinaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740DD1B423F590074D2EA /* OSChinaTests.m */; };
 		339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740EA1B4246AA0074D2EA /* OSCTabBarController.m */; };
+		339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740F01B42605E0074D2EA /* OSCBaseObject.m */; };
+		339740F51B42605E0074D2EA /* OSCTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740F21B42605E0074D2EA /* OSCTweet.m */; };
+		339740FE1B42606C0074D2EA /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740F71B42606C0074D2EA /* Utils.m */; };
+		339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740F91B42606C0074D2EA /* UIView+Util.m */; };
+		339741001B42606C0074D2EA /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740FB1B42606C0074D2EA /* UIColor+Util.m */; };
+		339741011B42606C0074D2EA /* LastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740FD1B42606C0074D2EA /* LastCell.m */; };
+		339741071B4260C00074D2EA /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741041B4260C00074D2EA /* TweetsViewController.m */; };
+		339741081B4260C00074D2EA /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741061B4260C00074D2EA /* TweetCell.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +48,23 @@
 		339740DD1B423F590074D2EA /* OSChinaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSChinaTests.m; sourceTree = "<group>"; };
 		339740E91B4246AA0074D2EA /* OSCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTabBarController.h; sourceTree = "<group>"; };
 		339740EA1B4246AA0074D2EA /* OSCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTabBarController.m; sourceTree = "<group>"; };
+		339740EF1B42605E0074D2EA /* OSCBaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCBaseObject.h; sourceTree = "<group>"; };
+		339740F01B42605E0074D2EA /* OSCBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCBaseObject.m; sourceTree = "<group>"; };
+		339740F11B42605E0074D2EA /* OSCTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweet.h; sourceTree = "<group>"; };
+		339740F21B42605E0074D2EA /* OSCTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweet.m; sourceTree = "<group>"; };
+		339740F31B42605E0074D2EA /* OSCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCAPI.h; sourceTree = "<group>"; };
+		339740F61B42606C0074D2EA /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		339740F71B42606C0074D2EA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		339740F81B42606C0074D2EA /* UIView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Util.h"; sourceTree = "<group>"; };
+		339740F91B42606C0074D2EA /* UIView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Util.m"; sourceTree = "<group>"; };
+		339740FA1B42606C0074D2EA /* UIColor+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Util.h"; sourceTree = "<group>"; };
+		339740FB1B42606C0074D2EA /* UIColor+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Util.m"; sourceTree = "<group>"; };
+		339740FC1B42606C0074D2EA /* LastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastCell.h; sourceTree = "<group>"; };
+		339740FD1B42606C0074D2EA /* LastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastCell.m; sourceTree = "<group>"; };
+		339741031B4260C00074D2EA /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
+		339741041B4260C00074D2EA /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
+		339741051B4260C00074D2EA /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		339741061B4260C00074D2EA /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +112,9 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				339741021B4260850074D2EA /* Tweets */,
+				339740ED1B4260350074D2EA /* OSC API */,
+				339740EC1B42600F0074D2EA /* Utils */,
 				339740E71B4245920074D2EA /* Main ViewControllers */,
 				339740C51B423F590074D2EA /* AppDelegate.h */,
 				339740C61B423F590074D2EA /* AppDelegate.m */,
@@ -139,6 +167,52 @@
 				339740EA1B4246AA0074D2EA /* OSCTabBarController.m */,
 			);
 			name = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		339740EC1B42600F0074D2EA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				339740F61B42606C0074D2EA /* Utils.h */,
+				339740F71B42606C0074D2EA /* Utils.m */,
+				339740F81B42606C0074D2EA /* UIView+Util.h */,
+				339740F91B42606C0074D2EA /* UIView+Util.m */,
+				339740FA1B42606C0074D2EA /* UIColor+Util.h */,
+				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
+				339740FC1B42606C0074D2EA /* LastCell.h */,
+				339740FD1B42606C0074D2EA /* LastCell.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		339740ED1B4260350074D2EA /* OSC API */ = {
+			isa = PBXGroup;
+			children = (
+				339740EE1B4260400074D2EA /* OSC models */,
+			);
+			name = "OSC API";
+			sourceTree = "<group>";
+		};
+		339740EE1B4260400074D2EA /* OSC models */ = {
+			isa = PBXGroup;
+			children = (
+				339740EF1B42605E0074D2EA /* OSCBaseObject.h */,
+				339740F01B42605E0074D2EA /* OSCBaseObject.m */,
+				339740F11B42605E0074D2EA /* OSCTweet.h */,
+				339740F21B42605E0074D2EA /* OSCTweet.m */,
+				339740F31B42605E0074D2EA /* OSCAPI.h */,
+			);
+			name = "OSC models";
+			sourceTree = "<group>";
+		};
+		339741021B4260850074D2EA /* Tweets */ = {
+			isa = PBXGroup;
+			children = (
+				339741031B4260C00074D2EA /* TweetsViewController.h */,
+				339741041B4260C00074D2EA /* TweetsViewController.m */,
+				339741051B4260C00074D2EA /* TweetCell.h */,
+				339741061B4260C00074D2EA /* TweetCell.m */,
+			);
+			name = Tweets;
 			sourceTree = "<group>";
 		};
 		47197FC03D3DCCEC59BC2931 /* Frameworks */ = {
@@ -293,8 +367,16 @@
 			files = (
 				339740CA1B423F590074D2EA /* ViewController.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
+				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
+				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
+				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
+				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
+				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
+				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
+				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
+				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

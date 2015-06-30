@@ -8,6 +8,7 @@
 
 #import "OSCTabBarController.h"
 #import "ViewController.h"
+#import "TweetsViewController.h"
 
 @interface OSCTabBarController ()
 
@@ -30,9 +31,9 @@
 - (void)loadViewControllers {
     
     ViewController *newsSVC = [[ViewController alloc] init];
-    ViewController *tweetsSVC = [[ViewController alloc] init];
+    TweetsViewController *tweetsSVC = [[TweetsViewController alloc] init];
     ViewController *discoverVC = [[ViewController alloc] init];
-    ViewController *myInfoVC  = [[ViewController alloc] init];
+
 
     self.tabBar.translucent = NO;
     self.viewControllers = @[
