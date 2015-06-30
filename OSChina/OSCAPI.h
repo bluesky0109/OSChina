@@ -11,6 +11,7 @@
 
 
 #define OSCAPI_PREFIX                   @"http://www.oschina.net/action/api/"
+#define OSCAPI_SUFFIX                   @"pageSize=20"
 
 #define OSCAPI_NEWS_LIST                @"news_list"
 #define OSCAPI_NEWS_DETAIL              @"news_detail"
@@ -69,7 +70,7 @@
 
 #define OSCAPI_REPORT                   @"report"
 
-#define OSCAPI_SUFFIX                   @"pageSize=20"
+
 
 
 #endif

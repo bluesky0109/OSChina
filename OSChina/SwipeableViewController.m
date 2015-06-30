@@ -59,9 +59,9 @@
     
     self.titles = @[@"最新动弹",@"热门动弹",@"我的动弹"];
     
-    NSArray *controllers = @[[[TweetsViewController alloc] init],
-                             [[TweetsViewController alloc] init],
-                             [[TweetsViewController alloc] init]];
+    NSArray *controllers = @[[[TweetsViewController alloc] initWithTweetsType:AllTweets],
+                             [[TweetsViewController alloc] initWithTweetsType:HotestTweets],
+                             [[TweetsViewController alloc] initWithTweetsType:OwnTweets]];
     
     CGFloat titleBarHeight = 43;
     self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, titleBarHeight) andTitles:self.titles];

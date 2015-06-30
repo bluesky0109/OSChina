@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, TweetsType)
+{
+    AllTweets,
+    HotestTweets,
+    OwnTweets,
+};
+
+
 @interface TweetsViewController : UITableViewController
+
+- (instancetype)initWithTweetsType:(TweetsType)tweetsType;
 
 @end
