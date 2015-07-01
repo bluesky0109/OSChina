@@ -7,10 +7,11 @@
 //
 
 #import "NewsViewController.h"
-#import "NewsCell.h"
+#import "NewsDetailsViewController.h"
 
+#import "NewsCell.h"
 #import "OSCNews.h"
-#import "OSCBlog.h"
+
 
 
 static NSString *kNewsCellID = @"NewsCell";
@@ -65,6 +66,7 @@ static NSString *kNewsCellID = @"NewsCell";
     }
 }
 
+#pragma mark -- UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
         OSCNews *news = [self.objects objectAtIndex:indexPath.row];
@@ -77,5 +79,20 @@ static NSString *kNewsCellID = @"NewsCell";
         return 60;
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSInteger row = indexPath.row;
+    
+    if (row < self.objects.count) {
+        OSCNews *news = [self.objects objectAtIndex:row];
+        NewsDetailsViewController *newsDetailsVC = [[NewsDetailsViewController alloc] initWithNews:news];
+        [self.navigationController pushViewController:newsDetailsVC animated:YES];
+    } else {
+        [self fetchMore];
+    }
+}
+
 
 @end
