@@ -27,15 +27,18 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
+  - SSKeychain (1.2.3)
 
 DEPENDENCIES:
   - AFOnoResponseSerializer (~> 1.0.0)
   - SDWebImage (~> 3.7.1)
+  - SSKeychain
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AFOnoResponseSerializer: c02c8bef1d6742ac68f33ecaed41826c9657bc33
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
 
 COCOAPODS: 0.37.2

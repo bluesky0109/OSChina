@@ -5,6 +5,7 @@ target 'OSChina' do
 
 pod 'AFOnoResponseSerializer', '~> 1.0.0'
 pod 'SDWebImage', '~> 3.7.1'
+pod 'SSKeychain'
 
 end
 
