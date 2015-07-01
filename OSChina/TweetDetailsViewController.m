@@ -35,8 +35,8 @@
                 UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
                 [cell.thumbnail setImage:image];
             }
-            [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushDetailsView)]];
-            [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushDetailsView)]];
+            [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
+            [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
             return cell;
         };
         
@@ -97,7 +97,7 @@
 
 #pragma mark - 跳转到用户详情页
 
-- (void)pushDetailsView
+- (void)pushOwnerDetailsView
 {
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:_tweet.authorID];
     [self.navigationController pushViewController:userDetailsVC animated:YES];

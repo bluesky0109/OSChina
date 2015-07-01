@@ -8,6 +8,7 @@
 
 #import "CommentCell.h"
 #import "Utils.h"
+#import "OSCComment.h"
 
 @implementation CommentCell
 
@@ -31,12 +32,14 @@
 {
     self.portrait = [UIImageView new];
     self.portrait.contentMode = UIViewContentModeScaleAspectFit;
+    self.portrait.userInteractionEnabled = YES;
     [self.portrait setCornerRadius:5.0];
     [self.contentView addSubview:self.portrait];
     
     self.authorLabel = [UILabel new];
     self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
     self.authorLabel.textColor = [UIColor colorWithHex:0x0083FF];
+    self.authorLabel.userInteractionEnabled = YES;
     [self.contentView addSubview:self.authorLabel];
     
     self.timeLabel = [UILabel new];
@@ -79,6 +82,14 @@
                                                                              metrics:nil
                                                                                views:viewsDict]];
 
+}
+
+
+- (void)setContentWithComment:(OSCComment *)comment {
+    [self.portrait loadPortrait:comment.portraitURL];
+    [self.contentLabel setText:comment.content];
+    [self.authorLabel setText:comment.author];
+    [self.timeLabel setText:[Utils intervalSinceNow:comment.pubDate]];
 }
 
 @end
