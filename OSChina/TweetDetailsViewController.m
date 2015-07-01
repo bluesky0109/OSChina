@@ -8,6 +8,7 @@
 
 #import "TweetDetailsViewController.h"
 #import "UserDetailsViewController.h"
+#import "ImageViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
 
@@ -37,6 +38,7 @@
             }
             [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
             [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
+            [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(loadLargeImage:)]];
             return cell;
         };
         
@@ -101,6 +103,14 @@
 {
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:_tweet.authorID];
     [self.navigationController pushViewController:userDetailsVC animated:YES];
+}
+
+#pragma mark - 加载大图
+- (void)loadLargeImage:(UITapGestureRecognizer *)recognizer
+{    
+    ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:_tweet.bigImgURL thumbnail:(UIImageView *)recognizer.view andTapLocation:[recognizer locationInView:self.view]];
+    
+    [self presentViewController:imageVC animated:YES completion:nil];
 }
 
 @end

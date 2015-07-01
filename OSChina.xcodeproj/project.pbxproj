@@ -50,6 +50,7 @@
 		33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */; };
 		33B0EF831B43C6760037549E /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF821B43C6760037549E /* UserInfoCell.m */; };
 		33B4C0401B441A3500637952 /* UIImageView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4C03F1B441A3500637952 /* UIImageView+Util.m */; };
+		33B4C0431B4423F400637952 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4C0421B4423F400637952 /* ImageViewController.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,8 @@
 		33B0EF821B43C6760037549E /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		33B4C03E1B441A3500637952 /* UIImageView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Util.h"; sourceTree = "<group>"; };
 		33B4C03F1B441A3500637952 /* UIImageView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Util.m"; sourceTree = "<group>"; };
+		33B4C0411B4423F400637952 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		33B4C0421B4423F400637952 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				3335958D1B43C40000AC412A /* Config.m */,
 				33B4C03E1B441A3500637952 /* UIImageView+Util.h */,
 				33B4C03F1B441A3500637952 /* UIImageView+Util.m */,
+				33B4C0411B4423F400637952 /* ImageViewController.h */,
+				33B4C0421B4423F400637952 /* ImageViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -578,6 +583,7 @@
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
+				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,

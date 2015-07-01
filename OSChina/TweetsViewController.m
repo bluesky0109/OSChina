@@ -9,6 +9,7 @@
 #import "TweetsViewController.h"
 #import "TweetDetailsViewController.h"
 #import "UserDetailsViewController.h"
+#import "ImageViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
 
@@ -133,7 +134,7 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
         cell.thumbnail.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
-        [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
+        [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadLargeImage:)]];
         return cell;
     } else {
         return self.lastCell;
@@ -197,18 +198,21 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
 
 #pragma mark - 跳转到用户详情页
 
-- (void)pushDetailsView:(UITapGestureRecognizer *)tapGesture
+- (void)pushDetailsView:(UITapGestureRecognizer *)recognizer
 {
-    OSCTweet *tweet = [self.objects objectAtIndex:tapGesture.view.tag];
+    OSCTweet *tweet = [self.objects objectAtIndex:recognizer.view.tag];
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:tweet.authorID];
     [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
 
 #pragma mark - 加载大图
-- (void)loadLargeImage:(UITapGestureRecognizer *)tapGesture
+- (void)loadLargeImage:(UITapGestureRecognizer *)recognizer
 {
-    OSCTweet *tweet = [self.objects objectAtIndex:tapGesture.view.tag];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:tweet.bigImgURL]];
+    OSCTweet *tweet = [self.objects objectAtIndex:recognizer.view.tag];
+    
+    ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:tweet.bigImgURL thumbnail:(UIImageView *)recognizer.view andTapLocation:[recognizer locationInView:self.view]];
+    
+    [self presentViewController:imageVC animated:YES completion:nil];
 }
 
 @end
