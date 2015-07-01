@@ -8,10 +8,11 @@
 
 #import "TweetsViewController.h"
 #import "TweetDetailsViewController.h"
-
+#import "UserDetailsViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
 
+#import "Config.h"
 
 static NSString *kTweetCellID = @"TweetCell";
 
@@ -46,8 +47,10 @@ static NSString *kTweetCellID = @"TweetCell";
                 break;
                 
             case TweetsTypeOwnTweets:
-                self.uid = 1244649;
-                
+                self.uid = [Config getOwnID];
+                if (self.uid == 0) {
+                    //显示其他
+                }
             default:
                 break;
         }
@@ -111,11 +114,17 @@ static NSString *kTweetCellID = @"TweetCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.objects.count) {
+    
+    NSInteger row = indexPath.row;
+    if (row < self.objects.count) {
         TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:kTweetCellID forIndexPath:indexPath];
-        OSCTweet *tweet = [self.objects objectAtIndex:indexPath.row];
+        OSCTweet *tweet = [self.objects objectAtIndex:row];
         
         [cell setContentWithTweet:tweet];
+        cell.portrait.tag = row;
+        cell.authorLabel.tag = row;
+        [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
+        [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         
         return cell;
     } else {
@@ -153,6 +162,16 @@ static NSString *kTweetCellID = @"TweetCell";
     } else {
         [self fetchMore];
     }
+}
+
+
+#pragma mark - 跳转到用户详情页
+
+- (void)pushDetailsView:(UITapGestureRecognizer *)tapGesture
+{
+    OSCTweet *tweet = [self.objects objectAtIndex:tapGesture.view.tag];
+    UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:tweet.authorID];
+    [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
 
 

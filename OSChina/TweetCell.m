@@ -24,11 +24,9 @@
         [self initSubviews];
         [self setLayout];
         
-#if 0
         UIView *selectedBackground = [UIView new];
-        selectedBackground.backgroundColor = UIColorFromRGB(0xdadbdc);
+        selectedBackground.backgroundColor = [UIColor colorWithHex:0xF5FFFA];
         [self setSelectedBackgroundView:selectedBackground];
-#endif
     }
     return self;
 }
@@ -48,11 +46,13 @@
 {
     self.portrait = [UIImageView new];
     self.portrait.contentMode = UIViewContentModeScaleAspectFit;
+    self.portrait.userInteractionEnabled = YES;
     [self.portrait setCornerRadius:5.0];
     [self.contentView addSubview:self.portrait];
 
     self.authorLabel = [UILabel new];
     self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
+    self.authorLabel.userInteractionEnabled = YES;
     self.authorLabel.textColor = [UIColor colorWithHex:0x0083FF];
     [self.contentView addSubview:self.authorLabel];
     

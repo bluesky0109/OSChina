@@ -11,6 +11,7 @@
 #import "OSCAPI.h"
 #import "OSCUser.h"
 #import "Utils.h"
+#import "Config.h"
 
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
@@ -33,6 +34,13 @@
     
     [self initSubviews];
     [self setLayout];
+    
+    NSArray *accountAndPassword = [Config getOwnAccountAndPassword];
+    if (accountAndPassword) {
+        return;
+    }
+    _accountField.text = accountAndPassword.firstObject;
+    _passwordField.text = accountAndPassword.lastObject;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -236,6 +244,10 @@
                   return;
               }
               OSCUser *user = [[OSCUser alloc] initWithXML:userXML];
+              
+              [Config saveOwnAccount:_accountField.text andPassword:_passwordField.text];
+              [Config saveOwnID:user.userID];
+              
               UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUser:user];
               [self.navigationController pushViewController:userDetailsVC animated:YES];
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
