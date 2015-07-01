@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3321C2251B43C6E5003B73C8 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MineViewController.m */; };
 		333595621B436DA900AC412A /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595611B436DA900AC412A /* CommentsViewController.m */; };
 		333595651B436DC600AC412A /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595641B436DC600AC412A /* CommentCell.m */; };
 		333595681B43728300AC412A /* OSCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595671B43728300AC412A /* OSCComment.m */; };
@@ -19,6 +20,9 @@
 		3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335957D1B4392A000AC412A /* DetailsViewController.m */; };
 		333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595841B43AB5C00AC412A /* OSCPostDetails.m */; };
 		333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */; };
+		3335958B1B43C1F500AC412A /* BottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958A1B43C1F500AC412A /* BottomBar.m */; };
+		3335958E1B43C40000AC412A /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958D1B43C40000AC412A /* Config.m */; };
+		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
 		335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E31B42D89200D28C80 /* PostsViewController.m */; };
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
@@ -43,6 +47,9 @@
 		339741181B42949C0074D2EA /* OSCPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741171B42949C0074D2EA /* OSCPost.m */; };
 		3397411C1B4296380074D2EA /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397411B1B4296380074D2EA /* NewsViewController.m */; };
 		3397411F1B4296550074D2EA /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397411E1B4296550074D2EA /* NewsCell.m */; };
+		33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF7C1B43C6430037549E /* LoginViewController.m */; };
+		33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */; };
+		33B0EF831B43C6760037549E /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF821B43C6760037549E /* UserInfoCell.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3321C2231B43C6E5003B73C8 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		3321C2241B43C6E5003B73C8 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		333595601B436DA900AC412A /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		333595611B436DA900AC412A /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		333595631B436DC600AC412A /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
@@ -81,6 +90,12 @@
 		333595841B43AB5C00AC412A /* OSCPostDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPostDetails.m; sourceTree = "<group>"; };
 		333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSoftwareDetails.h; sourceTree = "<group>"; };
 		333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSoftwareDetails.m; sourceTree = "<group>"; };
+		333595891B43C1F500AC412A /* BottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBar.h; sourceTree = "<group>"; };
+		3335958A1B43C1F500AC412A /* BottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBar.m; sourceTree = "<group>"; };
+		3335958C1B43C40000AC412A /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		3335958D1B43C40000AC412A /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		3335958F1B43C48E00AC412A /* OSCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUser.h; sourceTree = "<group>"; };
+		333595901B43C48E00AC412A /* OSCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUser.m; sourceTree = "<group>"; };
 		335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCObjsViewController.h; sourceTree = "<group>"; };
 		335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCObjsViewController.m; sourceTree = "<group>"; };
 		335EB1E21B42D89200D28C80 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
@@ -131,6 +146,12 @@
 		3397411B1B4296380074D2EA /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		3397411D1B4296550074D2EA /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		3397411E1B4296550074D2EA /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		33B0EF7B1B43C6430037549E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		33B0EF7C1B43C6430037549E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		33B0EF7E1B43C65C0037549E /* UserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsViewController.h; sourceTree = "<group>"; };
+		33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsViewController.m; sourceTree = "<group>"; };
+		33B0EF811B43C6760037549E /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		33B0EF821B43C6760037549E /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +241,8 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				33B0EF7A1B43C6210037549E /* Mine */,
+				33B0EF791B43C6180037549E /* User */,
 				3335956C1B4384CB00AC412A /* Blog */,
 				3335955F1B436D7D00AC412A /* Comments */,
 				335EB1E11B42D86D00D28C80 /* Posts */,
@@ -297,6 +320,10 @@
 				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
 				339740FC1B42606C0074D2EA /* LastCell.h */,
 				339740FD1B42606C0074D2EA /* LastCell.m */,
+				333595891B43C1F500AC412A /* BottomBar.h */,
+				3335958A1B43C1F500AC412A /* BottomBar.m */,
+				3335958C1B43C40000AC412A /* Config.h */,
+				3335958D1B43C40000AC412A /* Config.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -325,6 +352,8 @@
 				333595841B43AB5C00AC412A /* OSCPostDetails.m */,
 				333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */,
 				333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */,
+				3335958F1B43C48E00AC412A /* OSCUser.h */,
+				333595901B43C48E00AC412A /* OSCUser.m */,
 			);
 			name = "OSC API";
 			sourceTree = "<group>";
@@ -363,6 +392,28 @@
 				3397411E1B4296550074D2EA /* NewsCell.m */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		33B0EF791B43C6180037549E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				33B0EF7B1B43C6430037549E /* LoginViewController.h */,
+				33B0EF7C1B43C6430037549E /* LoginViewController.m */,
+				33B0EF7E1B43C65C0037549E /* UserDetailsViewController.h */,
+				33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */,
+				33B0EF811B43C6760037549E /* UserInfoCell.h */,
+				33B0EF821B43C6760037549E /* UserInfoCell.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		33B0EF7A1B43C6210037549E /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				3321C2231B43C6E5003B73C8 /* MineViewController.h */,
+				3321C2241B43C6E5003B73C8 /* MineViewController.m */,
+			);
+			name = Mine;
 			sourceTree = "<group>";
 		};
 		47197FC03D3DCCEC59BC2931 /* Frameworks */ = {
@@ -519,10 +570,12 @@
 				339740CA1B423F590074D2EA /* ViewController.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
+				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
 				333595751B4385FA00AC412A /* BlogCell.m in Sources */,
 				333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */,
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
+				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
@@ -540,6 +593,8 @@
 				333595721B4385E300AC412A /* BlogsViewController.m in Sources */,
 				333595781B43912E00AC412A /* OSCBlogDetails.m in Sources */,
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
+				3335958E1B43C40000AC412A /* Config.m in Sources */,
+				33B0EF831B43C6760037549E /* UserInfoCell.m in Sources */,
 				3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
@@ -547,7 +602,10 @@
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
+				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
+				3321C2251B43C6E5003B73C8 /* MineViewController.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
+				3335958B1B43C1F500AC412A /* BottomBar.m in Sources */,
 				335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

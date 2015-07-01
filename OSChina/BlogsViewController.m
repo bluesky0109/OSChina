@@ -29,17 +29,33 @@ static NSString *kBlogCellID = @"BlogCell";
             return [NSString stringWithFormat:@"%@%@?type=%@&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_BLOGS_LIST, blogType, (unsigned long)page, OSCAPI_SUFFIX];
         };
         
-        self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
-            return [[xml.rootElement firstChildWithTag:@"blogs"] childrenWithTag:@"blog"];
-        };
-        
-        self.objClass = [OSCBlog class];
+        [self setBlockAndClass];
     }
     
     return self;
 }
 
+- (instancetype)initWithUserID:(int64_t)userID {
+    self = [super init];
+    if (self) {
+        self.generateURL = ^NSString * (NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?authoruid=%lld&pageIndex=1&pageSize=%d&uid=%lld", OSCAPI_PREFIX, OSCAPI_USERBLOGS_LIST, userID, 20,userID];
+        };
+        [self setBlockAndClass];
+    }
+    
+    return self;
+}
 
+- (void)setBlockAndClass
+{
+    self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
+        return [[xml.rootElement firstChildWithTag:@"blogs"] childrenWithTag:@"blog"];
+    };
+    self.objClass = [OSCBlog class];
+}
+
+#pragma mark -- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[BlogCell class] forCellReuseIdentifier:kBlogCellID];

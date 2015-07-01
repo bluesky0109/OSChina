@@ -52,29 +52,42 @@ static NSString *kTweetCellID = @"TweetCell";
                 break;
         }
         
-        __weak TweetsViewController *weakSelf = self;
-        self.tableWillReload = ^(NSUInteger responseObjectsCount) {
-            if (weakSelf.uid == -1) {
-                [weakSelf.lastCell statusFinished];
-            } else {
-                responseObjectsCount < 20? [weakSelf.lastCell statusFinished]: [weakSelf.lastCell statusMore];
-            }
-        };
-        
-        self.generateURL = ^(NSUInteger page) {
-            return [NSString stringWithFormat:@"%@%@?uid=%lld&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_TWEETS_LIST, weakSelf.uid, (unsigned long)page, OSCAPI_SUFFIX];
-        };
-        
-        self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
-            return [[xml.rootElement firstChildWithTag:@"tweets"] childrenWithTag:@"tweet"];
-        };
-        
-        self.objClass = [OSCTweet class];
-
+        [self setBlockAndClass];
     }
     
     return self;
 }
+
+- (instancetype)initWithUserID:(int64_t)userID
+{
+    self = [super init];
+    if (!self) {return nil;}
+    
+    self.uid = userID;
+    [self setBlockAndClass];
+    
+    return self;
+}
+
+- (void)setBlockAndClass
+{
+    __weak TweetsViewController *weakSelf = self;
+    self.tableWillReload = ^(NSUInteger responseObjectsCount) {
+        if (weakSelf.uid == -1) {[weakSelf.lastCell statusFinished];}
+        else {responseObjectsCount < 20? [weakSelf.lastCell statusFinished]: [weakSelf.lastCell statusMore];}
+    };
+    
+    self.generateURL = ^(NSUInteger page) {
+        return [NSString stringWithFormat:@"%@%@?uid=%lld&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_TWEETS_LIST, weakSelf.uid, (unsigned long)page, OSCAPI_SUFFIX];
+    };
+    
+    self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
+        return [[xml.rootElement firstChildWithTag:@"tweets"] childrenWithTag:@"tweet"];
+    };
+    
+    self.objClass = [OSCTweet class];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
