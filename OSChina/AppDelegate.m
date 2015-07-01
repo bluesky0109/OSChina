@@ -30,11 +30,11 @@
     
     
     SwipeableViewController *newsSVC = [[SwipeableViewController alloc] initWithTitle:@"资讯"
-                                                                         andSubTitles:@[@"最新资讯", @"最新博客", @"推荐阅读"]
+                                                                         andSubTitles:@[@"最新资讯", @"本周热点", @"本月热点"]
                                                                        andControllers:@[
                                                                                         [[NewsViewController alloc] initWithNewsListType:NewsListTypeNews],
-                                                                                        [[BlogsViewController alloc] initWithBlogsType:BlogsTypeLatest],
-                                                                                        [[BlogsViewController alloc] initWithBlogsType:BlogsTypeRecommended]
+                                                                                        [[NewsViewController alloc] initWithNewsListType:NewsListTypeAllTypeWeekHottest],
+                                                                                        [[NewsViewController alloc] initWithNewsListType:NewsListTypeAllTypeMonthHottest]
                                                                                         ]];
     
     SwipeableViewController *tweetsSVC = [[SwipeableViewController alloc] initWithTitle:@"动弹"
