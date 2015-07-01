@@ -118,6 +118,14 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
         TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         
         [cell setContentWithTweet:tweet];
+        if (tweet.hasAnImage) {
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+            if (!image) {
+                [self downloadImage:tweet.smallImgURL];
+            } else {
+                [cell.thumbnail setImage:image];
+            }
+        }
         cell.portrait.tag = row;
         cell.authorLabel.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
@@ -138,7 +146,11 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
         CGFloat heigth = size.height + 65;
         if (tweet.hasAnImage) {
-            heigth += 68;
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+            if (!image) {
+                image = [UIImage imageNamed:@"portrait_loading"];
+            }
+            heigth += image.size.height;
         }
         return heigth;
     } else {
@@ -164,6 +176,19 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
     }
 }
 
+#pragma mark - 下载图片
+- (void)downloadImage:(NSURL *)imageURL {
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
+                                                          options:SDWebImageDownloaderUseNSURLCache
+                                                         progress:nil
+                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                            [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
+                                                            
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                [self.tableView reloadData];
+                                                            });
+    }];
+}
 
 #pragma mark - 跳转到用户详情页
 
