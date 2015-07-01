@@ -11,7 +11,7 @@
 @interface OSCPost : OSCBaseObject
 
 @property (nonatomic, assign) int64_t  postID;
-@property (nonatomic, strong) NSURL    *portraitURL;
+@property (nonatomic, copy  ) NSURL    *portraitURL;
 @property (nonatomic, copy  ) NSString *author;
 @property (nonatomic, assign) int64_t  authorID;
 @property (nonatomic, copy  ) NSString *title;

@@ -66,7 +66,7 @@
     }
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_titleLabel,_authorLabel,_timeLabel,_commentCount);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_titleLabel]-15-[_authorLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:viewDict]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_titleLabel]-5-[_authorLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:viewDict]];
 
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_titleLabel]-8-|" options:0 metrics:nil views:viewDict]];
     

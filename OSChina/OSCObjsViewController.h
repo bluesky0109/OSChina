@@ -11,7 +11,6 @@
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "Utils.h"
 #import "OSCAPI.h"
@@ -28,5 +27,7 @@
 @property (nonatomic, strong) NSMutableArray *objects;
 @property (nonatomic, strong) LastCell *lastCell;
 @property (nonatomic, strong) UILabel *label;
+
+- (void)fetchMore;
 
 @end

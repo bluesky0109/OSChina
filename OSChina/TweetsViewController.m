@@ -7,8 +7,7 @@
 //
 
 #import "TweetsViewController.h"
-
-
+#import "TweetDetailsViewController.h"
 
 #import "OSCTweet.h"
 #import "TweetCell.h"
@@ -34,7 +33,7 @@ static NSString *kTweetCellID = @"TweetCell";
  
  */
 
-- (instancetype)initWithType:(TweetsType)type {
+- (instancetype)initWithTweetsType:(TweetsType)type {
     self = [super init];
     if (self) {
         switch (type) {
@@ -103,14 +102,7 @@ static NSString *kTweetCellID = @"TweetCell";
         TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:kTweetCellID forIndexPath:indexPath];
         OSCTweet *tweet = [self.objects objectAtIndex:indexPath.row];
         
-        [cell.portrait sd_setImageWithURL:tweet.portraitURL placeholderImage:nil options:0]; //options:SDWebImageRefreshCached
-        
-        [cell.authorLabel setText:tweet.author];
-        [cell.timeLabel setText:[Utils intervalSinceNow:tweet.pubDate]];
-        [cell.appclientLabel setText:[Utils getAppclient:tweet.appclient]];
-        [cell.commentCount setText:[NSString stringWithFormat:@"评论：%d", tweet.commentCount]];
-        
-        [cell.contentLabel setText:tweet.body];
+        [cell setContentWithTweet:tweet];
         
         return cell;
     } else {
@@ -126,10 +118,35 @@ static NSString *kTweetCellID = @"TweetCell";
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
         
-        return size.height + 71;
+        return size.height + 65;
     } else {
         return 60;
     }
 }
+
+#pragma mark -- UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSInteger row = indexPath.row;
+    
+    if (row < self.objects.count) {
+        OSCTweet *tweet = [self.objects objectAtIndex:row];
+        
+        TweetDetailsViewController *tweetDetailsVC = [[TweetDetailsViewController alloc] initWithTweet:tweet];
+        
+        NSLog(@"%@", self.parentViewController);
+        NSLog(@"%@", self.parentViewController.navigationController);
+        NSLog(@"%@", self.navigationController);
+        NSLog(@"%@", self.parentViewController.parentViewController);
+        NSLog(@"%@", self.parentViewController.parentViewController.navigationController);
+        
+        [self.navigationController pushViewController:tweetDetailsVC animated:YES];
+        
+    } else {
+        [self fetchMore];
+    }
+}
+
 
 @end

@@ -10,16 +10,16 @@
 
 @interface OSCTweet : OSCBaseObject
 
-@property (nonatomic, assign) int64_t tweetID;
-@property (nonatomic, strong) NSURL *portraitURL;
-@property (nonatomic, copy) NSString *author;
-@property (nonatomic, assign) int64_t authorID;
-@property (nonatomic, copy) NSString *body;
-@property (nonatomic, assign) int appclient;
-@property (nonatomic, assign) int commentCount;
-@property (nonatomic, copy) NSString *pubDate;
-@property (nonatomic, strong) NSURL *smallImgURL;
-@property (nonatomic, strong) NSURL *bigImgURL;
-@property (nonatomic, copy) NSString *attach;
+@property (nonatomic, assign) int64_t  tweetID;
+@property (nonatomic, copy  ) NSURL    *portraitURL;
+@property (nonatomic, copy  ) NSString *author;
+@property (nonatomic, assign) int64_t  authorID;
+@property (nonatomic, copy  ) NSString *body;
+@property (nonatomic, assign) int      appclient;
+@property (nonatomic, assign) int      commentCount;
+@property (nonatomic, copy  ) NSString *pubDate;
+@property (nonatomic, strong) NSURL    *smallImgURL;
+@property (nonatomic, strong) NSURL    *bigImgURL;
+@property (nonatomic, copy  ) NSString *attach;
 
 @end
