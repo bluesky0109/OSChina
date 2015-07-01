@@ -109,6 +109,7 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
     return 1;
 }
 
+// 图片的高度计算方法参考 http://blog.cocoabit.com/blog/2013/10/31/guan-yu-uitableview-zhong-cell-zi-gua-ying-gao-du-de-wen-ti/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger row = indexPath.row;
@@ -120,8 +121,9 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
         [cell setContentWithTweet:tweet];
         if (tweet.hasAnImage) {
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+            // 有图就加载，无图则下载并reload tableview
             if (!image) {
-                [self downloadImage:tweet.smallImgURL];
+                [self downloadImageThenReload:tweet.smallImgURL];
             } else {
                 [cell.thumbnail setImage:image];
             }
@@ -177,17 +179,19 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
 }
 
 #pragma mark - 下载图片
-- (void)downloadImage:(NSURL *)imageURL {
+- (void)downloadImageThenReload:(NSURL *)imageURL
+{
     [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
                                                           options:SDWebImageDownloaderUseNSURLCache
                                                          progress:nil
                                                         completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                             [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
                                                             
+                                                            // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
                                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                                 [self.tableView reloadData];
                                                             });
-    }];
+                                                        }];
 }
 
 #pragma mark - 跳转到用户详情页

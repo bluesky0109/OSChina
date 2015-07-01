@@ -7,6 +7,7 @@
 //
 
 #import "TweetDetailsViewController.h"
+#import "UserDetailsViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
 
@@ -29,6 +30,13 @@
             
             [cell setContentWithTweet:tweet];
             cell.commentCount.hidden = YES;
+            
+            if (tweet.hasAnImage) {
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+                [cell.thumbnail setImage:image];
+            }
+            [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushDetailsView)]];
+            [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushDetailsView)]];
             return cell;
         };
         
@@ -39,7 +47,8 @@
             
             CGFloat height = size.height + 65;
             if (tweet.hasAnImage) {
-                height += 68;
+                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+                height += image.size.height + 5;
             }
             return height;
         };
@@ -84,6 +93,14 @@
         }
         return title;
     }
+}
+
+#pragma mark - 跳转到用户详情页
+
+- (void)pushDetailsView
+{
+    UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:_tweet.authorID];
+    [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
 
 @end
