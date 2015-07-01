@@ -135,12 +135,6 @@ static NSString *kTweetCellID = @"TweetCell";
         
         TweetDetailsViewController *tweetDetailsVC = [[TweetDetailsViewController alloc] initWithTweet:tweet];
         
-        NSLog(@"%@", self.parentViewController);
-        NSLog(@"%@", self.parentViewController.navigationController);
-        NSLog(@"%@", self.navigationController);
-        NSLog(@"%@", self.parentViewController.parentViewController);
-        NSLog(@"%@", self.parentViewController.parentViewController.navigationController);
-        
         [self.navigationController pushViewController:tweetDetailsVC animated:YES];
         
     } else {

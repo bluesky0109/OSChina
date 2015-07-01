@@ -48,7 +48,7 @@
         
         UIButton *firstTitle = self.titleButtons.firstObject;
         firstTitle.titleLabel.font = [UIFont systemFontOfSize:16];
-        [firstTitle setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [firstTitle setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
     }
     
     return self;
