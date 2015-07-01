@@ -130,9 +130,10 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
         }
         cell.portrait.tag = row;
         cell.authorLabel.tag = row;
+        cell.thumbnail.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
-        
+        [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         return cell;
     } else {
         return self.lastCell;
@@ -203,5 +204,11 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
     [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
 
+#pragma mark - 加载大图
+- (void)loadLargeImage:(UITapGestureRecognizer *)tapGesture
+{
+    OSCTweet *tweet = [self.objects objectAtIndex:tapGesture.view.tag];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:tweet.bigImgURL]];
+}
 
 @end
