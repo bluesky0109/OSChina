@@ -7,6 +7,7 @@
 //
 
 #import "PostsViewController.h"
+#import "DetailsViewController.h"
 #import "PostsCell.h"
 #import "OSCPost.h"
 
@@ -49,7 +50,7 @@ static NSString *kPostCellID = @"PostCell";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -
+#pragma mark -- UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -69,7 +70,7 @@ static NSString *kPostCellID = @"PostCell";
     }
 }
 
-
+#pragma mark -- UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < self.objects.count) {
@@ -84,6 +85,17 @@ static NSString *kPostCellID = @"PostCell";
     }
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSInteger row = indexPath.row;
+    if (row < self.objects.count) {
+        OSCPost *post = [self.objects objectAtIndex:row];
+        DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithPost:post];
+        [self.navigationController pushViewController:detailsVC animated:YES];
+    } else {
+        [self fetchMore];
+    }
+}
 
 @end
