@@ -10,7 +10,7 @@
 #import "NewsCell.h"
 
 #import "OSCNews.h"
-
+#import "OSCBlog.h"
 
 
 static NSString *kNewsCellID = @"NewsCell";
@@ -24,11 +24,11 @@ static NSString *kNewsCellID = @"NewsCell";
 
 @implementation NewsViewController
 
-- (instancetype)initWithCatalog:(int)catalog {
+- (instancetype)initWithNewsType:(NewsType)type {
     self = [super init];
     if (self) {
         self.generateURL = ^NSString * (NSUInteger page) {
-            return [NSString stringWithFormat:@"%@%@?catalog=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_NEWS_LIST, catalog, (unsigned long)page, OSCAPI_SUFFIX];
+            return [NSString stringWithFormat:@"%@%@?catalog=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_NEWS_LIST, type, (unsigned long)page, OSCAPI_SUFFIX];
         };
 
         self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
@@ -46,21 +46,6 @@ static NSString *kNewsCellID = @"NewsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-#if 1
-    self.generateURL = ^NSString * (NSUInteger page) {
-        NSString *url = [NSString stringWithFormat:@"%@%@?catalog=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_NEWS_LIST, 1, (unsigned long)page, OSCAPI_SUFFIX];
-        
-        return url;
-    };
-    
-    self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
-        return [[xml.rootElement firstChildWithTag:@"newslist"] childrenWithTag:@"news"];
-    };
-    
-    self.objClass = [OSCNews class];
-
-#endif
-    
     // tableView设置
     [self.tableView registerClass:[NewsCell class] forCellReuseIdentifier:kNewsCellID];
     
@@ -72,12 +57,12 @@ static NSString *kNewsCellID = @"NewsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
         NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewsCellID forIndexPath:indexPath];
-        
         OSCNews *news = [self.objects objectAtIndex:indexPath.row];
-        cell.titleLabel.text = news.title;
-        cell.authorLabel.text = news.author;
-        cell.timeLabel.text = [Utils intervalSinceNow:news.pubDate];
-        cell.commentCount.text = @(news.commentCount).stringValue;
+        
+        [cell.titleLabel setText:news.title];
+        [cell.authorLabel setText:news.author];
+        [cell.timeLabel setText:[Utils intervalSinceNow:news.pubDate]];
+        [cell.commentCount setText:[NSString stringWithFormat:@"%d 评", news.commentCount]];
         
         return cell;
     } else {
@@ -90,9 +75,9 @@ static NSString *kNewsCellID = @"NewsCell";
         OSCNews *news = [self.objects objectAtIndex:indexPath.row];
         [self.label setText:news.title];
         
-        CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
+        CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)];
         
-        return size.height + 32;
+        return size.height + 39;
     } else {
         return 60;
     }

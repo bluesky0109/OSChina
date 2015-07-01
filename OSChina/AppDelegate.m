@@ -10,9 +10,11 @@
 #import "SwipeableViewController.h"
 #import "TweetsViewController.h"
 #import "PostsViewController.h"
+#import "NewsViewController.h"
+#import "BlogsViewController.h"
 #import "UIColor+Util.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -25,13 +27,20 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
+    SwipeableViewController *newsSVC = [[SwipeableViewController alloc] initWithTitle:@"资讯"
+                                                                         andSubTitles:@[@"最新资讯", @"最新博客", @"推荐阅读"]
+                                                                       andControllers:@[
+                                                                                        [[NewsViewController alloc] initWithNewsType:NewsTypeNews],
+                                                                                        [[BlogsViewController alloc] initWithBlogsType:BlogsTypeLatest],
+                                                                                        [[BlogsViewController alloc] initWithBlogsType:BlogsTypeRecommended]
+                                                                                        ]];
     
     SwipeableViewController *tweetsSVC = [[SwipeableViewController alloc] initWithTitle:@"动弹"
                                                                            andSubTitles:@[@"最新动弹", @"热门动弹", @"我的动弹"]
                                                                          andControllers:@[
                                                                                           [[TweetsViewController alloc] initWithTweetsType:TweetsTypeAllTweets],
                                                                                           [[TweetsViewController alloc] initWithTweetsType:TweetsTypeHotestTweets],
-                                                                                          [[TweetsViewController alloc] initWithTweetsType:TweetsTypeOwnTweets],
+                                                                                          [[TweetsViewController alloc] initWithTweetsType:TweetsTypeOwnTweets]
                                                                                           ]];
     
     SwipeableViewController *postsSVC = [[SwipeableViewController alloc] initWithTitle:@"讨论区"
@@ -44,15 +53,17 @@
                                                                                          [[PostsViewController alloc] initWithPostsType:PostsTypeCaree]
                                                                                          ]];
     
+    UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:newsSVC];
     UINavigationController *tweetsNav = [[UINavigationController alloc] initWithRootViewController:tweetsSVC];
     UINavigationController *postsNav = [[UINavigationController alloc] initWithRootViewController:postsSVC];
     
     self.tabBarController = [UITabBarController new];
     self.tabBarController.delegate = self;
-    self.tabBarController.viewControllers = @[tweetsNav, postsNav];
+    self.tabBarController.viewControllers = @[newsNav,tweetsNav, postsNav];
     
-    [[self.tabBarController.tabBar.items objectAtIndex:0] setTitle:@"动弹"];
-    [[self.tabBarController.tabBar.items objectAtIndex:1] setTitle:@"讨论区"];
+    [[self.tabBarController.tabBar.items objectAtIndex:0] setTitle:@"资讯"];
+    [[self.tabBarController.tabBar.items objectAtIndex:1] setTitle:@"动弹"];
+    [[self.tabBarController.tabBar.items objectAtIndex:2] setTitle:@"讨论区"];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];

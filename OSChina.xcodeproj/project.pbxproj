@@ -11,6 +11,9 @@
 		333595651B436DC600AC412A /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595641B436DC600AC412A /* CommentCell.m */; };
 		333595681B43728300AC412A /* OSCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595671B43728300AC412A /* OSCComment.m */; };
 		3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335956A1B43748A00AC412A /* TweetDetailsViewController.m */; };
+		3335956F1B43857A00AC412A /* OSCBlog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335956E1B43857A00AC412A /* OSCBlog.m */; };
+		333595721B4385E300AC412A /* BlogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595711B4385E300AC412A /* BlogsViewController.m */; };
+		333595751B4385FA00AC412A /* BlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595741B4385FA00AC412A /* BlogCell.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
 		335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E31B42D89200D28C80 /* PostsViewController.m */; };
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
@@ -57,6 +60,12 @@
 		333595671B43728300AC412A /* OSCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCComment.m; sourceTree = "<group>"; };
 		333595691B43748A00AC412A /* TweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
 		3335956A1B43748A00AC412A /* TweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
+		3335956D1B43857A00AC412A /* OSCBlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCBlog.h; sourceTree = "<group>"; };
+		3335956E1B43857A00AC412A /* OSCBlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCBlog.m; sourceTree = "<group>"; };
+		333595701B4385E300AC412A /* BlogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogsViewController.h; sourceTree = "<group>"; };
+		333595711B4385E300AC412A /* BlogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogsViewController.m; sourceTree = "<group>"; };
+		333595731B4385FA00AC412A /* BlogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogCell.h; sourceTree = "<group>"; };
+		333595741B4385FA00AC412A /* BlogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogCell.m; sourceTree = "<group>"; };
 		335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCObjsViewController.h; sourceTree = "<group>"; };
 		335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCObjsViewController.m; sourceTree = "<group>"; };
 		335EB1E21B42D89200D28C80 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
@@ -151,6 +160,17 @@
 			name = Comments;
 			sourceTree = "<group>";
 		};
+		3335956C1B4384CB00AC412A /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				333595701B4385E300AC412A /* BlogsViewController.h */,
+				333595711B4385E300AC412A /* BlogsViewController.m */,
+				333595731B4385FA00AC412A /* BlogCell.h */,
+				333595741B4385FA00AC412A /* BlogCell.m */,
+			);
+			name = Blog;
+			sourceTree = "<group>";
+		};
 		335EB1E11B42D86D00D28C80 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +205,7 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				3335956C1B4384CB00AC412A /* Blog */,
 				3335955F1B436D7D00AC412A /* Comments */,
 				335EB1E11B42D86D00D28C80 /* Posts */,
 				339741191B4296160074D2EA /* News */,
@@ -266,14 +287,6 @@
 		339740ED1B4260350074D2EA /* OSC API */ = {
 			isa = PBXGroup;
 			children = (
-				339740EE1B4260400074D2EA /* OSC models */,
-			);
-			name = "OSC API";
-			sourceTree = "<group>";
-		};
-		339740EE1B4260400074D2EA /* OSC models */ = {
-			isa = PBXGroup;
-			children = (
 				339740EF1B42605E0074D2EA /* OSCBaseObject.h */,
 				339740F01B42605E0074D2EA /* OSCBaseObject.m */,
 				339740F11B42605E0074D2EA /* OSCTweet.h */,
@@ -285,8 +298,10 @@
 				339741171B42949C0074D2EA /* OSCPost.m */,
 				333595661B43728300AC412A /* OSCComment.h */,
 				333595671B43728300AC412A /* OSCComment.m */,
+				3335956D1B43857A00AC412A /* OSCBlog.h */,
+				3335956E1B43857A00AC412A /* OSCBlog.m */,
 			);
-			name = "OSC models";
+			name = "OSC API";
 			sourceTree = "<group>";
 		};
 		339741021B4260850074D2EA /* Tweets */ = {
@@ -478,6 +493,7 @@
 				339740CA1B423F590074D2EA /* ViewController.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
+				333595751B4385FA00AC412A /* BlogCell.m in Sources */,
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
@@ -493,9 +509,11 @@
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
 				333595681B43728300AC412A /* OSCComment.m in Sources */,
 				3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */,
+				333595721B4385E300AC412A /* BlogsViewController.m in Sources */,
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
+				3335956F1B43857A00AC412A /* OSCBlog.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
