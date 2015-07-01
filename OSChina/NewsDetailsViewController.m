@@ -33,8 +33,6 @@
         self.news = news;
     }
     
-    
-    
     return self;
 }
 
