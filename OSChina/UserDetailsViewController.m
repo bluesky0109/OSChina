@@ -77,8 +77,7 @@
                                                          andSubTitles:@[@"动态", @"博客"]
                                                        andControllers:@[[[TweetsViewController alloc] initWithUserID:_user.userID],[[BlogsViewController alloc] initWithUserID:_user.userID]]];
     
-    [self setLayout];
-    [self setContent];
+    [self addChildViewController:self.swipeableVC];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,32 +85,71 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Layout
+#pragma mark - table view
 
-- (void)setLayout
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    UIView *headerView = [UIView new];
-    [self setHeaderView:headerView];
-    [self.view addSubview:headerView];
-    
-    UIView *middleView = [UIView new];
-    [self setMiddleView:middleView];
-    [self.view addSubview:middleView];
-    
-    UIView *mainView = self.swipeableVC.view;
-    [self.view addSubview:mainView];
-    
-    for (UIView *subView in [self.view subviews]) {subView.translatesAutoresizingMaskIntoConstraints = NO;}
-    
-    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(headerView, middleView, mainView);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[headerView][middleView][mainView]|"
-                                                                      options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
-                                                                      metrics:nil
-                                                                        views:viewsDict]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[headerView]|" options:0 metrics:nil views:viewsDict]];
+    return 2;
 }
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return section ? 1 : 2;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return section ? 43 : 0;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {return nil;}
+    return self.swipeableVC.titleBar;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section) {
+        return self.view.frame.size.height - 43;
+    } else if (indexPath.row) {
+        return 51;
+    } else {
+        return 150;
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [UITableViewCell new];
+    if (indexPath.section) {
+        self.swipeableVC.viewPager.view.frame = cell.contentView.bounds;
+        [cell.contentView addSubview:self.swipeableVC.viewPager.view];
+        [self addChildViewController:self.swipeableVC.viewPager];
+        [self.swipeableVC.viewPager didMoveToParentViewController:self];
+        return cell;
+    } else if (indexPath.row) {
+        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self setMiddleView:cell.contentView];
+        return cell;
+    } else {
+        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self setHeaderView:cell.contentView];
+        [self setContent];
+        return cell;
+    }
+}
+
+
+
+
+
+#pragma mark - Layout
 
 - (void)setHeaderView:(UIView *)headerView
 {
@@ -130,13 +168,17 @@
     
     NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_portrait, _nameLabel, _countLabel, headerView);
     
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_portrait(80)]-8-[_nameLabel]-8-[_countLabel]-5-|"
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_portrait(80)]-8-[_nameLabel]-8-[_countLabel]-5-|"
                                                                        options:NSLayoutFormatAlignAllCenterX
                                                                        metrics:nil
                                                                          views:viewsDict]];
     
     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_portrait(80)]" options:0 metrics:nil views:viewsDict]];
     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[headerView]-<=1-[_portrait]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDict]];
+    //[headerView addConstraint:[NSLayoutConstraint constraintWithItem:_portrait attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual
+    //                                                          toItem:_portrait.superview attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f]];
+    
+    //[headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=20)-[_portrait(80)]-(>=20)-|" options:0 metrics:nil views:viewsDict]];
 }
 
 - (void)setMiddleView:(UIView *)middleView
@@ -161,7 +203,7 @@
     
     NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_followButton, messageButton);
     
-    [middleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_followButton(30)]-10-|" options:0 metrics:nil views:viewsDict]];
+    [middleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_followButton(30)]->=10-|" options:0 metrics:nil views:viewsDict]];
     [middleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[_followButton(100)]->=10-[messageButton(100)]-20-|"
                                                                        options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
                                                                        metrics:nil views:viewsDict]];
