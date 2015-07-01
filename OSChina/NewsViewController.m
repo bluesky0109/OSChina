@@ -18,8 +18,6 @@ static NSString *kNewsCellID = @"NewsCell";
 
 @interface NewsViewController ()
 
-@property (nonatomic, strong) UILabel *label;
-
 @end
 
 @implementation NewsViewController
@@ -36,7 +34,6 @@ static NSString *kNewsCellID = @"NewsCell";
         };
         
         self.objClass = [OSCNews class];
-        self.label = [UILabel new];
     }
     
     
@@ -48,8 +45,6 @@ static NSString *kNewsCellID = @"NewsCell";
     
     // tableView设置
     [self.tableView registerClass:[NewsCell class] forCellReuseIdentifier:kNewsCellID];
-    
-    self.label = [UILabel new];
 }
 
 #pragma mark - Table view data source
@@ -75,7 +70,7 @@ static NSString *kNewsCellID = @"NewsCell";
         OSCNews *news = [self.objects objectAtIndex:indexPath.row];
         [self.label setText:news.title];
         
-        CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)];
+        CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
         
         return size.height + 39;
     } else {
