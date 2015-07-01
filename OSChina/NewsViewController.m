@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 #import "NewsDetailsViewController.h"
-
+#import "DetailsViewController.h"
 #import "NewsCell.h"
 #import "OSCNews.h"
 
@@ -87,8 +87,8 @@ static NSString *kNewsCellID = @"NewsCell";
     
     if (row < self.objects.count) {
         OSCNews *news = [self.objects objectAtIndex:row];
-        NewsDetailsViewController *newsDetailsVC = [[NewsDetailsViewController alloc] initWithNews:news];
-        [self.navigationController pushViewController:newsDetailsVC animated:YES];
+        DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNews:news];
+        [self.navigationController pushViewController:detailsViewController animated:YES];
     } else {
         [self fetchMore];
     }
