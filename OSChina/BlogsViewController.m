@@ -7,6 +7,8 @@
 //
 
 #import "BlogsViewController.h"
+#import "DetailsViewController.h"
+
 #import "BlogCell.h"
 #import "OSCBlog.h"
 
@@ -81,5 +83,18 @@ static NSString *kBlogCellID = @"BlogCell";
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSInteger row = indexPath.row;
+    
+    if (row < self.objects.count) {
+        OSCBlog *blog = [self.objects objectAtIndex:row];
+        DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithBlog:blog];
+        [self.navigationController pushViewController:detailsVC animated:YES];
+    } else {
+        [self fetchMore];
+    }
+}
 
 @end

@@ -17,7 +17,6 @@
 		333595781B43912E00AC412A /* OSCBlogDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595771B43912E00AC412A /* OSCBlogDetails.m */; };
 		3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335957A1B43916700AC412A /* OSCNewsDetails.m */; };
 		3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335957D1B4392A000AC412A /* DetailsViewController.m */; };
-		333595821B43947F00AC412A /* NewsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595811B43947F00AC412A /* NewsDetailsViewController.m */; };
 		333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595841B43AB5C00AC412A /* OSCPostDetails.m */; };
 		333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -78,8 +77,6 @@
 		3335957A1B43916700AC412A /* OSCNewsDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNewsDetails.m; sourceTree = "<group>"; };
 		3335957C1B4392A000AC412A /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		3335957D1B4392A000AC412A /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
-		333595801B43947F00AC412A /* NewsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailsViewController.h; sourceTree = "<group>"; };
-		333595811B43947F00AC412A /* NewsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailsViewController.m; sourceTree = "<group>"; };
 		333595831B43AB5C00AC412A /* OSCPostDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCPostDetails.h; sourceTree = "<group>"; };
 		333595841B43AB5C00AC412A /* OSCPostDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPostDetails.m; sourceTree = "<group>"; };
 		333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSoftwareDetails.h; sourceTree = "<group>"; };
@@ -187,15 +184,6 @@
 				333595741B4385FA00AC412A /* BlogCell.m */,
 			);
 			name = Blog;
-			sourceTree = "<group>";
-		};
-		3335957F1B43944E00AC412A /* NewsDetails */ = {
-			isa = PBXGroup;
-			children = (
-				333595801B43947F00AC412A /* NewsDetailsViewController.h */,
-				333595811B43947F00AC412A /* NewsDetailsViewController.m */,
-			);
-			name = NewsDetails;
 			sourceTree = "<group>";
 		};
 		335EB1E11B42D86D00D28C80 /* Posts */ = {
@@ -369,7 +357,6 @@
 		339741191B4296160074D2EA /* News */ = {
 			isa = PBXGroup;
 			children = (
-				3335957F1B43944E00AC412A /* NewsDetails */,
 				3397411A1B4296380074D2EA /* NewsViewController.h */,
 				3397411B1B4296380074D2EA /* NewsViewController.m */,
 				3397411D1B4296550074D2EA /* NewsCell.h */,
@@ -543,7 +530,6 @@
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				333595621B436DA900AC412A /* CommentsViewController.m in Sources */,
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
-				333595821B43947F00AC412A /* NewsDetailsViewController.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
