@@ -27,7 +27,9 @@
 - (instancetype)initWithTitle:(NSString *)title andSubTitles:(NSArray *)subTitles andControllers:(NSArray *)controllers {
     self = [super init];
     if (self) {
-        self.title = title;
+        if (title) {
+            self.title = title;
+        }
         
         CGFloat titleBarHeight = 43;
         self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, titleBarHeight) andTitles:subTitles];

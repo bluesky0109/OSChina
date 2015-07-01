@@ -24,24 +24,23 @@ static NSString * const kRContent = @"rcontent";
 - (instancetype)initWithXML:(ONOXMLElement *)xml
 {
     if (self = [super init]) {
-        self.commentID = [[[xml firstChildWithTag:kID] numberValue] longLongValue];
-        self.authorID = [[[xml firstChildWithTag:kAuthorID] numberValue] longLongValue];
-        
-        self.portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
-        self.author = [[xml firstChildWithTag:kAuthor] stringValue];
-        
-        self.content = [[xml firstChildWithTag:kContent] stringValue];
-        self.pubDate = [[xml firstChildWithTag:kPubDate] stringValue];
-        
+        _commentID                     = [[[xml firstChildWithTag:kID] numberValue] longLongValue];
+        _authorID                      = [[[xml firstChildWithTag:kAuthorID] numberValue] longLongValue];
+
+        _portraitURL                   = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
+        _author                        = [[xml firstChildWithTag:kAuthor] stringValue];
+
+        _content                       = [[xml firstChildWithTag:kContent] stringValue];
+        _pubDate                       = [[xml firstChildWithTag:kPubDate] stringValue];
+
         NSMutableArray *mutableReplies = [NSMutableArray new];
-        NSArray *repliesXML = [[xml firstChildWithTag:kReplies] childrenWithTag:kReply];
+        NSArray *repliesXML            = [[xml firstChildWithTag:kReplies] childrenWithTag:kReply];
         for (ONOXMLElement *replyXML in repliesXML) {
-            NSString *rauthor = [[replyXML firstChildWithTag:kRauthor] stringValue];
+            NSString *rauthor  = [[replyXML firstChildWithTag:kRauthor] stringValue];
             NSString *rcontent = [[replyXML firstChildWithTag:kRContent] stringValue];
             [mutableReplies addObject:@[rauthor, rcontent]];
         }
-        self.replies = [NSArray arrayWithArray:mutableReplies];
-
+        _replies                       = [NSArray arrayWithArray:mutableReplies];
     }
     
     return self;
