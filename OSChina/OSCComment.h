@@ -10,12 +10,12 @@
 
 @interface OSCComment : OSCBaseObject
 
-@property (nonatomic, assign) int64_t        commentID;
-@property (nonatomic, copy  ) NSURL          *portraitURL;
-@property (nonatomic, copy  ) NSString       *author;
-@property (nonatomic, assign) int64_t        authorID;
-@property (nonatomic, copy  ) NSString       *content;
-@property (nonatomic, copy  ) NSString       *pubDate;
-@property (nonatomic, strong) NSMutableArray *replies;
+@property (nonatomic, assign) int64_t  commentID;
+@property (nonatomic, copy  ) NSURL    *portraitURL;
+@property (nonatomic, copy  ) NSString *author;
+@property (nonatomic, assign) int64_t  authorID;
+@property (nonatomic, copy  ) NSString *content;
+@property (nonatomic, copy  ) NSString *pubDate;
+@property (nonatomic, strong) NSArray  *replies;
 
 @end
