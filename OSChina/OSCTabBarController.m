@@ -7,7 +7,6 @@
 //
 
 #import "OSCTabBarController.h"
-#import "ViewController.h"
 #import "TweetsViewController.h"
 #import "SwipeableViewController.h"
 #import "NewsViewController.h"
@@ -32,7 +31,7 @@
 
 - (void)loadViewControllers {
     
-    ViewController *newsSVC = [[ViewController alloc] init];
+    
     TweetsViewController *tweetsSVC = [[TweetsViewController alloc] init];
     NewsViewController *discoverVC = [[NewsViewController alloc] init];
     SwipeableViewController *swipeableVC = [[SwipeableViewController alloc] init];
@@ -40,7 +39,7 @@
 
     self.tabBar.translucent = NO;
     self.viewControllers = @[
-                             newsSVC,tweetsSVC,discoverVC,swipeableVC
+                             tweetsSVC,discoverVC,swipeableVC
                              ];
     
     

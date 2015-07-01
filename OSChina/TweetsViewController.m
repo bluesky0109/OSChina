@@ -15,18 +15,13 @@
 #import "Config.h"
 
 static NSString *kTweetCellID = @"TweetCell";
-
-#pragma mark -
+static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
 
 @interface TweetsViewController ()
 
 @property (nonatomic, assign) int64_t uid;
 
 @end
-
-#pragma mark -
-
-
 
 @implementation TweetsViewController
 
@@ -97,6 +92,7 @@ static NSString *kTweetCellID = @"TweetCell";
     
     // tableView设置
     [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
+    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetWithImageCellID];
 }
 
 
@@ -117,8 +113,9 @@ static NSString *kTweetCellID = @"TweetCell";
     
     NSInteger row = indexPath.row;
     if (row < self.objects.count) {
-        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:kTweetCellID forIndexPath:indexPath];
         OSCTweet *tweet = [self.objects objectAtIndex:row];
+        NSString *cellID = tweet.hasAnImage? kTweetCellID : kTweetWithImageCellID;
+        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         
         [cell setContentWithTweet:tweet];
         cell.portrait.tag = row;
@@ -139,8 +136,11 @@ static NSString *kTweetCellID = @"TweetCell";
         [self.label setText:tweet.body];
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
-        
-        return size.height + 65;
+        CGFloat heigth = size.height + 65;
+        if (tweet.hasAnImage) {
+            heigth += 68;
+        }
+        return heigth;
     } else {
         return 60;
     }

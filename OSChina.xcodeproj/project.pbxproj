@@ -28,7 +28,6 @@
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
-		339740CA1B423F590074D2EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C91B423F590074D2EA /* ViewController.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
 		339740DE1B423F590074D2EA /* OSChinaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740DD1B423F590074D2EA /* OSChinaTests.m */; };
 		339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740EA1B4246AA0074D2EA /* OSCTabBarController.m */; };
@@ -107,8 +106,6 @@
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		339740C51B423F590074D2EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		339740C61B423F590074D2EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		339740C81B423F590074D2EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		339740C91B423F590074D2EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		339740CE1B423F590074D2EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		339740D71B423F590074D2EA /* OSChinaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSChinaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740DC1B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -253,8 +250,6 @@
 				339740E71B4245920074D2EA /* Main ViewControllers */,
 				339740C51B423F590074D2EA /* AppDelegate.h */,
 				339740C61B423F590074D2EA /* AppDelegate.m */,
-				339740C81B423F590074D2EA /* ViewController.h */,
-				339740C91B423F590074D2EA /* ViewController.m */,
 				339740CE1B423F590074D2EA /* Images.xcassets */,
 				339740C11B423F590074D2EA /* Supporting Files */,
 			);
@@ -567,7 +562,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
-				339740CA1B423F590074D2EA /* ViewController.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
 				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
