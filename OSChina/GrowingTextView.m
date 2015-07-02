@@ -16,6 +16,8 @@
         self.scrollEnabled = YES;
         self.scrollsToTop = NO;
         self.showsHorizontalScrollIndicator = NO;
+        self.enablesReturnKeyAutomatically = YES;
+        self.textContainerInset = UIEdgeInsetsMake(8.0, 3.5, 8.0, 0.0);
         self.maxNumberOfLines = 4;
     }
     
@@ -28,7 +30,7 @@
 }
 
 - (NSUInteger)numberOfLines {
-    return abs(self.contentSize.height / self.font.lineHeight);
+    return abs((self.contentSize.height - 16) / self.font.lineHeight);
 }
 
 @end

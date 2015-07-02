@@ -13,6 +13,7 @@
 @interface BottomBarViewController : UIViewController
 
 @property (nonatomic, strong) BottomBar *bottomBar;
-@property (nonatomic, strong) NSLayoutConstraint *bottomContraint;
+@property (nonatomic, strong) NSLayoutConstraint *bottomBarYContraint;
+@property (nonatomic, strong) NSLayoutConstraint *bottomBarHeightContraint;
 
 @end

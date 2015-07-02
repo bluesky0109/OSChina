@@ -12,9 +12,6 @@
 
 @interface BottomBar()<UITextViewDelegate>
 
-@property (nonatomic, strong) UITextView *editView;
-@property (nonatomic, strong) UIBarButtonItem *modeSwitchButton;
-
 @end
 
 @implementation BottomBar
@@ -42,7 +39,7 @@
     _editView = [GrowingTextView new];
     [_editView setCornerRadius:5.0];
     [_editView setBorderWidth:1.0f andColor:[UIColor colorWithHex:0xC8C8CD].CGColor];
-    _editView.backgroundColor = [UIColor colorWithHex:0xFFFAFA];
+    _editView.backgroundColor = [UIColor colorWithHex:0xF5FAFA];
     
     [self addSubview:_editView];
     [self addSubview:modeSwitchButton];
