@@ -38,7 +38,7 @@ PODS:
 
 DEPENDENCIES:
   - AFOnoResponseSerializer (~> 1.0.0)
-  - ReactiveCocoa (= 2.3.1)
+  - ReactiveCocoa
   - SDWebImage (~> 3.7.1)
   - SSKeychain
 
