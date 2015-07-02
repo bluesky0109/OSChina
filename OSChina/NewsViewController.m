@@ -41,8 +41,11 @@ static NSString *kNewsCellID = @"NewsCell";
         };
         
         self.tableWillReload = ^(NSUInteger responseObjectsCount) {
-            if (type >= 4) {[weakSelf.lastCell statusFinished];}
-            else {responseObjectsCount < 20? [weakSelf.lastCell statusFinished]: [weakSelf.lastCell statusMore];}
+            if (type >= 4) {
+                [weakSelf.lastCell statusFinished];
+            } else {
+                responseObjectsCount < 20? [weakSelf.lastCell statusFinished]: [weakSelf.lastCell statusMore];
+            }
         };
 
         self.objClass = [OSCNews class];
@@ -64,7 +67,7 @@ static NSString *kNewsCellID = @"NewsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
         NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewsCellID forIndexPath:indexPath];
-        OSCNews *news = [self.objects objectAtIndex:indexPath.row];
+        OSCNews *news = self.objects[indexPath.row];
         
         [cell.titleLabel setText:news.title];
         [cell.authorLabel setText:news.author];
@@ -80,7 +83,7 @@ static NSString *kNewsCellID = @"NewsCell";
 #pragma mark -- UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
-        OSCNews *news = [self.objects objectAtIndex:indexPath.row];
+        OSCNews *news = self.objects[indexPath.row];
         [self.label setText:news.title];
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
@@ -97,7 +100,7 @@ static NSString *kNewsCellID = @"NewsCell";
     NSInteger row = indexPath.row;
     
     if (row < self.objects.count) {
-        OSCNews *news = [self.objects objectAtIndex:row];
+        OSCNews *news = self.objects[row];
         DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNews:news];
         [self.navigationController pushViewController:detailsViewController animated:YES];
     } else {

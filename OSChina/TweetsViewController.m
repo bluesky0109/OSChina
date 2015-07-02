@@ -112,7 +112,7 @@
     
     NSInteger row = indexPath.row;
     if (row < self.objects.count) {
-        OSCTweet *tweet = [self.objects objectAtIndex:row];
+        OSCTweet *tweet = self.objects[row];
         NSString *cellID = tweet.hasAnImage? kTweetWithImageCellID : kTweeWithoutImagetCellID;
         TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         
@@ -141,7 +141,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < self.objects.count) {
-        OSCTweet *tweet = [self.objects objectAtIndex:indexPath.row];
+        OSCTweet *tweet = self.objects[indexPath.row];
         [self.label setText:tweet.body];
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
@@ -166,7 +166,7 @@
     NSInteger row = indexPath.row;
     
     if (row < self.objects.count) {
-        OSCTweet *tweet = [self.objects objectAtIndex:row];
+        OSCTweet *tweet = self.objects[row];
         
         TweetDetailsViewController *tweetDetailsVC = [[TweetDetailsViewController alloc] initWithTweet:tweet];
         
@@ -197,7 +197,7 @@
 
 - (void)pushDetailsView:(UITapGestureRecognizer *)recognizer
 {
-    OSCTweet *tweet = [self.objects objectAtIndex:recognizer.view.tag];
+    OSCTweet *tweet = self.objects[recognizer.view.tag];
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:tweet.authorID];
     [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
@@ -205,7 +205,7 @@
 #pragma mark - 加载大图
 - (void)loadLargeImage:(UITapGestureRecognizer *)recognizer
 {
-    OSCTweet *tweet = [self.objects objectAtIndex:recognizer.view.tag];
+    OSCTweet *tweet = self.objects[recognizer.view.tag];
     
     ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:tweet.bigImgURL thumbnail:(UIImageView *)recognizer.view andTapLocation:[recognizer locationInView:self.view]];
     

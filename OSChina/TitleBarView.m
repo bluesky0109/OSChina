@@ -55,11 +55,11 @@
 }
 
 - (void)focusTitleAtIndex:(NSUInteger)index ratio:(CGFloat)ration{
-    UIButton *preTitle = [self.titleButtons objectAtIndex:self.currentIndex];
+    UIButton *preTitle = self.titleButtons[self.currentIndex];
     [preTitle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.currentIndex = index;
     
-    UIButton *currentTitle = [self.titleButtons objectAtIndex:self.currentIndex];
+    UIButton *currentTitle = self.titleButtons[self.currentIndex];
     [currentTitle setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     currentTitle.titleLabel.font = [UIFont systemFontOfSize:16];
 }
@@ -67,7 +67,7 @@
 #pragma mark --private 
 - (void)onClick:(UIButton *)button {
     if (self.currentIndex != button.tag) {
-        UIButton *preTitle = [self.titleButtons objectAtIndex:self.currentIndex];
+        UIButton *preTitle = self.titleButtons[self.currentIndex];
         [preTitle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         preTitle.titleLabel.font = [UIFont systemFontOfSize:15];
         self.currentIndex = button.tag;

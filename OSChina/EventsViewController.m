@@ -7,10 +7,14 @@
 //
 
 #import "EventsViewController.h"
+#import "TweetDetailsViewController.h"
+#import "DetailsViewController.h"
 #import "OSCEvent.h"
 #import "EventCell.h"
 #import "Config.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
+static NSString * const kEventCellID = @"EventCell";
 
 @interface EventsViewController ()
 
@@ -36,9 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithImageCellID];
-    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithReferenceCellID];
-    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithoutExtraInfoCellID];
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventCellID];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,19 +57,9 @@
 {
     NSInteger row = indexPath.row;
     if (row < self.objects.count) {
-        OSCEvent *event = [self.objects objectAtIndex:row];
-        //NSString *cellID = tweet.hasAnImage ? kEventCellID : kTweetCellID;
+        OSCEvent *event = self.objects[row];
         
-        NSString *cellID;
-        if (event.hasAnImage) {
-            cellID = kEventWithImageCellID;
-        } else if (event.hasReference) {
-            cellID = kEventWithReferenceCellID;
-        } else {
-            cellID = kEventWithoutExtraInfoCellID;
-        }
-        
-        EventCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+        EventCell *cell = [tableView dequeueReusableCellWithIdentifier:kEventCellID forIndexPath:indexPath];
         
         [cell setContentWithEvent:event];
         
@@ -99,11 +92,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < self.objects.count) {
-        OSCEvent *event = [self.objects objectAtIndex:indexPath.row];
+        OSCEvent *event = self.objects[indexPath.row];
         
         [self.label setText:event.message];
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
-        CGFloat height = size.height + 29 + [UIFont systemFontOfSize:14].lineHeight;
+        CGFloat height = size.height + 24 + [UIFont systemFontOfSize:14].lineHeight;
         
         [self.label setAttributedText:event.actionStr];
         size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
@@ -113,11 +106,11 @@
             UITextView *textView = [UITextView new];
             textView.text = [NSString stringWithFormat:@"%@: %@", event.objectReply[0], event.objectReply[1]];
             size = [textView sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
-            height += size.height;
+            height += size.height + 5;
         }
         
         if (event.shouldShowClientOrCommentCount) {
-            height += [UIFont systemFontOfSize:14].lineHeight;
+            height += [UIFont systemFontOfSize:14].lineHeight + 5;
         }
         
         if (event.hasAnImage) {
@@ -138,7 +131,15 @@
     NSInteger row = indexPath.row;
     
     if (row < self.objects.count) {
-        
+        OSCEvent *event = self.objects[row];
+        switch (event.catalog) {
+            case 1:
+                
+                break;
+                
+            default:
+                break;
+        }
     } else {
         [self fetchMore];
     }
