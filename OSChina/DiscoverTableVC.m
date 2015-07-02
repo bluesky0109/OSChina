@@ -7,6 +7,7 @@
 //
 
 #import "DiscoverTableVC.h"
+#import "EventsViewController.h"
 #import "UIColor+Util.h"
 
 @interface DiscoverTableVC ()
@@ -94,5 +95,15 @@
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case 0:
+            [self.navigationController pushViewController:[EventsViewController new] animated:YES];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

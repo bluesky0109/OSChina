@@ -7,6 +7,7 @@
 //
 
 #import "OSCEvent.h"
+#import <UIKit/UIKit.h>
 
 static NSString * const kID            = @"uid";
 static NSString * const kMessage       = @"message";
@@ -28,7 +29,11 @@ static NSString * const kObjectName    = @"objectname";
 static NSString * const kObjectBody    = @"objectbody";
 static NSString * const kObjectCatalog = @"objectcatalog";
 
+@interface OSCEvent()
 
+@property (nonatomic, strong, readwrite) NSMutableAttributedString *actionStr;
+
+@end
 @implementation OSCEvent
 
 - (instancetype)initWithXML:(ONOXMLElement *)xml
@@ -51,13 +56,120 @@ static NSString * const kObjectCatalog = @"objectcatalog";
         _objectType = [[[xml firstChildWithTag:kObjectType] numberValue] intValue];
         _objectCatalog = [[[xml firstChildWithTag:kObjectCatalog] numberValue] intValue];
         _objectTitle = [[xml firstChildWithTag:kObjectTitle] stringValue];
-        NSString *objectName = [[xml firstChildWithTag:kObjectName] stringValue];
-        NSString *objectBody = [[xml firstChildWithTag:kObjectBody] stringValue];
+        NSString *objectName = [[xml firstChildWithTag:kObjectName] stringValue]? : @"";
+        NSString *objectBody = [[xml firstChildWithTag:kObjectBody] stringValue]? : @"";
         _objectReply = @[objectName, objectBody];
     }
     
     return self;
 }
 
+- (NSMutableAttributedString *)actionStr
+{
+    if (_actionStr) {return _actionStr;}
+    
+    NSDictionary *actionStrAttributes = @{
+                                          NSFontAttributeName:[UIFont systemFontOfSize:15],
+                                          NSForegroundColorAttributeName:[UIColor grayColor]
+                                          };
+    
+    NSDictionary *objectTitleAttributes = @{
+                                            NSFontAttributeName:[UIFont systemFontOfSize:15],
+                                            NSForegroundColorAttributeName:[UIColor purpleColor]
+                                            };
+    
+    _actionStr = [NSMutableAttributedString alloc];
+    
+    switch (_objectType) {
+        case 1:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"添加了开源项目 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            }
+            break;
+        case 2:
+            if (_objectCatalog == 1) {
+                _actionStr = [_actionStr initWithString:@"在讨论区提问 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            } else if(_objectCatalog == 2) {
+                _actionStr = [_actionStr initWithString:@"发表了新话题 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            }
+            break;
+        case 3:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"发表了博客 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            }
+            break;
+        case 4:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"发表一篇新闻 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            }
+            break;
+        case 5:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"分享了一段代码 " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            }
+            break;
+        case 6:
+            _actionStr = [_actionStr initWithString:@"发布了一个职位 " attributes:actionStrAttributes];
+            [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            break;
+        case 16:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"在新闻  发表评论" attributes:actionStrAttributes];
+                [_actionStr insertAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes] atIndex:4];
+            }
+            break;
+        case 17:
+            if (_objectCatalog == 1) {
+                _actionStr = [_actionStr initWithString:@"回答了问题: " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            } else if(_objectCatalog == 2){
+                _actionStr = [_actionStr initWithString:@"回复了话题: " attributes:actionStrAttributes];
+                [_actionStr appendAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes]];
+            } else if(_objectCatalog == 3){
+                _actionStr = [_actionStr initWithString:@"在  对回帖发表评论" attributes:actionStrAttributes];
+                [_actionStr insertAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes] atIndex:2];
+            }
+            break;
+        case 18:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"在博客  发表评论" attributes:actionStrAttributes];
+                [_actionStr insertAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes] atIndex:4];
+            }
+            break;
+        case 19:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"在代码  发表评论" attributes:actionStrAttributes];
+                [_actionStr insertAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes] atIndex:4];
+            }
+            break;
+        case 20:
+            _actionStr = [_actionStr initWithString:@"在职位  发表评论:" attributes:actionStrAttributes];
+            [_actionStr insertAttributedString:[[NSAttributedString alloc] initWithString:_objectTitle attributes:objectTitleAttributes] atIndex:4];
+            break;
+        case 32:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"加入了开源中国" attributes:actionStrAttributes];
+            }
+            break;
+        case 100:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"更新了动态" attributes:actionStrAttributes];
+            }
+            break;
+        case 101:
+            if (_objectCatalog == 0) {
+                _actionStr = [_actionStr initWithString:@"回复了动态:" attributes:actionStrAttributes];
+            }
+            break;
+    }
+    
+    return _actionStr;
+}
 
 @end
