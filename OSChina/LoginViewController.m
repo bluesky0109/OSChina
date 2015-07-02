@@ -37,11 +37,6 @@
     [self setLayout];
     
     NSArray *accountAndPassword = [Config getOwnAccountAndPassword];
-    if (!accountAndPassword) {
-        return;
-    }
-    _accountField.text = accountAndPassword.firstObject;
-    _passwordField.text = accountAndPassword.lastObject;
     
     RACSignal *valid = [RACSignal combineLatest:@[_accountField.rac_textSignal, _passwordField.rac_textSignal] reduce:^(NSString *account, NSString *password){
         return @(account.length > 0 && password.length > 0);
@@ -51,6 +46,14 @@
     RAC(_loginButton, alpha) = [valid map:^(NSNumber *b) {
         return b.boolValue ? @1 : @0.4;
     }];
+    
+    if (!accountAndPassword) {
+        return;
+    }
+    _accountField.text = accountAndPassword.firstObject;
+    _passwordField.text = accountAndPassword.lastObject;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
