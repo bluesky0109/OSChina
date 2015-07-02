@@ -28,14 +28,15 @@
         
         __weak TweetDetailsViewController *weakSelf = self;
         self.otherSectionCell = ^(NSIndexPath *indexPath) {
-            NSString *cellID = tweet.hasAnImage? kTweetWithImageCellID : kTweeWithoutImagetCellID;
-            TweetCell *cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+      
+            TweetCell *cell = [TweetCell new];
             
             [cell setContentWithTweet:tweet];
             cell.commentCount.hidden = YES;
             
             if (tweet.hasAnImage) {
                 UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+                [cell addConstraints:cell.thumbnailConstraints];
                 [cell.thumbnail setImage:image];
             }
             [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];

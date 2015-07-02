@@ -12,9 +12,6 @@
 
 @interface TweetCell()
 
-@property (nonatomic, strong) NSArray *thumbnailConstraints;
-@property (nonatomic, strong) NSArray *noThumbnailConstraints;
-
 @end
 
 
