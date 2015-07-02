@@ -38,6 +38,7 @@
 @property (nonatomic, assign) SEL       loadMethod;
 @property (nonatomic, assign) Class detailsClass;
 @property (nonatomic, strong) BottomBar *bottomBar;
+@property (nonatomic, strong) NSLayoutConstraint *bottomContraint;
 
 @end
 
@@ -120,6 +121,9 @@
     [self.view addSubview:self.detailsView];
     
     [self addBottomBar];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
@@ -215,9 +219,22 @@
     _bottomBar.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_bottomBar];
     
-    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_bottomBar);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomBar]|" options:0 metrics:nil views:viewsDict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_bottomBar]|" options:0 metrics:nil views:viewsDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_bottomBar]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bottomBar)]];
+    _bottomContraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomBar attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    [self.view addConstraint:_bottomContraint];
+}
+
+#pragma mark - keyboard 
+- (void)keyboardWillShow:(NSNotification *)notification {
+    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    _bottomContraint.constant = keyboardBounds.size.height;
+    [self.view layoutIfNeeded];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    _bottomContraint.constant = 0;
+    [self.view layoutIfNeeded];
 }
 
 @end
