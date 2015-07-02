@@ -16,6 +16,7 @@
         self.scrollEnabled = YES;
         self.scrollsToTop = NO;
         self.showsHorizontalScrollIndicator = NO;
+        self.maxNumberOfLines = 4;
     }
     
     return self;
@@ -24,6 +25,10 @@
 // Code from apple developer forum - @Steve Krulewitz, @Mark Marszal, @Eric Silverberg
 - (CGFloat)measureHeight {
     return self.contentSize.height;
+}
+
+- (NSUInteger)numberOfLines {
+    return abs(self.contentSize.height / self.font.lineHeight);
 }
 
 @end

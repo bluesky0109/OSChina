@@ -6,7 +6,8 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+#import "BottomBarViewController.h"
 
 typedef NS_ENUM(NSUInteger, DetailsType)
 {
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, DetailsType)
 @class OSCBlog;
 @class OSCPost;
 
-@interface DetailsViewController : UIViewController
+@interface DetailsViewController : BottomBarViewController
 
 - (instancetype)initWithNews:(OSCNews *)news;
 - (instancetype)initWithBlog:(OSCBlog *)blog;

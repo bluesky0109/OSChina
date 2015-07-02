@@ -21,7 +21,6 @@
 #import <Ono.h>
 
 #import "Utils.h"
-#import "BottomBar.h"
 
 
 #define HTML_STYLE @"<style>#oschina_title {color: #000000; margin-bottom: 6px; font-weight:bold;}#oschina_title img{vertical-align:middle;margin-right:6px;}#oschina_title a{color:#0D6DA8;}#oschina_outline {color: #707070; font-size: 12px;}#oschina_outline a{color:#0D6DA8;}#oschina_software{color:#808080;font-size:12px}#oschina_body img {max-width: 300px;}#oschina_body {font-size:16px;max-width:300px;line-height:24px;} #oschina_body table{max-width:300px;}#oschina_body pre { font-size:9pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style>"
@@ -37,8 +36,6 @@
 @property (nonatomic, copy  ) NSString  *tag;
 @property (nonatomic, assign) SEL       loadMethod;
 @property (nonatomic, assign) Class detailsClass;
-@property (nonatomic, strong) BottomBar *bottomBar;
-@property (nonatomic, strong) NSLayoutConstraint *bottomContraint;
 
 @end
 
@@ -120,10 +117,7 @@
     self.detailsView.scrollView.bounces = NO;
     [self.view addSubview:self.detailsView];
     
-    [self addBottomBar];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [self.view bringSubviewToFront:(UIView *)self.bottomBar];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
@@ -155,6 +149,8 @@
 #pragma mark --private
 - (void)loadNewsDetails:(OSCNewsDetails *)newsDetails
 {
+    NSLog(@"%@",self.view.subviews);
+    
     NSString *authorStr = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%lld'>%@</a> 发布于 %@", _news.authorID, _news.author, _news.pubDate];
     
     NSString *software = @"";
@@ -212,29 +208,6 @@
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3;'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@</body>",HTML_STYLE, postDetails.title, authorStr, postDetails.body, [Utils GenerateTags:postDetails.tags], HTML_BOTTOM];
     
     [self.detailsView loadHTMLString:html baseURL:nil];
-}
-
-- (void)addBottomBar {
-    _bottomBar = [BottomBar new];
-    _bottomBar.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:_bottomBar];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_bottomBar]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bottomBar)]];
-    _bottomContraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomBar attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    [self.view addConstraint:_bottomContraint];
-}
-
-#pragma mark - keyboard 
-- (void)keyboardWillShow:(NSNotification *)notification {
-    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    _bottomContraint.constant = keyboardBounds.size.height;
-    [self.view layoutIfNeeded];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    _bottomContraint.constant = 0;
-    [self.view layoutIfNeeded];
 }
 
 @end
