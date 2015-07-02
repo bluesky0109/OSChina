@@ -10,8 +10,7 @@
 #import "OSCEvent.h"
 #import "EventCell.h"
 #import "Config.h"
-
-NSString * const kEventCellID = @"EventCell";
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface EventsViewController ()
 
@@ -37,7 +36,9 @@ NSString * const kEventCellID = @"EventCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventCellID];
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithImageCellID];
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithReferenceCellID];
+    [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventWithoutExtraInfoCellID];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,22 +56,32 @@ NSString * const kEventCellID = @"EventCell";
     if (row < self.objects.count) {
         OSCEvent *event = [self.objects objectAtIndex:row];
         //NSString *cellID = tweet.hasAnImage ? kEventCellID : kTweetCellID;
-        EventCell *cell = [tableView dequeueReusableCellWithIdentifier:kEventCellID forIndexPath:indexPath];
+        
+        NSString *cellID;
+        if (event.hasAnImage) {
+            cellID = kEventWithImageCellID;
+        } else if (event.hasReference) {
+            cellID = kEventWithReferenceCellID;
+        } else {
+            cellID = kEventWithoutExtraInfoCellID;
+        }
+        
+        EventCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         
         [cell setContentWithEvent:event];
         
-#if 0
-        if (tweet.hasAnImage) {
-            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+
+        if (event.hasAnImage) {
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:event.tweetImg.absoluteString];
             
             // 有图就加载，无图则下载并reload tableview
             if (!image) {
-                [self downloadImageThenReload:tweet.smallImgURL];
+                [self downloadImageThenReload:event.tweetImg];
             } else {
                 [cell.thumbnail setImage:image];
             }
         }
-#endif
+
         
 #if 0
         cell.portrait.tag = row; cell.authorLabel.tag = row; cell.thumbnail.tag = row;
@@ -92,19 +103,29 @@ NSString * const kEventCellID = @"EventCell";
         
         [self.label setText:event.message];
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
-        CGFloat height = size.height + 26 + [UIFont systemFontOfSize:14].lineHeight * 2;
+        CGFloat height = size.height + 29 + [UIFont systemFontOfSize:14].lineHeight;
         
         [self.label setAttributedText:event.actionStr];
         size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
         height += size.height;
         
-#if 0
-        if (tweet.hasAnImage) {
-            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
+        if (event.hasReference) {
+            UITextView *textView = [UITextView new];
+            textView.text = [NSString stringWithFormat:@"%@: %@", event.objectReply[0], event.objectReply[1]];
+            size = [textView sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
+            height += size.height;
+        }
+        
+        if (event.shouldShowClientOrCommentCount) {
+            height += [UIFont systemFontOfSize:14].lineHeight;
+        }
+        
+        if (event.hasAnImage) {
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:event.tweetImg.absoluteString];
             if (!image) {image = [UIImage imageNamed:@"portrait_loading"];}
             height += image.size.height + 5;
         }
-#endif
+
         return height;
     } else {
         return 60;
@@ -123,6 +144,21 @@ NSString * const kEventCellID = @"EventCell";
     }
 }
 
+#pragma mark - 下载图片
+- (void)downloadImageThenReload:(NSURL *)imageURL
+{
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
+                                                          options:SDWebImageDownloaderUseNSURLCache
+                                                         progress:nil
+                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                            [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
+                                                            
+                                                            // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                [self.tableView reloadData];
+                                                            });
+                                                        }];
+}
 
 
 @end

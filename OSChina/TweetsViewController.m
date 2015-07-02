@@ -15,9 +15,6 @@
 
 #import "Config.h"
 
-static NSString *kTweetCellID = @"TweetCell";
-static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
-
 @interface TweetsViewController ()
 
 @property (nonatomic, assign) int64_t uid;
@@ -92,7 +89,7 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
     [super viewDidLoad];
     
     // tableView设置
-    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
+    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweeWithoutImagetCellID];
     [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetWithImageCellID];
 }
 
@@ -116,7 +113,7 @@ static NSString *kTweetWithImageCellID = @"TweetWithImageCell";
     NSInteger row = indexPath.row;
     if (row < self.objects.count) {
         OSCTweet *tweet = [self.objects objectAtIndex:row];
-        NSString *cellID = tweet.hasAnImage? kTweetCellID : kTweetWithImageCellID;
+        NSString *cellID = tweet.hasAnImage? kTweetWithImageCellID : kTweeWithoutImagetCellID;
         TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         
         [cell setContentWithTweet:tweet];

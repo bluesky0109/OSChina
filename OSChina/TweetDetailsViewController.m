@@ -28,7 +28,8 @@
         
         __weak TweetDetailsViewController *weakSelf = self;
         self.otherSectionCell = ^(NSIndexPath *indexPath) {
-            TweetCell *cell = [TweetCell new];
+            NSString *cellID = tweet.hasAnImage? kTweetWithImageCellID : kTweeWithoutImagetCellID;
+            TweetCell *cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
             
             [cell setContentWithTweet:tweet];
             cell.commentCount.hidden = YES;
