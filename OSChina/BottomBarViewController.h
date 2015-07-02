@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class BottomBar;
+@class EmojiPageVC;
 
 @interface BottomBarViewController : UIViewController
 
 @property (nonatomic, strong) BottomBar *bottomBar;
+@property (nonatomic, strong) EmojiPageVC *emojiPanelVC;
+@property (nonatomic, strong) UIView *emojiPanel;
 @property (nonatomic, strong) NSLayoutConstraint *bottomBarYContraint;
 @property (nonatomic, strong) NSLayoutConstraint *bottomBarHeightContraint;
 

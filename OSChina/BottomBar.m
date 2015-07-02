@@ -32,6 +32,7 @@
     
     UIButton *emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [emojiButton setImage:[UIImage imageNamed:@"button_emoji_normal"] forState:UIControlStateNormal];
+    [emojiButton addTarget:self action:@selector(onClickEmojiButton) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [commentButton setImage:[UIImage imageNamed:@"button_comment_normal"] forState:UIControlStateNormal];
@@ -57,6 +58,11 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[emojiButton]-3-|" options:0 metrics:nil views:viewsDict]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[commentButton]-3-|" options:0 metrics:nil views:viewsDict]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_editView]-5-|" options:0 metrics:nil views:viewsDict]];
+}
+
+#pragma mark - Button Response
+- (void)onClickEmojiButton {
+    
 }
 
 #pragma mark -UITextViewDelegate
