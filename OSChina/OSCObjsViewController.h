@@ -16,7 +16,7 @@
 #import "OSCAPI.h"
 #import "LastCell.h"
 
-@interface OSCObjsViewController : UITableViewController<UIScrollViewDelegate>
+@interface OSCObjsViewController : UITableViewController
 
 @property (nonatomic, copy) NSString * (^generateURL)(NSUInteger page);
 @property (nonatomic, copy) NSArray *(^parseXML)(ONOXMLDocument *responseDocument);

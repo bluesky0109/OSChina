@@ -26,6 +26,7 @@
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
 		335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E31B42D89200D28C80 /* PostsViewController.m */; };
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
+		33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A341B44C57500FDC8D4 /* GrowingTextView.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -103,6 +104,8 @@
 		335EB1E31B42D89200D28C80 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		335EB1E51B42D8AB00D28C80 /* PostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsCell.h; sourceTree = "<group>"; };
 		335EB1E61B42D8AB00D28C80 /* PostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsCell.m; sourceTree = "<group>"; };
+		33744A331B44C57500FDC8D4 /* GrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowingTextView.h; sourceTree = "<group>"; };
+		33744A341B44C57500FDC8D4 /* GrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowingTextView.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -221,6 +224,34 @@
 			name = Posts;
 			sourceTree = "<group>";
 		};
+		33744A311B44C4F300FDC8D4 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				33B4C03E1B441A3500637952 /* UIImageView+Util.h */,
+				33B4C03F1B441A3500637952 /* UIImageView+Util.m */,
+				339740F81B42606C0074D2EA /* UIView+Util.h */,
+				339740F91B42606C0074D2EA /* UIView+Util.m */,
+				339740FA1B42606C0074D2EA /* UIColor+Util.h */,
+				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		33744A321B44C51D00FDC8D4 /* UI and Control */ = {
+			isa = PBXGroup;
+			children = (
+				33B4C0411B4423F400637952 /* ImageViewController.h */,
+				33B4C0421B4423F400637952 /* ImageViewController.m */,
+				339740FC1B42606C0074D2EA /* LastCell.h */,
+				339740FD1B42606C0074D2EA /* LastCell.m */,
+				333595891B43C1F500AC412A /* BottomBar.h */,
+				3335958A1B43C1F500AC412A /* BottomBar.m */,
+				33744A331B44C57500FDC8D4 /* GrowingTextView.h */,
+				33744A341B44C57500FDC8D4 /* GrowingTextView.m */,
+			);
+			name = "UI and Control";
+			sourceTree = "<group>";
+		};
 		339740B51B423F590074D2EA = {
 			isa = PBXGroup;
 			children = (
@@ -313,22 +344,12 @@
 		339740EC1B42600F0074D2EA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				33744A321B44C51D00FDC8D4 /* UI and Control */,
+				33744A311B44C4F300FDC8D4 /* Category */,
 				339740F61B42606C0074D2EA /* Utils.h */,
 				339740F71B42606C0074D2EA /* Utils.m */,
-				339740F81B42606C0074D2EA /* UIView+Util.h */,
-				339740F91B42606C0074D2EA /* UIView+Util.m */,
-				339740FA1B42606C0074D2EA /* UIColor+Util.h */,
-				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
-				339740FC1B42606C0074D2EA /* LastCell.h */,
-				339740FD1B42606C0074D2EA /* LastCell.m */,
-				333595891B43C1F500AC412A /* BottomBar.h */,
-				3335958A1B43C1F500AC412A /* BottomBar.m */,
 				3335958C1B43C40000AC412A /* Config.h */,
 				3335958D1B43C40000AC412A /* Config.m */,
-				33B4C03E1B441A3500637952 /* UIImageView+Util.h */,
-				33B4C03F1B441A3500637952 /* UIImageView+Util.m */,
-				33B4C0411B4423F400637952 /* ImageViewController.h */,
-				33B4C0421B4423F400637952 /* ImageViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -594,6 +615,7 @@
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
+				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,
 				333595681B43728300AC412A /* OSCComment.m in Sources */,
 				3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */,
 				333595721B4385E300AC412A /* BlogsViewController.m in Sources */,
