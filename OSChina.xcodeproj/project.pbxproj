@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3321C2251B43C6E5003B73C8 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MineViewController.m */; };
+		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
+		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
+		3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335610C1B4573F4009A294C /* SoftwareCatalogVC.m */; };
+		333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561101B4574AF009A294C /* OSCSoftwareCatalog.m */; };
+		333561141B45750B009A294C /* OSCSoftware.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561131B45750B009A294C /* OSCSoftware.m */; };
 		333595621B436DA900AC412A /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595611B436DA900AC412A /* CommentsViewController.m */; };
 		333595651B436DC600AC412A /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595641B436DC600AC412A /* CommentCell.m */; };
 		333595681B43728300AC412A /* OSCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595671B43728300AC412A /* OSCComment.m */; };
@@ -76,6 +81,16 @@
 /* Begin PBXFileReference section */
 		3321C2231B43C6E5003B73C8 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
+		333561061B457288009A294C /* SoftwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoftwareCell.m; sourceTree = "<group>"; };
+		333561081B45730F009A294C /* SoftwareListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareListVC.h; sourceTree = "<group>"; };
+		333561091B45730F009A294C /* SoftwareListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoftwareListVC.m; sourceTree = "<group>"; };
+		3335610B1B4573F4009A294C /* SoftwareCatalogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCatalogVC.h; sourceTree = "<group>"; };
+		3335610C1B4573F4009A294C /* SoftwareCatalogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoftwareCatalogVC.m; sourceTree = "<group>"; };
+		3335610F1B4574AF009A294C /* OSCSoftwareCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSoftwareCatalog.h; sourceTree = "<group>"; };
+		333561101B4574AF009A294C /* OSCSoftwareCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSoftwareCatalog.m; sourceTree = "<group>"; };
+		333561121B45750B009A294C /* OSCSoftware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSoftware.h; sourceTree = "<group>"; };
+		333561131B45750B009A294C /* OSCSoftware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSoftware.m; sourceTree = "<group>"; };
 		333595601B436DA900AC412A /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		333595611B436DA900AC412A /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		333595631B436DC600AC412A /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
@@ -206,6 +221,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		333561041B457250009A294C /* Software */ = {
+			isa = PBXGroup;
+			children = (
+				333561051B457288009A294C /* SoftwareCell.h */,
+				333561061B457288009A294C /* SoftwareCell.m */,
+				333561081B45730F009A294C /* SoftwareListVC.h */,
+				333561091B45730F009A294C /* SoftwareListVC.m */,
+				3335610B1B4573F4009A294C /* SoftwareCatalogVC.h */,
+				3335610C1B4573F4009A294C /* SoftwareCatalogVC.m */,
+			);
+			name = Software;
+			sourceTree = "<group>";
+		};
+		3335610E1B45748B009A294C /* Software */ = {
+			isa = PBXGroup;
+			children = (
+				333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */,
+				333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */,
+				3335610F1B4574AF009A294C /* OSCSoftwareCatalog.h */,
+				333561101B4574AF009A294C /* OSCSoftwareCatalog.m */,
+				333561121B45750B009A294C /* OSCSoftware.h */,
+				333561131B45750B009A294C /* OSCSoftware.m */,
+			);
+			name = Software;
+			sourceTree = "<group>";
+		};
 		3335955E1B436D4300AC412A /* TweetDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +325,7 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				333561041B457250009A294C /* Software */,
 				33C11ED01B451C3400728AE4 /* Discover */,
 				33B0EF7A1B43C6210037549E /* Mine */,
 				33B0EF791B43C6180037549E /* User */,
@@ -369,6 +411,7 @@
 		339740ED1B4260350074D2EA /* OSC */ = {
 			isa = PBXGroup;
 			children = (
+				3335610E1B45748B009A294C /* Software */,
 				339740EF1B42605E0074D2EA /* OSCBaseObject.h */,
 				339740F01B42605E0074D2EA /* OSCBaseObject.m */,
 				339740F11B42605E0074D2EA /* OSCTweet.h */,
@@ -388,8 +431,6 @@
 				3335957A1B43916700AC412A /* OSCNewsDetails.m */,
 				333595831B43AB5C00AC412A /* OSCPostDetails.h */,
 				333595841B43AB5C00AC412A /* OSCPostDetails.m */,
-				333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */,
-				333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */,
 				3335958F1B43C48E00AC412A /* OSCUser.h */,
 				333595901B43C48E00AC412A /* OSCUser.m */,
 				33C11ED81B451E6F00728AE4 /* OSCEvent.h */,
@@ -667,6 +708,8 @@
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
+				3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */,
+				3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */,
 				33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */,
 				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
 				333595751B4385FA00AC412A /* BlogCell.m in Sources */,
@@ -679,6 +722,7 @@
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
+				333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */,
 				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
@@ -704,10 +748,12 @@
 				3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
+				333561071B457288009A294C /* SoftwareCell.m in Sources */,
 				3335956F1B43857A00AC412A /* OSCBlog.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
+				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				33C11EC91B45079F00728AE4 /* EmojiPanelView.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,

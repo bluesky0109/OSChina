@@ -24,7 +24,7 @@ static NSString *kPostCellID = @"PostCell";
 - (instancetype)initWithPostsType:(PostsType)type {
     self = [super init];
     if (self) {
-        self.generateURL = ^(NSUInteger page) {
+        self.generateURL = ^NSString *(NSUInteger page) {
             return [NSString stringWithFormat:@"%@%@?catalog=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_POSTS_LIST, type, (unsigned long)page, OSCAPI_SUFFIX];
         };
         

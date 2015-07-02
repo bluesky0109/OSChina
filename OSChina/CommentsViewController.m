@@ -22,7 +22,7 @@ static NSString *kCommentCellID = @"CommentCell";
 - (instancetype)initWithCommentsType:(CommentsType)type andID:(int64_t)objectID {
     self = [super init];
     if (self) {
-        self.generateURL = ^(NSUInteger page) {
+        self.generateURL = ^NSString *(NSUInteger page) {
             return [NSString stringWithFormat:@"%@%@?catalog=%d&id=%lld&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_COMMENTS_LIST, type, objectID, (unsigned long)page, OSCAPI_SUFFIX];
         };
         
