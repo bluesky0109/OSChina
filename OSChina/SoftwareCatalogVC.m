@@ -34,10 +34,6 @@ static NSString * const kSoftwareCatalogCellID = @"SoftwareCatalogCell";
         return [NSString stringWithFormat:@"%@%@?tag=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_SOFTWARECATALOG_LIST, tag, (unsigned long)page, OSCAPI_SUFFIX];
     };
     
-    self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
-        return [[xml.rootElement firstChildWithTag:@"softwareTypes"] childrenWithTag:@"softwareType"];
-    };
-    
     self.objClass = [OSCSoftwareCatalog class];
     
     return self;
@@ -50,9 +46,11 @@ static NSString * const kSoftwareCatalogCellID = @"SoftwareCatalogCell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kSoftwareCatalogCellID];
 }
 
+- (NSArray *)parseXML:(ONOXMLDocument *)xml {
+    return [[xml.rootElement firstChildWithTag:@"softwareTypes"] childrenWithTag:@"softwareType"];
+}
 
-
-
+#pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < self.objects.count) {

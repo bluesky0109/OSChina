@@ -162,7 +162,7 @@
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
              self.allCount = [[[responseDocument.rootElement firstChildWithTag:@"allCount"] numberValue] intValue];
-             NSArray *objectsXML = self.parseXML(responseDocument);
+             NSArray *objectsXML = [self parseXML:responseDocument];
              
              if (refresh) {[self.objects removeAllObjects];}
              
@@ -196,5 +196,9 @@
      ];
 }
 
+- (NSArray *)parseXML:(ONOXMLDocument *)xml {
+    NSAssert(false, @"Override in subclasses");
+    return nil;
+}
 
 @end

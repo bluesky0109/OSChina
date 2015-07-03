@@ -19,7 +19,6 @@
 @interface OSCObjsViewController : UITableViewController
 
 @property (nonatomic, copy) NSString * (^generateURL)(NSUInteger page);
-@property (nonatomic, copy) NSArray *(^parseXML)(ONOXMLDocument *responseDocument);
 @property (nonatomic, copy) void (^tableWillReload)(NSUInteger responseObjectsCount);
 
 @property Class objClass;
@@ -30,5 +29,6 @@
 @property (nonatomic, strong) UILabel *label;
 
 - (void)fetchMore;
+- (NSArray *)parseXML:(ONOXMLDocument *)xml;
 
 @end

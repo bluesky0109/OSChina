@@ -36,10 +36,6 @@ static NSString *kNewsCellID = @"NewsCell";
             }
         };
 
-        self.parseXML = ^NSArray * (ONOXMLDocument *xml) {
-            return [[xml.rootElement firstChildWithTag:@"newslist"] childrenWithTag:@"news"];
-        };
-        
         self.tableWillReload = ^(NSUInteger responseObjectsCount) {
             if (type >= 4) {
                 [weakSelf.lastCell statusFinished];
@@ -60,6 +56,10 @@ static NSString *kNewsCellID = @"NewsCell";
     
     // tableView设置
     [self.tableView registerClass:[NewsCell class] forCellReuseIdentifier:kNewsCellID];
+}
+
+- (NSArray *)parseXML:(ONOXMLDocument *)xml {
+    return [[xml.rootElement firstChildWithTag:@"newslist"] childrenWithTag:@"news"];
 }
 
 #pragma mark - Table view data source
