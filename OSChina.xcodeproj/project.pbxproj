@@ -68,6 +68,9 @@
 		33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5C1B465A57002819EE /* FavoritesViewController.m */; };
 		33CC0C601B467245002819EE /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5F1B467245002819EE /* FriendCell.m */; };
 		33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C621B46774D002819EE /* FriendsViewController.m */; };
+		33CC0C681B467D48002819EE /* OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C671B467D48002819EE /* OSCMessage.m */; };
+		33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6A1B467F82002819EE /* MessageCell.m */; };
+		33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6D1B467FAD002819EE /* MessagesViewController.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +209,12 @@
 		33CC0C5F1B467245002819EE /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
 		33CC0C611B46774D002819EE /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		33CC0C621B46774D002819EE /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		33CC0C661B467D48002819EE /* OSCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMessage.h; sourceTree = "<group>"; };
+		33CC0C671B467D48002819EE /* OSCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMessage.m; sourceTree = "<group>"; };
+		33CC0C691B467F82002819EE /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		33CC0C6A1B467F82002819EE /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		33CC0C6C1B467FAD002819EE /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		33CC0C6D1B467FAD002819EE /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -436,6 +445,8 @@
 				33C11ED91B451E6F00728AE4 /* OSCEvent.m */,
 				33CC0C581B4658C0002819EE /* OSCFavorite.h */,
 				33CC0C591B4658C0002819EE /* OSCFavorite.m */,
+				33CC0C661B467D48002819EE /* OSCMessage.h */,
+				33CC0C671B467D48002819EE /* OSCMessage.m */,
 			);
 			name = OSC;
 			sourceTree = "<group>";
@@ -491,6 +502,8 @@
 		33B0EF7A1B43C6210037549E /* MyInfoVC */ = {
 			isa = PBXGroup;
 			children = (
+				33CC0C651B467D19002819EE /* Messages */,
+				33CC0C641B467D0E002819EE /* Friends */,
 				3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */,
 				3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */,
 				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
@@ -592,6 +605,24 @@
 				333595771B43912E00AC412A /* OSCBlogDetails.m */,
 			);
 			name = Blog;
+			sourceTree = "<group>";
+		};
+		33CC0C641B467D0E002819EE /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		33CC0C651B467D19002819EE /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				33CC0C691B467F82002819EE /* MessageCell.h */,
+				33CC0C6A1B467F82002819EE /* MessageCell.m */,
+				33CC0C6C1B467FAD002819EE /* MessagesViewController.h */,
+				33CC0C6D1B467FAD002819EE /* MessagesViewController.m */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 		47197FC03D3DCCEC59BC2931 /* Frameworks */ = {
@@ -745,6 +776,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
+				33CC0C681B467D48002819EE /* OSCMessage.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
 				3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */,
@@ -770,12 +802,14 @@
 				33C11ECC1B450C2E00728AE4 /* EmojiPageVC.m in Sources */,
 				333595621B436DA900AC412A /* CommentsViewController.m in Sources */,
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
+				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				33CC0C601B467245002819EE /* FriendCell.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
+				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
 				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,
 				333595681B43728300AC412A /* OSCComment.m in Sources */,
 				3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */,

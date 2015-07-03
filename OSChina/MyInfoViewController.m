@@ -10,6 +10,9 @@
 #import "SwipeableViewController.h"
 #import "FavoritesViewController.h"
 #import "FriendsViewController.h"
+#import "BlogsViewController.h"
+#import "EventsViewController.h"
+#import "MessagesViewController.h"
 #import "OSCUser.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -185,6 +188,33 @@
     
     return header;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0: {
+            [self.navigationController pushViewController:[[SwipeableViewController alloc] initWithTitle:@"消息中心"
+                                                                                            andSubTitles:@[@"@我", @"评论", @"留言", @"粉丝"]
+                                                                                          andControllers:@[
+                                                                                                           [[EventsViewController alloc] initWithCatalog:2],
+                                                                                                           [[EventsViewController alloc] initWithCatalog:3],
+                                                                                                           [MessagesViewController new],
+                                                                                                           [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]
+                                                                                                           ]]
+                                                 animated:YES]; break;
+        }
+        case 1: {
+            break;
+        }
+        case 2: {
+            [self.navigationController pushViewController:[[BlogsViewController alloc] initWithUserID:_user.userID] animated:YES]; break;
+        }
+        case 3: {
+            break;
+        }
+        default: break;
+    }
+}
+
 
 - (void)pushFavoriteSVC {
     SwipeableViewController *favoritesSVC = [[SwipeableViewController alloc] initWithTitle:@"收藏" andSubTitles:@[@"软件",@"博客",@"新闻",@"代码"] andControllers:@[[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeSoftware],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeTopic],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeBlog],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeNews],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeCode]]];
