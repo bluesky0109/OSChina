@@ -12,6 +12,8 @@
 #import "OSCTweet.h"
 #import "TweetCell.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface TweetDetailsViewController ()
 
 @property (nonatomic, strong) OSCTweet *tweet;

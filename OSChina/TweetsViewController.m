@@ -14,6 +14,7 @@
 #import "TweetCell.h"
 
 #import "Config.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TweetsViewController ()
 

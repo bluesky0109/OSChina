@@ -11,6 +11,7 @@
 #import "PostsCell.h"
 #import "OSCPost.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static NSString *kPostCellID = @"PostCell";
 

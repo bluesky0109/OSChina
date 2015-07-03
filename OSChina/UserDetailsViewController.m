@@ -14,6 +14,8 @@
 #import "Utils.h"
 #import "Config.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface UserDetailsViewController ()
 
 @property (nonatomic, strong) OSCUser *user;
