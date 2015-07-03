@@ -32,6 +32,7 @@
 - (instancetype)initWithUser:(OSCUser *)user {
     self = [super init];
     if (self) {
+        self.hidesBottomBarWhenPushed = YES;
         self.user = user;
     }
     
@@ -42,7 +43,7 @@
     self = [super init];
     
     if (!self) {return self;}
-    
+    self.hidesBottomBarWhenPushed = YES;
     __block BOOL done = NO;
     __block OSCUser *tmpUser;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

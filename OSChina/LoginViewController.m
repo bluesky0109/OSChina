@@ -245,7 +245,7 @@
               [Config saveOwnID:user.userID];
               
               UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUser:user];
-              [self.navigationController presentViewController:userDetailsVC animated:YES completion:nil];
+              [self.navigationController pushViewController:userDetailsVC animated:YES];
               
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSLog(@"网络异常，错误码：%ld", (long)error.code);
