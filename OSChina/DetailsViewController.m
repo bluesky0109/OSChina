@@ -125,12 +125,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.detailsView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    self.detailsView.scrollView.bounces = NO;
-    [self.view addSubview:self.detailsView];
-    
+    _detailsView = [UIWebView new];
+    _detailsView.scrollView.bounces = NO;
+    _detailsView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_detailsView];
     [self.view bringSubviewToFront:(UIView *)self.bottomBar];
+    
+    NSDictionary *views = @{@"detailsView": _detailsView, @"bottomBar": self.bottomBar};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[detailsView][bottomBar]|" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[detailsView]|" options:0 metrics:nil views:views]];
+    //[self.view bringSubviewToFront:self.emojiPanel];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
@@ -169,7 +175,7 @@
         software = [NSString stringWithFormat:@"<div id='oschina_software' style='margin-top:8px;color:#FF0000;font-size:14px;font-weight:bold'>更多关于:&nbsp;<a href='%@'>%@</a>&nbsp;的详细信息</div>", newsDetails.softwareLink, newsDetails.softwareName];
     }
     
-    NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@%@</body>", HTML_STYLE, newsDetails.title, authorStr, newsDetails.body, software,[Utils generateRelativeNewsString:newsDetails.relatives], HTML_BOTTOM];
+    NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@%@</body>", HTML_STYLE, newsDetails.title, authorStr, newsDetails.body, software, [Utils generateRelativeNewsString:newsDetails.relatives], HTML_BOTTOM];
     
     [self.detailsView loadHTMLString:html baseURL:nil];
 }
