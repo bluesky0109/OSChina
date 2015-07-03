@@ -7,6 +7,8 @@
 //
 
 #import "MyInfoViewController.h"
+#import "FavoritesViewController.h"
+#import "SwipeableViewController.h"
 #import "OSCUser.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -76,6 +78,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHex:0xF5F5F5];
+    self.navigationItem.title = @"我";
+    self.tableView.bounces = NO;
     
     UIView *footer = [UIView new];
     self.tableView.tableFooterView = footer;
@@ -154,6 +158,8 @@
     setButtonStyle(_followsBtn, [NSString stringWithFormat:@"关注\n%lu",_user.followersCount]);
     setButtonStyle(_fansBtn, [NSString stringWithFormat:@"粉丝\n%lu",_user.fansCount]);
     
+    [_collectionsBtn addTarget:self action:@selector(pushFavoriteSVC) forControlEvents:UIControlEventTouchUpInside];
+    
     for (UIView *view in header.subviews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -175,6 +181,11 @@
     [countView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_creditsBtn]|" options:0 metrics:nil views:views]];
     
     return header;
+}
+
+- (void)pushFavoriteSVC {
+    SwipeableViewController *favoritesSVC = [[SwipeableViewController alloc] initWithTitle:@"收藏" andSubTitles:@[@"软件",@"博客",@"新闻",@"代码"] andControllers:@[[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeSoftware],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeTopic],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeBlog],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeNews],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeCode]]];
+    [self.navigationController pushViewController:favoritesSVC animated:YES];
 }
 
 @end
