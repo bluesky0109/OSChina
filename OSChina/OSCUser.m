@@ -8,23 +8,25 @@
 
 #import "OSCUser.h"
 
-static NSString * const kID = @"uid";
-static NSString * const kLocation = @"location";
-static NSString * const kName = @"name";
+static NSString * const kID        = @"uid";
+static NSString * const kLocation  = @"location";
+static NSString * const kName      = @"name";
 static NSString * const kFollowers = @"followers";
-static NSString * const kFans = @"fans";
-static NSString * const kScore = @"score";
-static NSString * const kPortrait = @"portrait";
+static NSString * const kFans      = @"fans";
+static NSString * const kScore     = @"score";
+static NSString * const kPortrait  = @"portrait";
+static NSString * const kExpertise = @"expertise";
 
 @interface OSCUser()
 
-@property (readwrite, nonatomic, assign) int64_t    userID;
-@property (readwrite, nonatomic, strong) NSString   *location;
-@property (readwrite, nonatomic, strong) NSString   *name;
-@property (readwrite, nonatomic, assign) NSUInteger followersCount;
-@property (readwrite, nonatomic, assign) NSUInteger fansCount;
-@property (readwrite, nonatomic, assign) NSInteger  score;
-@property (readwrite, nonatomic, copy  ) NSURL      *portraitURL;
+@property (readwrite, nonatomic, assign  ) int64_t    userID;
+@property (readwrite, nonatomic, strong  ) NSString   *location;
+@property (readwrite, nonatomic, strong  ) NSString   *name;
+@property (readwrite, nonatomic, assign  ) NSUInteger followersCount;
+@property (readwrite, nonatomic, assign  ) NSUInteger fansCount;
+@property (readwrite, nonatomic, assign  ) NSInteger  score;
+@property (readwrite, nonatomic, strong  ) NSURL      *portraitURL;
+@property (readwrite, nonatomic, strong  ) NSString   *expertise;
 
 @end
 
@@ -35,13 +37,14 @@ static NSString * const kPortrait = @"portrait";
     self = [super init];
     if (!self) {return nil;}
     
-    self.userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue];
+    self.userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue] | [[[xml firstChildWithTag:@"userid"] numberValue] longLongValue];
     self.location = [[xml firstChildWithTag:kLocation] stringValue];
     self.name = [[xml firstChildWithTag:kName] stringValue];
     self.followersCount = [[[xml firstChildWithTag:kFollowers] numberValue] unsignedLongValue];
     self.fansCount = [[[xml firstChildWithTag:kFans] numberValue] unsignedLongValue];
     self.score = [[[xml firstChildWithTag:kScore] numberValue] integerValue];
     self.portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
+    self.expertise = [[xml firstChildWithTag:kExpertise] stringValue];
     
     return self;
 }

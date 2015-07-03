@@ -7,8 +7,9 @@
 //
 
 #import "MyInfoViewController.h"
-#import "FavoritesViewController.h"
 #import "SwipeableViewController.h"
+#import "FavoritesViewController.h"
+#import "FriendsViewController.h"
 #import "OSCUser.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -159,6 +160,8 @@
     setButtonStyle(_fansBtn, [NSString stringWithFormat:@"粉丝\n%lu",_user.fansCount]);
     
     [_collectionsBtn addTarget:self action:@selector(pushFavoriteSVC) forControlEvents:UIControlEventTouchUpInside];
+    [_followsBtn addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
+    [_fansBtn addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
     
     for (UIView *view in header.subviews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
@@ -186,6 +189,11 @@
 - (void)pushFavoriteSVC {
     SwipeableViewController *favoritesSVC = [[SwipeableViewController alloc] initWithTitle:@"收藏" andSubTitles:@[@"软件",@"博客",@"新闻",@"代码"] andControllers:@[[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeSoftware],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeTopic],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeBlog],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeNews],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeCode]]];
     [self.navigationController pushViewController:favoritesSVC animated:YES];
+}
+
+- (void)pushFriendsSVC {
+    SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝" andSubTitles:@[@"关注",@"粉丝"] andControllers:@[[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]]];
+    [self.navigationController pushViewController:friendsSVC animated:YES];
 }
 
 @end

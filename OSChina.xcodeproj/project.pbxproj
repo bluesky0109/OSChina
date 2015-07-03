@@ -66,6 +66,8 @@
 		33C11EDD1B45233800728AE4 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11EDC1B45233800728AE4 /* EventCell.m */; };
 		33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C591B4658C0002819EE /* OSCFavorite.m */; };
 		33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5C1B465A57002819EE /* FavoritesViewController.m */; };
+		33CC0C601B467245002819EE /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5F1B467245002819EE /* FriendCell.m */; };
+		33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C621B46774D002819EE /* FriendsViewController.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -200,6 +202,10 @@
 		33CC0C591B4658C0002819EE /* OSCFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavorite.m; sourceTree = "<group>"; };
 		33CC0C5B1B465A57002819EE /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		33CC0C5C1B465A57002819EE /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		33CC0C5E1B467245002819EE /* FriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
+		33CC0C5F1B467245002819EE /* FriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		33CC0C611B46774D002819EE /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		33CC0C621B46774D002819EE /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -489,6 +495,10 @@
 				3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */,
 				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
 				33CC0C5C1B465A57002819EE /* FavoritesViewController.m */,
+				33CC0C5E1B467245002819EE /* FriendCell.h */,
+				33CC0C5F1B467245002819EE /* FriendCell.m */,
+				33CC0C611B46774D002819EE /* FriendsViewController.h */,
+				33CC0C621B46774D002819EE /* FriendsViewController.m */,
 			);
 			name = MyInfoVC;
 			sourceTree = "<group>";
@@ -763,6 +773,7 @@
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
+				33CC0C601B467245002819EE /* FriendCell.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
 				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,
@@ -779,6 +790,7 @@
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
 				333561071B457288009A294C /* SoftwareCell.m in Sources */,
 				3335956F1B43857A00AC412A /* OSCBlog.m in Sources */,
+				33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
