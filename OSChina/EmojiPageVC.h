@@ -10,4 +10,6 @@
 
 @interface EmojiPageVC : UIPageViewController
 
+- (instancetype)initWithTextView:(UITextView *)textView;
+
 @end

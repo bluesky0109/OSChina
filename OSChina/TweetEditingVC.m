@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UITextView         *edittingArea;
 @property (nonatomic, strong) UIImageView        *imageView;
 @property (nonatomic, strong) UIToolbar          *toolBar;
+@property (nonatomic, strong) EmojiPageVC        *emojiPageVC;
 @property (nonatomic, assign) NSLayoutConstraint *keyboardHeight;
 
 @end
@@ -73,7 +74,7 @@
     fixedSpace.width = 25.0f;
     NSMutableArray *barButtonItems = [[NSMutableArray alloc] initWithObjects:fixedSpace, nil];
     NSArray *iconName = @[@"compose_toolbar_picture_normal", @"compose_toolbar_mention_normal", @"compose_toolbar_trend_normal", @"compose_toolbar_emoji_normal"];
-    NSArray *action = @[@"addImage", @"mentionSomeone", @"referSoftware", @"selectEmoji"];
+    NSArray *action = @[@"addImage", @"mentionSomeone", @"referSoftware", @"switchInputView"];
     
     for (int i = 0; i < 4; i++) {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:iconName[i]] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(action[i])];
@@ -134,11 +135,14 @@
 }
 
 #pragma mark - TollBar操作
+
+#pragma mark - 添加图片
 - (void)addImage {
     
     [[[UIActionSheet alloc] initWithTitle:@"添加图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil] showInView:self.view];
 }
 
+#pragma mark - 插入字符串操作（@人 和 引用软件）
 - (void)mentionSomeone {
     [self insertEditingString:@"@请输入用户名 "];
 }
@@ -147,20 +151,38 @@
     [self insertEditingString:@"#请输入软件名#"];
 }
 
-- (void)selectEmoji {
-    EmojiPageVC *emojiPageVC = [[EmojiPageVC alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                      navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                    options:nil];
-    [self addChildViewController:emojiPageVC];
-    [self.view addSubview:emojiPageVC.view];
+#pragma mark - 表情面板和键盘切换
+- (void)switchInputView {
+    //还要考虑一下用外接键盘输入时，置空inputview后 字体小得情况
+    if (_edittingArea.inputView == self.emojiPageVC.view) {
+        [_toolBar.items[7] setImage:[UIImage imageNamed:@"compose_toolbar_emoji_normal"]];
+        _edittingArea.inputView = nil;
+        _edittingArea.font = [UIFont systemFontOfSize:18];
+        [_edittingArea reloadInputViews];
+    } else {
+        _keyboardHeight.constant = 216;
+        [self.view layoutIfNeeded];
+        
+        [_toolBar.items[7] setImage:[UIImage imageNamed:@"compose_toolbar_keyboard_normal"]];
+        _edittingArea.inputView = self.emojiPageVC.view;
+        [_edittingArea reloadInputViews];
+    }
+}
+
+- (EmojiPageVC *)emojiPageVC {
+    if (!_emojiPageVC) {
+        _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_edittingArea];
+        [self addChildViewController:_emojiPageVC];
+        [self.view addSubview:_emojiPageVC.view];
+        
+        NSDictionary *views = @{@"emojiView": _emojiPageVC.view};
+        _emojiPageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[emojiView(216)]|" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[emojiView]|" options:0 metrics:nil views:views]];
+
+    }
     
-    NSDictionary *views = @{@"emojiView": emojiPageVC.view};
-    emojiPageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[emojiView(216)]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[emojiView]|" options:0 metrics:nil views:views]];
-    
-    _keyboardHeight.constant = 216;
-    [self.view layoutIfNeeded];
+    return _emojiPageVC;
 }
 
 - (void)insertEditingString:(NSString *)string {

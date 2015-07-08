@@ -70,7 +70,13 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger emojiNum = _pageIndex * 21 + indexPath.section * 7 + indexPath.row + 1;
+    NSString *emojiName = [NSString stringWithFormat:@"%03ld", emojiNum];
     
+    NSTextAttachment *textAttachment = [NSTextAttachment new];
+    textAttachment.image = [UIImage imageNamed:emojiName];
+    
+    _didSelectEmoji(textAttachment);
 }
 
 @end

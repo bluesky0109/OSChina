@@ -12,6 +12,8 @@
 
 @property (nonatomic, assign, readonly) int pageIndex;
 
+@property (nonatomic,copy)void (^didSelectEmoji)(NSTextAttachment *textAttachment);
+
 - (instancetype)initWithPageIndex:(int)pageIndex;
 
 @end
