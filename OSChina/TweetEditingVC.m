@@ -246,7 +246,7 @@
 
 
 #pragma mark - handle long press gesture
-- (void)handleLongPressImage {
+- (void)handleLongPressInImage {
     _imageView.image = nil;
 }
 
