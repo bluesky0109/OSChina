@@ -33,6 +33,7 @@
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
 		33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A341B44C57500FDC8D4 /* GrowingTextView.m */; };
 		33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */; };
+		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -137,6 +138,8 @@
 		33744A341B44C57500FDC8D4 /* GrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowingTextView.m; sourceTree = "<group>"; };
 		33744A361B44E7F800FDC8D4 /* BottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBarViewController.h; sourceTree = "<group>"; };
 		33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBarViewController.m; sourceTree = "<group>"; };
+		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
+		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 			children = (
 				339740E91B4246AA0074D2EA /* OSCTabBarController.h */,
 				339740EA1B4246AA0074D2EA /* OSCTabBarController.m */,
+				3387765D1B4CC568001581A4 /* OptionButton.h */,
+				3387765E1B4CC568001581A4 /* OptionButton.m */,
 			);
 			name = "Tab Bar";
 			sourceTree = "<group>";
@@ -798,6 +803,7 @@
 				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
+				3387765F1B4CC568001581A4 /* OptionButton.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				33C11ECC1B450C2E00728AE4 /* EmojiPageVC.m in Sources */,
 				333595621B436DA900AC412A /* CommentsViewController.m in Sources */,
