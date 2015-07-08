@@ -7,6 +7,7 @@
 //
 
 #import "TweetEditingVC.h"
+#import "EmojiPageVC.h"
 
 @interface TweetEditingVC ()
 
@@ -71,7 +72,7 @@
     fixedSpace.width = 25.0f;
     NSMutableArray *barButtonItems = [[NSMutableArray alloc] initWithObjects:fixedSpace, nil];
     NSArray *iconName = @[@"compose_toolbar_picture_normal", @"compose_toolbar_mention_normal", @"compose_toolbar_trend_normal", @"compose_toolbar_emoji_normal"];
-    NSArray *action = @[@"mentionSomeone", @"mentionSomeone", @"referSoftware", @"referSoftware"];
+    NSArray *action = @[@"mentionSomeone", @"mentionSomeone", @"referSoftware", @"selectEmoji"];
     
     for (int i = 0; i < 4; i++) {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:iconName[i]] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(action[i])];
@@ -131,12 +132,29 @@
     }];
 }
 
+#pragma mark - TollBar操作
 - (void)mentionSomeone {
     [self insertEditingString:@"@请输入用户名 "];
 }
 
 - (void)referSoftware {
     [self insertEditingString:@"#请输入软件名#"];
+}
+
+- (void)selectEmoji {
+    EmojiPageVC *emojiPageVC = [[EmojiPageVC alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                      navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                    options:nil];
+    [self addChildViewController:emojiPageVC];
+    [self.view addSubview:emojiPageVC.view];
+    
+    NSDictionary *views = @{@"emojiView": emojiPageVC.view};
+    emojiPageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[emojiView(216)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[emojiView]|" options:0 metrics:nil views:views]];
+    
+    _keyboardHeight.constant = 216;
+    [self.view layoutIfNeeded];
 }
 
 - (void)insertEditingString:(NSString *)string {

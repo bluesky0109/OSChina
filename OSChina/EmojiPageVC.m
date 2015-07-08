@@ -7,7 +7,7 @@
 //
 
 #import "EmojiPageVC.h"
-#import "EmojiCollectionVC.h"
+#import "EmojiPanelVC.h"
 
 @interface EmojiPageVC ()<UIPageViewControllerDataSource>
 
@@ -17,12 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    EmojiCollectionVC *emojiCollectionVC = [[EmojiCollectionVC alloc] initWithPageIndex:0];
-    if (emojiCollectionVC != nil) {
+    EmojiPanelVC *emojiPanelVC = [[EmojiPanelVC alloc] initWithPageIndex:0];
+    if (emojiPanelVC != nil) {
         self.dataSource = self;
-        
-        [self setViewControllers:@[emojiCollectionVC] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+        [self setViewControllers:@[emojiPanelVC]
+                       direction:UIPageViewControllerNavigationDirectionReverse
+                        animated:NO
+                      completion:nil];
     }
 }
 
@@ -33,29 +36,29 @@
 
 
 #pragma mark -UIPageViewControllerDataSource
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(EmojiCollectionVC *)vc
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(EmojiPanelVC *)vc
 {
-    NSUInteger index = vc.pageIndex;
+    int index = vc.pageIndex;
     
     if (index == 0) {
         return nil;
     }
-    return [[EmojiCollectionVC alloc] initWithPageIndex:0];
+    return [[EmojiPanelVC alloc] initWithPageIndex:index-1];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(EmojiCollectionVC *)vc
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(EmojiPanelVC *)vc
 {
-    NSUInteger index = vc.pageIndex;
+    int index = vc.pageIndex;
     
-    if (index == 2) {
+    if (index == 5) {
         return nil;
     }
-    return [[EmojiCollectionVC alloc] initWithPageIndex:0];
+    return [[EmojiPanelVC alloc] initWithPageIndex:index+1];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return 3;
+    return 6;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

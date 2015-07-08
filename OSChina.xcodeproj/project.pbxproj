@@ -59,9 +59,8 @@
 		33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */; };
 		33B4C0401B441A3500637952 /* UIImageView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4C03F1B441A3500637952 /* UIImageView+Util.m */; };
 		33B4C0431B4423F400637952 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4C0421B4423F400637952 /* ImageViewController.m */; };
-		33C11EC91B45079F00728AE4 /* EmojiPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11EC81B45079F00728AE4 /* EmojiPanelView.m */; };
+		33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11EC81B45079F00728AE4 /* EmojiPanelVC.m */; };
 		33C11ECC1B450C2E00728AE4 /* EmojiPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11ECB1B450C2E00728AE4 /* EmojiPageVC.m */; };
-		33C11ECF1B450C5D00728AE4 /* EmojiCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11ECE1B450C5D00728AE4 /* EmojiCollectionVC.m */; };
 		33C11ED41B451C6900728AE4 /* DiscoverTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11ED31B451C6900728AE4 /* DiscoverTableVC.m */; };
 		33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11ED61B451E2C00728AE4 /* EventsViewController.m */; };
 		33C11EDA1B451E6F00728AE4 /* OSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C11ED91B451E6F00728AE4 /* OSCEvent.m */; };
@@ -193,12 +192,10 @@
 		33B4C03F1B441A3500637952 /* UIImageView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Util.m"; sourceTree = "<group>"; };
 		33B4C0411B4423F400637952 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		33B4C0421B4423F400637952 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
-		33C11EC71B45079F00728AE4 /* EmojiPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiPanelView.h; sourceTree = "<group>"; };
-		33C11EC81B45079F00728AE4 /* EmojiPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiPanelView.m; sourceTree = "<group>"; };
+		33C11EC71B45079F00728AE4 /* EmojiPanelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiPanelVC.h; sourceTree = "<group>"; };
+		33C11EC81B45079F00728AE4 /* EmojiPanelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiPanelVC.m; sourceTree = "<group>"; };
 		33C11ECA1B450C2E00728AE4 /* EmojiPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiPageVC.h; sourceTree = "<group>"; };
 		33C11ECB1B450C2E00728AE4 /* EmojiPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiPageVC.m; sourceTree = "<group>"; };
-		33C11ECD1B450C5D00728AE4 /* EmojiCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiCollectionVC.h; sourceTree = "<group>"; };
-		33C11ECE1B450C5D00728AE4 /* EmojiCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiCollectionVC.m; sourceTree = "<group>"; };
 		33C11ED21B451C6900728AE4 /* DiscoverTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTableVC.h; sourceTree = "<group>"; };
 		33C11ED31B451C6900728AE4 /* DiscoverTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTableVC.m; sourceTree = "<group>"; };
 		33C11ED51B451E2C00728AE4 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
@@ -553,12 +550,10 @@
 		33C11EC61B45073700728AE4 /* EmojiPanel */ = {
 			isa = PBXGroup;
 			children = (
-				33C11EC71B45079F00728AE4 /* EmojiPanelView.h */,
-				33C11EC81B45079F00728AE4 /* EmojiPanelView.m */,
+				33C11EC71B45079F00728AE4 /* EmojiPanelVC.h */,
+				33C11EC81B45079F00728AE4 /* EmojiPanelVC.m */,
 				33C11ECA1B450C2E00728AE4 /* EmojiPageVC.h */,
 				33C11ECB1B450C2E00728AE4 /* EmojiPageVC.m */,
-				33C11ECD1B450C5D00728AE4 /* EmojiCollectionVC.h */,
-				33C11ECE1B450C5D00728AE4 /* EmojiCollectionVC.m */,
 			);
 			name = EmojiPanel;
 			sourceTree = "<group>";
@@ -830,7 +825,6 @@
 				333595781B43912E00AC412A /* OSCBlogDetails.m in Sources */,
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
 				3335958E1B43C40000AC412A /* Config.m in Sources */,
-				33C11ECF1B450C5D00728AE4 /* EmojiCollectionVC.m in Sources */,
 				3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
@@ -842,7 +836,7 @@
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
-				33C11EC91B45079F00728AE4 /* EmojiPanelView.m in Sources */,
+				33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,

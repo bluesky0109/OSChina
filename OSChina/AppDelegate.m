@@ -36,6 +36,9 @@
     [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];               //UIColorFromRGB(0xdadada)
 
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];
+    pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
     
     return YES;
 }
