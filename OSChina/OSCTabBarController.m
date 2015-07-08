@@ -15,6 +15,7 @@
 #import "LoginViewController.h"
 #import "DiscoverTableVC.h"
 #import "MyInfoViewController.h"
+#import "TweetEditingVC.h"
 #import "Utils.h"
 #import "Config.h"
 
@@ -30,7 +31,7 @@
 
 @property (nonatomic, assign) CGFloat screenHeight;
 @property (nonatomic, assign) CGFloat screenWidth;
-@property (nonatomic, assign) CGGlyph length;
+@property (nonatomic, assign) CGGlyph length;       //按钮直径
 
 @end
 
@@ -101,7 +102,7 @@
     [self addCenterButtonWithImage:nil andHighlightImage:nil];
     [self.tabBar addObserver:self forKeyPath:@"selectedItem" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
     
-    // 功能键
+    // 功能键初始化
     _optionButtons = [NSMutableArray new];
     _screenHeight = [UIScreen mainScreen].bounds.size.height;
     _screenWidth  = [UIScreen mainScreen].bounds.size.width;
@@ -119,6 +120,10 @@
         optionButton.frame = CGRectMake((_screenWidth/6 * (i%3*2+1) - (_length+16)/2), _screenHeight + 150 + i/3*125,
                                         _length + 16, _length + [UIFont systemFontOfSize:17].lineHeight + 24);
         [optionButton.button setCornerRadius:_length/2];
+        
+        optionButton.tag = i;
+        optionButton.userInteractionEnabled = YES;
+        [optionButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOptionButton:)]];
         
         [self.view addSubview:optionButton];
         [_optionButtons addObject:optionButton];
@@ -211,7 +216,7 @@
     
     [self.tabBar.superview insertSubview:_bgView belowSubview:self.tabBar];
     [UIView animateWithDuration:0.3 animations:^{
-        _bgView.alpha = 0.7;
+        _bgView.alpha = 0.9;
     } completion:^(BOOL finished) {
         if (finished) {
             _centerButton.enabled = YES;
@@ -228,6 +233,46 @@
         self.bgView = nil;
         _centerButton.enabled = YES;
     }];
+}
+
+- (void)onTapOptionButton:(UIGestureRecognizer *)recognizer {
+    switch (recognizer.view.tag) {
+        case 0: {
+            TweetEditingVC *tweetEditingVC = [TweetEditingVC new];
+            UINavigationController *tweetEditingNav = [[UINavigationController alloc] initWithRootViewController:tweetEditingVC];
+            
+            [self.selectedViewController presentViewController:tweetEditingNav animated:YES completion:nil];
+            [self buttonPressed];
+            break;
+        }
+         
+        case 1: {
+            
+            break;
+        }
+
+        case 2: {
+            
+            break;
+        }
+
+        case 3: {
+            
+            break;
+        }
+
+        case 4: {
+                       break;
+        }
+
+        case 5: {
+            
+            break;
+        }
+
+        default:
+            break;
+    }
 }
 
 @end
