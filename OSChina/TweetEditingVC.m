@@ -8,6 +8,7 @@
 
 #import "TweetEditingVC.h"
 #import "EmojiPageVC.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface TweetEditingVC ()
 
@@ -72,7 +73,7 @@
     fixedSpace.width = 25.0f;
     NSMutableArray *barButtonItems = [[NSMutableArray alloc] initWithObjects:fixedSpace, nil];
     NSArray *iconName = @[@"compose_toolbar_picture_normal", @"compose_toolbar_mention_normal", @"compose_toolbar_trend_normal", @"compose_toolbar_emoji_normal"];
-    NSArray *action = @[@"mentionSomeone", @"mentionSomeone", @"referSoftware", @"selectEmoji"];
+    NSArray *action = @[@"addImage", @"mentionSomeone", @"referSoftware", @"selectEmoji"];
     
     for (int i = 0; i < 4; i++) {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:iconName[i]] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(action[i])];
@@ -133,6 +134,17 @@
 }
 
 #pragma mark - TollBar操作
+- (void)addImage {
+    UIImagePickerController *imagePickerController = [UIImagePickerController new];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.showsCameraControls = YES;
+    imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
 - (void)mentionSomeone {
     [self insertEditingString:@"@请输入用户名 "];
 }
