@@ -10,7 +10,7 @@
 #import "EmojiPageVC.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface TweetEditingVC ()
+@interface TweetEditingVC ()<UIActionSheetDelegate>
 
 @property (nonatomic, strong) UITextView         *edittingArea;
 @property (nonatomic, strong) UIImageView        *imageView;
@@ -135,14 +135,8 @@
 
 #pragma mark - TollBar操作
 - (void)addImage {
-    UIImagePickerController *imagePickerController = [UIImagePickerController new];
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    imagePickerController.allowsEditing = YES;
-    imagePickerController.showsCameraControls = YES;
-    imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-    imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
     
-    [self presentViewController:imagePickerController animated:YES completion:nil];
+    [[[UIActionSheet alloc] initWithTitle:@"添加图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil] showInView:self.view];
 }
 
 - (void)mentionSomeone {
@@ -182,5 +176,34 @@
     
     [_edittingArea setSelectedTextRange:newRange];
 }
+
+#pragma mark -UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    } else if (buttonIndex == 0) {
+        UIImagePickerController *imagePickerController = [UIImagePickerController new];
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+        
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    } else {
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Devices has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            UIImagePickerController *imagePickerController = [UIImagePickerController new];
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.showsCameraControls = YES;
+            imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+            
+            [self presentViewController:imagePickerController animated:YES completion:nil];
+        }
+    }
+}
+
 
 @end
