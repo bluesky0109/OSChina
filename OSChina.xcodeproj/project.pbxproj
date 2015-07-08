@@ -35,6 +35,7 @@
 		33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
+		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -142,6 +143,7 @@
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
 		338776611B4CD24E001581A4 /* TweetEditingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetEditingVC.m; sourceTree = "<group>"; };
+		338776631B4D0BB4001581A4 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 		339740C11B423F590074D2EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				338776631B4D0BB4001581A4 /* emoji.plist */,
 				339740C21B423F590074D2EA /* Info.plist */,
 				339740C31B423F590074D2EA /* main.m */,
 			);
@@ -730,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				339740CF1B423F590074D2EA /* Images.xcassets in Resources */,
+				338776641B4D0BB4001581A4 /* emoji.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

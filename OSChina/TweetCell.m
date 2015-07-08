@@ -133,7 +133,7 @@
     [self.timeLabel setText:[Utils intervalSinceNow:tweet.pubDate]];
     [self.appclientLabel setText:[Utils getAppclient:tweet.appclient]];
     [self.commentCount setText:[NSString stringWithFormat:@"评论：%d", tweet.commentCount]];
-    [self.contentLabel setText:tweet.body];
+    [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
 }
 
 
