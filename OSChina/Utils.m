@@ -127,14 +127,12 @@
         NSRange range = [math range];
         NSString *emojiName = [rawString substringWithRange:range];
         
-        for (NSString *name in emoji) {
-            if ([emoji[name] isEqualToString:emojiName]) {
+        if (emoji[emojiName]) {
                 NSTextAttachment *textAttachment = [NSTextAttachment new];
-                textAttachment.image = [UIImage imageNamed:name];
+                textAttachment.image = [UIImage imageNamed:emoji[emojiName]];
                 NSAttributedString *emojiAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
                 NSDictionary *emojiToReplace = @{@"image": emojiAttributedString, @"range": [NSValue valueWithRange:range]};
                 [emojiArray addObject:emojiToReplace];
-            }
         }
     }
     
