@@ -37,7 +37,6 @@
     [self initSubviews];
     [self setLayout];
     
-    NSArray *accountAndPassword = [Config getOwnAccountAndPassword];
     
     RACSignal *valid = [RACSignal combineLatest:@[_accountField.rac_textSignal, _passwordField.rac_textSignal] reduce:^(NSString *account, NSString *password){
         return @(account.length > 0 && password.length > 0);
@@ -48,6 +47,8 @@
         return b.boolValue ? @1 : @0.4;
     }];
     
+    NSArray *accountAndPassword = [Config getOwnAccountAndPassword];
+
     if (!accountAndPassword) {
         return;
     }
@@ -228,10 +229,9 @@
 - (void)login {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
+
     [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_LOGIN_VALIDATE]
-       parameters:@{@"username" : _accountField.text , @"pwd" : _passwordField.text, @"keep_login" : @(1)}
+       parameters:@{@"username" : _accountField.text, @"pwd" : _passwordField.text, @"keep_login" : @(1)}
           success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
               ONOXMLElement *result = [responseObject.rootElement firstChildWithTag:@"result"];
               ONOXMLElement *userXML = [responseObject.rootElement firstChildWithTag:@"user"];
