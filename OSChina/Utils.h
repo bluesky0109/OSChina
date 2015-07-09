@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (NSData *)compressImage:(UIImage *)image;
 
++ (NSString *)convertRichTextToRawText:(UITextView *)textView;
+
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
 
 @end

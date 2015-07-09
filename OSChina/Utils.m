@@ -17,6 +17,7 @@
 #import "DetailsViewController.h"
 #import "PostsViewController.h"
 #import "TweetDetailsWithBottomBarViewController.h"
+#import <objc/runtime.h>
 
 @implementation Utils
 
@@ -264,6 +265,20 @@
     }
     
     return imageData;
+}
+
++ (NSString *)convertRichTextToRawText:(UITextView *)textView {
+    NSMutableString *rawText = [[NSMutableString alloc] initWithString:textView.text];
+    [textView.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, textView.text.length) options:NSAttributedStringEnumerationReverse usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
+        if (!attachment) {
+            return ;
+        }
+        
+        int emojiNum = [objc_getAssociatedObject(attachment, @"number") intValue];
+        [rawText insertString:[NSString stringWithFormat:@"[%d]",emojiNum-1] atIndex:range.location];
+    }];
+    
+    return [rawText copy];
 }
 
 #pragma mark - UI处理

@@ -275,7 +275,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [Utils convertRichTextToRawText:_edittingArea]} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         if (_imageView.image) {
             [formData appendPartWithFileData:[Utils compressImage:_imageView.image] name:@"img" fileName:@"img.jpg" mimeType:@"image/jpeg"];
         }
@@ -317,21 +317,6 @@
         [hub hide:YES afterDelay:2];
     }];
     
-}
-
-
-- (NSString *)convertRichTextToRawText {
-    NSMutableString *rawText = [[NSMutableString alloc] initWithString:_edittingArea.text];
-    [_edittingArea.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, _edittingArea.text.length) options:NSAttributedStringEnumerationReverse usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
-        if (!attachment) {
-            return ;
-        }
-        
-        int emojiNum = [objc_getAssociatedObject(attachment, @"number") intValue];
-        [rawText insertString:[NSString stringWithFormat:@"[%d]",emojiNum-1] atIndex:range.location];
-    }];
-    
-    return [rawText copy];
 }
 
 @end
