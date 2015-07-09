@@ -23,7 +23,7 @@
 
 @interface OSCTabBarController ()
 
-@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIImageView *blurView;
 @property (nonatomic, assign) BOOL isPressed;
 
 @property (nonatomic, strong) NSMutableArray *optionButtons;
@@ -169,7 +169,7 @@
 
 - (void)changeTheButtonStateAnimatedToOpen:(BOOL)isPressed {
     if (isPressed) {
-        [self removeBackgroundView];
+        [self removeBlurView];
         
         [_animator removeAllBehaviors];
         for (int i = 0; i < 6; i++) {
@@ -187,12 +187,13 @@
             });
         }
     } else {
-        [self addBackgroundView];
+        [self addBlurView];
         
         [_animator removeAllBehaviors];
         
         for (int i = 0; i < 6; i++) {
             UIButton *button = _optionButtons[i];
+            [self.view bringSubviewToFront:button];
             
             UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:button
                                                                          attachedToAnchor:CGPointMake(_screenWidth/6 * (i%3*2+1),
@@ -209,32 +210,27 @@
 }
 
 
-- (void)addBackgroundView {
+- (void)addBlurView {
     _centerButton.enabled = NO;
     
-    _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _bgView.backgroundColor = [UIColor whiteColor];
-    _bgView.alpha = 0.0;
+    _blurView = [[UIImageView alloc] initWithImage:[self.view updateBlur]];
+    _blurView.userInteractionEnabled = YES;
+    [self.view addSubview:_blurView];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonPressed)];
-    [_bgView addGestureRecognizer:tap];
+    [_blurView addGestureRecognizer:tap];
     
-    [self.tabBar.superview insertSubview:_bgView belowSubview:self.tabBar];
-    [UIView animateWithDuration:0.3 animations:^{
-        _bgView.alpha = 0.9;
-    } completion:^(BOOL finished) {
+    [UIView animateWithDuration:0.25f animations:nil completion:^(BOOL finished) {
         if (finished) {
             _centerButton.enabled = YES;
         }
     }];
 }
 
-- (void)removeBackgroundView {
+- (void)removeBlurView {
     _centerButton.enabled = NO;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.bgView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self.bgView removeFromSuperview];
-        self.bgView = nil;
+    [UIView animateWithDuration:0.25f animations:nil completion:^(BOOL finished) {
+        [self.blurView removeFromSuperview];
+        self.blurView = nil;
         _centerButton.enabled = YES;
     }];
 }

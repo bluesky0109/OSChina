@@ -23,6 +23,7 @@ PODS:
   - AFOnoResponseSerializer (1.0.0):
     - AFNetworking (~> 2.2)
     - Ono (~> 1.0)
+  - GPUImage (0.1.6)
   - Ono (1.2.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFOnoResponseSerializer (~> 1.0.0)
+  - GPUImage (~> 0.1.6)
   - ReactiveCocoa
   - SDWebImage (~> 3.7.1)
   - SSKeychain
@@ -45,6 +47,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AFOnoResponseSerializer: c02c8bef1d6742ac68f33ecaed41826c9657bc33
+  GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
