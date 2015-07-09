@@ -7,7 +7,7 @@
 //
 
 #import "EventsViewController.h"
-#import "TweetDetailsViewController.h"
+#import "TweetDetailsWithBottomBarViewController.h"
 #import "DetailsViewController.h"
 #import "OSCEvent.h"
 #import "OSCNews.h"
@@ -160,24 +160,9 @@ static NSString * const kEventCellID = @"EventCell";
             case 3: {
                 OSCTweet *tweet = [OSCTweet new];
                 tweet.tweetID = event.objectID;
-                tweet.portraitURL = event.portraitURL;
-                tweet.authorID = event.authorID;
-                tweet.author = event.author;
-                tweet.body = event.message;
-                tweet.hasAnImage = event.hasAnImage;
-                tweet.smallImgURL = event.tweetImg;
                 
-                NSArray *imageURLComponent = [event.tweetImg.absoluteString componentsSeparatedByString:@"_thumb"];
-                if (imageURLComponent.count > 1) {
-                    tweet.bigImgURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURLComponent[0], imageURLComponent[1]]];
-                }
-                
-                tweet.pubDate = event.pubDate;
-                tweet.commentCount = event.commentCount;
-                tweet.appclient = event.appclient;
-                
-                TweetDetailsViewController *tweetDetailsVC = [[TweetDetailsViewController alloc] initWithTweet:tweet];
-                [self.navigationController pushViewController:tweetDetailsVC animated:YES];
+                TweetDetailsWithBottomBarViewController *tweetDetailsBVC = [[TweetDetailsWithBottomBarViewController alloc] initWithTweetID:tweet.tweetID];
+                [self.navigationController pushViewController:tweetDetailsBVC animated:YES];
                 break;
             }
                 
