@@ -37,26 +37,43 @@
         
         // 滑动view时切换对应的 titleview
         __weak TitleBarView *weakTitleBar = self.titleBar;
+        __weak HorizonalTableViewController *weakViewPager = self.viewPager;
+        
+        
         self.viewPager.changeIndex = ^(NSUInteger index) {
+#if 1
             weakTitleBar.currentIndex = index;
+            for (UIButton *button in weakTitleBar.titleButtons) {
+                if (button.tag != index) {
+                    [button setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
+                } else {
+                    [button setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
+                }
+            }
+#else
+            UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
+            [titleFrom setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
+            
+            weakTitleBar.currentIndex = index;
+            UIButton *titleTo = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
+            [titleTo setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
+#endif
+            [weakViewPager scrollToViewAtIndex:index];
         };
         
         self.viewPager.scrollView = ^(CGFloat offsetRatio, NSUInteger index) {
             UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
-            CGFloat value = [Utils valueBetweenMin:15 andMax:16 percent:offsetRatio];
-            titleFrom.titleLabel.font = [UIFont systemFontOfSize:value];
-            [titleFrom setTitleColor:[UIColor colorWithRed:0 green:0.5*offsetRatio blue:0 alpha:1.0]
+
+            [titleFrom setTitleColor:[UIColor colorWithRed:0.5*(1-offsetRatio) green:0.5 blue:0.5*(1-offsetRatio) alpha:1.0]
                             forState:UIControlStateNormal];
             
             UIButton *titleTo = weakTitleBar.titleButtons[index];
-            value = [Utils valueBetweenMin:15 andMax:16 percent:1-offsetRatio];
-            titleTo.titleLabel.font = [UIFont systemFontOfSize:value];
-            [titleTo setTitleColor:[UIColor colorWithRed:0 green:0.5*(1-offsetRatio) blue:0 alpha:1.0]
+            
+            [titleTo setTitleColor:[UIColor colorWithRed:0.5*offsetRatio green:0.5*(1-offsetRatio) blue:0*offsetRatio alpha:1.0]
                           forState:UIControlStateNormal];
         };
         
         //点击titleView上的button时 切换对应的view
-        __weak HorizonalTableViewController *weakViewPager = self.viewPager;
         self.titleBar.titleButtonClicked = ^(NSUInteger index) {
             [weakViewPager scrollToViewAtIndex:index];
         };

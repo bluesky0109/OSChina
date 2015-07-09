@@ -95,7 +95,7 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
     CGFloat horizontalOffset = self.tableView.contentOffset.y;
     CGFloat screenWidth = self.tableView.frame.size.width;
     CGFloat offsetRatio = (NSUInteger)horizontalOffset % (NSUInteger)screenWidth / screenWidth;
-    NSUInteger index = horizontalOffset / screenWidth;
+    NSUInteger index = (horizontalOffset + screenWidth / 2) / screenWidth;
     
     if (self.scrollView) {
         self.scrollView(offsetRatio,index);
