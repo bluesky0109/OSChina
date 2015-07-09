@@ -10,6 +10,7 @@
 #import "EmojiPageVC.h"
 #import "OSCAPI.h"
 #import "Config.h"
+#import "Utils.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
@@ -267,11 +268,38 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
+//    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
+//        ONOXMLElement *result = [responseDocument.rootElement firstChildWithTag:@"result"];
+//        int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
+//        NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
+//        
+//        switch (errorCode) {
+//            case 1: {
+//                _edittingArea.text = @"";
+//                _imageView.image = nil;
+//                break;
+//            }
+//            case 0:
+//            case -2:
+//            case -1: {
+//                NSLog(@"错误 %@",errorMessage);
+//                break;
+//            }
+//                
+//            default:
+//                break;
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"网络异常，错误码：%ld",(long)error.code);
+//    }];
+    
+    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:[Utils compressImage:_imageView.image] name:@"img" fileName:@"img.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
         ONOXMLElement *result = [responseDocument.rootElement firstChildWithTag:@"result"];
         int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
         NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
-        
+
         switch (errorCode) {
             case 1: {
                 _edittingArea.text = @"";
@@ -288,9 +316,11 @@
             default:
                 break;
         }
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"网络异常，错误码：%ld",(long)error.code);
     }];
+    
 }
 
 
