@@ -16,6 +16,7 @@
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
 #import <objc/runtime.h>
+#import <MBProgressHUD.h>
 
 @interface TweetEditingVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -260,65 +261,62 @@
 
 #pragma mark - 发表动弹
 - (void)pubTweet {
+    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if (_edittingArea.text.length == 0) {
-        NSLog(@"内容不能为空");
+        hub.mode = MBProgressHUDModeCustomView;
+        hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+        hub.labelText = @"内容不能为空";
+        
+        [hub hide:YES afterDelay:2];
         return;
+    } else {
+        hub.mode = MBProgressHUDModeIndeterminate;
+        hub.labelText = @"动弹发送中";
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
-//    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
-//        ONOXMLElement *result = [responseDocument.rootElement firstChildWithTag:@"result"];
-//        int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
-//        NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
-//        
-//        switch (errorCode) {
-//            case 1: {
-//                _edittingArea.text = @"";
-//                _imageView.image = nil;
-//                break;
-//            }
-//            case 0:
-//            case -2:
-//            case -1: {
-//                NSLog(@"错误 %@",errorMessage);
-//                break;
-//            }
-//                
-//            default:
-//                break;
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"网络异常，错误码：%ld",(long)error.code);
-//    }];
-    
     [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB] parameters:@{@"uid": @([Config getOwnID]), @"msg": [self convertRichTextToRawText]} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:[Utils compressImage:_imageView.image] name:@"img" fileName:@"img.jpg" mimeType:@"image/jpeg"];
+        if (_imageView.image) {
+            [formData appendPartWithFileData:[Utils compressImage:_imageView.image] name:@"img" fileName:@"img.jpg" mimeType:@"image/jpeg"];
+        }
+        
     } success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
         ONOXMLElement *result = [responseDocument.rootElement firstChildWithTag:@"result"];
         int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
         NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
-
+        
+        hub.mode = MBProgressHUDModeCustomView;
         switch (errorCode) {
             case 1: {
                 _edittingArea.text = @"";
                 _imageView.image = nil;
+                hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                hub.labelText = @"动弹发表成功";
                 break;
             }
             case 0:
             case -2:
             case -1: {
-                NSLog(@"错误 %@",errorMessage);
+                hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+
                 break;
             }
                 
             default:
                 break;
         }
+        
+        [hub hide:YES afterDelay:2];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"网络异常，错误码：%ld",(long)error.code);
+        hub.mode = MBProgressHUDModeCustomView;
+        hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+        hub.labelText = @"网络异常，动弹发送失败";
+        
+        [hub hide:YES afterDelay:2];
     }];
     
 }
@@ -331,8 +329,8 @@
             return ;
         }
         
-        NSInteger emojiNum = [objc_getAssociatedObject(attachment, @"number") integerValue];
-        [rawText insertString:[NSString stringWithFormat:@"[%ld]",emojiNum-1] atIndex:range.location];
+        int emojiNum = [objc_getAssociatedObject(attachment, @"number") intValue];
+        [rawText insertString:[NSString stringWithFormat:@"[%d]",emojiNum-1] atIndex:range.location];
     }];
     
     return [rawText copy];
