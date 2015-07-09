@@ -12,7 +12,7 @@
 #import "ImageViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
-
+#import "Utils.h"
 #import "Config.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -142,7 +142,7 @@
 {
     if (indexPath.row < self.objects.count) {
         OSCTweet *tweet = self.objects[indexPath.row];
-        [self.label setText:tweet.body];
+        [self.label setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
         
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)];
         CGFloat heigth = size.height + 65;

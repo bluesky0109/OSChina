@@ -102,7 +102,7 @@ static NSString * const kEventCellID = @"EventCell";
     if (indexPath.row < self.objects.count) {
         OSCEvent *event = self.objects[indexPath.row];
         
-        [self.label setText:event.message];
+        [self.label setAttributedText:[Utils emojiStringFromRawString:event.message]];
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
         CGFloat height = size.height + 24 + [UIFont systemFontOfSize:14].lineHeight;
         
