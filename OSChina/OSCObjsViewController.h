@@ -30,5 +30,6 @@
 
 - (void)fetchMore;
 - (NSArray *)parseXML:(ONOXMLDocument *)xml;
+- (void)refresh;
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PersonSearchViewController : UISearchController
+@interface PersonSearchViewController : UIViewController
 
 @end

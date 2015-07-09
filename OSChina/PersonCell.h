@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendCell : UITableViewCell
+@interface PersonCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *portrait;
 @property (nonatomic, strong) UILabel     *nameLabel;
-@property (nonatomic, strong) UILabel     *expertiseLabel;
+@property (nonatomic, strong) UILabel     *infoLabel;
 
 @end

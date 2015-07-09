@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import "FriendCell.h"
+#import "PersonCell.h"
 #import "Utils.h"
 
-@implementation FriendCell
+@implementation PersonCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -41,11 +41,11 @@
     _nameLabel.textColor = [UIColor colorWithHex:0x6A5ACD];
     [self.contentView addSubview:_nameLabel];
     
-    _expertiseLabel = [UILabel new];
-    _expertiseLabel.numberOfLines = 0;
-    _expertiseLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _expertiseLabel.font = [UIFont systemFontOfSize:12];
-    [self.contentView addSubview:_expertiseLabel];
+    _infoLabel = [UILabel new];
+    _infoLabel.numberOfLines = 0;
+    _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _infoLabel.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:_infoLabel];
 }
 
 - (void)setLayout {
@@ -53,11 +53,11 @@
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait,_nameLabel,_expertiseLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait,_nameLabel,_infoLabel);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-8-[_nameLabel]-8-|" options:NSLayoutFormatAlignAllTop metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_portrait(36)]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_nameLabel]-2-[_expertiseLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_portrait(36)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_nameLabel]-2-[_infoLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
     
 }
 

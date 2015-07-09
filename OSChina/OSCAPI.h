@@ -71,6 +71,7 @@
 
 #define OSCAPI_REPORT                   @"report"
 
+#define OSCAPI_SEARCH_USERS             @"find_user"
 
 
 

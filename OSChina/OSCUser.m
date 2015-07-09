@@ -9,7 +9,9 @@
 #import "OSCUser.h"
 
 static NSString * const kID        = @"uid";
+static NSString * const kUserID    = @"userid";
 static NSString * const kLocation  = @"location";
+static NSString * const kFrom      = @"from";
 static NSString * const kName      = @"name";
 static NSString * const kFollowers = @"followers";
 static NSString * const kFans      = @"fans";
@@ -37,8 +39,12 @@ static NSString * const kExpertise = @"expertise";
     self = [super init];
     if (!self) {return nil;}
     
-    self.userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue] | [[[xml firstChildWithTag:@"userid"] numberValue] longLongValue];
+    // 有些API返回用<id>，有些地方用<userid>，这样写是为了简化处理
+    self.userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue] | [[[xml firstChildWithTag:kUserID] numberValue] longLongValue];
     self.location = [[xml firstChildWithTag:kLocation] stringValue];
+    if (!self.location) {
+        self.location = [[xml firstChildWithTag:kFrom] stringValue];
+    }
     self.name = [[xml firstChildWithTag:kName] stringValue];
     self.followersCount = [[[xml firstChildWithTag:kFollowers] numberValue] unsignedLongValue];
     self.fansCount = [[[xml firstChildWithTag:kFans] numberValue] unsignedLongValue];
