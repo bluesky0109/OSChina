@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tweet_QRcode.png"
+      "filename" : "scan.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tweet_QRcode@2x.png"
+      "filename" : "scan@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "tweet_QRcode@3x.png"
+      "filename" : "scan@3x.png"
     }
   ],
   "info" : {

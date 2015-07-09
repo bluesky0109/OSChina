@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tweet_shooting.png"
+      "filename" : "sound.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "tweet_shooting@2x.png"
+      "filename" : "sound@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "tweet_shooting@3x.png"
+      "filename" : "sound@3x.png"
     }
   ],
   "info" : {
