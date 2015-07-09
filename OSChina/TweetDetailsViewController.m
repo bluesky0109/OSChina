@@ -9,14 +9,21 @@
 #import "TweetDetailsViewController.h"
 #import "UserDetailsViewController.h"
 #import "ImageViewController.h"
+#import "TweetDetailsCell.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
+#import <AFNetworking.h>
+#import <AFOnoResponseSerializer.h>
+#import <Ono.h>
 
-#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface TweetDetailsViewController ()
+@interface TweetDetailsViewController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) OSCTweet *tweet;
+
+@property (nonatomic, assign) BOOL     isLoadingFinished;
+@property (nonatomic, assign) CGFloat  webViewHeight;
+@property (nonatomic, copy  ) NSString *HTML;
 
 @end
 
@@ -31,33 +38,20 @@
         __weak TweetDetailsViewController *weakSelf = self;
         self.otherSectionCell = ^(NSIndexPath *indexPath) {
       
-            TweetCell *cell = [TweetCell new];
+            TweetDetailsCell *cell = [TweetDetailsCell new];
+            cell.webView.delegate = weakSelf;
             
-            [cell setContentWithTweet:tweet];
-            cell.commentCount.hidden = YES;
-            
-            if (tweet.hasAnImage) {
-                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
-                [cell addConstraints:cell.thumbnailConstraints];
-                [cell.thumbnail setImage:image];
-            }
-            [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
-            [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushOwnerDetailsView)]];
-            [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(loadLargeImage:)]];
+            [cell.portrait loadPortrait:tweet.portraitURL];
+            [cell.authorLabel setText:tweet.author];
+            [cell.timeLabel setText:[Utils intervalSinceNow:tweet.pubDate]];
+            [cell.appclientLabel setText:[Utils getAppclient:tweet.appclient]];
+            [cell.webView loadHTMLString:weakSelf.HTML baseURL:nil];
             return cell;
         };
         
         self.heightForOtherSectionCell = ^(NSIndexPath *indexPath) {
-            [weakSelf.label setText:weakSelf.tweet.body];
             
-            CGSize size = [weakSelf.label sizeThatFits:CGSizeMake(weakSelf.tableView.frame.size.width - 16, MAXFLOAT)];
-            
-            CGFloat height = size.height + 65;
-            if (tweet.hasAnImage) {
-                UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
-                height += image.size.height + 5;
-            }
-            return height;
+            return weakSelf.webViewHeight + 60;
         };
 
     }
@@ -67,7 +61,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+    
+    [manager GET:[NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_TWEET_DETAIL, _tweet.tweetID]
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
+             ONOXMLElement *tweetDetails = [responseObject.rootElement firstChildWithTag:@"tweet"];
+             NSString *text = [[tweetDetails firstChildWithTag:@"body"] stringValue];
+             
+             NSString *imageURL = [[tweetDetails firstChildWithTag:@"imgBig"] stringValue];
+             
+             
+             _HTML = [NSString stringWithFormat:@"<font size=\"3\"><strong>%@</strong></font>\
+                      <br/><a href='%@'><img style='max-width:300px;' src='%@'/></a>",
+                      text,  imageURL, imageURL];
+             _tweet.commentCount = [[[tweetDetails firstChildWithTag:@"commentCount"] numberValue] intValue];
+             
+             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                                   withRowAnimation:UITableViewRowAnimationNone];
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"wrong");
+         }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,20 +118,23 @@
     }
 }
 
-#pragma mark - 跳转到用户详情页
+#pragma mark - UIWebViewDelegate
 
-- (void)pushOwnerDetailsView
-{
-    UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:_tweet.authorID];
-    [self.navigationController pushViewController:userDetailsVC animated:YES];
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (_isLoadingFinished) {
+        webView.hidden = NO;
+        return;
+    }
+    _webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    //设置为已经加载完成
+    _isLoadingFinished = YES;
 }
 
-#pragma mark - 加载大图
-- (void)loadLargeImage:(UITapGestureRecognizer *)recognizer
-{    
-    ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:_tweet.bigImgURL thumbnail:(UIImageView *)recognizer.view andTapLocation:[recognizer locationInView:self.view]];
-    
-    [self presentViewController:imageVC animated:YES completion:nil];
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    [Utils analysis:[request.URL absoluteString] andNavController:self.navigationController];
+    return [request.URL.absoluteString isEqualToString:@"about:blank"];
 }
 
 @end

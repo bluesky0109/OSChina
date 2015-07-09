@@ -38,6 +38,8 @@
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
 		338F219E1B4DFFAB006B9507 /* PersonSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */; };
 		338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A11B4E3687006B9507 /* PeopleTableViewController.m */; };
+		338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */; };
+		338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -150,6 +152,10 @@
 		338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSearchViewController.m; sourceTree = "<group>"; };
 		338F21A01B4E3687006B9507 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
 		338F21A11B4E3687006B9507 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
+		338F21A31B4E5FD7006B9507 /* TweetDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsCell.h; sourceTree = "<group>"; };
+		338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsCell.m; sourceTree = "<group>"; };
+		338F21A61B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsWithBottomBarViewController.h; sourceTree = "<group>"; };
+		338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsWithBottomBarViewController.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -281,6 +287,10 @@
 			children = (
 				333595691B43748A00AC412A /* TweetDetailsViewController.h */,
 				3335956A1B43748A00AC412A /* TweetDetailsViewController.m */,
+				338F21A31B4E5FD7006B9507 /* TweetDetailsCell.h */,
+				338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */,
+				338F21A61B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.h */,
+				338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */,
 			);
 			name = TweetDetails;
 			sourceTree = "<group>";
@@ -826,6 +836,7 @@
 				333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */,
 				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
+				338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
 				3387765F1B4CC568001581A4 /* OptionButton.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
@@ -834,6 +845,7 @@
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
+				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				33CC0C601B467245002819EE /* PersonCell.m in Sources */,
