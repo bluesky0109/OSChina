@@ -19,6 +19,7 @@
 - (instancetype)init {
     self = [super init];
     if(self) {
+        self.backgroundColor = [UIColor grayColor];
         [self setLayout];
     }
     
@@ -27,12 +28,12 @@
 
 - (void)setLayout {
     
-    UIButton *modeSwitchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [modeSwitchButton setImage:[UIImage imageNamed:@"button_keyboard_normal"] forState:UIControlStateNormal];
+    _modeSwitchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_modeSwitchButton setImage:[UIImage imageNamed:@"button_keyboard_normal"] forState:UIControlStateNormal];
     
-    UIButton *emojiButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [emojiButton setImage:[UIImage imageNamed:@"button_emoji_normal"] forState:UIControlStateNormal];
-    [emojiButton addTarget:self action:@selector(onClickEmojiButton) forControlEvents:UIControlEventTouchUpInside];
+    _inputViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_inputViewButton setImage:[UIImage imageNamed:@"button_emoji_normal"] forState:UIControlStateNormal];
+//    [_inputViewButton addTarget:self action:@selector(onClickEmojiButton) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [commentButton setImage:[UIImage imageNamed:@"button_comment_normal"] forState:UIControlStateNormal];
@@ -43,27 +44,24 @@
     _editView.backgroundColor = [UIColor colorWithHex:0xF5FAFA];
     
     [self addSubview:_editView];
-    [self addSubview:modeSwitchButton];
-    [self addSubview:emojiButton];
+    [self addSubview:_modeSwitchButton];
+    [self addSubview:_inputViewButton];
     [self addSubview:commentButton];
     
     for (UIView *view in self.subviews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(modeSwitchButton,emojiButton,commentButton,_editView);
+    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_modeSwitchButton,_inputViewButton,commentButton,_editView);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-5-[modeSwitchButton]-5-[_editView]-5-[emojiButton][commentButton]-5-|" options:0 metrics:nil views:viewsDict]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[modeSwitchButton]-3-|" options:0 metrics:nil views:viewsDict]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[emojiButton]-3-|" options:0 metrics:nil views:viewsDict]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-5-[_modeSwitchButton]-5-[_editView]-5-[_inputViewButton][commentButton]-5-|" options:0 metrics:nil views:viewsDict]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[_modeSwitchButton]-3-|" options:0 metrics:nil views:viewsDict]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[_inputViewButton]-3-|" options:0 metrics:nil views:viewsDict]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[commentButton]-3-|" options:0 metrics:nil views:viewsDict]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_editView]-5-|" options:0 metrics:nil views:viewsDict]];
 }
 
-#pragma mark - Button Response
-- (void)onClickEmojiButton {
-    
-}
+#pragma mark - 键盘和表情面板切换
 
 #pragma mark -UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView {
