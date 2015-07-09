@@ -34,6 +34,4 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
 
-+ (void)showProgressHUDInView:(UIView *)view ofType:(hudType)hudType;
-
 @end

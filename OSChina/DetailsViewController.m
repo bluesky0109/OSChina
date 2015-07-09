@@ -43,7 +43,7 @@
 @implementation DetailsViewController
 
 - (instancetype)initWithNews:(OSCNews *)news {
-    self = [super init];
+    self = [super initWithModeSwitchButton:YES];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"资讯详情";
@@ -85,7 +85,7 @@
 
 - (instancetype)initWithBlog:(OSCBlog *)blog
 {
-    self = [super init];
+    self = [super initWithModeSwitchButton:YES];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"博客详情";
@@ -99,7 +99,7 @@
 }
 
 - (instancetype)initWithPost:(OSCPost *)post {
-    self = [super init];
+    self = [super initWithModeSwitchButton:YES];
     
     if (!self) {return nil;}
     
@@ -114,7 +114,7 @@
 }
 
 - (instancetype)initWithSoftware:(OSCSoftware *)software {
-    self = [super init];
+    self = [super initWithModeSwitchButton:YES];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"软件详情";

@@ -19,6 +19,15 @@
 
 @implementation BottomBarViewController
 
+- (instancetype)initWithModeSwitchButton:(BOOL)hasAModeSwitchButton {
+    self = [super init];
+    if (self) {
+        _bottomBar = [[BottomBar alloc] initWithModeSwitchButton:hasAModeSwitchButton];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -41,7 +50,7 @@
 }
 
 - (void)addBottomBar {
-    _bottomBar = [BottomBar new];
+
     _bottomBar.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_bottomBar];
     
