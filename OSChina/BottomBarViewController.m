@@ -7,7 +7,6 @@
 //
 
 #import "BottomBarViewController.h"
-#import "BottomBar.h"
 #import "GrowingTextView.h"
 #import "EmojiPageVC.h"
 
