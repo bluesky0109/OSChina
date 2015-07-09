@@ -10,7 +10,7 @@
 #import "GrowingTextView.h"
 #import "Utils.h"
 
-@interface BottomBar()<UITextViewDelegate>
+@interface BottomBar()
 
 @end
 
@@ -20,6 +20,8 @@
     self = [super init];
     if(self) {
         self.backgroundColor = [UIColor grayColor];
+        
+        [self addBorder];
         [self setLayoutWithModeSwitchButton:hasAModeSwitchButton];
     }
     
@@ -66,11 +68,21 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_editView]-5-|" options:0 metrics:nil views:views]];
 }
 
-#pragma mark - 键盘和表情面板切换
-
-#pragma mark -UITextViewDelegate
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    [textView becomeFirstResponder];
+- (void)addBorder {
+    UIView *upperBorder = [UIView new];
+    upperBorder.backgroundColor = [UIColor lightGrayColor];
+    upperBorder.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:upperBorder];
+    
+    UIView *bottomBorder = [UIView new];
+    bottomBorder.backgroundColor = [UIColor lightGrayColor];
+    bottomBorder.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:bottomBorder];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(upperBorder,bottomBorder);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[upperBorder]|" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[upperBorder(0.5)]->=0-[bottomBorder(0.5)]|" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
 }
 
 @end
