@@ -53,6 +53,9 @@ static const double accelerationThreshold = 2.0f;
     self.navigationItem.title = @"摇一摇";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    if (self.navigationController.viewControllers.count <= 1) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClick)];
+    }
     [self setLayout];
     
     _operationQueue = [NSOperationQueue new];
@@ -86,6 +89,9 @@ static const double accelerationThreshold = 2.0f;
     
 }
 
+- (void)backButtonClick {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark -视图布局
 - (void)setLayout {
     _layer = [UIView new];
