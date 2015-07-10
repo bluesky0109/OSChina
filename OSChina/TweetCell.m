@@ -138,7 +138,7 @@
 
 #pragma mark - 处理长按操作
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    return action == @selector(copyText:);
+    return _canPerformAction(self,action);
 }
 
 - (BOOL)canBecomeFirstResponder {
@@ -148,6 +148,10 @@
 - (void)copyText:(id)sender {
     UIPasteboard *pastedBoard = [UIPasteboard generalPasteboard];
     [pastedBoard setString:_contentLabel.text];
+}
+
+- (void)deleteTweet:(id)sender {
+    _deleteTweet(self);
 }
 
 @end
