@@ -13,6 +13,7 @@
 @interface BottomBarViewController ()
 
 @property (nonatomic, strong) EmojiPageVC *emojiPageVC;
+@property (nonatomic, assign) BOOL hasAModeSwitchButton;
 
 @end
 
@@ -22,6 +23,11 @@
     self = [super init];
     if (self) {
         _editingBar = [[EditingBar alloc] initWithModeSwitchButton:hasAModeSwitchButton];
+        if (hasAModeSwitchButton) {
+            _hasAModeSwitchButton = hasAModeSwitchButton;
+            _operationBar = [OperationBar new];
+            _operationBar.hidden = YES;
+        }
     }
     
     return self;
@@ -40,7 +46,7 @@
 }
 
 - (void)setup {
-    [self addEditingBar];
+    [self addBottomBar];
     _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_editingBar.editView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -48,9 +54,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidUpdate:) name:UITextViewTextDidChangeNotification object:nil];
 }
 
-- (void)addEditingBar {
+- (void)addBottomBar {
 
     _editingBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [_editingBar.inputViewButton addTarget:self action:@selector(switchInputView) forControlEvents:UIControlEventTouchUpInside];
+    [_editingBar.modeSwitchButton addTarget:self action:@selector(switchMode) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_editingBar];
     
     _editingBarYContraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_editingBar attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
@@ -59,7 +67,18 @@
     [self.view addConstraint:_editingBarYContraint];
     [self.view addConstraint:_editingBarHeightContraint];
     
-    [_editingBar.inputViewButton addTarget:self action:@selector(switchInputView) forControlEvents:UIControlEventTouchUpInside];
+    if (_hasAModeSwitchButton) {
+        [_operationBar.modeSwitchButton addTarget:self action:@selector(switchMode) forControlEvents:UIControlEventTouchUpInside];
+        __weak BottomBarViewController *weakSelf = self;
+        _operationBar.switchMode = ^ {[weakSelf switchMode];};
+        
+        _operationBar.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view addSubview:_operationBar];
+        NSDictionary *metrics = @{@"height": @([self minimumInputbarHeight])};
+        NSDictionary *views = NSDictionaryOfVariableBindings(_operationBar);
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_operationBar(height)]|" options:0 metrics:metrics views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_operationBar]|" options:0 metrics:nil views:views]];
+    }
 }
 
 - (void)switchInputView {
@@ -80,6 +99,18 @@
         [self setEditingBarHeight:216];
     }
 }
+
+- (void)switchMode {
+    if (_operationBar.isHidden) {
+        [_editingBar.editView resignFirstResponder];
+        _editingBar.hidden = YES;
+        _operationBar.hidden = NO;
+    } else {
+        _operationBar.hidden = YES;
+        _editingBar.hidden = NO;
+    }
+}
+
 
 #pragma mark - textView配置
 - (GrowingTextView *)textView {
