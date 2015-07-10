@@ -25,17 +25,6 @@
     return self;
 }
 
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)initSubviews {
     self.titleLabel = [UILabel new];
     self.titleLabel.numberOfLines = 0;
@@ -45,7 +34,7 @@
     
     self.authorLabel = [UILabel new];
     self.authorLabel.font = [UIFont systemFontOfSize:13];
-    self.authorLabel.textColor = [UIColor colorWithHex:0x0083FF];
+    self.authorLabel.textColor = [UIColor nameColor];
     [self.contentView addSubview:self.authorLabel];
     
     self.timeLabel = [UILabel new];
