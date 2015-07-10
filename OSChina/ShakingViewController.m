@@ -9,6 +9,10 @@
 #import "ShakingViewController.h"
 #import "RandomMessageCell.h"
 #import "OSCRandomMessage.h"
+#import "DetailsViewController.h"
+#import "OSCNews.h"
+#import "OSCBlog.h"
+#import "OSCSoftware.h"
 #import "OSCAPI.h"
 #import "Utils.h"
 #import <CoreMotion/CoreMotion.h>
@@ -98,8 +102,7 @@ static const double accelerationThreshold = 2.0f;
     
 
     _cell = [RandomMessageCell new];
-    UITapGestureRecognizer *tapGestureRacognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCell)];
-    [_cell addGestureRecognizer:tapGestureRacognizer];
+    [_cell addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCell:)]];
     _cell.hidden = YES;
     [self.view addSubview:_cell];
 
@@ -161,13 +164,7 @@ static const double accelerationThreshold = 2.0f;
             
             [self rotate:_layer];
             [self getRandomMessage];
-#if 0
-            if ([Tools isNetworkExist]) {
-                [self requestProject];
-            } else {
-                [Tools toastNotification:@"网络连接失败，请检查网络设置" inView:self.view];
-            }
-#endif
+
             _isShaking = NO;
         });
     }
@@ -246,9 +243,32 @@ static const double accelerationThreshold = 2.0f;
 }
 
 
-- (void)tapCell
-{
+- (void)tapCell:(UITapGestureRecognizer *)recognizer {
+    switch (_randomMessage.type) {
+        case RandomTypeNews: {
+            OSCNews *news = [OSCNews new];
+            news.newsID = _randomMessage.randomMessageID;
+            [self.navigationController pushViewController:[[DetailsViewController alloc] initWithNews:news] animated:YES];
+            break;
+        }
+           
+        case RandomTypeBlog: {
+            OSCBlog *blog = [OSCBlog new];
+            blog.blogID = _randomMessage.randomMessageID;
+            [self.navigationController pushViewController:[[DetailsViewController alloc] initWithBlog:blog] animated:YES];
+            break;
+        }
+            
+        case RandomTypeSoftware: {
+            [Utils analysis:_randomMessage.url.absoluteString andNavController:self.navigationController];
+            break;
+        }
+            
+        default:
+            break;
+    }
     
+    [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:_layer];
 }
 
 @end
