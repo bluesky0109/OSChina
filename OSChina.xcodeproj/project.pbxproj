@@ -25,7 +25,7 @@
 		3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335957D1B4392A000AC412A /* DetailsViewController.m */; };
 		333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595841B43AB5C00AC412A /* OSCPostDetails.m */; };
 		333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */; };
-		3335958B1B43C1F500AC412A /* BottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958A1B43C1F500AC412A /* BottomBar.m */; };
+		3335958B1B43C1F500AC412A /* EditingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958A1B43C1F500AC412A /* EditingBar.m */; };
 		3335958E1B43C40000AC412A /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958D1B43C40000AC412A /* Config.m */; };
 		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -127,8 +127,8 @@
 		333595841B43AB5C00AC412A /* OSCPostDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPostDetails.m; sourceTree = "<group>"; };
 		333595861B43ABBF00AC412A /* OSCSoftwareDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSoftwareDetails.h; sourceTree = "<group>"; };
 		333595871B43ABBF00AC412A /* OSCSoftwareDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSoftwareDetails.m; sourceTree = "<group>"; };
-		333595891B43C1F500AC412A /* BottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBar.h; sourceTree = "<group>"; };
-		3335958A1B43C1F500AC412A /* BottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBar.m; sourceTree = "<group>"; };
+		333595891B43C1F500AC412A /* EditingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingBar.h; sourceTree = "<group>"; };
+		3335958A1B43C1F500AC412A /* EditingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingBar.m; sourceTree = "<group>"; };
 		3335958C1B43C40000AC412A /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3335958D1B43C40000AC412A /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		3335958F1B43C48E00AC412A /* OSCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUser.h; sourceTree = "<group>"; };
@@ -569,8 +569,8 @@
 			children = (
 				33744A331B44C57500FDC8D4 /* GrowingTextView.h */,
 				33744A341B44C57500FDC8D4 /* GrowingTextView.m */,
-				333595891B43C1F500AC412A /* BottomBar.h */,
-				3335958A1B43C1F500AC412A /* BottomBar.m */,
+				333595891B43C1F500AC412A /* EditingBar.h */,
+				3335958A1B43C1F500AC412A /* EditingBar.m */,
 			);
 			name = BottomBar;
 			sourceTree = "<group>";
@@ -877,7 +877,7 @@
 				338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 				33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */,
-				3335958B1B43C1F500AC412A /* BottomBar.m in Sources */,
+				3335958B1B43C1F500AC412A /* EditingBar.m in Sources */,
 				335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

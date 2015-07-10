@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BottomBar.h"
+#import "EditingBar.h"
 
 @class EmojiPageVC;
 
 @interface BottomBarViewController : UIViewController
 
-@property (nonatomic, strong) BottomBar *bottomBar;
+@property (nonatomic, strong) EditingBar *editingBar;
 @property (nonatomic, strong) EmojiPageVC *emojiPanelVC;
 @property (nonatomic, strong) UIView *emojiPanel;
-@property (nonatomic, strong) NSLayoutConstraint *bottomBarYContraint;
-@property (nonatomic, strong) NSLayoutConstraint *bottomBarHeightContraint;
+@property (nonatomic, strong) NSLayoutConstraint *editingBarYContraint;
+@property (nonatomic, strong) NSLayoutConstraint *editingBarHeightContraint;
 
 - (instancetype)initWithModeSwitchButton:(BOOL)hasAModeSwitchButton;
 

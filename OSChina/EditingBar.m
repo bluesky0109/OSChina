@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import "BottomBar.h"
+#import "EditingBar.h"
 #import "Utils.h"
 
-@interface BottomBar()
+@interface EditingBar()
 
 @end
 
-@implementation BottomBar
+@implementation EditingBar
 
 - (instancetype)initWithModeSwitchButton:(BOOL)hasAModeSwitchButton {
     self = [super init];
