@@ -19,6 +19,7 @@
 #import "TweetDetailsWithBottomBarViewController.h"
 #import <objc/runtime.h>
 
+
 @implementation Utils
 
 
@@ -292,6 +293,15 @@
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent
 {
     return min + (max - min) * percent;
+}
+
++ (MBProgressHUD *)createHUDInWindowOfView:(UIView *)view {
+    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    MBProgressHUD *hub = [[MBProgressHUD alloc] initWithWindow:window];
+    [window addSubview:hub];
+    [hub show:YES];
+    
+    return hub;
 }
 
 @end

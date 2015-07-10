@@ -14,7 +14,7 @@
 #import "OSCTweet.h"
 #import "TweetDetailsCell.h"
 #import "Config.h"
-#import <MBProgressHUD.h>
+#import "Utils.h"
 #import <objc/runtime.h>
 
 @interface TweetDetailsWithBottomBarViewController ()
@@ -83,7 +83,7 @@
 
 
 - (void)sendComment {
-    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
     hub.labelText = @"评论发送中";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

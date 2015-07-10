@@ -259,7 +259,7 @@
 
 #pragma mark - 发表动弹
 - (void)pubTweet {
-    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
     if (_edittingArea.text.length == 0) {
         hub.mode = MBProgressHUDModeCustomView;
         hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];

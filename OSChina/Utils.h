@@ -10,14 +10,13 @@
 #import "UIView+Util.h"
 #import "UIColor+Util.h"
 #import "UIImageView+Util.h"
+#import <MBProgressHUD.h>
 
 typedef NS_ENUM(NSUInteger, hudType) {
     hudTypeSendingTweet,
     hudTypeLoading,
     hudTypeCompleted
 };
-
-@class OSCUser;
 
 @interface Utils : NSObject
 
@@ -35,5 +34,7 @@ typedef NS_ENUM(NSUInteger, hudType) {
 + (NSString *)convertRichTextToRawText:(UITextView *)textView;
 
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
+
++ (MBProgressHUD *)createHUDInWindowOfView:(UIView *)view;
 
 @end
