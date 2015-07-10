@@ -97,7 +97,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 2;
 }
 
 
@@ -109,7 +109,7 @@
     selectedBackground.backgroundColor = [UIColor colorWithHex:0xF5FFFA];
     [cell setSelectedBackgroundView:selectedBackground];
     
-    cell.textLabel.text = @[@"消息",@"团队",@"博客",@"便签"][indexPath.row];
+    cell.textLabel.text = @[@"消息", @"博客"][indexPath.row];
     
     return cell;
 }
@@ -203,14 +203,9 @@
                                                  animated:YES]; break;
         }
         case 1: {
-            break;
-        }
-        case 2: {
             [self.navigationController pushViewController:[[BlogsViewController alloc] initWithUserID:_user.userID] animated:YES]; break;
         }
-        case 3: {
-            break;
-        }
+
         default: break;
     }
 }
