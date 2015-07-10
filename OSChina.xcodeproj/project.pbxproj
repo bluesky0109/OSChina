@@ -28,6 +28,8 @@
 		3335958B1B43C1F500AC412A /* EditingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958A1B43C1F500AC412A /* EditingBar.m */; };
 		3335958E1B43C40000AC412A /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958D1B43C40000AC412A /* Config.m */; };
 		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
+		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
+		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
 		335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E31B42D89200D28C80 /* PostsViewController.m */; };
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
@@ -135,6 +137,10 @@
 		3335958D1B43C40000AC412A /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		3335958F1B43C48E00AC412A /* OSCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUser.h; sourceTree = "<group>"; };
 		333595901B43C48E00AC412A /* OSCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUser.m; sourceTree = "<group>"; };
+		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
+		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
+		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
+		33525B861B4FF70400D16125 /* OSCRandomMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCRandomMessage.m; sourceTree = "<group>"; };
 		335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCObjsViewController.h; sourceTree = "<group>"; };
 		335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCObjsViewController.m; sourceTree = "<group>"; };
 		335EB1E21B42D89200D28C80 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
@@ -321,6 +327,15 @@
 				333595741B4385FA00AC412A /* BlogCell.m */,
 			);
 			name = Blog;
+			sourceTree = "<group>";
+		};
+		33525B811B4FF4ED00D16125 /* 摇一摇 */ = {
+			isa = PBXGroup;
+			children = (
+				33525B821B4FF51F00D16125 /* ShakingViewController.h */,
+				33525B831B4FF51F00D16125 /* ShakingViewController.m */,
+			);
+			name = "摇一摇";
 			sourceTree = "<group>";
 		};
 		335EB1E11B42D86D00D28C80 /* Posts */ = {
@@ -512,6 +527,8 @@
 				33CC0C591B4658C0002819EE /* OSCFavorite.m */,
 				33CC0C661B467D48002819EE /* OSCMessage.h */,
 				33CC0C671B467D48002819EE /* OSCMessage.m */,
+				33525B851B4FF70400D16125 /* OSCRandomMessage.h */,
+				33525B861B4FF70400D16125 /* OSCRandomMessage.m */,
 			);
 			name = "OSC API and Model";
 			sourceTree = "<group>";
@@ -614,6 +631,7 @@
 		33C11ED01B451C3400728AE4 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				33525B811B4FF4ED00D16125 /* 摇一摇 */,
 				33886F891B4FB198002B2537 /* 扫一扫 */,
 				338F219F1B4E28DF006B9507 /* 找人 */,
 				33C11ED21B451C6900728AE4 /* DiscoverTableVC.h */,
@@ -892,6 +910,8 @@
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
 				333561071B457288009A294C /* SoftwareCell.m in Sources */,
 				3335956F1B43857A00AC412A /* OSCBlog.m in Sources */,
+				33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */,
+				33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */,
 				33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
