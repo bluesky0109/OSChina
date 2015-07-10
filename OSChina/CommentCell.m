@@ -92,4 +92,18 @@
     [self.timeLabel setText:[Utils intervalSinceNow:comment.pubDate]];
 }
 
+#pragma mark - 处理长按操作
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    return action == @selector(copyText:);
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)copyText:(id)sender {
+    UIPasteboard *pastedBoard = [UIPasteboard generalPasteboard];
+    [pastedBoard setString:_contentLabel.text];
+}
+
 @end
