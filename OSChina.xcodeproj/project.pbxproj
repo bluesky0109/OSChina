@@ -37,6 +37,7 @@
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
 		33886F881B4F9894002B2537 /* OperationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33886F871B4F9894002B2537 /* OperationBar.m */; };
+		33886F8C1B4FB1B7002B2537 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33886F8B1B4FB1B7002B2537 /* ScanViewController.m */; };
 		338F219E1B4DFFAB006B9507 /* PersonSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */; };
 		338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A11B4E3687006B9507 /* PeopleTableViewController.m */; };
 		338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */; };
@@ -151,6 +152,8 @@
 		338776631B4D0BB4001581A4 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
 		33886F861B4F9894002B2537 /* OperationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationBar.h; sourceTree = "<group>"; };
 		33886F871B4F9894002B2537 /* OperationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationBar.m; sourceTree = "<group>"; };
+		33886F8A1B4FB1B7002B2537 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		33886F8B1B4FB1B7002B2537 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		338F219C1B4DFFAB006B9507 /* PersonSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSearchViewController.h; sourceTree = "<group>"; };
 		338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSearchViewController.m; sourceTree = "<group>"; };
 		338F21A01B4E3687006B9507 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
@@ -353,6 +356,15 @@
 				3335958A1B43C1F500AC412A /* EditingBar.m */,
 			);
 			name = EditingBar;
+			sourceTree = "<group>";
+		};
+		33886F891B4FB198002B2537 /* 扫一扫 */ = {
+			isa = PBXGroup;
+			children = (
+				33886F8A1B4FB1B7002B2537 /* ScanViewController.h */,
+				33886F8B1B4FB1B7002B2537 /* ScanViewController.m */,
+			);
+			name = "扫一扫";
 			sourceTree = "<group>";
 		};
 		338F219F1B4E28DF006B9507 /* 找人 */ = {
@@ -602,6 +614,7 @@
 		33C11ED01B451C3400728AE4 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				33886F891B4FB198002B2537 /* 扫一扫 */,
 				338F219F1B4E28DF006B9507 /* 找人 */,
 				33C11ED21B451C6900728AE4 /* DiscoverTableVC.h */,
 				33C11ED31B451C6900728AE4 /* DiscoverTableVC.m */,
@@ -889,6 +902,7 @@
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
 				338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */,
+				33886F8C1B4FB1B7002B2537 /* ScanViewController.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 				33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */,
 				3335958B1B43C1F500AC412A /* EditingBar.m in Sources */,

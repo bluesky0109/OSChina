@@ -17,6 +17,7 @@
 #import "MyInfoViewController.h"
 #import "TweetEditingVC.h"
 #import "PersonSearchViewController.h"
+#import "ScanViewController.h"
 #import "Utils.h"
 #import "Config.h"
 
@@ -269,7 +270,11 @@
         }
 
         case 4: {
-                       break;
+            ScanViewController *scanVC = [ScanViewController new];
+            UINavigationController *scanNav = [[UINavigationController alloc] initWithRootViewController:scanVC];
+            [self.selectedViewController presentViewController:scanNav animated:YES completion:nil];
+            [self buttonPressed];
+            break;
         }
 
         case 5: {
