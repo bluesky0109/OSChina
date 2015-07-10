@@ -10,6 +10,7 @@
 #import "EventsViewController.h"
 #import "PersonSearchViewController.h"
 #import "ScanViewController.h"
+#import "ShakingViewController.h"
 #import "UIColor+Util.h"
 
 @interface DiscoverTableVC ()
@@ -116,7 +117,8 @@
         case 2: {
             if (indexPath.row == 0) {
                 [self.navigationController pushViewController:[ScanViewController new] animated:YES];
-                
+            } else if (indexPath.row == 1) {
+                [self.navigationController pushViewController:[ShakingViewController new] animated:YES];
             }
             
             break;
