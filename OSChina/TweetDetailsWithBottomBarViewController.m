@@ -37,12 +37,7 @@
         [self addChildViewController:_tweetDetailsVC];
         [self.bottomBar.sendButton addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
     
-        __weak typeof (self)weakSelf = self;
-        _tweetDetailsVC.didCommentSelected = ^(NSString *authorName) {
-            NSString *stringToInsert = [NSString stringWithFormat:@"@%@",authorName];
-            [weakSelf.bottomBar.editView replaceRange:weakSelf.bottomBar.editView.selectedTextRange withText:stringToInsert];
-        };
-    
+        [self setUpBlock];
     }
     
     return self;
@@ -73,6 +68,19 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView][bottomBar]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
 }
+
+- (void)setUpBlock {
+    __weak typeof (self)weakSelf = self;
+    _tweetDetailsVC.didCommentSelected = ^(NSString *authorName) {
+        NSString *stringToInsert = [NSString stringWithFormat:@"@%@",authorName];
+        [weakSelf.bottomBar.editView replaceRange:weakSelf.bottomBar.editView.selectedTextRange withText:stringToInsert];
+    };
+
+    _tweetDetailsVC.didScroll = ^ {
+        [weakSelf.bottomBar.editView resignFirstResponder];
+    };
+}
+
 
 - (void)sendComment {
     MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
