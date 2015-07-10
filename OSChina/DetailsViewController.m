@@ -29,7 +29,7 @@
 #define HTML_BOTTOM @"<div style='margin-bottom:60px'/>"
 
 
-@interface DetailsViewController ()<UIWebViewDelegate>
+@interface DetailsViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) OSCNews   *news;
 @property (nonatomic, copy  ) NSString  *detailsURL;
@@ -42,6 +42,7 @@
 
 @implementation DetailsViewController
 
+#pragma mark - 初始化方法
 - (instancetype)initWithNews:(OSCNews *)news {
     self = [super initWithModeSwitchButton:YES];
     if (self) {
@@ -127,6 +128,7 @@
     return self;
 }
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -136,6 +138,7 @@
     
     _detailsView = [UIWebView new];
     _detailsView.delegate = self;
+    _detailsView.scrollView.delegate = self;
     _detailsView.scrollView.bounces = NO;
     _detailsView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_detailsView];
@@ -241,6 +244,9 @@
     return [request.URL.absoluteString isEqualToString:@"about:blank"];
 }
 
-
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.editingBar.editView resignFirstResponder];
+}
 
 @end
