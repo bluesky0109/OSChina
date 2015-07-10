@@ -83,7 +83,7 @@ static NSString *kCommentCellID = @"CommentCell";
     }
 }
 
-
+#pragma mark - UITabelViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && self.otherSectionCell) {
@@ -97,6 +97,19 @@ static NSString *kCommentCellID = @"CommentCell";
         return size.height + 64;
     } else {
         return 60;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && self.otherSectionCell) {
+        //不响应点击
+    } else if (indexPath.row < self.objects.count) {
+        OSCComment *comment = self.objects[indexPath.row];
+        if (self.didCommentSelected) {
+            self.didCommentSelected(comment.author);
+        }
+    } else {
+        [self fetchMore];
     }
 }
 

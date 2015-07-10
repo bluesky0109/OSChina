@@ -36,6 +36,13 @@
         _tweetDetailsVC = [[TweetDetailsViewController alloc] initWithTweetID:tweetID];
         [self addChildViewController:_tweetDetailsVC];
         [self.bottomBar.sendButton addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
+    
+        __weak typeof (self)weakSelf = self;
+        _tweetDetailsVC.didCommentSelected = ^(NSString *authorName) {
+            NSString *stringToInsert = [NSString stringWithFormat:@"@%@",authorName];
+            [weakSelf.bottomBar.editView replaceRange:weakSelf.bottomBar.editView.selectedTextRange withText:stringToInsert];
+        };
+    
     }
     
     return self;
