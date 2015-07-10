@@ -65,4 +65,23 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_searchBar][resultsTable]|" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
 }
 
+
+#pragma mark- UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (_searchBar.text.length == 0) {return;}
+    
+    [searchBar resignFirstResponder];
+    
+    _resultsTableVC.queryString = _searchBar.text;
+    [_resultsTableVC refresh];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+}
+
+
 @end

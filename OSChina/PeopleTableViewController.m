@@ -29,7 +29,8 @@ static NSString * const kPersonCellID = @"PersonCell";
     
     __weak PeopleTableViewController *weakSelf = self;
     self.generateURL = ^NSString *(NSUInteger page) {
-        return [NSString stringWithFormat:@"%@%@?name=%@&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_SEARCH_USERS, weakSelf.queryString, (unsigned long)page, OSCAPI_SUFFIX];
+        NSString *userName = [weakSelf.queryString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        return [NSString stringWithFormat:@"%@%@?name=%@&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_SEARCH_USERS, userName, (unsigned long)page, OSCAPI_SUFFIX];
     };
     self.objClass = [OSCUser class];
     
@@ -39,7 +40,8 @@ static NSString * const kPersonCellID = @"PersonCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.tableView registerClass:[PersonCell class] forCellReuseIdentifier:kPersonCellID];
 }
 
 - (void)didReceiveMemoryWarning {
