@@ -16,7 +16,8 @@
 #import "OSCBlogDetails.h"
 #import "OSCPostDetails.h"
 #import "OSCSoftwareDetails.h"
-
+#import "CommentsViewController.h"
+#import "TweetsViewController.h"
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
@@ -30,6 +31,9 @@
 
 
 @interface DetailsViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+
+@property (nonatomic, assign) CommentType commentType;
+@property (nonatomic, assign) int64_t objectID;
 
 @property (nonatomic, strong) OSCNews   *news;
 @property (nonatomic, copy  ) NSString  *detailsURL;
@@ -49,30 +53,36 @@
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"资讯详情";
         _news = news;
+        _objectID = news.newsID;
+        
         switch (news.type) {
             case NewsTypeStandardNews:
-                self.detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_NEWS_DETAIL, news.newsID];
-                self.tag = @"news";
-                self.detailsClass = [OSCNewsDetails class];
-                self.loadMethod = @selector(loadNewsDetails:);
+                _detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_NEWS_DETAIL, news.newsID];
+                _tag = @"news";
+                _commentType = CommentTypeNews;
+                _detailsClass = [OSCNewsDetails class];
+                _loadMethod = @selector(loadNewsDetails:);
                 break;
             case NewsTypeSoftWare:
-                self.detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, news.attachment];
-                self.tag = @"software";
-                self.detailsClass = [OSCSoftwareDetails class];
-                self.loadMethod = @selector(loadSoftwareDetails:);
+                _detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, news.attachment];
+                _tag = @"software";
+                _commentType = CommentTypeSoftware;
+                _detailsClass = [OSCSoftwareDetails class];
+                _loadMethod = @selector(loadSoftwareDetails:);
                 break;
             case NewsTypeQA:
-                self.detailsURL = [NSString stringWithFormat:@"%@%@?id=%@", OSCAPI_PREFIX, OSCAPI_POST_DETAIL, news.attachment];
-                self.tag = @"post";
-                self.detailsClass = [OSCPostDetails class];
-                self.loadMethod = @selector(loadPostDetails:);
+                _detailsURL = [NSString stringWithFormat:@"%@%@?id=%@", OSCAPI_PREFIX, OSCAPI_POST_DETAIL, news.attachment];
+                _tag = @"post";
+                _commentType = CommentTypePost;
+                _detailsClass = [OSCPostDetails class];
+                _loadMethod = @selector(loadPostDetails:);
                 break;
             case NewsTypeBlog:
-                self.detailsURL = [NSString stringWithFormat:@"%@%@?id=%@", OSCAPI_PREFIX, OSCAPI_BLOG_DETAIL, news.attachment];
-                self.tag = @"blog";
-                self.detailsClass = [OSCBlogDetails class];
-                self.loadMethod = @selector(loadBlogDetails:);
+                _detailsURL = [NSString stringWithFormat:@"%@%@?id=%@", OSCAPI_PREFIX, OSCAPI_BLOG_DETAIL, news.attachment];
+                _tag = @"blog";
+                _commentType = CommentTypeBlog;
+                _detailsClass = [OSCBlogDetails class];
+                _loadMethod = @selector(loadBlogDetails:);
                 break;
             default:
                 break;
@@ -88,12 +98,15 @@
 {
     self = [super initWithModeSwitchButton:YES];
     if (self) {
+        _commentType = CommentTypeBlog;
+        _objectID = blog.blogID;
+        
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"博客详情";
-        self.detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_BLOG_DETAIL, blog.blogID];
-        self.tag = @"blog";
-        self.detailsClass = [OSCBlogDetails class];
-        self.loadMethod = @selector(loadBlogDetails:);
+        _detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_BLOG_DETAIL, blog.blogID];
+        _tag = @"blog";
+        _detailsClass = [OSCBlogDetails class];
+        _loadMethod = @selector(loadBlogDetails:);
     }
     
     return self;
@@ -104,12 +117,15 @@
     
     if (!self) {return nil;}
     
+    _commentType = CommentTypePost;
+    _objectID = post.postID;
+    
     self.hidesBottomBarWhenPushed = YES;
     self.navigationItem.title = @"帖子详情";
-    self.detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_POST_DETAIL, post.postID];
-    self.tag = @"post";
-    self.detailsClass = [OSCPostDetails class];
-    self.loadMethod = @selector(loadPostDetails:);
+    _detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_POST_DETAIL, post.postID];
+    _tag = @"post";
+    _detailsClass = [OSCPostDetails class];
+    _loadMethod = @selector(loadPostDetails:);
     
     return self;
 }
@@ -117,12 +133,15 @@
 - (instancetype)initWithSoftware:(OSCSoftware *)software {
     self = [super initWithModeSwitchButton:YES];
     if (self) {
+        
+        _commentType = CommentTypeSoftware;
+        
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"软件详情";
-        self.detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, software.url.absoluteString.lastPathComponent];
-        self.tag = @"software";
-        self.detailsClass = [OSCSoftwareDetails class];
-        self.loadMethod = @selector(loadSoftwareDetails:);
+        _detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, software.url.absoluteString.lastPathComponent];
+        _tag = @"software";
+        _detailsClass = [OSCSoftwareDetails class];
+        _loadMethod = @selector(loadSoftwareDetails:);
     }
     
     return self;
@@ -144,10 +163,11 @@
     [self.view addSubview:_detailsView];
     [self.view bringSubviewToFront:(UIView *)self.editingBar];
     
+    [self setBlockForOperationBar];
+    
     NSDictionary *views = @{@"detailsView": _detailsView, @"bottomBar": self.editingBar};
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[detailsView][bottomBar]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[detailsView]|" options:0 metrics:nil views:views]];
-    //[self.view bringSubviewToFront:self.emojiPanel];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
@@ -158,7 +178,10 @@
              
              id details = [[self.detailsClass alloc] initWithXML:XML];
              [self performSelector:_loadMethod withObject:details];
-
+             
+             if (_commentType == CommentTypeSoftware) {
+                 _objectID = ((OSCSoftwareDetails *)details).softwareID;
+             }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"网络异常，错误码：%ld", (long)error.code);
@@ -175,6 +198,34 @@
     [super didReceiveMemoryWarning];
    
 }
+
+- (void)setBlockForOperationBar {
+    __weak typeof(self) weakSelf = self;
+    
+    self.operationBar.toggleStar = ^ {
+        
+    };
+    
+    self.operationBar.showComments = ^ {
+        if (weakSelf.commentType == CommentTypeSoftware) {
+            TweetsViewController *tweetsVC = [[TweetsViewController alloc] initWIthSoftwareID:weakSelf.objectID];
+            [weakSelf.navigationController pushViewController:tweetsVC animated:YES];
+        } else {
+            CommentsViewController *commentsVC = [[CommentsViewController alloc] initWithCommentType:weakSelf.commentType andObjectID:weakSelf.objectID];
+            [weakSelf.navigationController pushViewController:commentsVC animated:YES];
+        }
+    };
+    
+    self.operationBar.share = ^ {
+        
+    };
+    
+    self.operationBar.report = ^ {
+        
+    };
+    
+}
+
 
 #pragma mark --private
 - (void)loadNewsDetails:(OSCNewsDetails *)newsDetails
