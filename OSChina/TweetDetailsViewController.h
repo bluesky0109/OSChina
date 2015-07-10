@@ -8,8 +8,6 @@
 
 #import "CommentsViewController.h"
 
-@class OSCTweet;
-
 @interface TweetDetailsViewController : CommentsViewController
 
 - (instancetype)initWithTweetID:(int64_t)tweetID;
