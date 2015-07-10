@@ -36,6 +36,7 @@
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
+		33886F881B4F9894002B2537 /* OperationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33886F871B4F9894002B2537 /* OperationBar.m */; };
 		338F219E1B4DFFAB006B9507 /* PersonSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */; };
 		338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A11B4E3687006B9507 /* PeopleTableViewController.m */; };
 		338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */; };
@@ -148,6 +149,8 @@
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
 		338776611B4CD24E001581A4 /* TweetEditingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetEditingVC.m; sourceTree = "<group>"; };
 		338776631B4D0BB4001581A4 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
+		33886F861B4F9894002B2537 /* OperationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationBar.h; sourceTree = "<group>"; };
+		33886F871B4F9894002B2537 /* OperationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationBar.m; sourceTree = "<group>"; };
 		338F219C1B4DFFAB006B9507 /* PersonSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSearchViewController.h; sourceTree = "<group>"; };
 		338F219D1B4DFFAB006B9507 /* PersonSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSearchViewController.m; sourceTree = "<group>"; };
 		338F21A01B4E3687006B9507 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
@@ -339,6 +342,17 @@
 				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		33886F851B4F9863002B2537 /* EditingBar */ = {
+			isa = PBXGroup;
+			children = (
+				33744A331B44C57500FDC8D4 /* GrowingTextView.h */,
+				33744A341B44C57500FDC8D4 /* GrowingTextView.m */,
+				333595891B43C1F500AC412A /* EditingBar.h */,
+				3335958A1B43C1F500AC412A /* EditingBar.m */,
+			);
+			name = EditingBar;
 			sourceTree = "<group>";
 		};
 		338F219F1B4E28DF006B9507 /* 找人 */ = {
@@ -567,10 +581,9 @@
 		33C11EC51B45072B00728AE4 /* BottomBar */ = {
 			isa = PBXGroup;
 			children = (
-				33744A331B44C57500FDC8D4 /* GrowingTextView.h */,
-				33744A341B44C57500FDC8D4 /* GrowingTextView.m */,
-				333595891B43C1F500AC412A /* EditingBar.h */,
-				3335958A1B43C1F500AC412A /* EditingBar.m */,
+				33886F851B4F9863002B2537 /* EditingBar */,
+				33886F861B4F9894002B2537 /* OperationBar.h */,
+				33886F871B4F9894002B2537 /* OperationBar.m */,
 			);
 			name = BottomBar;
 			sourceTree = "<group>";
@@ -839,6 +852,7 @@
 				338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
 				3387765F1B4CC568001581A4 /* OptionButton.m in Sources */,
+				33886F881B4F9894002B2537 /* OperationBar.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				33C11ECC1B450C2E00728AE4 /* EmojiPageVC.m in Sources */,
 				333595621B436DA900AC412A /* CommentsViewController.m in Sources */,
