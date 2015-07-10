@@ -37,4 +37,6 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (MBProgressHUD *)createHUDInWindowOfView:(UIView *)view;
 
++ (UIImage *)createQRCodeFromString:(NSString *)string;
+
 @end
