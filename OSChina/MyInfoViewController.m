@@ -14,7 +14,7 @@
 #import "EventsViewController.h"
 #import "MessagesViewController.h"
 #import "LoginViewController.h"
-#import "SearchResultsViewController.h"
+#import "SearchViewController.h"
 #import "OSCUser.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -231,7 +231,7 @@
 }
 
 - (void)pushSearchViewController {
-    [self.navigationController pushViewController:[SearchResultsViewController new] animated:YES];
+    [self.navigationController pushViewController:[SearchViewController new] animated:YES];
 }
 
 - (void)tapPortrait {
