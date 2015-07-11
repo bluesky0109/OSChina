@@ -28,7 +28,12 @@
                                   [[SearchResultsViewController alloc] initWithType:@"news"]
                                   ]];
     if (self) {
-        
+        __weak typeof(self) weakSelf = self;
+        for (SearchResultsViewController *searchResultVC in self.viewPager.childViewControllers) {
+            searchResultVC.viewDidScroll = ^ {
+                [weakSelf.searchBar resignFirstResponder];
+            };
+        }
     }
     
     return self;
@@ -60,7 +65,12 @@
     
     for (SearchResultsViewController *searchVC in self.viewPager.childViewControllers) {
         searchVC.keyword = searchBar.text;
+        [searchVC refresh];
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.viewPager.tableView reloadData];
+    });
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

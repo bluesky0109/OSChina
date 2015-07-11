@@ -102,7 +102,7 @@ static NSString * const kSoftware       = @"software";
         NewsCell *cell = [NewsCell new];
         cell.titleLabel.text  = result.title;
         cell.authorLabel.text = result.author;
-        cell.timeLabel.text   = result.pubDate;
+        cell.timeLabel.text   = [result.pubDate componentsSeparatedByString:@" "][0];
         
         return cell;
     }
@@ -131,7 +131,11 @@ static NSString * const kSoftware       = @"software";
     }
 }
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.viewDidScroll) {
+        self.viewDidScroll();
+    }
+}
 
 
 @end
