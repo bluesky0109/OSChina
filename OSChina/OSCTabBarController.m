@@ -19,6 +19,7 @@
 #import "PersonSearchViewController.h"
 #import "ScanViewController.h"
 #import "ShakingViewController.h"
+#import "SearchViewController.h"
 #import "Utils.h"
 #import "Config.h"
 
@@ -90,6 +91,10 @@
     self.tabBar.translucent = NO;
     self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
 
+    for (UIViewController *viewController in @[newsSVC, tweetsSVC]) {
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
+     }
+    
     [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithHex:0xE1E1E1]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithHex:0x15A230]}  forState:UIControlStateSelected];
@@ -292,6 +297,11 @@
         default:
             break;
     }
+}
+
+#pragma mark - 处理左右navigationItem点击事件
+- (void)pushSearchViewController {
+   //[(UINavigationController *)self.selectedViewController pushViewController:[SearchViewController new] animated:YES];
 }
 
 @end

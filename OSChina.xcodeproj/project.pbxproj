@@ -36,6 +36,9 @@
 		33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A341B44C57500FDC8D4 /* GrowingTextView.m */; };
 		33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */; };
 		337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F3B1B4FF87800880209 /* RandomMessageCell.m */; };
+		337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F401B50A99B00880209 /* OSCSearchResult.m */; };
+		337A8F441B50AA2200880209 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F431B50AA2200880209 /* SearchViewController.m */; };
+		337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F461B50ABE500880209 /* SearchResultsViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -154,6 +157,12 @@
 		33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBarViewController.m; sourceTree = "<group>"; };
 		337A8F3A1B4FF87800880209 /* RandomMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomMessageCell.h; sourceTree = "<group>"; };
 		337A8F3B1B4FF87800880209 /* RandomMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomMessageCell.m; sourceTree = "<group>"; };
+		337A8F3F1B50A99B00880209 /* OSCSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchResult.h; sourceTree = "<group>"; };
+		337A8F401B50A99B00880209 /* OSCSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSearchResult.m; sourceTree = "<group>"; };
+		337A8F421B50AA2200880209 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		337A8F431B50AA2200880209 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		337A8F451B50ABE500880209 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		337A8F461B50ABE500880209 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -271,7 +280,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		333561041B457250009A294C /* Software */ = {
+		333561041B457250009A294C /* 软件 */ = {
 			isa = PBXGroup;
 			children = (
 				333561051B457288009A294C /* SoftwareCell.h */,
@@ -281,7 +290,7 @@
 				3335610B1B4573F4009A294C /* SoftwareCatalogVC.h */,
 				3335610C1B4573F4009A294C /* SoftwareCatalogVC.m */,
 			);
-			name = Software;
+			name = "软件";
 			sourceTree = "<group>";
 		};
 		3335610E1B45748B009A294C /* Software */ = {
@@ -310,7 +319,7 @@
 			name = TweetDetails;
 			sourceTree = "<group>";
 		};
-		3335955F1B436D7D00AC412A /* Comments */ = {
+		3335955F1B436D7D00AC412A /* 评论 */ = {
 			isa = PBXGroup;
 			children = (
 				333595601B436DA900AC412A /* CommentsViewController.h */,
@@ -318,10 +327,10 @@
 				333595631B436DC600AC412A /* CommentCell.h */,
 				333595641B436DC600AC412A /* CommentCell.m */,
 			);
-			name = Comments;
+			name = "评论";
 			sourceTree = "<group>";
 		};
-		3335956C1B4384CB00AC412A /* Blog */ = {
+		3335956C1B4384CB00AC412A /* 博客 */ = {
 			isa = PBXGroup;
 			children = (
 				333595701B4385E300AC412A /* BlogsViewController.h */,
@@ -329,7 +338,7 @@
 				333595731B4385FA00AC412A /* BlogCell.h */,
 				333595741B4385FA00AC412A /* BlogCell.m */,
 			);
-			name = Blog;
+			name = "博客";
 			sourceTree = "<group>";
 		};
 		33525B811B4FF4ED00D16125 /* 摇一摇 */ = {
@@ -343,7 +352,7 @@
 			name = "摇一摇";
 			sourceTree = "<group>";
 		};
-		335EB1E11B42D86D00D28C80 /* Posts */ = {
+		335EB1E11B42D86D00D28C80 /* 帖子 */ = {
 			isa = PBXGroup;
 			children = (
 				335EB1E21B42D89200D28C80 /* PostsViewController.h */,
@@ -351,7 +360,7 @@
 				335EB1E51B42D8AB00D28C80 /* PostsCell.h */,
 				335EB1E61B42D8AB00D28C80 /* PostsCell.m */,
 			);
-			name = Posts;
+			name = "帖子";
 			sourceTree = "<group>";
 		};
 		33744A311B44C4F300FDC8D4 /* Category */ = {
@@ -365,6 +374,28 @@
 				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		337A8F3D1B50A8D000880209 /* DetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				33744A361B44E7F800FDC8D4 /* BottomBarViewController.h */,
+				33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */,
+				3335957C1B4392A000AC412A /* DetailsViewController.h */,
+				3335957D1B4392A000AC412A /* DetailsViewController.m */,
+			);
+			name = DetailsViewController;
+			sourceTree = "<group>";
+		};
+		337A8F3E1B50A96900880209 /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				337A8F421B50AA2200880209 /* SearchViewController.h */,
+				337A8F431B50AA2200880209 /* SearchViewController.m */,
+				337A8F451B50ABE500880209 /* SearchResultsViewController.h */,
+				337A8F461B50ABE500880209 /* SearchResultsViewController.m */,
+			);
+			name = "搜索";
 			sourceTree = "<group>";
 		};
 		33886F851B4F9863002B2537 /* EditingBar */ = {
@@ -423,14 +454,14 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
-				333561041B457250009A294C /* Software */,
-				33C11ED01B451C3400728AE4 /* Discover */,
+				333561041B457250009A294C /* 软件 */,
+				33C11ED01B451C3400728AE4 /* 发现 */,
 				33B0EF791B43C6180037549E /* User */,
-				3335956C1B4384CB00AC412A /* Blog */,
-				3335955F1B436D7D00AC412A /* Comments */,
-				335EB1E11B42D86D00D28C80 /* Posts */,
-				339741191B4296160074D2EA /* News */,
-				339741021B4260850074D2EA /* Tweets */,
+				3335956C1B4384CB00AC412A /* 博客 */,
+				3335955F1B436D7D00AC412A /* 评论 */,
+				335EB1E11B42D86D00D28C80 /* 帖子 */,
+				339741191B4296160074D2EA /* 新闻 */,
+				339741021B4260850074D2EA /* 动弹 */,
 				339740ED1B4260350074D2EA /* OSC API and Model */,
 				339740EC1B42600F0074D2EA /* Utils */,
 				339740E71B4245920074D2EA /* Main ViewControllers */,
@@ -472,14 +503,12 @@
 		339740E71B4245920074D2EA /* Main ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				337A8F3E1B50A96900880209 /* 搜索 */,
+				337A8F3D1B50A8D000880209 /* DetailsViewController */,
 				339741091B42654F0074D2EA /* SwipeableViewController */,
 				339740E81B4245B60074D2EA /* Tab Bar */,
 				335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */,
 				335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */,
-				3335957C1B4392A000AC412A /* DetailsViewController.h */,
-				3335957D1B4392A000AC412A /* DetailsViewController.m */,
-				33744A361B44E7F800FDC8D4 /* BottomBarViewController.h */,
-				33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */,
 			);
 			name = "Main ViewControllers";
 			sourceTree = "<group>";
@@ -534,11 +563,13 @@
 				33CC0C671B467D48002819EE /* OSCMessage.m */,
 				33525B851B4FF70400D16125 /* OSCRandomMessage.h */,
 				33525B861B4FF70400D16125 /* OSCRandomMessage.m */,
+				337A8F3F1B50A99B00880209 /* OSCSearchResult.h */,
+				337A8F401B50A99B00880209 /* OSCSearchResult.m */,
 			);
 			name = "OSC API and Model";
 			sourceTree = "<group>";
 		};
-		339741021B4260850074D2EA /* Tweets */ = {
+		339741021B4260850074D2EA /* 动弹 */ = {
 			isa = PBXGroup;
 			children = (
 				3335955E1B436D4300AC412A /* TweetDetails */,
@@ -547,7 +578,7 @@
 				339741051B4260C00074D2EA /* TweetCell.h */,
 				339741061B4260C00074D2EA /* TweetCell.m */,
 			);
-			name = Tweets;
+			name = "动弹";
 			sourceTree = "<group>";
 		};
 		339741091B42654F0074D2EA /* SwipeableViewController */ = {
@@ -563,7 +594,7 @@
 			name = SwipeableViewController;
 			sourceTree = "<group>";
 		};
-		339741191B4296160074D2EA /* News */ = {
+		339741191B4296160074D2EA /* 新闻 */ = {
 			isa = PBXGroup;
 			children = (
 				3397411A1B4296380074D2EA /* NewsViewController.h */,
@@ -571,7 +602,7 @@
 				3397411D1B4296550074D2EA /* NewsCell.h */,
 				3397411E1B4296550074D2EA /* NewsCell.m */,
 			);
-			name = News;
+			name = "新闻";
 			sourceTree = "<group>";
 		};
 		33B0EF791B43C6180037549E /* User */ = {
@@ -633,7 +664,7 @@
 			name = EmojiPanel;
 			sourceTree = "<group>";
 		};
-		33C11ED01B451C3400728AE4 /* Discover */ = {
+		33C11ED01B451C3400728AE4 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
 				33525B811B4FF4ED00D16125 /* 摇一摇 */,
@@ -643,7 +674,7 @@
 				33C11ED31B451C6900728AE4 /* DiscoverTableVC.m */,
 				33C11ED11B451C3F00728AE4 /* 好友圈 */,
 			);
-			name = Discover;
+			name = "发现";
 			sourceTree = "<group>";
 		};
 		33C11ED11B451C3F00728AE4 /* 好友圈 */ = {
@@ -875,6 +906,7 @@
 				33C11EDD1B45233800728AE4 /* EventCell.m in Sources */,
 				333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */,
 				33B4C0401B441A3500637952 /* UIImageView+Util.m in Sources */,
+				337A8F441B50AA2200880209 /* SearchViewController.m in Sources */,
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */,
@@ -896,6 +928,7 @@
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
+				337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
@@ -924,6 +957,7 @@
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
+				337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */,
 				33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
