@@ -162,11 +162,11 @@
                 }
             }
         } else if ([prefix isEqualToString:@"static"]) {
-#if 1
+
             ImageViewController *imageViewerVC = [[ImageViewController alloc] initWithImageURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", url]]];
             [navigationController presentViewController:imageViewerVC animated:YES completion:nil];
            return;
-#endif
+
         }
         
         if (viewController) {
