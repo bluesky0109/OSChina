@@ -69,7 +69,7 @@
 #define OSCAPI_USERBLOGS_LIST           @"userblog_list"
 
 
-#define OSCAPI_REPORT                   @"report"
+#define OSCAPI_REPORT                   @"communityManage/report"
 
 #define OSCAPI_SEARCH_USERS             @"find_user"
 #define OSCAPI_RANDOM_MESSAGE           @"rock_rock"
