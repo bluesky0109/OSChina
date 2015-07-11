@@ -21,7 +21,9 @@
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
+#import <MBProgressHUD.h>
 
+#import "Config.h"
 #import "Utils.h"
 
 
@@ -33,6 +35,7 @@
 @interface DetailsViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, assign) CommentType commentType;
+@property (nonatomic, assign) FavoriteType favoriteType;
 @property (nonatomic, assign) int64_t objectID;
 @property (nonatomic, assign) BOOL isStarred;
 
@@ -62,6 +65,7 @@
                 _detailsURL = [NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_NEWS_DETAIL, news.newsID];
                 _tag = @"news";
                 _commentType = CommentTypeNews;
+                _favoriteType = FavoriteTypeNews;
                 _detailsClass = [OSCNewsDetails class];
                 _loadMethod = @selector(loadNewsDetails:);
                 break;
@@ -70,6 +74,7 @@
                 _detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, news.attachment];
                 _tag = @"software";
                 _commentType = CommentTypeSoftware;
+                _favoriteType = FavoriteTypeSoftware;
                 _detailsClass = [OSCSoftwareDetails class];
                 _loadMethod = @selector(loadSoftwareDetails:);
                 break;
@@ -79,6 +84,7 @@
                 _tag = @"post";
                 _objectID = [news.attachment longLongValue];
                 _commentType = CommentTypePost;
+                _favoriteType = FavoriteTypeTopic;
                 _detailsClass = [OSCPostDetails class];
                 _loadMethod = @selector(loadPostDetails:);
                 break;
@@ -87,6 +93,7 @@
                 _detailsURL = [NSString stringWithFormat:@"%@%@?id=%@", OSCAPI_PREFIX, OSCAPI_BLOG_DETAIL, news.attachment];
                 _tag = @"blog";
                 _commentType = CommentTypeBlog;
+                _favoriteType = FavoriteTypeBlog;
                 _detailsClass = [OSCBlogDetails class];
                 _loadMethod = @selector(loadBlogDetails:);
                 break;
@@ -105,6 +112,7 @@
     self = [super initWithModeSwitchButton:YES];
     if (self) {
         _commentType = CommentTypeBlog;
+        _favoriteType = FavoriteTypeBlog;
         _objectID = blog.blogID;
         
         self.hidesBottomBarWhenPushed = YES;
@@ -124,6 +132,7 @@
     if (!self) {return nil;}
     
     _commentType = CommentTypePost;
+    _favoriteType = FavoriteTypeTopic;
     _objectID = post.postID;
     
     self.hidesBottomBarWhenPushed = YES;
@@ -141,7 +150,7 @@
     if (self) {
         
         _commentType = CommentTypeSoftware;
-        
+        _favoriteType = FavoriteTypeSoftware;
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.title = @"软件详情";
         _detailsURL = [NSString stringWithFormat:@"%@%@?ident=%@", OSCAPI_PREFIX, OSCAPI_SOFTWARE_DETAIL, software.url.absoluteString.lastPathComponent];
@@ -185,6 +194,7 @@
              id details = [[self.detailsClass alloc] initWithXML:XML];
              [self performSelector:_loadMethod withObject:details];
              
+             self.operationBar.isStarred = _isStarred;
              if (_commentType == CommentTypeSoftware) {
                  _objectID = ((OSCSoftwareDetails *)details).softwareID;
              }
@@ -209,9 +219,51 @@
     __weak typeof(self) weakSelf = self;
     
     self.operationBar.toggleStar = ^ {
-        if (weakSelf.isStarred) {
-            NSLog(@"starred");
-        }
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+        
+        NSString *API = weakSelf.isStarred? OSCAPI_FAVORITE_DELETE: OSCAPI_FAVORITE_ADD;
+        [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, API]
+           parameters:@{
+                        @"uid":   @([Config getOwnID]),
+                        @"objid": @(weakSelf.objectID),
+                        @"type":  @(weakSelf.favoriteType)
+                        }
+              success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
+                  ONOXMLElement *result = [responseObject.rootElement firstChildWithTag:@"result"];
+                  int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
+                  NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
+                  
+                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:weakSelf.view];
+                  HUD.mode = MBProgressHUDModeCustomView;
+                  
+                  switch (errorCode) {
+                      case 1: {
+                          HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                          HUD.labelText = weakSelf.isStarred? @"删除收藏成功": @"添加收藏成功";
+                          weakSelf.isStarred = !weakSelf.isStarred;
+                          weakSelf.operationBar.isStarred = weakSelf.isStarred;
+                          break;
+                      }
+                      case 0:
+                      case -2:
+                      case -1: {
+                          HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                          HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+                          break;
+                      }
+                      default: break;
+                  }
+                  
+                  [HUD hide:YES afterDelay:1];
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:weakSelf.view];
+                  HUD.mode = MBProgressHUDModeCustomView;
+                  HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                  HUD.labelText = @"网络异常，操作失败";
+                  
+                  [HUD hide:YES afterDelay:1];
+              }];
     };
     
     self.operationBar.showComments = ^ {
