@@ -13,6 +13,8 @@
 #import "BlogsViewController.h"
 #import "EventsViewController.h"
 #import "MessagesViewController.h"
+#import "LoginViewController.h"
+#import "SearchResultsViewController.h"
 #import "OSCUser.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -83,6 +85,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHex:0xF5F5F5];
     self.navigationItem.title = @"我";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
+    
     self.tableView.bounces = NO;
     
     UIView *footer = [UIView new];
@@ -135,6 +141,8 @@
     _portrait.contentMode = UIViewContentModeScaleAspectFit;
     [_portrait setCornerRadius:25];
     [_portrait loadPortrait:_user.portraitURL];
+    _portrait.userInteractionEnabled = YES;
+    [_portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPortrait)]];
     [header addSubview:_portrait];
     
     _nameLabel = [UILabel new];
@@ -220,6 +228,16 @@
 - (void)pushFriendsSVC {
     SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝" andSubTitles:@[@"关注",@"粉丝"] andControllers:@[[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]]];
     [self.navigationController pushViewController:friendsSVC animated:YES];
+}
+
+- (void)pushSearchViewController {
+    [self.navigationController pushViewController:[SearchResultsViewController new] animated:YES];
+}
+
+- (void)tapPortrait {
+    if ([Config getOwnID] == 0) {
+        [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+    }
 }
 
 @end

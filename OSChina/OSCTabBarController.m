@@ -85,7 +85,7 @@
     
     
 
-    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC, myInfoVC]) {
+    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC]) {
         viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
         viewController.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
      }
