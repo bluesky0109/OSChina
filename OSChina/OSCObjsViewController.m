@@ -31,8 +31,7 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = [UIColor themeColor];
-    UIView *footer = [UIView new];
-    self.tableView.tableFooterView = footer;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];

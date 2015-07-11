@@ -43,6 +43,9 @@
 		337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F4D1B50D11A00880209 /* OSCActivity.m */; };
 		337A8F511B50D19F00880209 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F501B50D19F00880209 /* ActivityCell.m */; };
 		337A8F541B50D1FE00880209 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F531B50D1FE00880209 /* ActivitiesViewController.m */; };
+		337A8F581B50D7D300880209 /* ActivityDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F571B50D7D300880209 /* ActivityDetailsCell.m */; };
+		337A8F5B1B50D83B00880209 /* ActivityBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F5A1B50D83B00880209 /* ActivityBasicInfoCell.m */; };
+		337A8F5E1B50D8D800880209 /* ActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F5D1B50D8D800880209 /* ActivityDetailsViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -175,6 +178,12 @@
 		337A8F501B50D19F00880209 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
 		337A8F521B50D1FE00880209 /* ActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesViewController.h; sourceTree = "<group>"; };
 		337A8F531B50D1FE00880209 /* ActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesViewController.m; sourceTree = "<group>"; };
+		337A8F561B50D7D300880209 /* ActivityDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsCell.h; sourceTree = "<group>"; };
+		337A8F571B50D7D300880209 /* ActivityDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsCell.m; sourceTree = "<group>"; };
+		337A8F591B50D83B00880209 /* ActivityBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityBasicInfoCell.h; sourceTree = "<group>"; };
+		337A8F5A1B50D83B00880209 /* ActivityBasicInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityBasicInfoCell.m; sourceTree = "<group>"; };
+		337A8F5C1B50D8D800880209 /* ActivityDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsViewController.h; sourceTree = "<group>"; };
+		337A8F5D1B50D8D800880209 /* ActivityDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -318,7 +327,7 @@
 			name = Software;
 			sourceTree = "<group>";
 		};
-		3335955E1B436D4300AC412A /* TweetDetails */ = {
+		3335955E1B436D4300AC412A /* 动弹详情 */ = {
 			isa = PBXGroup;
 			children = (
 				333595691B43748A00AC412A /* TweetDetailsViewController.h */,
@@ -328,7 +337,7 @@
 				338F21A61B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.h */,
 				338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */,
 			);
-			name = TweetDetails;
+			name = "动弹详情";
 			sourceTree = "<group>";
 		};
 		3335955F1B436D7D00AC412A /* 评论 */ = {
@@ -415,12 +424,26 @@
 		337A8F4B1B50D0EE00880209 /* 活动 */ = {
 			isa = PBXGroup;
 			children = (
+				337A8F551B50D72500880209 /* 活动详情 */,
 				337A8F4F1B50D19F00880209 /* ActivityCell.h */,
 				337A8F501B50D19F00880209 /* ActivityCell.m */,
 				337A8F521B50D1FE00880209 /* ActivitiesViewController.h */,
 				337A8F531B50D1FE00880209 /* ActivitiesViewController.m */,
 			);
 			name = "活动";
+			sourceTree = "<group>";
+		};
+		337A8F551B50D72500880209 /* 活动详情 */ = {
+			isa = PBXGroup;
+			children = (
+				337A8F561B50D7D300880209 /* ActivityDetailsCell.h */,
+				337A8F571B50D7D300880209 /* ActivityDetailsCell.m */,
+				337A8F591B50D83B00880209 /* ActivityBasicInfoCell.h */,
+				337A8F5A1B50D83B00880209 /* ActivityBasicInfoCell.m */,
+				337A8F5C1B50D8D800880209 /* ActivityDetailsViewController.h */,
+				337A8F5D1B50D8D800880209 /* ActivityDetailsViewController.m */,
+			);
+			name = "活动详情";
 			sourceTree = "<group>";
 		};
 		33886F851B4F9863002B2537 /* EditingBar */ = {
@@ -599,7 +622,7 @@
 		339741021B4260850074D2EA /* 动弹 */ = {
 			isa = PBXGroup;
 			children = (
-				3335955E1B436D4300AC412A /* TweetDetails */,
+				3335955E1B436D4300AC412A /* 动弹详情 */,
 				339741031B4260C00074D2EA /* TweetsViewController.h */,
 				339741041B4260C00074D2EA /* TweetsViewController.m */,
 				339741051B4260C00074D2EA /* TweetCell.h */,
@@ -928,6 +951,7 @@
 				3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */,
 				3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */,
 				33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */,
+				337A8F5B1B50D83B00880209 /* ActivityBasicInfoCell.m in Sources */,
 				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
 				333595751B4385FA00AC412A /* BlogCell.m in Sources */,
 				33C11EDA1B451E6F00728AE4 /* OSCEvent.m in Sources */,
@@ -983,10 +1007,12 @@
 				33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */,
 				33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */,
 				33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */,
+				337A8F5E1B50D8D800880209 /* ActivityDetailsViewController.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
 				337A8F4A1B50C4ED00880209 /* CommentsBottomBarViewController.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
+				337A8F581B50D7D300880209 /* ActivityDetailsCell.m in Sources */,
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */,

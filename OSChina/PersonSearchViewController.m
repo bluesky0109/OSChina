@@ -45,7 +45,6 @@
 - (void)initSubviews {
     _searchBar = [UISearchBar new];
     _searchBar.placeholder = @"输入用户昵称";
-    _searchBar.showsCancelButton = YES;
     _searchBar.delegate = self;
     [self.view addSubview:_searchBar];
     [_searchBar becomeFirstResponder];
