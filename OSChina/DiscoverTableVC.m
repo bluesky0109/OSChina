@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"发现";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
     
     self.view.backgroundColor = [UIColor colorWithHex:0xF5F5F5];
     self.clearsSelectionOnViewWillAppear = NO;
@@ -135,9 +134,5 @@
     }
 }
 
-
-- (void)pushSearchViewController {
-    [self.navigationController pushViewController:[SearchViewController new] animated:YES];
-}
 
 @end

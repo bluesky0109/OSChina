@@ -73,27 +73,24 @@
 
     DiscoverTableVC *discoverVC = [DiscoverTableVC new];
 
-    UINavigationController *meNav;
-    if ([Config getOwnID] > 0) {
-        MyInfoViewController *myInfoVC = [[MyInfoViewController alloc] initWithUserId:[Config getOwnID]];
-        meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
-    } else {
-        LoginViewController *loginVC = [LoginViewController new];
-        meNav = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    }
-
+    MyInfoViewController *myInfoVC = [[MyInfoViewController alloc] initWithUserId:[Config getOwnID]];
+    
+    
 
 
     UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:newsSVC];
     UINavigationController *tweetsNav = [[UINavigationController alloc] initWithRootViewController:tweetsSVC];
     UINavigationController *discoverNav = [[UINavigationController alloc] initWithRootViewController:discoverVC];
+    UINavigationController *meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
+    
+    
 
-    self.tabBar.translucent = NO;
-    self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
-
-    for (UIViewController *viewController in @[newsSVC, tweetsSVC]) {
+    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC, myInfoVC]) {
         viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
      }
+    
+    self.tabBar.translucent = NO;
+    self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithHex:0xE1E1E1]];
@@ -317,7 +314,7 @@
 
 #pragma mark - 处理左右navigationItem点击事件
 - (void)pushSearchViewController {
-   //[(UINavigationController *)self.selectedViewController pushViewController:[SearchViewController new] animated:YES];
+   [(UINavigationController *)self.selectedViewController pushViewController:[SearchViewController new] animated:YES];
 }
 
 @end
