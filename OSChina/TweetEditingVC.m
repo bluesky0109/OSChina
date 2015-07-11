@@ -90,7 +90,7 @@
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     fixedSpace.width = 25.0f;
     NSMutableArray *barButtonItems = [[NSMutableArray alloc] initWithObjects:fixedSpace, nil];
-    NSArray *iconName = @[@"compose_toolbar_picture_normal", @"compose_toolbar_mention_normal", @"compose_toolbar_trend_normal", @"compose_toolbar_emoji_normal"];
+    NSArray *iconName = @[@"toolbar-image", @"toolbar-mention", @"toolbar-reference", @"toolbar-emoji"];
     NSArray *action = @[@"addImage", @"mentionSomeone", @"referSoftware", @"switchInputView"];
     
     for (int i = 0; i < 4; i++) {
@@ -183,7 +183,7 @@
 - (void)switchInputView {
     //还要考虑一下用外接键盘输入时，置空inputview后 字体小得情况
     if (_edittingArea.inputView == self.emojiPageVC.view) {
-        [_toolBar.items[7] setImage:[UIImage imageNamed:@"compose_toolbar_emoji_normal"]];
+        [_toolBar.items[7] setImage:[UIImage imageNamed:@"toolbar-emoji"]];
         _edittingArea.inputView = nil;
         _edittingArea.font = [UIFont systemFontOfSize:18];
         [_edittingArea reloadInputViews];
@@ -191,7 +191,7 @@
         _keyboardHeight.constant = 216;
         [self.view layoutIfNeeded];
         
-        [_toolBar.items[7] setImage:[UIImage imageNamed:@"compose_toolbar_keyboard_normal"]];
+        [_toolBar.items[7] setImage:[UIImage imageNamed:@"toolbar-text"]];
         _edittingArea.inputView = self.emojiPageVC.view;
         [_edittingArea reloadInputViews];
     }
