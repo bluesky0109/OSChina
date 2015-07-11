@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "UIColor+Util.h"
 #import "OSCTabBarController.h"
+#import "UIColor+Util.h"
+#import "UIView+Util.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -37,6 +38,9 @@
     [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];               //UIColorFromRGB(0xdadada)
 
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setCornerRadius:15.0];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor colorWithHex:0xFFFFFF alpha:0.6]];
+    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];
     pageControl.currentPageIndicatorTintColor = [UIColor grayColor];

@@ -57,6 +57,10 @@
     }
     
     [searchBar resignFirstResponder];
+    
+    for (SearchResultsViewController *searchVC in self.viewPager.childViewControllers) {
+        searchVC.keyword = searchBar.text;
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
