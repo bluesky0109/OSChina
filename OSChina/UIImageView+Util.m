@@ -12,7 +12,7 @@
 @implementation UIImageView (Util)
 
 - (void)loadPortrait:(NSURL *)portraitURL {
-    [self sd_setImageWithURL:portraitURL placeholderImage:nil options:0];
+    [self sd_setImageWithURL:portraitURL placeholderImage:[UIImage imageNamed:@"default-portrait"] options:0];
 }
 
 @end
