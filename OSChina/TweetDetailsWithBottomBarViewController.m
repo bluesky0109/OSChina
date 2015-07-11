@@ -12,6 +12,7 @@
 #import "UserDetailsViewController.h"
 #import "ImageViewController.h"
 #import "OSCTweet.h"
+#import "OSCComment.h"
 #import "TweetDetailsCell.h"
 #import "Config.h"
 #import "Utils.h"
@@ -71,8 +72,8 @@
 
 - (void)setUpBlock {
     __weak typeof (self)weakSelf = self;
-    _tweetDetailsVC.didCommentSelected = ^(NSString *authorName) {
-        NSString *stringToInsert = [NSString stringWithFormat:@"@%@",authorName];
+    _tweetDetailsVC.didCommentSelected = ^(OSCComment *comment) {
+        NSString *stringToInsert = [NSString stringWithFormat:@"@%@",comment.author];
         [weakSelf.editingBar.editView replaceRange:weakSelf.editingBar.editView.selectedTextRange withText:stringToInsert];
     };
 

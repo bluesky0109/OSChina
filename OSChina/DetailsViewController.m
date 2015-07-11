@@ -16,7 +16,7 @@
 #import "OSCBlogDetails.h"
 #import "OSCPostDetails.h"
 #import "OSCSoftwareDetails.h"
-#import "CommentsViewController.h"
+#import "CommentsBottomBarViewController.h"
 #import "TweetsViewController.h"
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
@@ -211,8 +211,8 @@
             TweetsViewController *tweetsVC = [[TweetsViewController alloc] initWIthSoftwareID:weakSelf.objectID];
             [weakSelf.navigationController pushViewController:tweetsVC animated:YES];
         } else {
-            CommentsViewController *commentsVC = [[CommentsViewController alloc] initWithCommentType:weakSelf.commentType andObjectID:weakSelf.objectID];
-            [weakSelf.navigationController pushViewController:commentsVC animated:YES];
+            CommentsBottomBarViewController *commentsBVC = [[CommentsBottomBarViewController alloc] initWithCommentType:weakSelf.commentType andObjectID:weakSelf.objectID];
+            [weakSelf.navigationController pushViewController:commentsBVC animated:YES];
         }
     };
     

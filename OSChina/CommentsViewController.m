@@ -128,7 +128,7 @@ static NSString *kCommentCellID = @"CommentCell";
     } else if (indexPath.row < self.objects.count) {
         OSCComment *comment = self.objects[indexPath.row];
         if (self.didCommentSelected) {
-            self.didCommentSelected(comment.author);
+            self.didCommentSelected(comment);
         }
     } else {
         [self fetchMore];

@@ -39,6 +39,7 @@
 		337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F401B50A99B00880209 /* OSCSearchResult.m */; };
 		337A8F441B50AA2200880209 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F431B50AA2200880209 /* SearchViewController.m */; };
 		337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F461B50ABE500880209 /* SearchResultsViewController.m */; };
+		337A8F4A1B50C4ED00880209 /* CommentsBottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F491B50C4ED00880209 /* CommentsBottomBarViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -163,6 +164,8 @@
 		337A8F431B50AA2200880209 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		337A8F451B50ABE500880209 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		337A8F461B50ABE500880209 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		337A8F481B50C4ED00880209 /* CommentsBottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsBottomBarViewController.h; sourceTree = "<group>"; };
+		337A8F491B50C4ED00880209 /* CommentsBottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsBottomBarViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				333595611B436DA900AC412A /* CommentsViewController.m */,
 				333595631B436DC600AC412A /* CommentCell.h */,
 				333595641B436DC600AC412A /* CommentCell.m */,
+				337A8F481B50C4ED00880209 /* CommentsBottomBarViewController.h */,
+				337A8F491B50C4ED00880209 /* CommentsBottomBarViewController.m */,
 			);
 			name = "评论";
 			sourceTree = "<group>";
@@ -953,6 +958,7 @@
 				33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */,
 				33CC0C631B46774D002819EE /* FriendsViewController.m in Sources */,
 				333595651B436DC600AC412A /* CommentCell.m in Sources */,
+				337A8F4A1B50C4ED00880209 /* CommentsBottomBarViewController.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
