@@ -111,24 +111,10 @@ static NSString * const kSoftware       = @"software";
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     OSCSearchResult *result = self.objects[indexPath.row];
     
-    if ([result.type isEqualToString:kSoftware]) {
-        self.label.font = [UIFont systemFontOfSize:20];
-        self.label.text = result.title;
-        CGSize size = [self.label sizeThatFits:CGSizeMake(self.view.frame.size.width - 16, MAXFLOAT)];
-        CGFloat height = size.height;
-        
-        self.label.font = [UIFont systemFontOfSize:13];
-        self.label.text = result.objectDescription;
-        size = [self.label sizeThatFits:CGSizeMake(self.view.frame.size.width - 16, MAXFLOAT)];
-        
-        return height + size.height + 21;
-    } else {
-        [self.label setText:result.title];
-        
-        CGSize size = [self.label sizeThatFits:CGSizeMake(self.view.frame.size.width - 16, MAXFLOAT)];
-        
-        return size.height + 39;
-    }
+    [self.label setText:result.title];
+    CGSize size = [self.label sizeThatFits:CGSizeMake(self.view.frame.size.width - 16, MAXFLOAT)];
+    
+    return size.height + 39;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
