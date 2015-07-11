@@ -10,6 +10,8 @@
 
 @interface ImageViewController : UIViewController
 
-- (instancetype)initWithImageURL:(NSURL *)imageURL thumbnail:(UIImageView *)thumbnail andTapLocation:(CGPoint)location;
+- (instancetype)initWithImageURL:(NSURL *)imageURL;
+
+- (instancetype)initWithImageURL:(NSURL *)imageURL thumbnail:(UIImageView *)thumbnail;
 
 @end
