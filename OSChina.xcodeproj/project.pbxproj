@@ -40,6 +40,9 @@
 		337A8F441B50AA2200880209 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F431B50AA2200880209 /* SearchViewController.m */; };
 		337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F461B50ABE500880209 /* SearchResultsViewController.m */; };
 		337A8F4A1B50C4ED00880209 /* CommentsBottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F491B50C4ED00880209 /* CommentsBottomBarViewController.m */; };
+		337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F4D1B50D11A00880209 /* OSCActivity.m */; };
+		337A8F511B50D19F00880209 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F501B50D19F00880209 /* ActivityCell.m */; };
+		337A8F541B50D1FE00880209 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F531B50D1FE00880209 /* ActivitiesViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -166,6 +169,12 @@
 		337A8F461B50ABE500880209 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		337A8F481B50C4ED00880209 /* CommentsBottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsBottomBarViewController.h; sourceTree = "<group>"; };
 		337A8F491B50C4ED00880209 /* CommentsBottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsBottomBarViewController.m; sourceTree = "<group>"; };
+		337A8F4C1B50D11A00880209 /* OSCActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCActivity.h; sourceTree = "<group>"; };
+		337A8F4D1B50D11A00880209 /* OSCActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCActivity.m; sourceTree = "<group>"; };
+		337A8F4F1B50D19F00880209 /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
+		337A8F501B50D19F00880209 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
+		337A8F521B50D1FE00880209 /* ActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesViewController.h; sourceTree = "<group>"; };
+		337A8F531B50D1FE00880209 /* ActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -403,6 +412,17 @@
 			name = "搜索";
 			sourceTree = "<group>";
 		};
+		337A8F4B1B50D0EE00880209 /* 活动 */ = {
+			isa = PBXGroup;
+			children = (
+				337A8F4F1B50D19F00880209 /* ActivityCell.h */,
+				337A8F501B50D19F00880209 /* ActivityCell.m */,
+				337A8F521B50D1FE00880209 /* ActivitiesViewController.h */,
+				337A8F531B50D1FE00880209 /* ActivitiesViewController.m */,
+			);
+			name = "活动";
+			sourceTree = "<group>";
+		};
 		33886F851B4F9863002B2537 /* EditingBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +590,8 @@
 				33525B861B4FF70400D16125 /* OSCRandomMessage.m */,
 				337A8F3F1B50A99B00880209 /* OSCSearchResult.h */,
 				337A8F401B50A99B00880209 /* OSCSearchResult.m */,
+				337A8F4C1B50D11A00880209 /* OSCActivity.h */,
+				337A8F4D1B50D11A00880209 /* OSCActivity.m */,
 			);
 			name = "OSC API and Model";
 			sourceTree = "<group>";
@@ -672,6 +694,7 @@
 		33C11ED01B451C3400728AE4 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				337A8F4B1B50D0EE00880209 /* 活动 */,
 				33525B811B4FF4ED00D16125 /* 摇一摇 */,
 				33886F891B4FB198002B2537 /* 扫一扫 */,
 				338F219F1B4E28DF006B9507 /* 找人 */,
@@ -913,10 +936,12 @@
 				33B4C0401B441A3500637952 /* UIImageView+Util.m in Sources */,
 				337A8F441B50AA2200880209 /* SearchViewController.m in Sources */,
 				339741081B4260C00074D2EA /* TweetCell.m in Sources */,
+				337A8F541B50D1FE00880209 /* ActivitiesViewController.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */,
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */,
+				337A8F511B50D19F00880209 /* ActivityCell.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */,
@@ -938,6 +963,7 @@
 				337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				33CC0C601B467245002819EE /* PersonCell.m in Sources */,
+				337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,

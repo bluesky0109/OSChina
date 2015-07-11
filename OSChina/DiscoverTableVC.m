@@ -12,6 +12,8 @@
 #import "ScanViewController.h"
 #import "ShakingViewController.h"
 #import "SearchViewController.h"
+#import "ActivitiesViewController.h"
+#import "Config.h"
 #import "UIColor+Util.h"
 
 @interface DiscoverTableVC ()
@@ -110,7 +112,10 @@
         case 1: {
             if (indexPath.row == 0) {
                 [self.navigationController pushViewController:[PersonSearchViewController new] animated:YES];
+            } else if (indexPath.row == 1) {
+                SwipeableViewController *activitySVC = [[SwipeableViewController alloc] initWithTitle:@"活动" andSubTitles:@[@"近期活动", @"我的活动"] andControllers:@[[[ActivitiesViewController alloc] initWithUID:0], [[ActivitiesViewController alloc] initWithUID:[Config getOwnID]]]];
                 
+               [self.navigationController pushViewController:activitySVC animated:YES];
             }
             
             break;

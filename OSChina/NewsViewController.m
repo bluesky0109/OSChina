@@ -11,10 +11,7 @@
 #import "NewsCell.h"
 #import "OSCNews.h"
 
-
-
 static NSString *kNewsCellID = @"NewsCell";
-
 
 @interface NewsViewController ()
 
