@@ -209,7 +209,9 @@
     __weak typeof(self) weakSelf = self;
     
     self.operationBar.toggleStar = ^ {
-        
+        if (weakSelf.isStarred) {
+            NSLog(@"starred");
+        }
     };
     
     self.operationBar.showComments = ^ {

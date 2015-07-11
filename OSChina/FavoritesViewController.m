@@ -7,11 +7,12 @@
 //
 
 #import "FavoritesViewController.h"
+#import "DetailsViewController.h"
 #import "Config.h"
 #import "OSCNews.h"
 #import "OSCBlog.h"
 #import "OSCPost.h"
-#import "DetailsViewController.h"
+#import "Utils.h"
 
 static NSString * const kFavoriteCellID = @"FavoriteCell";
 
@@ -81,49 +82,7 @@ static NSString * const kFavoriteCellID = @"FavoriteCell";
     if (row < self.objects.count) {
         OSCFavorite *favorite = self.objects[row];
         
-        switch (favorite.type) {
-            case FavoritesTypeSoftware: {
-                OSCNews *news = [OSCNews new];
-                news.type = NewsTypeSoftWare;
-                DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithNews:news];
-                [self.navigationController pushViewController:detailsVC animated:YES];
-                break;
-            }
-                
-            case FavoritesTypeTopic: {
-                OSCPost *post = [OSCPost new];
-                post.postID = favorite.objectID;
-                DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithPost:post];
-                [self.navigationController pushViewController:detailsVC animated:YES];
-                break;
-            }
-                
-            case FavoritesTypeBlog: {
-                OSCBlog *blog = [OSCBlog new];
-                blog.blogID = favorite.objectID;
-                DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithBlog:blog];
-                [self.navigationController pushViewController:detailsVC animated:YES];
-                break;
-            }
-                
-            case FavoritesTypeNews: {
-                OSCNews *news = [OSCNews new];
-                news.type = NewsTypeStandardNews;
-                DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithNews:news];
-                [self.navigationController pushViewController:detailsVC animated:YES];
-                break;
-            }
-                
-            case FavoritesTypeCode: {
-                [[UIApplication sharedApplication] openURL:favorite.url];
-                break;
-            }
-                
-            default:
-                break;
-        }
-    
-        
+        [Utils analysis:[favorite.url absoluteString] andNavController:self.navigationController];
         
     } else {
         [self fetchMore];
