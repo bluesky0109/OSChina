@@ -140,6 +140,7 @@
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
             // 有图就加载，无图则下载并reload tableview
             if (!image) {
+                [cell.thumbnail setImage:[UIImage imageNamed:@"loading"]];
                 [self downloadImageThenReload:tweet.smallImgURL];
             } else {
                 [cell.thumbnail setImage:image];
@@ -168,7 +169,7 @@
         if (tweet.hasAnImage) {
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
             if (!image) {
-                image = [UIImage imageNamed:@"portrait_loading"];
+                image = [UIImage imageNamed:@"loading"];
             }
             heigth += image.size.height;
         }
