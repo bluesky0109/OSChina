@@ -219,7 +219,7 @@
              commentsCountButton.shouldHideBadgeAtZero = YES;
              commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", _commentCount];
              commentsCountButton.badgePadding = 1;
-             commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x087221];
+             commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x24A83D];
 
              
              self.operationBar.isStarred = _isStarred;
