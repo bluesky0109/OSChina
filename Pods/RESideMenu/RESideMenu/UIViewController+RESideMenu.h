@@ -1,7 +1,8 @@
-// ECSlidingAnimationController.h
-// ECSlidingViewController 2
 //
-// Copyright (c) 2013, Michael Enriquez (http://enriquez.me)
+// UIViewController+RESideMenu.h
+// RESideMenu
+//
+// Copyright (c) 2013-2014 Roman Efimov (https://github.com/romaonthego)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +21,19 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- `ECSlidingAnimationController` is the default animator object used by `ECSlidingViewController`. It animates the top view by sliding it horizontally.
- 
- An instance this class may be returned from a sliding view controller's delegate for `slidingViewController:animationControllerForOperation:topViewController:`. Do this if you want to use the default animation along with a custom interactive transition.
- */
-@interface ECSlidingAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
+@class RESideMenu;
 
-/**
- The default duration of the view transition.
- */
-@property (nonatomic, assign) NSTimeInterval defaultTransitionDuration;
+@interface UIViewController (RESideMenu)
+
+@property (strong, readonly, nonatomic) RESideMenu *sideMenuViewController;
+
+// IB Action Helper methods
+
+- (IBAction)presentLeftMenuViewController:(id)sender;
+- (IBAction)presentRightMenuViewController:(id)sender;
 
 @end

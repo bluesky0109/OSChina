@@ -1,7 +1,8 @@
-// UIViewController+ECSlidingViewController.m
-// ECSlidingViewController 2
 //
-// Copyright (c) 2013, Michael Enriquez (http://enriquez.me)
+// UIViewController+RESideMenu.m
+// RESideMenu
+//
+// Copyright (c) 2013-2014 Roman Efimov (https://github.com/romaonthego)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +21,39 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
 
-#import "UIViewController+ECSlidingViewController.h"
+#import "UIViewController+RESideMenu.h"
+#import "RESideMenu.h"
 
-@implementation UIViewController (ECSlidingViewController)
+@implementation UIViewController (RESideMenu)
 
-- (ECSlidingViewController *)slidingViewController {
-    UIViewController *viewController = self.parentViewController ? self.parentViewController : self.presentingViewController;
-    while (!(viewController == nil || [viewController isKindOfClass:[ECSlidingViewController class]])) {
-        viewController = viewController.parentViewController ? viewController.parentViewController : viewController.presentingViewController;
+- (RESideMenu *)sideMenuViewController
+{
+    UIViewController *iter = self.parentViewController;
+    while (iter) {
+        if ([iter isKindOfClass:[RESideMenu class]]) {
+            return (RESideMenu *)iter;
+        } else if (iter.parentViewController && iter.parentViewController != iter) {
+            iter = iter.parentViewController;
+        } else {
+            iter = nil;
+        }
     }
-    
-    return (ECSlidingViewController *)viewController;
+    return nil;
+}
+
+#pragma mark -
+#pragma mark IB Action Helper methods
+
+- (IBAction)presentLeftMenuViewController:(id)sender
+{
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
+
+- (IBAction)presentRightMenuViewController:(id)sender
+{
+    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 @end

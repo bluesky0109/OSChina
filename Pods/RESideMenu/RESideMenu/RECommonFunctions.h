@@ -1,7 +1,8 @@
-// ECSlidingSegue.h
-// ECSlidingViewController 2
 //
-// Copyright (c) 2013, Michael Enriquez (http://enriquez.me)
+// RECommonFunctions.h
+// RESideMenu
+//
+// Copyright (c) 2013-2014 Roman Efimov (https://github.com/romaonthego)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +21,27 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-/**
- A sliding segue will transition a sliding view controller from an anchored position to a reset position. A common use for this is to segue from one of the under view controllers to a top view controller.
- */
-@interface ECSlidingSegue : UIStoryboardSegue
 
-/**
- Determines whether the destination view controller should replace the top view controller. This value can be set by casting a `UIStoryboardSegue` to a `ECSlidingSegue` in your view controller's `prepareForSegue:sender:` method.
- 
- If set to `NO`, the top view controller will be replaced with an instance of the segue's destination view controller. If set to `YES`, the top view controller will not be replaced, and the existing top view controller will be used. Setting this to `YES` is useful for caching the top view controller and keeping its current state. The default value is `NO`.
- */
-@property (nonatomic, assign) BOOL skipSettingTopViewController;
-@end
+#ifndef REUIKitIsFlatMode
+#define REUIKitIsFlatMode() RESideMenuUIKitIsFlatMode()
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_1
+#define kCFCoreFoundationVersionNumber_iOS_6_1 793.00
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
+#define IF_IOS7_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_6_1) \
+{ \
+__VA_ARGS__ \
+}
+#else
+#define IF_IOS7_OR_GREATER(...)
+#endif
+
+BOOL RESideMenuUIKitIsFlatMode(void);

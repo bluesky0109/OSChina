@@ -71,6 +71,7 @@
 		337A8FA51B52255700880209 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337A8FA41B52255700880209 /* SystemConfiguration.framework */; };
 		337A8FA71B52256400880209 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 337A8FA61B52256400880209 /* libiconv.dylib */; };
 		337A8FA91B52257300880209 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337A8FA81B52257300880209 /* Security.framework */; };
+		337A8FAC1B5243E600880209 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FAB1B5243E600880209 /* SideMenuViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -251,6 +252,8 @@
 		337A8FA41B52255700880209 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		337A8FA61B52256400880209 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		337A8FA81B52257300880209 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		337A8FAA1B5243E600880209 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
+		337A8FAB1B5243E600880209 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -740,6 +743,8 @@
 				3387765E1B4CC568001581A4 /* OptionButton.m */,
 				338776601B4CD24E001581A4 /* TweetEditingVC.h */,
 				338776611B4CD24E001581A4 /* TweetEditingVC.m */,
+				337A8FAA1B5243E600880209 /* SideMenuViewController.h */,
+				337A8FAB1B5243E600880209 /* SideMenuViewController.m */,
 			);
 			name = "Tab Bar";
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 				33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */,
 				3335958B1B43C1F500AC412A /* EditingBar.m in Sources */,
+				337A8FAC1B5243E600880209 /* SideMenuViewController.m in Sources */,
 				335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

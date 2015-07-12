@@ -25,6 +25,8 @@
 
 #import "OptionButton.h"
 
+#import <RESideMenu/RESideMenu.h>
+
 @interface OSCTabBarController ()
 
 @property (nonatomic, strong) UIImageView *blurView;
@@ -78,20 +80,28 @@
     
 
 
-    UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:newsSVC];
-    UINavigationController *tweetsNav = [[UINavigationController alloc] initWithRootViewController:tweetsSVC];
-    UINavigationController *discoverNav = [[UINavigationController alloc] initWithRootViewController:discoverVC];
+//    UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:newsSVC];
+//    UINavigationController *tweetsNav = [[UINavigationController alloc] initWithRootViewController:tweetsSVC];
+//    UINavigationController *discoverNav = [[UINavigationController alloc] initWithRootViewController:discoverVC];
     UINavigationController *meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
     
     
 
-    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC]) {
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
-        viewController.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
-     }
+//    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC]) {
+//        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
+//        viewController.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
+//     }
+//    
+//    self.tabBar.translucent = NO;
+//    self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
     
-    self.tabBar.translucent = NO;
-    self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
+    self.viewControllers = @[
+                             [self addNavigationItemForViewController:newsSVC],
+                             [self addNavigationItemForViewController:tweetsSVC],
+                             [UIViewController new],
+                             [self addNavigationItemForViewController:discoverVC],
+                             meNav
+                            ];
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithHex:0xE1E1E1]];
@@ -297,6 +307,18 @@
     }
 }
 
+#pragma mark -
+
+- (UINavigationController *)addNavigationItemForViewController:(UIViewController *)viewController {
+    UINavigationController *navigationCtl = [[UINavigationController alloc] initWithRootViewController:viewController];
+    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:@selector(onClickMenuButton)];
+    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
+    
+    return navigationCtl;
+}
+
+
+
 #pragma mark - UITabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (self.selectedIndex <= 1 && self.selectedIndex == [tabBar.items indexOfObject:item]) {
@@ -313,6 +335,10 @@
 #pragma mark - 处理左右navigationItem点击事件
 - (void)pushSearchViewController {
    [(UINavigationController *)self.selectedViewController pushViewController:[SearchViewController new] animated:YES];
+}
+
+- (void)onClickMenuButton {
+   _presentLeftMenuViewController();
 }
 
 @end

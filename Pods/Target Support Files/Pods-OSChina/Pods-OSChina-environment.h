@@ -54,12 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_AFOnoResponseSerializer 0
 #define COCOAPODS_VERSION_PATCH_AFOnoResponseSerializer 0
 
-// ECSlidingViewController
-#define COCOAPODS_POD_AVAILABLE_ECSlidingViewController
-#define COCOAPODS_VERSION_MAJOR_ECSlidingViewController 2
-#define COCOAPODS_VERSION_MINOR_ECSlidingViewController 0
-#define COCOAPODS_VERSION_PATCH_ECSlidingViewController 3
-
 // GPUImage
 #define COCOAPODS_POD_AVAILABLE_GPUImage
 #define COCOAPODS_VERSION_MAJOR_GPUImage 0
@@ -77,6 +71,12 @@
 #define COCOAPODS_VERSION_MAJOR_Ono 1
 #define COCOAPODS_VERSION_MINOR_Ono 2
 #define COCOAPODS_VERSION_PATCH_Ono 2
+
+// RESideMenu
+#define COCOAPODS_POD_AVAILABLE_RESideMenu
+#define COCOAPODS_VERSION_MAJOR_RESideMenu 4
+#define COCOAPODS_VERSION_MINOR_RESideMenu 0
+#define COCOAPODS_VERSION_PATCH_RESideMenu 7
 
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa

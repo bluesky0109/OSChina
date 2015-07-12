@@ -8,12 +8,16 @@
 
 #import "AppDelegate.h"
 #import "OSCTabBarController.h"
+#import "SideMenuViewController.h"
 #import "UIColor+Util.h"
 #import "UIView+Util.h"
+
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaHandler.h"
+
+#import <RESideMenu/RESideMenu.h>
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -25,7 +29,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -33,7 +36,16 @@
     _tabBarController = [[OSCTabBarController alloc] init];
     _tabBarController.delegate = self;
     
-    self.window.rootViewController = _tabBarController;
+    
+    RESideMenu *sideMenuTabBarVC = [[RESideMenu alloc] initWithContentViewController:_tabBarController leftMenuViewController:[SideMenuViewController new] rightMenuViewController:nil];
+    sideMenuTabBarVC.scaleContentView = NO;
+    sideMenuTabBarVC.scaleMenuView = NO;
+    
+    _tabBarController.presentLeftMenuViewController = ^ {
+       [sideMenuTabBarVC presentLeftMenuViewController];
+    };
+    
+    self.window.rootViewController = sideMenuTabBarVC;
     [self.window makeKeyAndVisible];
     
     /******控件外观控制*********/
