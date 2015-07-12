@@ -67,7 +67,7 @@
     return self;
 }
 
-- (instancetype)initWIthSoftwareID:(int64_t)softwareID {
+- (instancetype)initWithSoftwareID:(int64_t)softwareID {
     self = [super init];
     if (self) {
         self.generateURL = ^NSString *(NSUInteger page) {
@@ -207,6 +207,14 @@
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     //required
 }
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.didScroll) {
+        self.didScroll();
+    }
+}
+
 
 #pragma mark - 下载图片
 - (void)downloadImageThenReload:(NSURL *)imageURL
