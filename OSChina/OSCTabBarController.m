@@ -55,12 +55,12 @@
 
 - (void)loadViewControllers {
     
-    SwipeableViewController *newsSVC = [[SwipeableViewController alloc] initWithTitle:@"资讯"
-                                                                         andSubTitles:@[@"最新资讯", @"本周热点", @"本月热点"]
+    SwipeableViewController *newsSVC = [[SwipeableViewController alloc] initWithTitle:@"综合"
+                                                                         andSubTitles:@[@"资讯", @"热点", @"博客", @"推荐"]
                                                                        andControllers:@[
                                                                                         [[NewsViewController alloc] initWithNewsListType:NewsListTypeNews],
                                                                                         [[NewsViewController alloc] initWithNewsListType:NewsListTypeAllTypeWeekHottest],
-                                                                                        [[NewsViewController alloc] initWithNewsListType:NewsListTypeAllTypeMonthHottest]
+                                                                                        [[BlogsViewController alloc] initWithBlogsType:BlogsTypeLatest],[[BlogsViewController alloc] initWithBlogsType:BlogsTypeRecommended]
                                                                                         ]];
 
     SwipeableViewController *tweetsSVC = [[SwipeableViewController alloc] initWithTitle:@"动弹"
@@ -97,7 +97,7 @@
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithHex:0xE1E1E1]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithHex:0x15A230]}  forState:UIControlStateSelected];
     
-    NSArray *titles = @[@"资讯", @"动弹", @"", @"发现", @"我"];
+    NSArray *titles = @[@"综合", @"动弹", @"", @"发现", @"我"];
     NSArray *images = @[@"tabbar-news", @"tabbar-tweet", @"", @"tabbar-discover", @"tabbar-me"];
     
     for (NSUInteger i = 0, count = self.tabBar.items.count; i < count; i++) {

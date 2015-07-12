@@ -674,13 +674,13 @@
 				337A8F5F1B510CC400880209 /* UMSocial_Sdk_4.2.1 */,
 				333561041B457250009A294C /* 软件 */,
 				33C11ED01B451C3400728AE4 /* 发现 */,
-				33B0EF791B43C6180037549E /* User */,
+				33B0EF791B43C6180037549E /* 用户 */,
 				3335956C1B4384CB00AC412A /* 博客 */,
 				3335955F1B436D7D00AC412A /* 评论 */,
 				335EB1E11B42D86D00D28C80 /* 帖子 */,
 				339741191B4296160074D2EA /* 新闻 */,
 				339741021B4260850074D2EA /* 动弹 */,
-				339740ED1B4260350074D2EA /* OSC API and Model */,
+				339740ED1B4260350074D2EA /* API */,
 				339740EC1B42600F0074D2EA /* Utils */,
 				339740E71B4245920074D2EA /* Main ViewControllers */,
 				339740C51B423F590074D2EA /* AppDelegate.h */,
@@ -757,7 +757,7 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		339740ED1B4260350074D2EA /* OSC API and Model */ = {
+		339740ED1B4260350074D2EA /* API */ = {
 			isa = PBXGroup;
 			children = (
 				33CC0C561B465853002819EE /* Blog */,
@@ -786,7 +786,7 @@
 				337A8F4C1B50D11A00880209 /* OSCActivity.h */,
 				337A8F4D1B50D11A00880209 /* OSCActivity.m */,
 			);
-			name = "OSC API and Model";
+			name = API;
 			sourceTree = "<group>";
 		};
 		339741021B4260850074D2EA /* 动弹 */ = {
@@ -825,19 +825,19 @@
 			name = "新闻";
 			sourceTree = "<group>";
 		};
-		33B0EF791B43C6180037549E /* User */ = {
+		33B0EF791B43C6180037549E /* 用户 */ = {
 			isa = PBXGroup;
 			children = (
-				33B0EF7A1B43C6210037549E /* MyInfoVC */,
+				33B0EF7A1B43C6210037549E /* 我 */,
 				33B0EF7B1B43C6430037549E /* LoginViewController.h */,
 				33B0EF7C1B43C6430037549E /* LoginViewController.m */,
 				33B0EF7E1B43C65C0037549E /* UserDetailsViewController.h */,
 				33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */,
 			);
-			name = User;
+			name = "用户";
 			sourceTree = "<group>";
 		};
-		33B0EF7A1B43C6210037549E /* MyInfoVC */ = {
+		33B0EF7A1B43C6210037549E /* 我 */ = {
 			isa = PBXGroup;
 			children = (
 				33CC0C651B467D19002819EE /* Messages */,
@@ -847,7 +847,7 @@
 				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
 				33CC0C5C1B465A57002819EE /* FavoritesViewController.m */,
 			);
-			name = MyInfoVC;
+			name = "我";
 			sourceTree = "<group>";
 		};
 		33C11EC41B45071900728AE4 /* Component */ = {
