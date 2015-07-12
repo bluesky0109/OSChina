@@ -73,6 +73,8 @@
 		337A8FA91B52257300880209 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337A8FA81B52257300880209 /* Security.framework */; };
 		337A8FAC1B5243E600880209 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FAB1B5243E600880209 /* SideMenuViewController.m */; };
 		337A8FB01B52741E00880209 /* SoftwareCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FAF1B52741E00880209 /* SoftwareCommentsViewController.m */; };
+		337A8FB31B5278F500880209 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FB21B5278F500880209 /* UIBarButtonItem+Badge.m */; };
+		337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FB51B52792500880209 /* UIButton+Badge.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -257,6 +259,10 @@
 		337A8FAB1B5243E600880209 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		337A8FAE1B52741E00880209 /* SoftwareCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCommentsViewController.h; sourceTree = "<group>"; };
 		337A8FAF1B52741E00880209 /* SoftwareCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoftwareCommentsViewController.m; sourceTree = "<group>"; };
+		337A8FB11B5278F500880209 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		337A8FB21B5278F500880209 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		337A8FB41B52792500880209 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
+		337A8FB51B52792500880209 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -482,6 +488,10 @@
 				339740F91B42606C0074D2EA /* UIView+Util.m */,
 				339740FA1B42606C0074D2EA /* UIColor+Util.h */,
 				339740FB1B42606C0074D2EA /* UIColor+Util.m */,
+				337A8FB11B5278F500880209 /* UIBarButtonItem+Badge.h */,
+				337A8FB21B5278F500880209 /* UIBarButtonItem+Badge.m */,
+				337A8FB41B52792500880209 /* UIButton+Badge.h */,
+				337A8FB51B52792500880209 /* UIButton+Badge.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1174,6 +1184,7 @@
 				33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */,
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */,
+				337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */,
 				337A8F511B50D19F00880209 /* ActivityCell.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
@@ -1230,6 +1241,7 @@
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
 				338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */,
 				33886F8C1B4FB1B7002B2537 /* ScanViewController.m in Sources */,
+				337A8FB31B5278F500880209 /* UIBarButtonItem+Badge.m in Sources */,
 				339741011B42606C0074D2EA /* LastCell.m in Sources */,
 				33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */,
 				3335958B1B43C1F500AC412A /* EditingBar.m in Sources */,

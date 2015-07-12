@@ -24,6 +24,7 @@
 #import "Config.h"
 
 #import "OptionButton.h"
+#import "UIBarButtonItem+Badge.h"
 
 #import <RESideMenu/RESideMenu.h>
 
@@ -296,6 +297,11 @@
 - (UINavigationController *)addNavigationItemForViewController:(UIViewController *)viewController {
     UINavigationController *navigationCtl = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:@selector(onClickMenuButton)];
+    
+    /////
+    self.navigationItem.leftBarButtonItem.badgeValue = @"11";
+    self.navigationItem.leftBarButtonItem.badgeBGColor = [UIColor cyanColor];
+    
     viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
     
     return navigationCtl;
