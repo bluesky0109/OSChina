@@ -496,7 +496,7 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
-		337A8F3D1B50A8D000880209 /* DetailsViewController */ = {
+		337A8F3D1B50A8D000880209 /* 详情页面 */ = {
 			isa = PBXGroup;
 			children = (
 				33744A361B44E7F800FDC8D4 /* BottomBarViewController.h */,
@@ -504,7 +504,7 @@
 				3335957C1B4392A000AC412A /* DetailsViewController.h */,
 				3335957D1B4392A000AC412A /* DetailsViewController.m */,
 			);
-			name = DetailsViewController;
+			name = "详情页面";
 			sourceTree = "<group>";
 		};
 		337A8F3E1B50A96900880209 /* 搜索 */ = {
@@ -746,8 +746,9 @@
 		339740E71B4245920074D2EA /* Main ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				337A8FAD1B52738F00880209 /* 侧边栏 */,
 				337A8F3E1B50A96900880209 /* 搜索 */,
-				337A8F3D1B50A8D000880209 /* DetailsViewController */,
+				337A8F3D1B50A8D000880209 /* 详情页面 */,
 				339741091B42654F0074D2EA /* SwipeableViewController */,
 				339740E81B4245B60074D2EA /* Tab Bar */,
 				335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */,
@@ -759,7 +760,6 @@
 		339740E81B4245B60074D2EA /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
-				337A8FAD1B52738F00880209 /* 侧边栏 */,
 				339740E91B4246AA0074D2EA /* OSCTabBarController.h */,
 				339740EA1B4246AA0074D2EA /* OSCTabBarController.m */,
 				3387765D1B4CC568001581A4 /* OptionButton.h */,
