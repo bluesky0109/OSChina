@@ -76,7 +76,7 @@
 
     DiscoverTableVC *discoverVC = [DiscoverTableVC new];
 
-    MyInfoViewController *myInfoVC = [[MyInfoViewController alloc] initWithUserId:[Config getOwnID]];
+    MyInfoViewController *myInfoVC = [MyInfoViewController new];
     
     UINavigationController *meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
     

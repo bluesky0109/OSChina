@@ -12,6 +12,7 @@
 #import "BlogsViewController.h"
 #import "SoftwareCatalogVC.h"
 #import "SoftwareListVC.h"
+#import "MyInfoViewController.h"
 #import "Utils.h"
 #import "Config.h"
 
@@ -123,6 +124,10 @@
             for (NSHTTPCookie *cookie in [cookieStorage cookies]) {
                 [cookieStorage deleteCookie:cookie];
             }
+            
+            UITabBarController *tabBarController = (UITabBarController *)self.sideMenuViewController.contentViewController;
+            MyInfoViewController *myInfoVC = ((UINavigationController *)tabBarController.viewControllers[4]).viewControllers[0];
+            [myInfoVC refreshView];
             
             break;
         }

@@ -21,15 +21,6 @@ static NSString * const kExpertise = @"expertise";
 
 @interface OSCUser()
 
-@property (readwrite, nonatomic, assign  ) int64_t    userID;
-@property (readwrite, nonatomic, strong  ) NSString   *location;
-@property (readwrite, nonatomic, strong  ) NSString   *name;
-@property (readwrite, nonatomic, assign  ) NSUInteger followersCount;
-@property (readwrite, nonatomic, assign  ) NSUInteger fansCount;
-@property (readwrite, nonatomic, assign  ) NSInteger  score;
-@property (readwrite, nonatomic, strong  ) NSURL      *portraitURL;
-@property (readwrite, nonatomic, strong  ) NSString   *expertise;
-
 @end
 
 @implementation OSCUser
@@ -40,17 +31,18 @@ static NSString * const kExpertise = @"expertise";
     if (!self) {return nil;}
     
     // 有些API返回用<id>，有些地方用<userid>，这样写是为了简化处理
-    self.userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue] | [[[xml firstChildWithTag:kUserID] numberValue] longLongValue];
-    self.location = [[xml firstChildWithTag:kLocation] stringValue];
-    if (!self.location) {
-        self.location = [[xml firstChildWithTag:kFrom] stringValue];
+    _userID = [[[xml firstChildWithTag:kID] numberValue] longLongValue] | [[[xml firstChildWithTag:kUserID] numberValue] longLongValue];
+    _location = [[[xml firstChildWithTag:kLocation] stringValue] copy];
+    if (!_location) {
+        _location = [[[xml firstChildWithTag:kFrom] stringValue] copy];
     }
-    self.name = [[xml firstChildWithTag:kName] stringValue];
-    self.followersCount = [[[xml firstChildWithTag:kFollowers] numberValue] unsignedLongValue];
-    self.fansCount = [[[xml firstChildWithTag:kFans] numberValue] unsignedLongValue];
-    self.score = [[[xml firstChildWithTag:kScore] numberValue] integerValue];
-    self.portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
-    self.expertise = [[xml firstChildWithTag:kExpertise] stringValue];
+    
+    _name = [[[xml firstChildWithTag:kName] stringValue] copy];
+    _followersCount = [[[xml firstChildWithTag:kFollowers] numberValue] intValue];
+    _fansCount = [[[xml firstChildWithTag:kFans] numberValue] intValue];
+    _score = [[[xml firstChildWithTag:kScore] numberValue] intValue];
+    _portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
+    _expertise = [[[xml firstChildWithTag:kExpertise] stringValue] copy];
     
     return self;
 }
