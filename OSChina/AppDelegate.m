@@ -44,8 +44,8 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];               //UIColorFromRGB(0xdadada)
 
     [UISearchBar appearance].tintColor = [UIColor colorWithHex:0x15A230];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setCornerRadius:15.0];
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor colorWithHex:0xFFFFFF alpha:0.6]];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setCornerRadius:14.0];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setAlpha:0.6];
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];
