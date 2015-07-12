@@ -24,7 +24,7 @@
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import <RESideMenu.h>
 
 @interface MyInfoViewController ()
 
@@ -87,7 +87,7 @@
     self.navigationItem.title = @"我";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
-    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:@selector(onClickMenuButton)];
     
     self.tableView.bounces = NO;
     
@@ -229,6 +229,12 @@
     SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝" andSubTitles:@[@"关注",@"粉丝"] andControllers:@[[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],[[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]]];
     [self.navigationController pushViewController:friendsSVC animated:YES];
 }
+
+
+- (void)onClickMenuButton {
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
+
 
 - (void)pushSearchViewController {
     [self.navigationController pushViewController:[SearchViewController new] animated:YES];
