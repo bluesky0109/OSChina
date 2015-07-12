@@ -52,7 +52,7 @@
     pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
     
     /************ 友盟分享组件 **************/
-    [UMSocialData openLog:YES];
+//    [UMSocialData openLog:YES];
     
     [UMSocialData setAppKey:@"55a12e3a67e58eb345002270"];
 //    [UMSocialWechatHandler setWXAppId:@"wx41be5fe48092e94c" appSecret:@"0101b0595ffe2042c214420fac358abc" url:@"http://www.umeng.com/social"];
