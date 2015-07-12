@@ -85,6 +85,15 @@
 
 - (void)sendComment {
     MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
+    
+    if (self.editingBar.editView.text.length == 0) {
+        hub.mode = MBProgressHUDModeCustomView;
+        hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+        hub.labelText = @"评论内容不能为空";
+        [hub hide:YES afterDelay:2];
+        return;
+    }
+    
     hub.labelText = @"评论发送中";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
