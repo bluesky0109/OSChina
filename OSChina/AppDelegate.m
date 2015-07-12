@@ -39,6 +39,7 @@
     sideMenuTabBarVC.scaleContentView = NO;
     sideMenuTabBarVC.scaleMenuView = NO;
     sideMenuTabBarVC.contentViewShadowEnabled = YES;
+    sideMenuTabBarVC.contentViewShadowRadius = 4.5;
     
     self.window.rootViewController = sideMenuTabBarVC;
     [self.window makeKeyAndVisible];
