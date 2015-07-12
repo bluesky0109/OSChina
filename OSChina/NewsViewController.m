@@ -82,15 +82,16 @@ static NSString *kNewsCellID = @"NewsCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
         OSCNews *news = self.objects[indexPath.row];
-        [self.label setText:news.title];
+        self.label.text = news.title;
+        self.label.font = [UIFont boldSystemFontOfSize:14];
         
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
         
-        [self.label setText:news.body];
+        self.label.text = news.body;
         self.label.font = [UIFont systemFontOfSize:13];
         height += [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
         
-        return height + 44;
+        return height + 41;
 
     } else {
         return 60;

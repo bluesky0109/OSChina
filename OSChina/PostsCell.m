@@ -69,23 +69,13 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_portrait, _titleLabel, _bodyLabel,_authorLabel, _timeLabel, _commentAndView);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[_portrait(36)]-8-[_titleLabel]-8-|"
-                                                                             options:0
+                                                                             options:NSLayoutFormatAlignAllTop
                                                                              metrics:nil
                                                                                views:views]];
     
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_portrait(36)]" options:0 metrics:nil views:views]];
     
-    /////
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[_portrait(36)]-8-[_bodyLabel]-8-|"
-                                                                             options:0
-                                                                             metrics:nil
-                                                                               views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_portrait(36)]"
-                                                                             options:0
-                                                                             metrics:nil
-                                                                               views:views]];
-    /////
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_titleLabel]-5-[_bodyLabel]"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_titleLabel]-5-[_bodyLabel]"
                                                                              options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
                                                                              metrics:nil views:views]];
     
