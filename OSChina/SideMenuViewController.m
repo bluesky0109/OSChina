@@ -13,6 +13,7 @@
 #import "SoftwareCatalogVC.h"
 #import "SoftwareListVC.h"
 #import "Utils.h"
+#import "Config.h"
 
 #import <RESideMenu.h>
 
@@ -116,7 +117,12 @@
             
         case 3: {
             
+            [Config saveOwnID:0];
             
+            NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+            for (NSHTTPCookie *cookie in [cookieStorage cookies]) {
+                [cookieStorage deleteCookie:cookie];
+            }
             
             break;
         }
