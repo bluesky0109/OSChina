@@ -10,4 +10,6 @@
 
 @interface SideMenuViewController : UITableViewController
 
+@property (nonatomic, strong) UIViewController *reservedViewController;
+
 @end

@@ -77,23 +77,7 @@
 
     MyInfoViewController *myInfoVC = [[MyInfoViewController alloc] initWithUserId:[Config getOwnID]];
     
-    
-
-
-//    UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:newsSVC];
-//    UINavigationController *tweetsNav = [[UINavigationController alloc] initWithRootViewController:tweetsSVC];
-//    UINavigationController *discoverNav = [[UINavigationController alloc] initWithRootViewController:discoverVC];
     UINavigationController *meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
-    
-    
-
-//    for (UIViewController *viewController in @[newsSVC, tweetsSVC, discoverVC]) {
-//        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-search"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSearchViewController)];
-//        viewController.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar-sidebar"] style:UIBarButtonItemStylePlain target:self action:nil];
-//     }
-//    
-//    self.tabBar.translucent = NO;
-//    self.viewControllers = @[newsNav,tweetsNav,[UIViewController new], discoverNav,meNav];
     
     self.viewControllers = @[
                              [self addNavigationItemForViewController:newsSVC],
@@ -338,7 +322,7 @@
 }
 
 - (void)onClickMenuButton {
-   _presentLeftMenuViewController();
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 @end

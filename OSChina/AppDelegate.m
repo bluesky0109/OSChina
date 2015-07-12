@@ -21,8 +21,6 @@
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
-@property (nonatomic, strong) OSCTabBarController *tabBarController;
-
 @end
 
 @implementation AppDelegate
@@ -33,17 +31,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    _tabBarController = [[OSCTabBarController alloc] init];
-    _tabBarController.delegate = self;
+    OSCTabBarController *tabBarController = [OSCTabBarController new];
+    tabBarController.delegate = self;
     
+    RESideMenu *sideMenuTabBarVC = [[RESideMenu alloc] initWithContentViewController:tabBarController leftMenuViewController:[SideMenuViewController new] rightMenuViewController:nil];
     
-    RESideMenu *sideMenuTabBarVC = [[RESideMenu alloc] initWithContentViewController:_tabBarController leftMenuViewController:[SideMenuViewController new] rightMenuViewController:nil];
     sideMenuTabBarVC.scaleContentView = NO;
     sideMenuTabBarVC.scaleMenuView = NO;
-    
-    _tabBarController.presentLeftMenuViewController = ^ {
-       [sideMenuTabBarVC presentLeftMenuViewController];
-    };
+    sideMenuTabBarVC.contentViewShadowEnabled = YES;
     
     self.window.rootViewController = sideMenuTabBarVC;
     [self.window makeKeyAndVisible];
