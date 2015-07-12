@@ -32,18 +32,26 @@
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:self.titleLabel];
     
+    self.bodyLabel = [UILabel new];
+    self.bodyLabel.numberOfLines = 0;
+    self.bodyLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.bodyLabel.font = [UIFont systemFontOfSize:13];
+    self.bodyLabel.textColor = [UIColor grayColor];
+    [self.contentView addSubview:self.bodyLabel];
+    
+    
     self.authorLabel = [UILabel new];
-    self.authorLabel.font = [UIFont systemFontOfSize:13];
+    self.authorLabel.font = [UIFont systemFontOfSize:12];
     self.authorLabel.textColor = [UIColor nameColor];
     [self.contentView addSubview:self.authorLabel];
     
     self.timeLabel = [UILabel new];
-    self.timeLabel.font = [UIFont systemFontOfSize:13];
+    self.timeLabel.font = [UIFont systemFontOfSize:12];
     self.timeLabel.textColor = [UIColor colorWithHex:0xA0A3A7];
     [self.contentView addSubview:self.timeLabel];
     
     self.commentCount = [UILabel new];
-    self.commentCount.font = [UIFont systemFontOfSize:13];
+    self.commentCount.font = [UIFont systemFontOfSize:12];
     self.commentCount.textColor = [UIColor colorWithHex:0xA0A3A7];
     [self.contentView addSubview:self.commentCount];
     
@@ -54,12 +62,15 @@
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    NSDictionary *viewDict = NSDictionaryOfVariableBindings(_titleLabel,_authorLabel,_timeLabel,_commentCount);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_titleLabel]-5-[_authorLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:viewDict]];
-
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_titleLabel]-8-|" options:0 metrics:nil views:viewDict]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_titleLabel, _bodyLabel,_authorLabel,_timeLabel,_commentCount);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_authorLabel]-5-[_timeLabel]-5-[_commentCount]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewDict]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_titleLabel]-5-[_bodyLabel]"                                                                             options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight                                                                             metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bodyLabel]-5-[_authorLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_titleLabel]-8-|" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_authorLabel]-5-[_timeLabel]-5-[_commentCount]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
 }
 
