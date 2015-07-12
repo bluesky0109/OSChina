@@ -42,7 +42,7 @@
     self.navigationItem.title = @"弹一弹";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"button_comment_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(pubTweet)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"send"] style:UIBarButtonItemStylePlain target:self action:@selector(pubTweet)];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
