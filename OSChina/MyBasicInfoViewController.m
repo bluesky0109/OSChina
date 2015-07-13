@@ -7,6 +7,7 @@
 //
 
 #import "MyBasicInfoViewController.h"
+#import "MyInfoViewController.h"
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -140,25 +141,24 @@
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        return;
+    }
+    
     if (alertView.tag == 1)
     {
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            return;
-        } else if (buttonIndex == 1){
-            UIAlertView *ChangeImgView = [[UIAlertView alloc] initWithTitle:@"选择图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"相机", @"相册", nil];
-            ChangeImgView.tag = 2;
+        if (buttonIndex == 1){
+            UIAlertView *changeImageAlert = [[UIAlertView alloc] initWithTitle:@"选择图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"相机", @"相册", nil];
+            changeImageAlert.tag = 2;
             
-            [ChangeImgView show];
+            [changeImageAlert show];
             
         } else {
-            NSLog(@"点击选择操作的放大头像");
             
         }
         
     } else{
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            return;
-        } else if (buttonIndex == 1) {
+        if (buttonIndex == 1) {
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                     message:@"Device has no camera"
@@ -178,7 +178,6 @@
                 
                 [self presentViewController:imagePickerController animated:YES completion:nil];
             }
-            
             
         } else {
             UIImagePickerController *imagePickerController = [UIImagePickerController new];
@@ -224,6 +223,10 @@
             if (errorCode) {
                 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
                 HUD.labelText = @"头像更新成功";
+                
+                MyInfoViewController *myInfoVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                [myInfoVC refreshView];
+                _portrait.image = _image;
             } else {
                 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                 HUD.labelText = errorMessage;
@@ -234,6 +237,7 @@
             HUD.mode = MBProgressHUDModeCustomView;
             HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
             HUD.labelText = @" 网络异常,头像更换失败";
+            [HUD hide:YES afterDelay:1];
     }];
 }
 
