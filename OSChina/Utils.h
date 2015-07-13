@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (NSString *)convertRichTextToRawText:(UITextView *)textView;
 
++ (BOOL)isURL:(NSString *)string;
+
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
 
 + (MBProgressHUD *)createHUDInWindowOfView:(UIView *)view;

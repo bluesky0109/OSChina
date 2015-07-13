@@ -299,6 +299,12 @@
     return [rawText copy];
 }
 
++ (BOOL)isURL:(NSString *)string {
+    NSString *pattern = @"^(http|https)://.*?$(net|com|.com.cn|org|me|)";
+    NSPredicate *urlPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    return [urlPredicate evaluateWithObject:string];
+}
+
 #pragma mark - UI处理
 
 + (void)roundView:(UIView *)view cornerRadius:(CGFloat)cornerRadius
