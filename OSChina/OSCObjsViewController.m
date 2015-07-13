@@ -167,6 +167,10 @@
              
              if (refresh) {[self.objects removeAllObjects];}
              
+             if (self.parseExtraInfo) {
+                 self.parseExtraInfo(responseDocument);
+             }
+             
              /* 这里要添加一个去重步骤 */
              
              for (ONOXMLElement *objXML in objectsXML) {

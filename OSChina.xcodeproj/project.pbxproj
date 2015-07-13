@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */; };
+		330380FF1B536795003527B5 /* UserHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330380FE1B536795003527B5 /* UserHeaderCell.m */; };
+		330381021B53695B003527B5 /* UserOperationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381011B53695B003527B5 /* UserOperationCell.m */; };
 		3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */; };
 		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
 		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
@@ -139,6 +141,10 @@
 /* Begin PBXFileReference section */
 		330380F91B533F90003527B5 /* MyBasicInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBasicInfoViewController.h; sourceTree = "<group>"; };
 		330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBasicInfoViewController.m; sourceTree = "<group>"; };
+		330380FD1B536795003527B5 /* UserHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeaderCell.h; sourceTree = "<group>"; };
+		330380FE1B536795003527B5 /* UserHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeaderCell.m; sourceTree = "<group>"; };
+		330381001B53695B003527B5 /* UserOperationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOperationCell.h; sourceTree = "<group>"; };
+		330381011B53695B003527B5 /* UserOperationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOperationCell.m; sourceTree = "<group>"; };
 		3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
@@ -400,6 +406,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330380FC1B5366DC003527B5 /* 用户详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				33B0EF7E1B43C65C0037549E /* UserDetailsViewController.h */,
+				33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */,
+				330380FD1B536795003527B5 /* UserHeaderCell.h */,
+				330380FE1B536795003527B5 /* UserHeaderCell.m */,
+				330381001B53695B003527B5 /* UserOperationCell.h */,
+				330381011B53695B003527B5 /* UserOperationCell.m */,
+			);
+			name = "用户详情页";
+			sourceTree = "<group>";
+		};
 		333561041B457250009A294C /* 软件 */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,11 +883,10 @@
 		33B0EF791B43C6180037549E /* 用户 */ = {
 			isa = PBXGroup;
 			children = (
+				330380FC1B5366DC003527B5 /* 用户详情页 */,
 				33B0EF7A1B43C6210037549E /* 我 */,
 				33B0EF7B1B43C6430037549E /* LoginViewController.h */,
 				33B0EF7C1B43C6430037549E /* LoginViewController.m */,
-				33B0EF7E1B43C65C0037549E /* UserDetailsViewController.h */,
-				33B0EF7F1B43C65C0037549E /* UserDetailsViewController.m */,
 			);
 			name = "用户";
 			sourceTree = "<group>";
@@ -1179,6 +1197,7 @@
 				3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */,
 				3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */,
 				33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */,
+				330380FF1B536795003527B5 /* UserHeaderCell.m in Sources */,
 				337A8F5B1B50D83B00880209 /* ActivityBasicInfoCell.m in Sources */,
 				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
 				333595751B4385FA00AC412A /* BlogCell.m in Sources */,
@@ -1192,6 +1211,7 @@
 				337A8F541B50D1FE00880209 /* ActivitiesViewController.m in Sources */,
 				3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */,
 				33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */,
+				330381021B53695B003527B5 /* UserOperationCell.m in Sources */,
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */,
 				337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */,

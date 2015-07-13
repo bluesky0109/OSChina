@@ -93,7 +93,7 @@ static NSString * const kPersonCellID = @"PersonCell";
     
     if (row < self.objects.count) {
         OSCUser *user = self.objects[row];
-        UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUser:user];
+        UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:user.userID];
         [self.navigationController pushViewController:userDetailsVC animated:YES];
     } else {
         [self fetchMore];

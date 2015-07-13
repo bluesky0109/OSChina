@@ -25,7 +25,7 @@ static NSString * const kEventCellID = @"EventCell";
 @end
 
 @implementation EventsViewController
-
+#pragma mark - 个人中心动态
 - (instancetype)init {
     return [self initWithCatalog:1];
 }
@@ -41,6 +41,35 @@ static NSString * const kEventCellID = @"EventCell";
     return self;
 }
 
+#pragma mark - 用户动态
+- (instancetype)initWithUserID:(int64_t)userID {
+    if (self = [super init]) {
+        self.hidesBottomBarWhenPushed = YES;
+        
+        self.objClass = [OSCEvent class];
+        self.generateURL = ^NSString *(NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?uid=%lld&hisuid=%lld&pageIndex=%lu&pageSize=20", OSCAPI_PREFIX, OSCAPI_USER_INFORMATION, [Config getOwnID], userID, (unsigned long)page];
+        };
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithUserName:(NSString *)userName {
+    if (self = [super init]) {
+        self.hidesBottomBarWhenPushed = YES;
+        
+        self.objClass = [OSCEvent class];
+        
+        self.generateURL = ^NSString *(NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?uid=%lld&hisname=%@&pageIndex=%lu&pageSize=20", OSCAPI_PREFIX, OSCAPI_USER_INFORMATION, [Config getOwnID], userName, (unsigned long)page];
+        };
+    }
+    
+    return self;
+}
+
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     

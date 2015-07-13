@@ -8,16 +8,18 @@
 
 #import "OSCUser.h"
 
-static NSString * const kID        = @"uid";
-static NSString * const kUserID    = @"userid";
-static NSString * const kLocation  = @"location";
-static NSString * const kFrom      = @"from";
-static NSString * const kName      = @"name";
-static NSString * const kFollowers = @"followers";
-static NSString * const kFans      = @"fans";
-static NSString * const kScore     = @"score";
-static NSString * const kPortrait  = @"portrait";
-static NSString * const kExpertise = @"expertise";
+static NSString * const kID               = @"uid";
+static NSString * const kUserID           = @"userid";
+static NSString * const kLocation         = @"location";
+static NSString * const kFrom             = @"from";
+static NSString * const kName             = @"name";
+static NSString * const kFollowers        = @"followers";
+static NSString * const kFans             = @"fans";
+static NSString * const kScore            = @"score";
+static NSString * const kRelationship     = @"relation";
+static NSString * const kPortrait         = @"portrait";
+static NSString * const kExpertise        = @"expertise";
+static NSString * const kLatestOnlineTime = @"latestonline";
 
 @interface OSCUser()
 
@@ -41,8 +43,10 @@ static NSString * const kExpertise = @"expertise";
     _followersCount = [[[xml firstChildWithTag:kFollowers] numberValue] intValue];
     _fansCount = [[[xml firstChildWithTag:kFans] numberValue] intValue];
     _score = [[[xml firstChildWithTag:kScore] numberValue] intValue];
+    _relationship = [[[xml firstChildWithTag:kRelationship] numberValue] intValue];
     _portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
     _expertise = [[[xml firstChildWithTag:kExpertise] stringValue] copy];
+    _latestOnlineTime = [[[[xml firstChildWithTag:kLatestOnlineTime] numberValue] stringValue] copy];
     
     return self;
 }

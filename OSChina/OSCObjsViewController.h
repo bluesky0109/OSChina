@@ -16,8 +16,11 @@
 #import "OSCAPI.h"
 #import "LastCell.h"
 
+@class ONOXMLDocument;
+
 @interface OSCObjsViewController : UITableViewController
 
+@property (nonatomic, copy) void (^parseExtraInfo)(ONOXMLDocument *);
 @property (nonatomic, copy) NSString * (^generateURL)(NSUInteger page);
 @property (nonatomic, copy) void (^tableWillReload)(NSUInteger responseObjectsCount);
 

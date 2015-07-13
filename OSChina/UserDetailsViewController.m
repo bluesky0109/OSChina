@@ -8,19 +8,21 @@
 
 #import "UserDetailsViewController.h"
 #import "SwipeableViewController.h"
-#import "TweetsViewController.h"
+#import "FriendsViewController.h"
 #import "BlogsViewController.h"
 #import "OSCUser.h"
+#import "OSCEvent.h"
+#import "EventCell.h"
+#import "UserHeaderCell.h"
+#import "UserOperationCell.h"
 #import "Utils.h"
 #import "Config.h"
 
-#import <SDWebImage/UIImageView+WebCache.h>
+#import <Ono.h>
 
 @interface UserDetailsViewController ()
 
 @property (nonatomic, strong) OSCUser *user;
-
-@property (nonatomic, strong) SwipeableViewController *swipeableVC;
 
 @property (nonatomic, strong) UIImageView *portrait;
 @property (nonatomic, strong) UILabel     *nameLabel;
@@ -31,75 +33,45 @@
 
 @implementation UserDetailsViewController
 
-- (instancetype)initWithUser:(OSCUser *)user {
-    self = [super init];
-    if (self) {
-        self.hidesBottomBarWhenPushed = YES;
-        self.user = user;
-    }
-    
-    return self;
-}
-
 - (instancetype)initWithUserID:(int64_t)userID {
-    self = [super init];
+    self = [super initWithUserID:userID];
     
     if (!self) {return self;}
     self.hidesBottomBarWhenPushed = YES;
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?uid=%lld&hisuid=%lld&pageIndex=0&%@", OSCAPI_PREFIX, OSCAPI_USER_INFORMATION, [Config getOwnID], userID, OSCAPI_SUFFIX];
-    self.user = [self fetchAUser:urlString];
+    
+    __block UserDetailsViewController *weakSelf = self;
+    self.parseExtraInfo = ^(ONOXMLDocument *XML) {
+        ONOXMLElement *userXML = [XML.rootElement firstChildWithTag:@"user"];
+        weakSelf.user = [[OSCUser alloc] initWithXML:userXML];
+    };
     
     return self;
 }
 
 - (instancetype)initWithUserName:(NSString *)userName {
-    self = [super init];
+    self = [super initWithUserName:userName];
     self.hidesBottomBarWhenPushed = YES;
     if (!self) {
         return self;
     }
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?uid=%lld&hisname=%@&pageIndex=0&%@", OSCAPI_PREFIX, OSCAPI_USER_INFORMATION, [Config getOwnID], userName, OSCAPI_SUFFIX];
-    self.user = [self fetchAUser:urlString];
+    
+    __block UserDetailsViewController *weakSelf = self;
+    self.parseExtraInfo = ^(ONOXMLDocument *XML) {
+        ONOXMLElement *userXML = [XML.rootElement firstChildWithTag:@"user"];
+        weakSelf.user = [[OSCUser alloc] initWithXML:userXML];
+    };
     
     return self;
 }
-
-- (OSCUser *)fetchAUser:(NSString *)urlString {
-    __block BOOL done = NO;
-    __block OSCUser *tmpUser;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    [manager GET:urlString
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
-             ONOXMLElement *userXML = [responseDocument.rootElement firstChildWithTag:@"user"];
-             tmpUser = [[OSCUser alloc] initWithXML:userXML];
-             done = YES;
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"网络异常，错误码：%ld", (long)error.code);
-             done = YES;
-         }];
-    
-    while (!done) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    
-    return tmpUser;
-}
-
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.view.backgroundColor = [UIColor themeColor];
     
-    self.swipeableVC = [[SwipeableViewController alloc] initWithTitle:nil
-                                                         andSubTitles:@[@"动态", @"博客"]
-                                                       andControllers:@[[[TweetsViewController alloc] initWithUserID:_user.userID],[[BlogsViewController alloc] initWithUserID:_user.userID]]];
-    
-    [self addChildViewController:self.swipeableVC];
+    self.navigationItem.title = @"用户中心";
+    self.tableView.bounces = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,91 +89,54 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section ? 1 : 2;
+    return section==0 ? 2 : self.objects.count;
 }
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return section ? 43 : 0;
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {return nil;}
-    return self.swipeableVC.titleBar;
-}
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section) {
-        return self.view.frame.size.height - 43;
-    } else if (indexPath.row) {
-        return 51;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 158;
+        } else {
+            return 105;
+        }
+
     } else {
-        return 150;
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01f;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [UITableViewCell new];
-    if (indexPath.section) {
-        self.swipeableVC.viewPager.view.frame = cell.contentView.bounds;
-        [cell.contentView addSubview:self.swipeableVC.viewPager.view];
-        [self addChildViewController:self.swipeableVC.viewPager];
-        [self.swipeableVC.viewPager didMoveToParentViewController:self];
-        return cell;
-    } else if (indexPath.row) {
-        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self setMiddleView:cell.contentView];
-        return cell;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            UserHeaderCell *cell = [UserHeaderCell new];
+            
+            [cell setContentWithUser:_user];
+            
+            [cell.followsButton addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
+            [cell.fansButton addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+        } else {
+            UserOperationCell *cell = [UserOperationCell new];
+            if (_user) {
+                cell.loginTimeLabel.text = [NSString stringWithFormat:@"上次登录：%@", [Utils intervalSinceNow:_user.latestOnlineTime]];
+                [cell setFollowButtonByRelationship:_user.relationship];
+            }
+            return cell;
+        }
+
     } else {
-        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self setHeaderView:cell.contentView];
-        [self setContent];
-        return cell;
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
 
 
 
-
-
-#pragma mark - Layout
-
-- (void)setHeaderView:(UIView *)headerView
-{
-    _portrait = [UIImageView new];
-    _portrait.contentMode = UIViewContentModeScaleAspectFit;
-    [_portrait setCornerRadius:40];
-    [headerView addSubview:_portrait];
-    
-    _nameLabel = [UILabel new];
-    [headerView addSubview:_nameLabel];
-    
-    _countLabel = [UILabel new];
-    [headerView addSubview:_countLabel];
-    
-    for (UIView *subView in [headerView subviews]) {subView.translatesAutoresizingMaskIntoConstraints = NO;}
-    
-    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_portrait, _nameLabel, _countLabel, headerView);
-    
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_portrait(80)]-8-[_nameLabel]-8-[_countLabel]-5-|"
-                                                                       options:NSLayoutFormatAlignAllCenterX
-                                                                       metrics:nil
-                                                                         views:viewsDict]];
-    
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_portrait(80)]" options:0 metrics:nil views:viewsDict]];
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[headerView]-<=1-[_portrait]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewsDict]];
-    //[headerView addConstraint:[NSLayoutConstraint constraintWithItem:_portrait attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual
-    //                                                          toItem:_portrait.superview attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f]];
-    
-    //[headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=20)-[_portrait(80)]-(>=20)-|" options:0 metrics:nil views:viewsDict]];
-}
 
 - (void)setMiddleView:(UIView *)middleView
 {
@@ -234,15 +169,18 @@
 
 
 
-#pragma mark - Content
+#pragma mark - Layout
 
-- (void)setContent
-{
-    [_portrait sd_setImageWithURL:_user.portraitURL placeholderImage:nil];
-    _nameLabel.text = self.user.name;
-    _countLabel.text = [NSString stringWithFormat:@"关注 %lu | 粉丝 %lu | 积分 %ld", (unsigned long)_user.followersCount, (unsigned long)_user.fansCount, (long)_user.score];
+- (void)pushFriendsSVC {
+    SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝"
+                                                                            andSubTitles:@[@"关注", @"粉丝"]
+                                                                          andControllers:@[
+                                                                                           [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],
+                                                                                           [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]
+                                                                                           ]];
+     friendsSVC.hidesBottomBarWhenPushed = YES;
     
-    //NSString *action = _user.
+    [self.navigationController pushViewController:friendsSVC animated:YES];
 }
 
 
