@@ -34,6 +34,7 @@
 - (instancetype)initWithMyInformation:(OSCMyInfo *)myInfo {
     self = [super init];
     if (self) {
+        self.hidesBottomBarWhenPushed = YES;
         _myInfo = myInfo;
     }
     

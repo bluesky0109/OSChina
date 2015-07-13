@@ -30,6 +30,15 @@
 
 @implementation LoginViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor themeColor];

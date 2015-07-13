@@ -28,6 +28,7 @@
                                   [[SearchResultsViewController alloc] initWithType:@"news"]
                                   ]];
     if (self) {
+        self.hidesBottomBarWhenPushed = YES;
         __weak typeof(self) weakSelf = self;
         for (SearchResultsViewController *searchResultVC in self.viewPager.childViewControllers) {
             searchResultVC.viewDidScroll = ^ {

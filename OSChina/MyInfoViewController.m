@@ -186,18 +186,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0: {
-            [self.navigationController pushViewController:[[SwipeableViewController alloc] initWithTitle:@"消息中心"
-                                                                                            andSubTitles:@[@"@我", @"评论", @"留言", @"粉丝"]
-                                                                                          andControllers:@[
-                                                                                                           [[EventsViewController alloc] initWithCatalog:2],
-                                                                                                           [[EventsViewController alloc] initWithCatalog:3],
-                                                                                                           [MessagesViewController new],
-                                                                                                           [[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:0]
-                                                                                                           ]]
-                                                 animated:YES]; break;
+            
+            SwipeableViewController *messageCenterVC = [[SwipeableViewController alloc] initWithTitle:@"消息中心"
+                                                                                         andSubTitles:@[@"@我", @"评论", @"留言", @"粉丝"]
+                                                                                       andControllers:@[
+                                                                                                        [[EventsViewController alloc] initWithCatalog:2],
+                                                                                                        [[EventsViewController alloc] initWithCatalog:3],
+                                                                                                        [MessagesViewController new],
+                                                                                                        [[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:0]
+                                                                                                        ]];
+            messageCenterVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:messageCenterVC animated:YES];
+            break;
         }
         case 1: {
-            [self.navigationController pushViewController:[[BlogsViewController alloc] initWithUserID:_myID] animated:YES]; break;
+            BlogsViewController *blogsVC = [[BlogsViewController alloc] initWithUserID:_myID];
+            blogsVC.navigationItem.title = @"我的博客";
+            blogsVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:blogsVC animated:YES];
+            break;
         }
 
         default: break;
@@ -207,11 +215,13 @@
 
 - (void)pushFavoriteSVC {
     SwipeableViewController *favoritesSVC = [[SwipeableViewController alloc] initWithTitle:@"收藏" andSubTitles:@[@"软件", @"话题", @"代码", @"博客", @"资讯"] andControllers:@[[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeSoftware],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeTopic],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeCode],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeBlog],[[FavoritesViewController alloc] initWithFavoritesType:FavoritesTypeNews]]];
+    favoritesSVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:favoritesSVC animated:YES];
 }
 
 - (void)pushFriendsSVC {
     SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝" andSubTitles:@[@"关注",@"粉丝"] andControllers:@[[[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:1],[[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:0]]];
+    friendsSVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:friendsSVC animated:YES];
 }
 
