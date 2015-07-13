@@ -25,7 +25,7 @@
             self.title = title;
         }
         
-        CGFloat titleBarHeight = 43;
+        CGFloat titleBarHeight = 38;
         self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, titleBarHeight) andTitles:subTitles];
         self.titleBar.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.titleBar];
@@ -36,41 +36,44 @@
         [self.view addSubview:self.viewPager.view];
         
         // 滑动view时切换对应的 titleview
-        __weak TitleBarView *weakTitleBar = self.titleBar;
-        __weak HorizonalTableViewController *weakViewPager = self.viewPager;
+        __block TitleBarView *weakTitleBar = self.titleBar;
+        __block HorizonalTableViewController *weakViewPager = self.viewPager;
         
         
         self.viewPager.changeIndex = ^(NSUInteger index) {
-#if 1
             weakTitleBar.currentIndex = index;
             for (UIButton *button in weakTitleBar.titleButtons) {
                 if (button.tag != index) {
-                    [button setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
+                    [button setTitleColor:[UIColor colorWithHex:0x909090] forState:UIControlStateNormal];
+                    button.transform = CGAffineTransformIdentity;
                 } else {
-                    [button setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
+                    [button setTitleColor:[UIColor colorWithHex:0x009000] forState:UIControlStateNormal];
+                    button.transform = CGAffineTransformMakeScale(1.2, 1.2);
                 }
             }
-#else
-            UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
-            [titleFrom setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-            
-            weakTitleBar.currentIndex = index;
-            UIButton *titleTo = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
-            [titleTo setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
-#endif
+
             [weakViewPager scrollToViewAtIndex:index];
         };
         
         self.viewPager.scrollView = ^(CGFloat offsetRatio, NSUInteger index) {
-            UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
-
-            [titleFrom setTitleColor:[UIColor colorWithRed:0.5*(1-offsetRatio) green:0.5 blue:0.5*(1-offsetRatio) alpha:1.0]
-                            forState:UIControlStateNormal];
+            if (index > weakTitleBar.currentIndex) {
+                offsetRatio = 1- offsetRatio;
+            }
             
+            UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
             UIButton *titleTo = weakTitleBar.titleButtons[index];
             
-            [titleTo setTitleColor:[UIColor colorWithRed:0.5*offsetRatio green:0.5*(1-offsetRatio) blue:0*offsetRatio alpha:1.0]
-                          forState:UIControlStateNormal];
+            CGFloat colorValue = (CGFloat)0x90 / 0xFF;
+            
+            [UIView transitionWithView:titleFrom duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                [titleFrom setTitleColor:[UIColor colorWithRed:colorValue*(1-offsetRatio) green:colorValue blue:colorValue*(1-offsetRatio) alpha:1.0] forState:UIControlStateNormal];
+                titleTo.transform = CGAffineTransformMakeScale(1 + 0.2 * offsetRatio, 1 + 0.2 * offsetRatio);
+            } completion:nil];
+            
+            [UIView transitionWithView:titleTo duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                [titleTo setTitleColor:[UIColor colorWithRed:colorValue*offsetRatio green:colorValue blue:colorValue*offsetRatio alpha:1.0] forState:UIControlStateNormal];
+                titleTo.transform = CGAffineTransformMakeScale(1 + 0.2 * (1-offsetRatio), 1 + 0.2 * (1-offsetRatio));
+            } completion:nil];
         };
         
         //点击titleView上的button时 切换对应的view

@@ -31,7 +31,7 @@
         for (NSString *title in titles) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.backgroundColor = [UIColor colorWithHex:0xE1E1E1];
-            button.titleLabel.font = [UIFont systemFontOfSize:16];
+            button.titleLabel.font = [UIFont systemFontOfSize:15];
             [button setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
             [button setTitle:title forState:UIControlStateNormal];
             
@@ -47,7 +47,8 @@
         self.showsHorizontalScrollIndicator = NO;
         
         UIButton *firstTitle = self.titleButtons.firstObject;
-        [firstTitle setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
+        [firstTitle setTitleColor:[UIColor colorWithHex:0x009000] forState:UIControlStateNormal];
+        firstTitle.transform = CGAffineTransformMakeScale(1.15, 1.15);
     }
     
     return self;
@@ -57,10 +58,11 @@
 - (void)onClick:(UIButton *)button {
     if (self.currentIndex != button.tag) {
         UIButton *preTitle = self.titleButtons[self.currentIndex];
-        [preTitle setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
+        [preTitle setTitleColor:[UIColor colorWithHex:0x909090] forState:UIControlStateNormal];
+        preTitle.transform = CGAffineTransformIdentity;
         
-        [button setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
-        
+        [button setTitleColor:[UIColor colorWithHex:0x009000] forState:UIControlStateNormal];
+        button.transform = CGAffineTransformMakeScale(1.2, 1.2);
         self.currentIndex = button.tag;
         
         self.titleButtonClicked(button.tag);
