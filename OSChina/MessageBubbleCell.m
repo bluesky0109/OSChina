@@ -50,8 +50,8 @@
     
     UIImage *bubbleImage = [UIImage imageNamed:@"bubble"];
     if (YES) {
-//        bubbleImage = [bubbleImage imageMaskedWithColor:[UIColor colorWithHex:0x15A230]];
-//        bubbleImage = [self jsq_horizontallyFlippedImageFromImage:bubbleImage];
+        bubbleImage = [bubbleImage imageMaskedWithColor:[UIColor colorWithHex:0x15A230]];
+        bubbleImage = [self jsq_horizontallyFlippedImageFromImage:bubbleImage];
     }
     bubbleImage = [bubbleImage resizableImageWithCapInsets:[self jsq_centerPointEdgeInsetsForImageSize:bubbleImage.size]
                                               resizingMode:UIImageResizingModeStretch];

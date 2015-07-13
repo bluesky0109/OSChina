@@ -10,6 +10,7 @@
 #import "Config.h"
 #import "OSCMessage.h"
 #import "MessageCell.h"
+#import "MessageBubbleCell.h"
 #import "Utils.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -39,24 +40,29 @@ static NSString * const kMessageCellID = @"MessageCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.tableView registerClass:[MessageCell class] forCellReuseIdentifier:kMessageCellID];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageCellID];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < self.objects.count) {
-        MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kMessageCellID forIndexPath:indexPath];
+
         OSCMessage *message = self.objects[indexPath.row];
-        
+#if 0
+        MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kMessageCellID forIndexPath:indexPath];
         cell.backgroundColor = [UIColor themeColor];
         [cell.portrait loadPortrait:message.portraitURL];
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", message.senderID == [Config getOwnID] ? @"发给" : @"来自", message.friendName];
         cell.contentLabel.text = message.content;
         cell.timeLabel.text = [Utils intervalSinceNow:message.pubDate];
         cell.commentCountLabel.text = [NSString stringWithFormat:@"%d条留言", message.messageCount];
+#else
+        MessageBubbleCell *cell = [tableView dequeueReusableCellWithIdentifier:kMessageCellID forIndexPath:indexPath];
         
+        [cell setContent:message.content andPortrait:message.portraitURL];
+#endif
         return cell;
     } else {
         return self.lastCell;
@@ -68,6 +74,7 @@ static NSString * const kMessageCellID = @"MessageCell";
 {
     if (indexPath.row < self.objects.count) {
         OSCMessage *message = self.objects[indexPath.row];
+#if 0
         self.label.text = message.senderName;
         CGSize nameSize = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 70, MAXFLOAT)];
         
@@ -75,6 +82,13 @@ static NSString * const kMessageCellID = @"MessageCell";
         CGSize contentSize = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)];
         
         return nameSize.height + contentSize.height + 42;
+#else
+        self.label.text = message.content;
+        self.label.font = [UIFont systemFontOfSize:15];
+        CGSize contentSize = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 85, MAXFLOAT)];
+        
+        return contentSize.height + 36;
+#endif
     } else {
         return 60;
     }

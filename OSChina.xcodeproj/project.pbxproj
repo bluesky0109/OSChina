@@ -12,6 +12,7 @@
 		330381021B53695B003527B5 /* UserOperationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381011B53695B003527B5 /* UserOperationCell.m */; };
 		330381051B53B6CE003527B5 /* MessageBubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381041B53B6CE003527B5 /* MessageBubbleCell.m */; };
 		330381081B53B7CF003527B5 /* MessageBubbleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381071B53B7CF003527B5 /* MessageBubbleViewController.m */; };
+		3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3303810A1B53BABA003527B5 /* UIImage+Util.m */; };
 		3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */; };
 		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
 		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
@@ -151,6 +152,8 @@
 		330381041B53B6CE003527B5 /* MessageBubbleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleCell.m; sourceTree = "<group>"; };
 		330381061B53B7CF003527B5 /* MessageBubbleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBubbleViewController.h; sourceTree = "<group>"; };
 		330381071B53B7CF003527B5 /* MessageBubbleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleViewController.m; sourceTree = "<group>"; };
+		330381091B53BABA003527B5 /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
+		3303810A1B53BABA003527B5 /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
 		3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 				337A8FB21B5278F500880209 /* UIBarButtonItem+Badge.m */,
 				337A8FB41B52792500880209 /* UIButton+Badge.h */,
 				337A8FB51B52792500880209 /* UIButton+Badge.m */,
+				330381091B53BABA003527B5 /* UIImage+Util.h */,
+				3303810A1B53BABA003527B5 /* UIImage+Util.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1252,6 +1257,7 @@
 				33CC0C601B467245002819EE /* PersonCell.m in Sources */,
 				337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
+				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
 				337A8FB91B52AA8B00880209 /* OSCMyInfo.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
