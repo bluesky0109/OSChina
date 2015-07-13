@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, copy) void (^didSelectEmoji)(NSTextAttachment *textAttachment);
+@property (nonatomic, copy) void (^deleteEmoji)();
 
 @end
 
@@ -30,7 +31,19 @@
             [mutableAttributedString replaceCharactersInRange:weakTextView.selectedRange withAttributedString:emojiAttributedString];
             weakTextView.attributedText = [mutableAttributedString copy];
         };
+        
+        _deleteEmoji = ^ {
+            NSMutableAttributedString *mutableAttributeString = [[NSMutableAttributedString alloc] initWithAttributedString:weakTextView.attributedText];
+            NSRange range = weakTextView.selectedRange;
+            if (range.length == 0 && range.location != 0) {
+                [mutableAttributeString deleteCharactersInRange:NSMakeRange(range.location - 1, 1)];
+            } else {
+                [mutableAttributeString deleteCharactersInRange:weakTextView.selectedRange];
+            }
+            weakTextView.attributedText = [mutableAttributeString copy];
+        };
     }
+        
     return self;
 }
 
@@ -41,6 +54,7 @@
     
     EmojiPanelVC *emojiPanelVC = [[EmojiPanelVC alloc] initWithPageIndex:0];
     emojiPanelVC.didSelectEmoji = _didSelectEmoji;
+    emojiPanelVC.deleteEmoji = _deleteEmoji;
     
     if (emojiPanelVC != nil) {
         self.dataSource = self;
@@ -67,6 +81,8 @@
     } else {
         EmojiPanelVC *emojiPanelVC = [[EmojiPanelVC alloc] initWithPageIndex:index - 1];
         emojiPanelVC.didSelectEmoji = _didSelectEmoji;
+        emojiPanelVC.deleteEmoji = _deleteEmoji;
+
         return emojiPanelVC;
     }
 }
@@ -80,6 +96,8 @@
     } else {
         EmojiPanelVC *emojiPanelVC = [[EmojiPanelVC alloc] initWithPageIndex:index + 1];
         emojiPanelVC.didSelectEmoji = _didSelectEmoji;
+        emojiPanelVC.deleteEmoji = _deleteEmoji;
+
         return emojiPanelVC;
     }
 

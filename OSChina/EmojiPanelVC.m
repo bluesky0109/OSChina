@@ -63,22 +63,36 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EmojiCell" forIndexPath:indexPath];
     
-    NSInteger emojiNum = _pageIndex * 21 + indexPath.section * 7 + indexPath.row + 1;
-    NSString *emojiName = [NSString stringWithFormat:@"%03ld", (long)emojiNum];
-    [cell setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:emojiName]]];
+    NSInteger section = indexPath.section;
+    NSInteger row     = indexPath.row;
+
+    if (section == 2 && row == 6) {
+        [cell setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]]];
+    } else {
+        NSInteger emojiNum = _pageIndex * 20 + indexPath.section * 7 + row + 1;
+        NSString *emojiName = [NSString stringWithFormat:@"%03ld", (long)emojiNum];
+        [cell setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:emojiName]]];
+    }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger emojiNum = _pageIndex * 21 + indexPath.section * 7 + indexPath.row + 1;
-    NSString *emojiName = [NSString stringWithFormat:@"%03ld", (long)emojiNum];
+    NSInteger section = indexPath.section;
+    NSInteger row     = indexPath.row;
     
-    NSTextAttachment *textAttachment = [NSTextAttachment new];
-    textAttachment.image = [UIImage imageNamed:emojiName];
-    objc_setAssociatedObject(textAttachment, @"number", @(emojiNum), OBJC_ASSOCIATION_ASSIGN);
-    
-    _didSelectEmoji(textAttachment);
+    if (section == 2 && row == 6) {
+        _deleteEmoji();
+    } else {
+        NSInteger emojiNum = _pageIndex * 20 + indexPath.section * 7 + row + 1;
+        NSString *emojiName = [NSString stringWithFormat:@"%03ld", (long)emojiNum];
+        
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        textAttachment.image = [UIImage imageNamed:emojiName];
+        objc_setAssociatedObject(textAttachment, @"number", @(emojiNum), OBJC_ASSOCIATION_ASSIGN);
+        
+        _didSelectEmoji(textAttachment);
+    }
 }
 
 @end
