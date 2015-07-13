@@ -193,10 +193,19 @@
                                                                       options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:metrics views:views]];
     [countView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_creditsBtn]|" options:0 metrics:nil views:views]];
     
+    if ([Config getOwnID] == 0) {
+        countView.hidden = YES;
+    }
+    
     return header;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([Config getOwnID] == 0) {
+        [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        return;
+    }
+    
     switch (indexPath.row) {
         case 0: {
             
