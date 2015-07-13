@@ -139,7 +139,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section) {
+    if (indexPath.section == 0) {
         return;
     } else {
         return [super tableView:tableView didSelectRowAtIndexPath:indexPath];

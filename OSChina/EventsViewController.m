@@ -172,6 +172,7 @@ static NSString * const kEventCellID = @"EventCell";
         switch (event.catalog) {
             case 1: {
                 OSCNews *news = [OSCNews new];
+                news.newsID = event.objectID;
                 news.type = event.objectCatalog;
                 DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithNews:news];
                 [self.navigationController pushViewController:detailsVC animated:YES];
