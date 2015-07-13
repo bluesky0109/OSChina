@@ -10,15 +10,17 @@
 
 @interface OSCUser : OSCBaseObject
 
-@property (nonatomic, assign, readonly  ) int64_t  userID;
-@property (nonatomic, copy, readonly    ) NSString *location;
-@property (nonatomic, copy, readonly    ) NSString *name;
-@property (nonatomic, assign, readonly  ) int      followersCount;
-@property (nonatomic, assign, readonly  ) int      fansCount;
-@property (nonatomic, assign ,readonly  ) int      score;
-@property (nonatomic, assign, readonly  ) int      relationship;
-@property (nonatomic, strong, readonly  ) NSURL    *portraitURL;
-@property (nonatomic, copy, readonly    ) NSString *expertise;
-@property (nonatomic, copy, readonly    ) NSString *latestOnlineTime;
+@property (nonatomic, readonly, assign) int64_t  userID;
+@property (nonatomic, readonly, copy  ) NSString *location;
+@property (nonatomic, readonly, copy  ) NSString *name;
+@property (nonatomic, readonly, assign) int      followersCount;
+@property (nonatomic, readonly, assign) int      fansCount;
+@property (nonatomic, readonly, assign) int      score;
+@property (nonatomic, assign          ) int      relationship;
+@property (nonatomic, readonly, strong) NSURL    *portraitURL;
+@property (nonatomic, readonly, copy  ) NSString *developPlatform;
+@property (nonatomic, readonly, copy  ) NSString *expertise;
+@property (nonatomic, readonly, copy  ) NSString *joinTime;
+@property (nonatomic, readonly, copy  ) NSString *latestOnlineTime;
 
 @end

@@ -18,7 +18,9 @@ static NSString * const kFans             = @"fans";
 static NSString * const kScore            = @"score";
 static NSString * const kRelationship     = @"relation";
 static NSString * const kPortrait         = @"portrait";
+static NSString * const kDevlopPlatform   = @"devplatform";
 static NSString * const kExpertise        = @"expertise";
+static NSString * const kJoinTime         = @"jointime";
 static NSString * const kLatestOnlineTime = @"latestonline";
 
 @interface OSCUser()
@@ -45,7 +47,9 @@ static NSString * const kLatestOnlineTime = @"latestonline";
     _score = [[[xml firstChildWithTag:kScore] numberValue] intValue];
     _relationship = [[[xml firstChildWithTag:kRelationship] numberValue] intValue];
     _portraitURL = [NSURL URLWithString:[[xml firstChildWithTag:kPortrait] stringValue]];
+    _developPlatform = [[[xml firstChildWithTag:kDevlopPlatform] stringValue] copy];
     _expertise = [[[xml firstChildWithTag:kExpertise] stringValue] copy];
+    _joinTime = [[[xml firstChildWithTag:kJoinTime] stringValue] copy];
     _latestOnlineTime = [[[[xml firstChildWithTag:kLatestOnlineTime] numberValue] stringValue] copy];
     
     return self;
