@@ -637,13 +637,13 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
-		337A8FAD1B52738F00880209 /* 侧边栏 */ = {
+		337A8FAD1B52738F00880209 /* 侧拉菜单 */ = {
 			isa = PBXGroup;
 			children = (
 				337A8FAA1B5243E600880209 /* SideMenuViewController.h */,
 				337A8FAB1B5243E600880209 /* SideMenuViewController.m */,
 			);
-			name = "侧边栏";
+			name = "侧拉菜单";
 			sourceTree = "<group>";
 		};
 		33886F851B4F9863002B2537 /* EditingBar */ = {
@@ -752,7 +752,7 @@
 		339740E71B4245920074D2EA /* Main ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				337A8FAD1B52738F00880209 /* 侧边栏 */,
+				337A8FAD1B52738F00880209 /* 侧拉菜单 */,
 				337A8F3E1B50A96900880209 /* 搜索 */,
 				337A8F3D1B50A8D000880209 /* 详情页面 */,
 				339741091B42654F0074D2EA /* SwipeableViewController */,

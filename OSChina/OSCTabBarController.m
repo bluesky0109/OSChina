@@ -78,14 +78,12 @@
 
     MyInfoViewController *myInfoVC = [MyInfoViewController new];
     
-    UINavigationController *meNav = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
-    
     self.viewControllers = @[
                              [self addNavigationItemForViewController:newsSVC],
                              [self addNavigationItemForViewController:tweetsSVC],
                              [UIViewController new],
                              [self addNavigationItemForViewController:discoverVC],
-                             meNav
+                             [[UINavigationController alloc] initWithRootViewController:myInfoVC]
                             ];
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
