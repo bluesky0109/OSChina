@@ -285,6 +285,17 @@
     return imageData;
 }
 
++ (NSString *)escapeHTML:(NSString *)originalHTML {
+    NSMutableString *result = [[NSMutableString alloc] initWithString:originalHTML];
+    [result replaceOccurrencesOfString:@"&"  withString:@"&amp;"  options:NSLiteralSearch range:NSMakeRange(0, [result length])];
+    [result replaceOccurrencesOfString:@"<"  withString:@"&lt;"   options:NSLiteralSearch range:NSMakeRange(0, [result length])];
+    [result replaceOccurrencesOfString:@">"  withString:@"&gt;"   options:NSLiteralSearch range:NSMakeRange(0, [result length])];
+    [result replaceOccurrencesOfString:@"\"" withString:@"&quot;" options:NSLiteralSearch range:NSMakeRange(0, [result length])];
+    [result replaceOccurrencesOfString:@"'"  withString:@"&#39;"  options:NSLiteralSearch range:NSMakeRange(0, [result length])];
+    
+    return result;
+}
+
 + (NSString *)convertRichTextToRawText:(UITextView *)textView {
     NSMutableString *rawText = [[NSMutableString alloc] initWithString:textView.text];
     [textView.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, textView.text.length) options:NSAttributedStringEnumerationReverse usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
