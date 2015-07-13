@@ -95,13 +95,20 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
     CGFloat horizontalOffset = self.tableView.contentOffset.y;
     CGFloat screenWidth = self.tableView.frame.size.width;
     CGFloat offsetRatio = (NSUInteger)horizontalOffset % (NSUInteger)screenWidth / screenWidth;
-    NSUInteger index = (horizontalOffset + screenWidth / 2) / screenWidth;
+    NSUInteger focusIndex = (horizontalOffset + screenWidth / 2) / screenWidth;
     
     if (self.scrollView) {
-        self.scrollView(offsetRatio,index);
+        if (horizontalOffset != focusIndex * screenWidth) {
+            NSUInteger animationIndex = horizontalOffset > focusIndex * screenWidth ? focusIndex + 1: focusIndex - 1;
+            if (focusIndex > animationIndex) {
+                offsetRatio = 1 - offsetRatio;
+            }
+            self.scrollView(offsetRatio,focusIndex,animationIndex);
+        }
+        
     }
     if (didScrollStop && self.changeIndex) {
-        self.changeIndex(index);
+        self.changeIndex(focusIndex);
     }
 }
 

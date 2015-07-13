@@ -25,7 +25,7 @@
             self.title = title;
         }
         
-        CGFloat titleBarHeight = 38;
+        CGFloat titleBarHeight = 36;
         self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, titleBarHeight) andTitles:subTitles];
         self.titleBar.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.titleBar];
@@ -55,13 +55,10 @@
             [weakViewPager scrollToViewAtIndex:index];
         };
         
-        self.viewPager.scrollView = ^(CGFloat offsetRatio, NSUInteger index) {
-            if (index > weakTitleBar.currentIndex) {
-                offsetRatio = 1- offsetRatio;
-            }
+        self.viewPager.scrollView = ^(CGFloat offsetRatio, NSUInteger focusIndex, NSUInteger animationIndex) {
             
-            UIButton *titleFrom = weakTitleBar.titleButtons[weakTitleBar.currentIndex];
-            UIButton *titleTo = weakTitleBar.titleButtons[index];
+            UIButton *titleFrom = weakTitleBar.titleButtons[animationIndex];
+            UIButton *titleTo = weakTitleBar.titleButtons[focusIndex];
             
             CGFloat colorValue = (CGFloat)0x90 / 0xFF;
             

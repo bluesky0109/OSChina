@@ -22,7 +22,7 @@
 
 @interface UserDetailsViewController ()
 
-@property (nonatomic, strong) OSCUser *user;
+@property (nonatomic, strong) OSCUser     *user;
 
 @property (nonatomic, strong) UIImageView *portrait;
 @property (nonatomic, strong) UILabel     *nameLabel;
@@ -35,10 +35,11 @@
 
 - (instancetype)initWithUserID:(int64_t)userID {
     self = [super initWithUserID:userID];
-    
-    if (!self) {return self;}
     self.hidesBottomBarWhenPushed = YES;
-    
+    if (!self) {
+        return self;
+    }
+
     __block UserDetailsViewController *weakSelf = self;
     self.parseExtraInfo = ^(ONOXMLDocument *XML) {
         ONOXMLElement *userXML = [XML.rootElement firstChildWithTag:@"user"];
@@ -67,9 +68,7 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
     self.navigationItem.title = @"用户中心";
     self.tableView.bounces = NO;
 }
@@ -89,7 +88,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section==0 ? 2 : self.objects.count;
+    return section==0 ? 2 : self.objects.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

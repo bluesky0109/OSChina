@@ -50,7 +50,7 @@ static NSString * const kLatestOnlineTime = @"latestonline";
     _developPlatform = [[[xml firstChildWithTag:kDevlopPlatform] stringValue] copy];
     _expertise = [[[xml firstChildWithTag:kExpertise] stringValue] copy];
     _joinTime = [[[xml firstChildWithTag:kJoinTime] stringValue] copy];
-    _latestOnlineTime = [[[[xml firstChildWithTag:kLatestOnlineTime] numberValue] stringValue] copy];
+    _latestOnlineTime = [[[xml firstChildWithTag:@"latestonline"] stringValue] copy];
     
     return self;
 }
