@@ -19,6 +19,7 @@
 #import <Ono.h>
 #import <ReactiveCocoa.h>
 #import <MBProgressHUD.h>
+#import <RESideMenu.h>
 
 @interface LoginViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 
@@ -68,6 +69,7 @@
     
     MyInfoViewController *myInfoVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-1];
     [myInfoVC refreshView];
+    [((UITableViewController *)myInfoVC.sideMenuViewController.leftMenuViewController).tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
