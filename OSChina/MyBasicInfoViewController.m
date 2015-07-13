@@ -8,6 +8,7 @@
 
 #import "MyBasicInfoViewController.h"
 #import "MyInfoViewController.h"
+#import "ImageViewController.h"
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -154,7 +155,13 @@
             [changeImageAlert show];
             
         } else {
+            NSString *str = [NSString stringWithFormat:@"%@",_myInfo.portraitURL];
+            NSArray *array1 = [str componentsSeparatedByString:@"_"];
+            NSArray *array2 = [array1[1] componentsSeparatedByString:@"."];
             
+            NSString *bigPortraitURL = [NSString stringWithFormat:@"%@_200.%@", array1[0], array2[1]];
+            ImageViewController *imgViewweVC = [[ImageViewController alloc] initWithImageURL:[NSURL URLWithString:bigPortraitURL] thumbnail:_portrait];
+            [self presentViewController:imgViewweVC animated:YES completion:nil];
         }
         
     } else{
