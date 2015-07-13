@@ -31,7 +31,12 @@ static NSString * const kSoftwareCatalogCellID = @"SoftwareCatalogCell";
     _tag = tag;
     
     self.generateURL = ^NSString * (NSUInteger page) {
-        return [NSString stringWithFormat:@"%@%@?tag=%d&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_SOFTWARECATALOG_LIST, tag, (unsigned long)page, OSCAPI_SUFFIX];
+        return [NSString stringWithFormat:@"%@%@?tag=%d", OSCAPI_PREFIX, OSCAPI_SOFTWARECATALOG_LIST, tag];;
+    };
+    
+    __weak typeof(self) weakSelf = self;
+    self.tableWillReload = ^(NSUInteger responseObjectsCounts) {
+        [weakSelf.lastCell statusFinished];
     };
     
     self.objClass = [OSCSoftwareCatalog class];
