@@ -58,9 +58,10 @@
     if (self.currentIndex != button.tag) {
         UIButton *preTitle = self.titleButtons[self.currentIndex];
         [preTitle setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-        self.currentIndex = button.tag;
         
         [button setTitleColor:[UIColor colorWithHex:0x008000] forState:UIControlStateNormal];
+        
+        self.currentIndex = button.tag;
         
         self.titleButtonClicked(button.tag);
     }

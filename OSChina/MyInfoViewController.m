@@ -15,6 +15,8 @@
 #import "MessagesViewController.h"
 #import "LoginViewController.h"
 #import "SearchViewController.h"
+#import "MyBasicInfoViewController.h"
+
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
 #import "Config.h"
@@ -226,6 +228,8 @@
 - (void)tapPortrait {
     if ([Config getOwnID] == 0) {
         [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+    } else {
+        [self.navigationController pushViewController:[[MyBasicInfoViewController alloc] initWithMyInformation:_myInfo] animated:YES];
     }
 }
 

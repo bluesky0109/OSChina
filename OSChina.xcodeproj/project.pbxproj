@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */; };
 		3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */; };
 		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
 		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
@@ -136,6 +137,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330380F91B533F90003527B5 /* MyBasicInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBasicInfoViewController.h; sourceTree = "<group>"; };
+		330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBasicInfoViewController.m; sourceTree = "<group>"; };
 		3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
@@ -879,6 +882,8 @@
 				3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */,
 				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
 				33CC0C5C1B465A57002819EE /* FavoritesViewController.m */,
+				330380F91B533F90003527B5 /* MyBasicInfoViewController.h */,
+				330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */,
 			);
 			name = "我";
 			sourceTree = "<group>";
@@ -1207,6 +1212,7 @@
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
+				330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */,
 				337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */,
