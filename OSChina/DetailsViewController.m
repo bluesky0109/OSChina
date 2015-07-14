@@ -315,6 +315,17 @@
     //分享设置
     self.operationBar.share = ^ {
         NSString *title = weakSelf.objectTitle;
+        
+        NSMutableString *strUrl = [NSMutableString stringWithFormat:@"%@",weakSelf.URL];
+        NSString *strBlog = @"/blog";
+        if ([strUrl rangeOfString:strBlog].length) {
+            strUrl = [NSMutableString stringWithFormat:@"http://m.oschina.net/blog/%i", (int)weakSelf.objectID];
+        } else {
+            [strUrl replaceCharactersInRange:NSMakeRange(7, 3) withString:@"m"];
+        }
+        
+        weakSelf.URL = strUrl;
+        
         // 微信相关设置
         
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
