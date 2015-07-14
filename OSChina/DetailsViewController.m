@@ -204,6 +204,8 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[detailsView][bottomBar]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[detailsView]|" options:0 metrics:nil views:views]];
     
+    [self.editingBar.modeSwitchButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    
     _HUD = [Utils createHUDInWindowOfView:self.view];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
