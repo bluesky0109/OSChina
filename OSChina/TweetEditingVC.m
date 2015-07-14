@@ -230,7 +230,7 @@
         UIImagePickerController *imagePickerController = [UIImagePickerController new];
         imagePickerController.delegate = self;
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePickerController.allowsEditing = YES;
+        imagePickerController.allowsEditing = NO;
         imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
         
         [self presentViewController:imagePickerController animated:YES completion:nil];
@@ -242,7 +242,7 @@
             UIImagePickerController *imagePickerController = [UIImagePickerController new];
             imagePickerController.delegate = self;
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePickerController.allowsEditing = YES;
+            imagePickerController.allowsEditing = NO;
             imagePickerController.showsCameraControls = YES;
             imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
@@ -254,7 +254,7 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    _imageView.image = info[UIImagePickerControllerEditedImage];
+    _imageView.image = info[UIImagePickerControllerOriginalImage];
     
     //如果是拍照的照片，则需要手动保存到本地，系统不会自动保存拍照成功后的照片
     //UIImageWriteToSavedPhotosAlbum(edit, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);

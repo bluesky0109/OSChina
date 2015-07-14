@@ -255,7 +255,7 @@
             UIImagePickerController *imagePickerController = [UIImagePickerController new];
             imagePickerController.delegate = self;
             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            imagePickerController.allowsEditing = YES;
+            imagePickerController.allowsEditing = NO;
             imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
             
             [self presentViewController:imagePickerController animated:YES completion:nil];
@@ -270,7 +270,7 @@
                 UIImagePickerController *imagePcikerController = [UIImagePickerController new];
                 imagePcikerController.delegate = self;
                 imagePcikerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                imagePcikerController.allowsEditing = YES;
+                imagePcikerController.allowsEditing = NO;
                 imagePcikerController.showsCameraControls = YES;
                 imagePcikerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
                 imagePcikerController.mediaTypes = @[(NSString *)kUTTypeImage];
@@ -347,7 +347,7 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:NO completion:^{
-        TweetEditingVC *tweetEditingVC = [[TweetEditingVC alloc] initWithImage:info[UIImagePickerControllerEditedImage]];;
+        TweetEditingVC *tweetEditingVC = [[TweetEditingVC alloc] initWithImage:info[UIImagePickerControllerOriginalImage]];;
         UINavigationController *tweetEditNav = [[UINavigationController alloc] initWithRootViewController:tweetEditingVC];
         [self.selectedViewController presentViewController:tweetEditNav animated:NO completion:nil];
         
