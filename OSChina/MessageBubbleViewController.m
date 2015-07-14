@@ -86,4 +86,11 @@
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.didScroll) {
+        self.didScroll();
+    }
+}
+
 @end

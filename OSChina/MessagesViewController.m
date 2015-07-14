@@ -7,7 +7,7 @@
 //
 
 #import "MessagesViewController.h"
-#import "MessageBubbleViewController.h"
+#import "BubbleChatViewController.h"
 #import "Config.h"
 #import "OSCMessage.h"
 #import "MessageCell.h"
@@ -90,9 +90,9 @@ static NSString * const kMessageCellID = @"MessageCell";
     
     if (indexPath.row < self.objects.count) {
         OSCMessage *message = self.objects[indexPath.row];
-        MessageBubbleViewController *messageBubbleVC = [[MessageBubbleViewController alloc] initWithUserID:message.friendID andUserName:message.friendName];
+        BubbleChatViewController *bubbleChatVC = [[BubbleChatViewController alloc] initWithUserID:message.friendID andUserName:message.friendName];
         
-        [self.navigationController pushViewController:messageBubbleVC animated:YES];
+        [self.navigationController pushViewController:bubbleChatVC animated:YES];
         
     } else {
         [self fetchMore];

@@ -13,6 +13,7 @@
 		330381051B53B6CE003527B5 /* MessageBubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381041B53B6CE003527B5 /* MessageBubbleCell.m */; };
 		330381081B53B7CF003527B5 /* MessageBubbleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 330381071B53B7CF003527B5 /* MessageBubbleViewController.m */; };
 		3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3303810A1B53BABA003527B5 /* UIImage+Util.m */; };
+		33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33069DDE1B548C25002122EC /* BubbleChatViewController.m */; };
 		3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */; };
 		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
 		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
@@ -154,6 +155,8 @@
 		330381071B53B7CF003527B5 /* MessageBubbleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleViewController.m; sourceTree = "<group>"; };
 		330381091B53BABA003527B5 /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
 		3303810A1B53BABA003527B5 /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
+		33069DDD1B548C25002122EC /* BubbleChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleChatViewController.h; sourceTree = "<group>"; };
+		33069DDE1B548C25002122EC /* BubbleChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleChatViewController.m; sourceTree = "<group>"; };
 		3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
@@ -426,6 +429,19 @@
 				330381011B53695B003527B5 /* UserOperationCell.m */,
 			);
 			name = "用户详情页";
+			sourceTree = "<group>";
+		};
+		33069DDC1B548B93002122EC /* 气泡对话 */ = {
+			isa = PBXGroup;
+			children = (
+				330381031B53B6CE003527B5 /* MessageBubbleCell.h */,
+				330381041B53B6CE003527B5 /* MessageBubbleCell.m */,
+				330381061B53B7CF003527B5 /* MessageBubbleViewController.h */,
+				330381071B53B7CF003527B5 /* MessageBubbleViewController.m */,
+				33069DDD1B548C25002122EC /* BubbleChatViewController.h */,
+				33069DDE1B548C25002122EC /* BubbleChatViewController.m */,
+			);
+			name = "气泡对话";
 			sourceTree = "<group>";
 		};
 		333561041B457250009A294C /* 软件 */ = {
@@ -905,7 +921,7 @@
 		33B0EF7A1B43C6210037549E /* 我 */ = {
 			isa = PBXGroup;
 			children = (
-				33CC0C651B467D19002819EE /* 留言 */,
+				33CC0C651B467D19002819EE /* 留言列表 */,
 				33CC0C641B467D0E002819EE /* Friends */,
 				3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */,
 				3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */,
@@ -1018,19 +1034,16 @@
 			name = Friends;
 			sourceTree = "<group>";
 		};
-		33CC0C651B467D19002819EE /* 留言 */ = {
+		33CC0C651B467D19002819EE /* 留言列表 */ = {
 			isa = PBXGroup;
 			children = (
+				33069DDC1B548B93002122EC /* 气泡对话 */,
 				33CC0C691B467F82002819EE /* MessageCell.h */,
 				33CC0C6A1B467F82002819EE /* MessageCell.m */,
 				33CC0C6C1B467FAD002819EE /* MessagesViewController.h */,
 				33CC0C6D1B467FAD002819EE /* MessagesViewController.m */,
-				330381031B53B6CE003527B5 /* MessageBubbleCell.h */,
-				330381041B53B6CE003527B5 /* MessageBubbleCell.m */,
-				330381061B53B7CF003527B5 /* MessageBubbleViewController.h */,
-				330381071B53B7CF003527B5 /* MessageBubbleViewController.m */,
 			);
-			name = "留言";
+			name = "留言列表";
 			sourceTree = "<group>";
 		};
 		47197FC03D3DCCEC59BC2931 /* Frameworks */ = {
@@ -1204,6 +1217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */,
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
 				33CC0C681B467D48002819EE /* OSCMessage.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
