@@ -90,15 +90,24 @@
 
 - (void)setContentWithComment:(OSCComment *)comment {
     [self.portrait loadPortrait:comment.portraitURL];
-    [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:comment.content]];
     [self.authorLabel setText:comment.author];
     [self.timeLabel setText:[Utils intervalSinceNow:comment.pubDate]];
     
-    if (comment.references.count == 0) {
+    NSMutableAttributedString *contentString = [[NSMutableAttributedString alloc] initWithAttributedString:[Utils emojiStringFromRawString:comment.content]];
+    if (comment.replies.count > 0) {
+        [contentString appendAttributedString:[OSCComment attributedTextFromReplies:comment.replies]];
+    }
+    
+    [self.contentLabel setAttributedText:contentString];
+    
+    [self dealWithReferences:comment.references];
+}
+
+- (void)dealWithReferences:(NSArray *)references {
+    if (references.count == 0) {
         return;
     }
     
-    NSArray *references = comment.references;
     _currentContainer = [UIView new];
     [self.contentView addSubview:_currentContainer];
     _currentContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -120,15 +129,15 @@
         label.attributedText = referenceText;
         label.backgroundColor = [UIColor colorWithHex:0xFFFAF0];
         [_currentContainer addSubview:label];
-
+        
         UIView *container = [UIView new];
         [_currentContainer addSubview:container];
-
+        
         for (UIView *view in _currentContainer.subviews) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
         }
         NSDictionary *views = NSDictionaryOfVariableBindings(label, container);
-
+        
         [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[container]-<=5-[label]-4-|"
                                                                                   options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
                                                                                   metrics:nil views:views]];
@@ -137,7 +146,7 @@
         
         _currentContainer = container;
     }
-    
+
 }
 
 #pragma mark - 处理长按操作
