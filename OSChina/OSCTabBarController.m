@@ -109,7 +109,7 @@
     _optionButtons = [NSMutableArray new];
     _screenHeight = [UIScreen mainScreen].bounds.size.height;
     _screenWidth  = [UIScreen mainScreen].bounds.size.width;
-    _length = 70;
+    _length = 60;
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
     NSArray *buttonTitles = @[@"文字", @"相册", @"拍照", @"摇一摇", @"扫一扫", @"找人"];
@@ -121,7 +121,7 @@
                                                                    image:[UIImage imageNamed:buttonImages[i]]
                                                                 andColor:[UIColor colorWithHex:buttonColors[i]]];
         
-        optionButton.frame = CGRectMake((_screenWidth/6 * (i%3*2+1) - (_length+16)/2), _screenHeight + 150 + i/3*125,
+        optionButton.frame = CGRectMake((_screenWidth/6 * (i%3*2+1) - (_length+16)/2), _screenHeight + 150 + i/3*100,
                                         _length + 16, _length + [UIFont systemFontOfSize:17].lineHeight + 24);
         [optionButton.button setCornerRadius:_length/2];
         
@@ -182,7 +182,7 @@
             
             UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:button
                                                                          attachedToAnchor:CGPointMake(_screenWidth/6 * (i%3*2+1),
-                                                                                                      _screenHeight + 200 + i/3*125)];
+                                                                                                      _screenHeight + 200 + i/3*100)];
             attachment.damping = 0.5;
             attachment.frequency = 4;
             attachment.length = 1;
@@ -202,7 +202,7 @@
             
             UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:button
                                                                          attachedToAnchor:CGPointMake(_screenWidth/6 * (i%3*2+1),
-                                                                                                      _screenHeight - 250 + i/3*115)];
+                                                                                                      _screenHeight - 200 + i/3*100)];
             attachment.damping = 0.5;
             attachment.frequency = 4;
             attachment.length = 1;
