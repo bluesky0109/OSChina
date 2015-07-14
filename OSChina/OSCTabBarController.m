@@ -28,7 +28,7 @@
 
 #import <RESideMenu/RESideMenu.h>
 
-@interface OSCTabBarController ()
+@interface OSCTabBarController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *blurView;
 @property (nonatomic, assign) BOOL isPressed;
@@ -252,12 +252,31 @@
         }
          
         case 1: {
+            UIImagePickerController *imagePickerController = [UIImagePickerController new];
+            imagePickerController.delegate = self;
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
             
+            [self presentViewController:imagePickerController animated:YES completion:nil];
             break;
         }
 
         case 2: {
-            
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alertView show];
+            } else {
+                UIImagePickerController *imagePcikerController = [UIImagePickerController new];
+                imagePcikerController.delegate = self;
+                imagePcikerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                imagePcikerController.allowsEditing = YES;
+                imagePcikerController.showsCameraControls = YES;
+                imagePcikerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+                imagePcikerController.mediaTypes = @[(NSString *)kUTTypeImage];
+                
+                [self presentViewController:imagePcikerController animated:YES completion:nil];
+            }
             break;
         }
 
@@ -324,5 +343,17 @@
 - (void)onClickMenuButton {
     [self.sideMenuViewController presentLeftMenuViewController];
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:NO completion:^{
+        TweetEditingVC *tweetEditingVC = [[TweetEditingVC alloc] initWithImage:info[UIImagePickerControllerEditedImage]];;
+        UINavigationController *tweetEditNav = [[UINavigationController alloc] initWithRootViewController:tweetEditingVC];
+        [self.selectedViewController presentViewController:tweetEditNav animated:NO completion:nil];
+        
+        [self buttonPressed];
+    }];
+}
+
 
 @end

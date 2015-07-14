@@ -20,22 +20,28 @@
 
 @interface TweetEditingVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) UITextView         *edittingArea;
-@property (nonatomic, strong) UIImageView        *imageView;
-@property (nonatomic, strong) UIToolbar          *toolBar;
-@property (nonatomic, strong) EmojiPageVC        *emojiPageVC;
+@property (nonatomic, strong) UITextView  *edittingArea;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIToolbar   *toolBar;
+@property (nonatomic, strong) EmojiPageVC *emojiPageVC;
+
+@property (nonatomic, strong) UIImage     *image;
+
 @property (nonatomic, assign) NSLayoutConstraint *keyboardHeight;
 
 @end
 
 @implementation TweetEditingVC
 
-- (void)loadView {
-    [super loadView];
+- (instancetype)initWithImage:(UIImage *)image {
+    self = [super init];
+    if (self) {
+        _image = image;
+    }
     
-    [self initSubviews];
-    [self setLayout];
+    return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,6 +51,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"send"] style:UIBarButtonItemStylePlain target:self action:@selector(pubTweet)];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self initSubViews];
+    [self setLayout];
     
     _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_edittingArea];
 }
@@ -68,7 +77,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)initSubviews {
+- (void)initSubViews {
     _edittingArea = [UITextView new];
     _edittingArea.scrollEnabled = NO;
     _edittingArea.font = [UIFont systemFontOfSize:18];
@@ -81,6 +90,8 @@
     _imageView.clipsToBounds = YES;
     [_imageView addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressInImage)]];
     _imageView.userInteractionEnabled = YES;
+    _imageView.image = _image;
+    _image = nil;
     [self.view addSubview:_imageView];
     
     /**** toolBar*******/
