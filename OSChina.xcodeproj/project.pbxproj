@@ -92,6 +92,8 @@
 		338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A11B4E3687006B9507 /* PeopleTableViewController.m */; };
 		338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */; };
 		338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */; };
+		338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F92241B54E58F00BEAAD6 /* OSCReply.m */; };
+		338F92281B54E73D00BEAAD6 /* OSCReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F92271B54E73D00BEAAD6 /* OSCReference.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -304,6 +306,10 @@
 		338F21A41B4E5FD7006B9507 /* TweetDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsCell.m; sourceTree = "<group>"; };
 		338F21A61B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsWithBottomBarViewController.h; sourceTree = "<group>"; };
 		338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsWithBottomBarViewController.m; sourceTree = "<group>"; };
+		338F92231B54E58F00BEAAD6 /* OSCReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCReply.h; sourceTree = "<group>"; };
+		338F92241B54E58F00BEAAD6 /* OSCReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReply.m; sourceTree = "<group>"; };
+		338F92261B54E73D00BEAAD6 /* OSCReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCReference.h; sourceTree = "<group>"; };
+		338F92271B54E73D00BEAAD6 /* OSCReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReference.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -865,6 +871,10 @@
 				337A8F4D1B50D11A00880209 /* OSCActivity.m */,
 				337A8FB71B52AA8B00880209 /* OSCMyInfo.h */,
 				337A8FB81B52AA8B00880209 /* OSCMyInfo.m */,
+				338F92231B54E58F00BEAAD6 /* OSCReply.h */,
+				338F92241B54E58F00BEAAD6 /* OSCReply.m */,
+				338F92261B54E73D00BEAAD6 /* OSCReference.h */,
+				338F92271B54E73D00BEAAD6 /* OSCReference.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1263,6 +1273,7 @@
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
+				338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */,
 				330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */,
 				337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
@@ -1277,6 +1288,7 @@
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
 				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,
 				333595681B43728300AC412A /* OSCComment.m in Sources */,
+				338F92281B54E73D00BEAAD6 /* OSCReference.m in Sources */,
 				3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */,
 				333595721B4385E300AC412A /* BlogsViewController.m in Sources */,
 				33C11ED41B451C6900728AE4 /* DiscoverTableVC.m in Sources */,
