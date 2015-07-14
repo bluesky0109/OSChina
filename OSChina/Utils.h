@@ -13,6 +13,12 @@
 #import "UIImage+Util.h"
 #import <MBProgressHUD.h>
 
+static NSString * const kKeyYears = @"years";
+static NSString * const kKeyMonths = @"months";
+static NSString * const kKeyDays = @"days";
+static NSString * const kKeyHours = @"hours";
+static NSString * const kKeyMinutes = @"minutes";
+
 typedef NS_ENUM(NSUInteger, hudType) {
     hudTypeSendingTweet,
     hudTypeLoading,
@@ -25,6 +31,8 @@ typedef NS_ENUM(NSUInteger, hudType) {
 + (NSString *)generateRelativeNewsString:(NSArray *)relativeNews;
 + (NSString *)GenerateTags:(NSArray *)tags;
 + (void)analysis:(NSString *)url andNavController:(UINavigationController *)navigationController;
+
++ (NSDictionary *)timeIntervalArrayFromString:(NSString *)dateStr;
 
 + (NSString *)intervalSinceNow:(NSString *)dateStr;
 
