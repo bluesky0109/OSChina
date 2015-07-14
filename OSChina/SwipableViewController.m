@@ -6,17 +6,17 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import "SwipeableViewController.h"
+#import "SwipableViewController.h"
 #import "Utils.h"
 
 
-@interface SwipeableViewController ()<UIScrollViewDelegate>
+@interface SwipableViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *controllers;
 
 @end
 
-@implementation SwipeableViewController
+@implementation SwipableViewController
 
 - (instancetype)initWithTitle:(NSString *)title andSubTitles:(NSArray *)subTitles andControllers:(NSArray *)controllers {
     self = [super init];

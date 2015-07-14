@@ -105,7 +105,7 @@
 		339741011B42606C0074D2EA /* LastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740FD1B42606C0074D2EA /* LastCell.m */; };
 		339741071B4260C00074D2EA /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741041B4260C00074D2EA /* TweetsViewController.m */; };
 		339741081B4260C00074D2EA /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741061B4260C00074D2EA /* TweetCell.m */; };
-		3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410B1B4265860074D2EA /* SwipeableViewController.m */; };
+		3397410C1B4265860074D2EA /* SwipableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410B1B4265860074D2EA /* SwipableViewController.m */; };
 		3397410F1B4265B50074D2EA /* HorizonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */; };
 		339741121B4265D40074D2EA /* TitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741111B4265D40074D2EA /* TitleBarView.m */; };
 		339741151B4293310074D2EA /* OSCNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 339741141B4293310074D2EA /* OSCNews.m */; };
@@ -332,8 +332,8 @@
 		339741041B4260C00074D2EA /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		339741051B4260C00074D2EA /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		339741061B4260C00074D2EA /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
-		3397410A1B4265860074D2EA /* SwipeableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableViewController.h; sourceTree = "<group>"; };
-		3397410B1B4265860074D2EA /* SwipeableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableViewController.m; sourceTree = "<group>"; };
+		3397410A1B4265860074D2EA /* SwipableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipableViewController.h; sourceTree = "<group>"; };
+		3397410B1B4265860074D2EA /* SwipableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipableViewController.m; sourceTree = "<group>"; };
 		3397410D1B4265B50074D2EA /* HorizonalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizonalTableViewController.h; sourceTree = "<group>"; };
 		3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizonalTableViewController.m; sourceTree = "<group>"; };
 		339741101B4265D40074D2EA /* TitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBarView.h; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 				337A8FAD1B52738F00880209 /* 侧拉菜单 */,
 				337A8F3E1B50A96900880209 /* 搜索 */,
 				337A8F3D1B50A8D000880209 /* 详情页面 */,
-				339741091B42654F0074D2EA /* SwipeableViewController */,
+				339741091B42654F0074D2EA /* SwipableViewController */,
 				339740E81B4245B60074D2EA /* Tab Bar */,
 				335EB1DE1B42CC3100D28C80 /* OSCObjsViewController.h */,
 				335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */,
@@ -883,17 +883,17 @@
 			name = "动弹";
 			sourceTree = "<group>";
 		};
-		339741091B42654F0074D2EA /* SwipeableViewController */ = {
+		339741091B42654F0074D2EA /* SwipableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3397410A1B4265860074D2EA /* SwipeableViewController.h */,
-				3397410B1B4265860074D2EA /* SwipeableViewController.m */,
+				3397410A1B4265860074D2EA /* SwipableViewController.h */,
+				3397410B1B4265860074D2EA /* SwipableViewController.m */,
 				3397410D1B4265B50074D2EA /* HorizonalTableViewController.h */,
 				3397410E1B4265B50074D2EA /* HorizonalTableViewController.m */,
 				339741101B4265D40074D2EA /* TitleBarView.h */,
 				339741111B4265D40074D2EA /* TitleBarView.m */,
 			);
-			name = SwipeableViewController;
+			name = SwipableViewController;
 			sourceTree = "<group>";
 		};
 		339741191B4296160074D2EA /* 新闻 */ = {
@@ -1273,7 +1273,7 @@
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
 				337A8FB91B52AA8B00880209 /* OSCMyInfo.m in Sources */,
-				3397410C1B4265860074D2EA /* SwipeableViewController.m in Sources */,
+				3397410C1B4265860074D2EA /* SwipableViewController.m in Sources */,
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
 				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,
 				333595681B43728300AC412A /* OSCComment.m in Sources */,

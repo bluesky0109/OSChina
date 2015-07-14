@@ -10,7 +10,7 @@
 #import "TitleBarView.h"
 #import "HorizonalTableViewController.h"
 
-@interface SwipeableViewController : UIViewController
+@interface SwipableViewController : UIViewController
 
 @property (nonatomic, strong) HorizonalTableViewController *viewPager;
 @property (nonatomic, strong) TitleBarView *titleBar;

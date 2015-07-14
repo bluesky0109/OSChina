@@ -7,7 +7,7 @@
 //
 
 #import "UserDetailsViewController.h"
-#import "SwipeableViewController.h"
+#import "SwipableViewController.h"
 #import "FriendsViewController.h"
 #import "BlogsViewController.h"
 #import "BubbleChatViewController.h"
@@ -150,7 +150,7 @@
 #pragma mark - 处理页面跳转
 
 - (void)pushFriendsSVC {
-    SwipeableViewController *friendsSVC = [[SwipeableViewController alloc] initWithTitle:@"关注/粉丝"
+    SwipableViewController *friendsSVC = [[SwipableViewController alloc] initWithTitle:@"关注/粉丝"
                                                                             andSubTitles:@[@"关注", @"粉丝"]
                                                                           andControllers:@[
                                                                                            [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],

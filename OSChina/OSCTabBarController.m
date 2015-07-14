@@ -7,7 +7,7 @@
 //
 
 #import "OSCTabBarController.h"
-#import "SwipeableViewController.h"
+#import "SwipableViewController.h"
 #import "TweetsViewController.h"
 #import "PostsViewController.h"
 #import "NewsViewController.h"
@@ -58,7 +58,7 @@
 
 - (void)loadViewControllers {
     
-    SwipeableViewController *newsSVC = [[SwipeableViewController alloc] initWithTitle:@"综合"
+    SwipableViewController *newsSVC = [[SwipableViewController alloc] initWithTitle:@"综合"
                                                                          andSubTitles:@[@"资讯", @"热点", @"博客", @"推荐"]
                                                                        andControllers:@[
                                                                                         [[NewsViewController alloc] initWithNewsListType:NewsListTypeNews],
@@ -66,7 +66,7 @@
                                                                                         [[BlogsViewController alloc] initWithBlogsType:BlogsTypeLatest],[[BlogsViewController alloc] initWithBlogsType:BlogsTypeRecommended]
                                                                                         ]];
 
-    SwipeableViewController *tweetsSVC = [[SwipeableViewController alloc] initWithTitle:@"动弹"
+    SwipableViewController *tweetsSVC = [[SwipableViewController alloc] initWithTitle:@"动弹"
                                                                            andSubTitles:@[@"最新动弹", @"热门动弹", @"我的动弹"]
                                                                          andControllers:@[
                                                                                           [[TweetsViewController alloc] initWithTweetsType:TweetsTypeAllTweets],
@@ -306,7 +306,7 @@
 #pragma mark - UITabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (self.selectedIndex <= 1 && self.selectedIndex == [tabBar.items indexOfObject:item]) {
-        SwipeableViewController *swipeableVC = (SwipeableViewController *)((UINavigationController *)self.selectedViewController).viewControllers[0];
+        SwipableViewController *swipeableVC = (SwipableViewController *)((UINavigationController *)self.selectedViewController).viewControllers[0];
         OSCObjsViewController *objsVC = (OSCObjsViewController *)swipeableVC.viewPager.childViewControllers[swipeableVC.titleBar.currentIndex];
         
         [objsVC.refreshControl beginRefreshing];
