@@ -41,7 +41,7 @@
         return self;
     }
 
-    __block UserDetailsViewController *weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     self.parseExtraInfo = ^(ONOXMLDocument *XML) {
         ONOXMLElement *userXML = [XML.rootElement firstChildWithTag:@"user"];
         weakSelf.user = [[OSCUser alloc] initWithXML:userXML];
@@ -57,7 +57,7 @@
         return self;
     }
     
-    __block UserDetailsViewController *weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     self.parseExtraInfo = ^(ONOXMLDocument *XML) {
         ONOXMLElement *userXML = [XML.rootElement firstChildWithTag:@"user"];
         weakSelf.user = [[OSCUser alloc] initWithXML:userXML];

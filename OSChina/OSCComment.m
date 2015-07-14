@@ -49,7 +49,7 @@ static NSString * const kRContent = @"rcontent";
             OSCReference *reference = [[OSCReference alloc] initWithXML:referXML];
             [mutableReferences addObject:reference];
         }
-        _refercences = [NSArray arrayWithArray:mutableReferences];
+        _references = [NSArray arrayWithArray:mutableReferences];
     }
     
     return self;

@@ -17,9 +17,9 @@
     self.layer.masksToBounds = YES;
 }
 
-- (void)setBorderWidth:(CGFloat)width andColor:(CGColorRef)color {
+- (void)setBorderWidth:(CGFloat)width andColor:(UIColor *)color {
     self.layer.borderWidth = width;
-    self.layer.borderColor = color;
+    self.layer.borderColor = color.CGColor;
 }
 
 - (UIImage *)convertViewToImage

@@ -36,8 +36,8 @@
         [self.view addSubview:self.viewPager.view];
         
         // 滑动view时切换对应的 titleview
-        __block TitleBarView *weakTitleBar = self.titleBar;
-        __block HorizonalTableViewController *weakViewPager = self.viewPager;
+        __weak TitleBarView *weakTitleBar = self.titleBar;
+        __weak HorizonalTableViewController *weakViewPager = self.viewPager;
         
         
         self.viewPager.changeIndex = ^(NSUInteger index) {
