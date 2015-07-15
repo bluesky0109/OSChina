@@ -208,6 +208,7 @@
     _HUD = [Utils createHUDInWindowOfView:self.view];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     [manager GET:self.detailsURL
       parameters:nil
