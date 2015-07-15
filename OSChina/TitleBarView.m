@@ -29,21 +29,29 @@
         
         NSUInteger i = 0;
         for (NSString *title in titles) {
+            
+            
+
+            
+        }
+        
+        [titles enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL *stop) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.backgroundColor = [UIColor colorWithHex:0xE1E1E1];
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             [button setTitleColor:[UIColor colorWithHex:0x909090] forState:UIControlStateNormal];
             [button setTitle:title forState:UIControlStateNormal];
             
-            button.frame = CGRectMake(buttonWidth * i, 0, buttonWidth, buttonHeight);
-            button.tag = i++;
+            button.frame = CGRectMake(buttonWidth * idx, 0, buttonWidth, buttonHeight);
+            button.tag = idx;
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-            [self addSubview:button];
+            
             [self.titleButtons addObject:button];
-        }
+            [self addSubview:button];
+            [self sendSubviewToBack:button];
+        }];
         
-        self.contentSize = CGSizeMake(buttonWidth * i, buttonHeight);
+        self.contentSize = CGSizeMake(frame.size.width, buttonHeight);
         self.showsHorizontalScrollIndicator = NO;
         
         UIButton *firstTitle = self.titleButtons.firstObject;
