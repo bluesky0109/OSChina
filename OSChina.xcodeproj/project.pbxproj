@@ -15,6 +15,8 @@
 		3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3303810A1B53BABA003527B5 /* UIImage+Util.m */; };
 		33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33069DDE1B548C25002122EC /* BubbleChatViewController.m */; };
 		3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */; };
+		3323CF291B5695A400622743 /* OSLicense.html in Resources */ = {isa = PBXBuildFile; fileRef = 3323CF281B5695A400622743 /* OSLicense.html */; };
+		3323CF2C1B56960B00622743 /* OSLicensePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3323CF2B1B56960B00622743 /* OSLicensePage.m */; };
 		333561071B457288009A294C /* SoftwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561061B457288009A294C /* SoftwareCell.m */; };
 		3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333561091B45730F009A294C /* SoftwareListVC.m */; };
 		3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335610C1B4573F4009A294C /* SoftwareCatalogVC.m */; };
@@ -169,6 +171,9 @@
 		33069DDE1B548C25002122EC /* BubbleChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleChatViewController.m; sourceTree = "<group>"; };
 		3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
 		3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
+		3323CF281B5695A400622743 /* OSLicense.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = OSLicense.html; sourceTree = "<group>"; };
+		3323CF2A1B56960B00622743 /* OSLicensePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLicensePage.h; sourceTree = "<group>"; };
+		3323CF2B1B56960B00622743 /* OSLicensePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLicensePage.m; sourceTree = "<group>"; };
 		333561051B457288009A294C /* SoftwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareCell.h; sourceTree = "<group>"; };
 		333561061B457288009A294C /* SoftwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoftwareCell.m; sourceTree = "<group>"; };
 		333561081B45730F009A294C /* SoftwareListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftwareListVC.h; sourceTree = "<group>"; };
@@ -474,6 +479,22 @@
 			name = "气泡对话";
 			sourceTree = "<group>";
 		};
+		3323CF261B56958700622743 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3323CF271B56959500622743 /* html */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		3323CF271B56959500622743 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				3323CF281B5695A400622743 /* OSLicense.html */,
+			);
+			name = html;
+			sourceTree = "<group>";
+		};
 		333561041B457250009A294C /* 软件 */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +583,8 @@
 				3346CA511B568A2C0038BDFB /* SettingsPage.m */,
 				3346CA531B568A4B0038BDFB /* AboutPage.h */,
 				3346CA541B568A4B0038BDFB /* AboutPage.m */,
+				3323CF2A1B56960B00622743 /* OSLicensePage.h */,
+				3323CF2B1B56960B00622743 /* OSLicensePage.m */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -812,6 +835,7 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				3323CF261B56958700622743 /* Resource */,
 				337A8F5F1B510CC400880209 /* UMSocial_Sdk_4.2.1 */,
 				333561041B457250009A294C /* 软件 */,
 				33C11ED01B451C3400728AE4 /* 发现 */,
@@ -1228,6 +1252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3323CF291B5695A400622743 /* OSLicense.html in Resources */,
 				337A8F961B510CC400880209 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				337A8F8E1B510CC400880209 /* UMShareEditViewController.xib in Resources */,
 				337A8F8D1B510CC400880209 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -1329,6 +1354,7 @@
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,
+				3323CF2C1B56960B00622743 /* OSLicensePage.m in Sources */,
 				3387765F1B4CC568001581A4 /* OptionButton.m in Sources */,
 				33886F881B4F9894002B2537 /* OperationBar.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
