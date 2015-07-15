@@ -74,6 +74,7 @@
     _HUD.dimBackground = YES;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
     [manager GET:[NSString stringWithFormat:@"%@%@?id=%lld", OSCAPI_PREFIX, OSCAPI_TWEET_DETAIL, _tweetID]
@@ -125,7 +126,7 @@
     } else {
         NSString *title;
         if (self.tweet.commentCount) {
-            title = [NSString stringWithFormat:@"%d 条评论", self.allCount];
+            title = [NSString stringWithFormat:@"%d 条评论", self.tweet.commentCount];
         } else {
             title = @"没有评论";
         }
