@@ -98,7 +98,6 @@ static NSString *kCommentCellID = @"CommentCell";
         cell.portrait.tag = row;
         cell.authorLabel.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
-        [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         
         return cell;
     } else {
