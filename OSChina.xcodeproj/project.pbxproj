@@ -41,6 +41,8 @@
 		334687A41B5647C4004B3E75 /* ActivitySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */; };
 		3346CA4B1B567FD10038BDFB /* OSCEventPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */; };
 		3346CA4E1B5680710038BDFB /* PresentMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */; };
+		3346CA521B568A2C0038BDFB /* SettingsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA511B568A2C0038BDFB /* SettingsPage.m */; };
+		3346CA551B568A4B0038BDFB /* AboutPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA541B568A4B0038BDFB /* AboutPage.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -219,6 +221,10 @@
 		3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCEventPersonInfo.m; sourceTree = "<group>"; };
 		3346CA4C1B5680710038BDFB /* PresentMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentMembersViewController.h; sourceTree = "<group>"; };
 		3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentMembersViewController.m; sourceTree = "<group>"; };
+		3346CA501B568A2C0038BDFB /* SettingsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPage.h; sourceTree = "<group>"; };
+		3346CA511B568A2C0038BDFB /* SettingsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsPage.m; sourceTree = "<group>"; };
+		3346CA531B568A4B0038BDFB /* AboutPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPage.h; sourceTree = "<group>"; };
+		3346CA541B568A4B0038BDFB /* AboutPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPage.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -549,6 +555,17 @@
 			name = "消息中心";
 			sourceTree = "<group>";
 		};
+		3346CA4F1B5689F60038BDFB /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				3346CA501B568A2C0038BDFB /* SettingsPage.h */,
+				3346CA511B568A2C0038BDFB /* SettingsPage.m */,
+				3346CA531B568A4B0038BDFB /* AboutPage.h */,
+				3346CA541B568A4B0038BDFB /* AboutPage.m */,
+			);
+			name = "设置";
+			sourceTree = "<group>";
+		};
 		33525B811B4FF4ED00D16125 /* 摇一摇 */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +749,7 @@
 		337A8FAD1B52738F00880209 /* 侧拉菜单 */ = {
 			isa = PBXGroup;
 			children = (
+				3346CA4F1B5689F60038BDFB /* 设置 */,
 				337A8FAA1B5243E600880209 /* SideMenuViewController.h */,
 				337A8FAB1B5243E600880209 /* SideMenuViewController.m */,
 			);
@@ -1319,6 +1337,7 @@
 				3397411F1B4296550074D2EA /* NewsCell.m in Sources */,
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
+				3346CA551B568A4B0038BDFB /* AboutPage.m in Sources */,
 				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
 				334687A11B563923004B3E75 /* TextViewWithPlaceholder.m in Sources */,
 				338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */,
@@ -1366,6 +1385,7 @@
 				3346CA4E1B5680710038BDFB /* PresentMembersViewController.m in Sources */,
 				33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
+				3346CA521B568A2C0038BDFB /* SettingsPage.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
 				338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */,
 				33886F8C1B4FB1B7002B2537 /* ScanViewController.m in Sources */,
