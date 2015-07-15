@@ -18,6 +18,7 @@
 
 #import <RESideMenu.h>
 #import <MBProgressHUD.h>
+#import <AFNetworking.h>
 
 @interface SideMenuViewController ()
 
@@ -42,10 +43,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger number = 4;
     if ([Config getOwnID]) {
-        return 4;
+        ++number;
     }
-    return 3;
+    return number;
 }
 
 
@@ -53,8 +55,8 @@
     UITableViewCell *cell = [UITableViewCell new];
     cell.backgroundColor = [UIColor themeColor];
     
-    cell.imageView.image = [UIImage imageNamed:@[@"sidemenu-QA", @"sidemenu-software", @"sidemenu-blog", @"sidemenu-logout"][indexPath.row]];
-    cell.textLabel.text = @[@"技术问答", @"开源软件", @"博客区", @"注销"][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:@[@"sidemenu-QA", @"sidemenu-software", @"sidemenu-blog", @"", @"sidemenu-logout"][indexPath.row]];
+    cell.textLabel.text = @[@"技术问答", @"开源软件", @"博客区", @"清理缓存", @"注销"][indexPath.row];
     
     return cell;
 }
@@ -119,7 +121,13 @@
             break;
         }
             
+            
         case 3: {
+            [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            break;
+        }
+            
+        case 4: {
             
             [Config saveOwnID:0];
             
