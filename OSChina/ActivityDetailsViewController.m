@@ -7,6 +7,7 @@
 //
 
 #import "ActivityDetailsViewController.h"
+#import "ActivitySignUpViewController.h"
 #import "OSCActivity.h"
 #import "ActivityBasicInfoCell.h"
 #import "ActivityDetailsCell.h"
@@ -95,7 +96,7 @@
             cell.textLabel.text = @"活动详情";
             cell.textLabel.textColor = [UIColor darkGrayColor];
             cell.backgroundColor = [UIColor themeColor];
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         
@@ -168,18 +169,9 @@
 #pragma mark - 报名
 - (void)enrollActivity
 {
-#if 0
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_EVENT_APPLY]
-      parameters:@{
-                             }
-          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
-
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         }];
-#endif
+    ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
+    
+    [self.navigationController pushViewController:signUpVC animated:YES];
 }
 
 @end

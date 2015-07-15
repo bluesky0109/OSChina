@@ -38,6 +38,7 @@
 		334687991B55DF6F004B3E75 /* OSCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687981B55DF6F004B3E75 /* OSCThread.m */; };
 		3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346879D1B55F029004B3E75 /* MessageCenter.m */; };
 		334687A11B563923004B3E75 /* TextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */; };
+		334687A41B5647C4004B3E75 /* ActivitySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -210,6 +211,8 @@
 		3346879D1B55F029004B3E75 /* MessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenter.m; sourceTree = "<group>"; };
 		3346879F1B563923004B3E75 /* TextViewWithPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewWithPlaceholder.h; sourceTree = "<group>"; };
 		334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewWithPlaceholder.m; sourceTree = "<group>"; };
+		334687A21B5647C4004B3E75 /* ActivitySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySignUpViewController.h; sourceTree = "<group>"; };
+		334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySignUpViewController.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -624,6 +627,8 @@
 				337A8F5A1B50D83B00880209 /* ActivityBasicInfoCell.m */,
 				337A8F5C1B50D8D800880209 /* ActivityDetailsViewController.h */,
 				337A8F5D1B50D8D800880209 /* ActivityDetailsViewController.m */,
+				334687A21B5647C4004B3E75 /* ActivitySignUpViewController.h */,
+				334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */,
 			);
 			name = "活动详情";
 			sourceTree = "<group>";
@@ -1313,6 +1318,7 @@
 				337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				33CC0C601B467245002819EE /* PersonCell.m in Sources */,
+				334687A41B5647C4004B3E75 /* ActivitySignUpViewController.m in Sources */,
 				337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
