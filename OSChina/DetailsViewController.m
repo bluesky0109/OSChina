@@ -206,6 +206,7 @@
     [self.editingBar.modeSwitchButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     
     _HUD = [Utils createHUDInWindowOfView:self.view];
+    _HUD.userInteractionEnabled = NO;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
@@ -242,6 +243,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [_HUD hide:YES];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
