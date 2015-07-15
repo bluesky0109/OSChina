@@ -39,6 +39,7 @@
     RESideMenu *sideMenuTabBarVC = [[RESideMenu alloc] initWithContentViewController:tabBarController leftMenuViewController:[SideMenuViewController new] rightMenuViewController:nil];
     
     sideMenuTabBarVC.scaleContentView = NO;
+    sideMenuTabBarVC.contentViewScaleValue = 0.95;
     sideMenuTabBarVC.scaleMenuView = NO;
     sideMenuTabBarVC.contentViewShadowEnabled = YES;
     sideMenuTabBarVC.contentViewShadowRadius = 4.5;
@@ -56,6 +57,10 @@
     [UISearchBar appearance].tintColor = [UIColor colorWithHex:0x15A230];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setCornerRadius:14.0];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setAlpha:0.6];
+    
+    [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithHex:0xE1E1E1]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHex:0x15A230]} forState:UIControlStateSelected];
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];

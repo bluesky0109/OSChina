@@ -91,7 +91,7 @@
              [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
                                    withRowAnimation:UITableViewRowAnimationNone];
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"wrong");
+             [_HUD hide:YES];
          }];
 }
 
