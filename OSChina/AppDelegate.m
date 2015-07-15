@@ -38,7 +38,7 @@
     
     RESideMenu *sideMenuTabBarVC = [[RESideMenu alloc] initWithContentViewController:tabBarController leftMenuViewController:[SideMenuViewController new] rightMenuViewController:nil];
     
-    sideMenuTabBarVC.scaleContentView = NO;
+    sideMenuTabBarVC.scaleContentView = YES;
     sideMenuTabBarVC.contentViewScaleValue = 0.95;
     sideMenuTabBarVC.scaleMenuView = NO;
     sideMenuTabBarVC.contentViewShadowEnabled = YES;

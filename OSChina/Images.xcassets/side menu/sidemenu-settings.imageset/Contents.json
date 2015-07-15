@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "sidemenu-setting.png"
+      "filename" : "sidemenu-settings.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "sidemenu-setting@2x.png"
+      "filename" : "sidemenu-settings@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "sidemenu-setting@3x.png"
+      "filename" : "sidemenu-settings@3x.png"
     }
   ],
   "info" : {

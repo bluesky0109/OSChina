@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor themeColor];
+    self.tableView.backgroundColor = [UIColor colorWithHex:0x15A230];
     self.tableView.bounces = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -50,9 +50,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [UITableViewCell new];
-    cell.backgroundColor = [UIColor themeColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@[@"sidemenu-QA", @"sidemenu-software", @"sidemenu-blog", @"", @"sidemenu-logout"][indexPath.row]];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
+    cell.textLabel.font = [UIFont systemFontOfSize:21];
+    cell.imageView.image = [UIImage imageNamed:@[@"sidemenu-QA", @"sidemenu-software", @"sidemenu-blog", @"sidemenu-settings"][indexPath.row]];
     cell.textLabel.text = @[@"技术问答", @"开源软件", @"博客区", @"设置", @"注销"][indexPath.row];
     
     return cell;
@@ -65,23 +66,31 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 64;
+    return 160;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [UIView new];
-    headerView.backgroundColor = [UIColor colorWithHex:0x15A230];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *portrait = [UIImageView new];
+    portrait.contentMode = UIViewContentModeScaleAspectFit;
+    [portrait setCornerRadius:30];
+    [portrait loadPortrait:[NSURL URLWithString:@"http://static.oschina.net/uploads/user/1145/2290066_100.jpg?t=1418470437000"]];
+    portrait.userInteractionEnabled = YES;
+    portrait.translatesAutoresizingMaskIntoConstraints = NO;
+    [headerView addSubview:portrait];
     
     UILabel *titleLabel = [UILabel new];
-    titleLabel.text = @"开源中国";
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.text = @"bluesky0109";
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];
     titleLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [headerView addSubview:titleLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel]-10-|" options:0 metrics:nil views:views]];
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[titleLabel]" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(portrait,titleLabel);
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[portrait(60)]-35-|" options:0 metrics:nil views:views]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-15-[portrait(60)]-8-[titleLabel]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
     return headerView;
 }
