@@ -36,6 +36,7 @@
 		3335958E1B43C40000AC412A /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958D1B43C40000AC412A /* Config.m */; };
 		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
 		334687991B55DF6F004B3E75 /* OSCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687981B55DF6F004B3E75 /* OSCThread.m */; };
+		3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346879D1B55F029004B3E75 /* MessageCenter.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -204,6 +205,8 @@
 		333595901B43C48E00AC412A /* OSCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUser.m; sourceTree = "<group>"; };
 		334687971B55DF6F004B3E75 /* OSCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCThread.h; sourceTree = "<group>"; };
 		334687981B55DF6F004B3E75 /* OSCThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCThread.m; sourceTree = "<group>"; };
+		3346879C1B55F029004B3E75 /* MessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCenter.h; sourceTree = "<group>"; };
+		3346879D1B55F029004B3E75 /* MessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenter.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -514,6 +517,24 @@
 				333595741B4385FA00AC412A /* BlogCell.m */,
 			);
 			name = "博客";
+			sourceTree = "<group>";
+		};
+		3346879A1B55EF21004B3E75 /* 收藏 */ = {
+			isa = PBXGroup;
+			children = (
+				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
+				33CC0C5C1B465A57002819EE /* FavoritesViewController.m */,
+			);
+			name = "收藏";
+			sourceTree = "<group>";
+		};
+		3346879B1B55EF3C004B3E75 /* 消息中心 */ = {
+			isa = PBXGroup;
+			children = (
+				3346879C1B55F029004B3E75 /* MessageCenter.h */,
+				3346879D1B55F029004B3E75 /* MessageCenter.m */,
+			);
+			name = "消息中心";
 			sourceTree = "<group>";
 		};
 		33525B811B4FF4ED00D16125 /* 摇一摇 */ = {
@@ -936,12 +957,12 @@
 		33B0EF7A1B43C6210037549E /* 我 */ = {
 			isa = PBXGroup;
 			children = (
+				3346879B1B55EF3C004B3E75 /* 消息中心 */,
+				3346879A1B55EF21004B3E75 /* 收藏 */,
 				33CC0C651B467D19002819EE /* 留言列表 */,
-				33CC0C641B467D0E002819EE /* Friends */,
+				33CC0C641B467D0E002819EE /* 关注/粉丝 */,
 				3321C2231B43C6E5003B73C8 /* MyInfoViewController.h */,
 				3321C2241B43C6E5003B73C8 /* MyInfoViewController.m */,
-				33CC0C5B1B465A57002819EE /* FavoritesViewController.h */,
-				33CC0C5C1B465A57002819EE /* FavoritesViewController.m */,
 				330380F91B533F90003527B5 /* MyBasicInfoViewController.h */,
 				330380FA1B533F90003527B5 /* MyBasicInfoViewController.m */,
 			);
@@ -1040,13 +1061,13 @@
 			name = Blog;
 			sourceTree = "<group>";
 		};
-		33CC0C641B467D0E002819EE /* Friends */ = {
+		33CC0C641B467D0E002819EE /* 关注/粉丝 */ = {
 			isa = PBXGroup;
 			children = (
 				33CC0C611B46774D002819EE /* FriendsViewController.h */,
 				33CC0C621B46774D002819EE /* FriendsViewController.m */,
 			);
-			name = Friends;
+			name = "关注/粉丝";
 			sourceTree = "<group>";
 		};
 		33CC0C651B467D19002819EE /* 留言列表 */ = {
@@ -1262,6 +1283,7 @@
 				338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */,
 				337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */,
 				337A8F511B50D19F00880209 /* ActivityCell.m in Sources */,
+				3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */,
