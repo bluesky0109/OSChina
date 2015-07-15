@@ -8,11 +8,11 @@
 
 #import "ActivityDetailsViewController.h"
 #import "ActivitySignUpViewController.h"
+#import "PresentMembersViewController.h"
 #import "OSCActivity.h"
 #import "ActivityBasicInfoCell.h"
 #import "ActivityDetailsCell.h"
 #import "OSCAPI.h"
-#import "OSCActivity.h"
 #import "OSCPostDetails.h"
 #import "Utils.h"
 
@@ -89,11 +89,26 @@
             cell.titleLabel.text = _activity.title;
             cell.timeLabel.text = [NSString stringWithFormat:@"开始：%@\n结束：%@", _activity.startTime, _activity.endTime];
             cell.locationLabel.text = [NSString stringWithFormat:@"地点：%@ %@", _activity.city, _activity.location];
-            [cell.applicationButton addTarget:self action:@selector(enrollActivity) forControlEvents:UIControlEventTouchUpInside];
             
-            if (postDetails.category == 4) {
-                [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
+            
+            if (postDetails.applyStatus == 1) {
+                [cell.applicationButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                [cell.applicationButton setTitle:@"你的报名已确认，现场可以扫描二维码签到！" forState:UIControlStateNormal];
+                cell.applicationButton.titleLabel.font = [UIFont systemFontOfSize:14];
+                [cell.applicationButton setBackgroundColor:[UIColor clearColor]];
+            } else {
+                if (postDetails.category == 4) {
+                    [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
+                }
+                
+                if (postDetails.category == 2) {
+                    [cell.applicationButton setTitle:@"出席人员" forState:UIControlStateNormal];
+                }
+                
+                 [cell.applicationButton addTarget:self action:@selector(enrollActivity) forControlEvents:UIControlEventTouchUpInside];
             }
+            
+            
             return cell;
         }
           
@@ -178,6 +193,9 @@
 {
     if (postDetails.category == 4) {
         [[UIApplication sharedApplication] openURL:postDetails.signUpUrl];
+    } else if (postDetails.category == 2) {
+        PresentMembersViewController *presentMembersViewController = [[PresentMembersViewController alloc] initWithEventID:postDetails.postID];
+        [self.navigationController pushViewController:presentMembersViewController animated:YES];
     } else {
         ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
         signUpVC.eventId = postDetails.postID;

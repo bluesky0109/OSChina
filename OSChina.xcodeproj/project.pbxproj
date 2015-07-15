@@ -39,6 +39,8 @@
 		3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346879D1B55F029004B3E75 /* MessageCenter.m */; };
 		334687A11B563923004B3E75 /* TextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */; };
 		334687A41B5647C4004B3E75 /* ActivitySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */; };
+		3346CA4B1B567FD10038BDFB /* OSCEventPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */; };
+		3346CA4E1B5680710038BDFB /* PresentMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -213,6 +215,10 @@
 		334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewWithPlaceholder.m; sourceTree = "<group>"; };
 		334687A21B5647C4004B3E75 /* ActivitySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySignUpViewController.h; sourceTree = "<group>"; };
 		334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySignUpViewController.m; sourceTree = "<group>"; };
+		3346CA491B567FD10038BDFB /* OSCEventPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCEventPersonInfo.h; sourceTree = "<group>"; };
+		3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCEventPersonInfo.m; sourceTree = "<group>"; };
+		3346CA4C1B5680710038BDFB /* PresentMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentMembersViewController.h; sourceTree = "<group>"; };
+		3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentMembersViewController.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -629,6 +635,8 @@
 				337A8F5D1B50D8D800880209 /* ActivityDetailsViewController.m */,
 				334687A21B5647C4004B3E75 /* ActivitySignUpViewController.h */,
 				334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */,
+				3346CA4C1B5680710038BDFB /* PresentMembersViewController.h */,
+				3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */,
 			);
 			name = "活动详情";
 			sourceTree = "<group>";
@@ -909,6 +917,8 @@
 				338F92241B54E58F00BEAAD6 /* OSCReply.m */,
 				338F92261B54E73D00BEAAD6 /* OSCReference.h */,
 				338F92271B54E73D00BEAAD6 /* OSCReference.m */,
+				3346CA491B567FD10038BDFB /* OSCEventPersonInfo.h */,
+				3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1319,6 +1329,7 @@
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
 				33CC0C601B467245002819EE /* PersonCell.m in Sources */,
 				334687A41B5647C4004B3E75 /* ActivitySignUpViewController.m in Sources */,
+				3346CA4B1B567FD10038BDFB /* OSCEventPersonInfo.m in Sources */,
 				337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
 				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
@@ -1352,6 +1363,7 @@
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */,
+				3346CA4E1B5680710038BDFB /* PresentMembersViewController.m in Sources */,
 				33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
