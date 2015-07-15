@@ -202,8 +202,8 @@
     setButtonStyle(_fansBtn, [NSString stringWithFormat:@"粉丝\n%d",_myInfo.fansCount]);
     
     [_collectionsBtn addTarget:self action:@selector(pushFavoriteSVC) forControlEvents:UIControlEventTouchUpInside];
-    [_followsBtn addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
-    [_fansBtn addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
+    [_followsBtn addTarget:self action:@selector(pushFriendsSVC:) forControlEvents:UIControlEventTouchUpInside];
+    [_fansBtn addTarget:self action:@selector(pushFriendsSVC:) forControlEvents:UIControlEventTouchUpInside];
     
     for (UIView *view in header.subviews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
@@ -268,8 +268,12 @@
     [self.navigationController pushViewController:favoritesSVC animated:YES];
 }
 
-- (void)pushFriendsSVC {
+- (void)pushFriendsSVC:(UIButton *)button {
     SwipableViewController *friendsSVC = [[SwipableViewController alloc] initWithTitle:@"关注/粉丝" andSubTitles:@[@"关注",@"粉丝"] andControllers:@[[[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:1],[[FriendsViewController alloc] initWithUserID:_myID andFriendsRelation:0]]];
+    
+    if (button == _fansBtn) {
+        [friendsSVC scrollToViewAtIndex:1];
+    }
     friendsSVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:friendsSVC animated:YES];
 }
