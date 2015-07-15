@@ -66,7 +66,7 @@ static NSString * const kObjectCatalog = @"objectcatalog";
         
         _hasAnImage = ![_tweetImg.absoluteString isEqualToString:@""];
         _hasReference = ![_objectReply[1] isEqualToString:@""];
-        _shouldShowClientOrCommentCount = _appclient != 1 || _commentCount > 0;
+        _shouldShowClientOrCommentCount = (_appclient != 0 && _appclient != 1) || _commentCount > 0;
     }
     
     return self;

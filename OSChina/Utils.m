@@ -29,6 +29,7 @@
 + (NSString *)getAppclient:(int)clientType
 {
     switch (clientType) {
+        case 0:
         case 1:
             return @"";
         case 2:
