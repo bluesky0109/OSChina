@@ -76,6 +76,7 @@
     [self.contentView addSubview:_thumbnail];
     
     _referenceText = [UITextView new];
+    _referenceText.backgroundColor = [UIColor colorWithHex:0xDEDEDE];
     _referenceText.scrollEnabled = NO;
     _referenceText.editable = NO;
     _referenceText.translatesAutoresizingMaskIntoConstraints = NO;
@@ -114,7 +115,7 @@
                                       // 这里referenceText 跟 thumbnail 的位置应该交换，但因为交换后图片会上移(referenceText占位)，所以暂时这样，以后应处理。
                                                                              options:NSLayoutFormatAlignAllLeft metrics:metrics views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]->=0-[_referenceText]"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-<=5@500-[_referenceText]"
                                                                              options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_appclientLabel]->=0-[_commentCount]-5-|"
