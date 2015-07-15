@@ -11,6 +11,8 @@
 #import "SideMenuViewController.h"
 #import "UIColor+Util.h"
 #import "UIView+Util.h"
+#import "OSCThread.h"
+#import "Config.h"
 
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
@@ -58,6 +60,11 @@
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];
     pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
+    
+    /**********检测通知（主动定时请求数据）*********/
+    if ([Config getOwnID] != 0) {
+        [OSCThread startPollingNotice];
+    }
     
     /************ 友盟分享组件 **************/
 //    [UMSocialData openLog:YES];

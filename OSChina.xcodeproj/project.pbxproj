@@ -35,6 +35,7 @@
 		3335958B1B43C1F500AC412A /* EditingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958A1B43C1F500AC412A /* EditingBar.m */; };
 		3335958E1B43C40000AC412A /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3335958D1B43C40000AC412A /* Config.m */; };
 		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
+		334687991B55DF6F004B3E75 /* OSCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687981B55DF6F004B3E75 /* OSCThread.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -201,6 +202,8 @@
 		3335958D1B43C40000AC412A /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		3335958F1B43C48E00AC412A /* OSCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUser.h; sourceTree = "<group>"; };
 		333595901B43C48E00AC412A /* OSCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUser.m; sourceTree = "<group>"; };
+		334687971B55DF6F004B3E75 /* OSCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCThread.h; sourceTree = "<group>"; };
+		334687981B55DF6F004B3E75 /* OSCThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCThread.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -837,6 +840,8 @@
 				339740F71B42606C0074D2EA /* Utils.m */,
 				3335958C1B43C40000AC412A /* Config.h */,
 				3335958D1B43C40000AC412A /* Config.m */,
+				334687971B55DF6F004B3E75 /* OSCThread.h */,
+				334687981B55DF6F004B3E75 /* OSCThread.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1298,6 +1303,7 @@
 				3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,
+				334687991B55DF6F004B3E75 /* OSCThread.m in Sources */,
 				333561071B457288009A294C /* SoftwareCell.m in Sources */,
 				3335956F1B43857A00AC412A /* OSCBlog.m in Sources */,
 				33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */,
