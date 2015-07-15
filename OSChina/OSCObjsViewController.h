@@ -23,6 +23,7 @@
 @property (nonatomic, copy) void (^parseExtraInfo)(ONOXMLDocument *);
 @property (nonatomic, copy) NSString * (^generateURL)(NSUInteger page);
 @property (nonatomic, copy) void (^tableWillReload)(NSUInteger responseObjectsCount);
+@property (nonatomic, copy) void (^didRefreshSucceed)();
 
 @property Class objClass;
 

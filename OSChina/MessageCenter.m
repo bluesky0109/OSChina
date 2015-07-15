@@ -7,11 +7,11 @@
 //
 
 #import "MessageCenter.h"
-#import "Config.h"
+#import "OSCObjsViewController.h"
 #import "EventsViewController.h"
 #import "FriendsViewController.h"
 #import "MessagesViewController.h"
-
+#import "Config.h"
 #import "UIButton+Badge.h"
 
 @interface MessageCenter ()
@@ -37,6 +37,14 @@
             button.badgeOriginY = (button.frame.size.height - button.badge.frame.size.height) / 2;
             button.badgeBGColor = [UIColor redColor];
             button.badgeTextColor = [UIColor whiteColor];
+        }];
+        
+        __weak typeof(self) weakSelf = self;
+        [self.viewPager.controllers enumerateObjectsUsingBlock:^(OSCObjsViewController *vc, NSUInteger idx, BOOL *stop) {
+            vc.didRefreshSucceed = ^ {
+                UIButton *button = weakSelf.titleBar.titleButtons[idx];
+                button.badgeValue = @"0";
+            };
         }];
     }
     
