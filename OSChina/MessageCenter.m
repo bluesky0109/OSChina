@@ -107,7 +107,7 @@
     
     [self.titleBar.titleButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         [self setBadgeValue:[noticeCounts[idx] stringValue] forButton:button];
-        sumOfCount += [[noticeCounts][idx] intValue];
+        sumOfCount += [noticeCounts[idx] intValue];
         
         if (needAutoScroll && [noticeCounts[idx] intValue] && !scrolled) {
             [self scrollToViewAtIndex:idx];
