@@ -58,8 +58,7 @@
     __weak typeof(self) weakSelf = self;
     
     _commentsVC.didCommentSelected = ^(OSCComment *comment) {
-        //NSString *stringToInsert = [NSString stringWithFormat:@"@%@ ", authorName];
-        //[weakSelf.editingBar.editView replaceRange:weakSelf.editingBar.editView.selectedTextRange withText:stringToInsert];
+        [weakSelf.editingBar.editView setPlaceholder:[NSString stringWithFormat:@"回复%@：", comment.author]];
     };
     
     _commentsVC.didScroll = ^ {
