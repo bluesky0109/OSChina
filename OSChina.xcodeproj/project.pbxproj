@@ -37,6 +37,7 @@
 		333595911B43C48E00AC412A /* OSCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 333595901B43C48E00AC412A /* OSCUser.m */; };
 		334687991B55DF6F004B3E75 /* OSCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687981B55DF6F004B3E75 /* OSCThread.m */; };
 		3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3346879D1B55F029004B3E75 /* MessageCenter.m */; };
+		334687A11B563923004B3E75 /* TextViewWithPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */; };
 		33525B841B4FF51F00D16125 /* ShakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B831B4FF51F00D16125 /* ShakingViewController.m */; };
 		33525B871B4FF70400D16125 /* OSCRandomMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33525B861B4FF70400D16125 /* OSCRandomMessage.m */; };
 		335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1DF1B42CC3100D28C80 /* OSCObjsViewController.m */; };
@@ -207,6 +208,8 @@
 		334687981B55DF6F004B3E75 /* OSCThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCThread.m; sourceTree = "<group>"; };
 		3346879C1B55F029004B3E75 /* MessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCenter.h; sourceTree = "<group>"; };
 		3346879D1B55F029004B3E75 /* MessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenter.m; sourceTree = "<group>"; };
+		3346879F1B563923004B3E75 /* TextViewWithPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewWithPlaceholder.h; sourceTree = "<group>"; };
+		334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewWithPlaceholder.m; sourceTree = "<group>"; };
 		33525B821B4FF51F00D16125 /* ShakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakingViewController.h; sourceTree = "<group>"; };
 		33525B831B4FF51F00D16125 /* ShakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakingViewController.m; sourceTree = "<group>"; };
 		33525B851B4FF70400D16125 /* OSCRandomMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRandomMessage.h; sourceTree = "<group>"; };
@@ -978,6 +981,8 @@
 				339740FD1B42606C0074D2EA /* LastCell.m */,
 				33C11EC61B45073700728AE4 /* EmojiPanel */,
 				33C11EC51B45072B00728AE4 /* BottomBar */,
+				3346879F1B563923004B3E75 /* TextViewWithPlaceholder.h */,
+				334687A01B563923004B3E75 /* TextViewWithPlaceholder.m */,
 			);
 			name = Component;
 			sourceTree = "<group>";
@@ -1300,6 +1305,7 @@
 				33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */,
 				339741001B42606C0074D2EA /* UIColor+Util.m in Sources */,
 				338F21A51B4E5FD7006B9507 /* TweetDetailsCell.m in Sources */,
+				334687A11B563923004B3E75 /* TextViewWithPlaceholder.m in Sources */,
 				338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */,
 				330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */,
 				337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */,

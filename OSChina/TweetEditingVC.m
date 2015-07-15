@@ -11,6 +11,8 @@
 #import "OSCAPI.h"
 #import "Config.h"
 #import "Utils.h"
+#import "TextViewWithPlaceholder.h"
+
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <objc/runtime.h>
 #import <AFNetworking.h>
@@ -18,16 +20,17 @@
 #import <Ono.h>
 #import <MBProgressHUD.h>
 
+
 @interface TweetEditingVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) UITextView  *edittingArea;
-@property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIToolbar   *toolBar;
-@property (nonatomic, strong) EmojiPageVC *emojiPageVC;
+@property (nonatomic, strong) TextViewWithPlaceholder *edittingArea;
+@property (nonatomic, strong) UIImageView             *imageView;
+@property (nonatomic, strong) UIToolbar               *toolBar;
+@property (nonatomic, strong) EmojiPageVC             *emojiPageVC;
 
-@property (nonatomic, strong) UIImage     *image;
+@property (nonatomic, strong) UIImage                 *image;
 
-@property (nonatomic, assign) NSLayoutConstraint *keyboardHeight;
+@property (nonatomic, assign) NSLayoutConstraint      *keyboardHeight;
 
 @end
 
@@ -78,7 +81,7 @@
 }
 
 - (void)initSubViews {
-    _edittingArea = [UITextView new];
+    _edittingArea = [[TextViewWithPlaceholder alloc] initWithPlaceholder:@"今天你动弹了吗？ "];
     _edittingArea.scrollEnabled = NO;
     _edittingArea.font = [UIFont systemFontOfSize:18];
     _edittingArea.autocorrectionType = UITextAutocorrectionTypeNo;
