@@ -71,6 +71,7 @@ static NSString *kNewsCellID = @"NewsCell";
             textAttachment.image = [UIImage imageNamed:@"widget_today_icon.png"];
             NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
             NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
             [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:news.title]];
             [cell.titleLabel setAttributedText:strTitle];
 
@@ -93,7 +94,21 @@ static NSString *kNewsCellID = @"NewsCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) {
         OSCNews *news = self.objects[indexPath.row];
-        self.label.text = news.title;
+        
+        if ([[Utils timeIntervalArrayFromString:news.pubDate][kKeyDays] integerValue] == 0) {
+            NSTextAttachment *textAttachment = [NSTextAttachment new];
+            textAttachment.image = [UIImage imageNamed:@"widget_today_icon.png"];
+            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+            NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:news.title]];
+            
+            [self.label setAttributedText:strTitle];
+            
+        }else{
+            [self.label setText:news.title];
+        }
+        
         self.label.font = [UIFont boldSystemFontOfSize:14];
         
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;

@@ -70,22 +70,18 @@ static NSString *kBlogCellID = @"BlogCell";
         BlogCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kBlogCellID forIndexPath:indexPath];
         OSCBlog *blog = self.objects[indexPath.row];
         
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
         if (0 == blog.documentType) {
-            NSTextAttachment *textAttachment = [NSTextAttachment new];
             textAttachment.image = [UIImage imageNamed:@"widget_repaste_icon.png"];
-            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-            NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:blog.title]];
-            [cell.titleLabel setAttributedText:strTitle];
-
         } else {
-            NSTextAttachment *textAttachment = [NSTextAttachment new];
             textAttachment.image = [UIImage imageNamed:@"widget_original_icon.png"];
-            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-            NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:blog.title]];
-            [cell.titleLabel setAttributedText:strTitle];
         }
+        
+        NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+        [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:blog.title]];
+        [cell.titleLabel setAttributedText:strTitle];
         
         [cell.bodyLabel setText:blog.body];
         [cell.authorLabel setText:blog.author];
@@ -104,7 +100,19 @@ static NSString *kBlogCellID = @"BlogCell";
     if (indexPath.row < self.objects.count) {
         OSCBlog *blog = self.objects[indexPath.row];
         
-        self.label.text = blog.title;
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        if (0 == blog.documentType) {
+            textAttachment.image = [UIImage imageNamed:@"widget_repaste_icon.png"];
+        } else {
+            textAttachment.image = [UIImage imageNamed:@"widget_original_icon.png"];
+        }
+        
+        NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+        [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:blog.title]];
+        
+        [self.label setAttributedText:strTitle];
         self.label.font = [UIFont boldSystemFontOfSize:14];
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
         
