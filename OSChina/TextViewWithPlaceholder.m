@@ -43,17 +43,21 @@
     _placeholderLabel.text = placeholder;
 }
 
-#pragma mark - UITextViewDelegate
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    [self textViewDidChange:textView];
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    if ([textView hasText]) {
+- (void)checkShouldHidePlaceholder {
+    if ([self hasText]) {
         _placeholderLabel.hidden = YES;
     } else {
         _placeholderLabel.hidden = NO;
     }
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self checkShouldHidePlaceholder];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    [self checkShouldHidePlaceholder];
 }
 
 @end
