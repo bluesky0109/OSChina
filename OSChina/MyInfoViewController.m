@@ -333,21 +333,26 @@
 - (void)noticeUpdateHandler:(NSNotification *)notification {
     NSArray *noticeCounts = [notification object];
     
-    __block int sumOfConut = 0;
+    __block int sumOfCount = 0;
     
     [noticeCounts enumerateObjectsUsingBlock:^(NSNumber *count, NSUInteger idx, BOOL *stop) {
         _noticeCounts[idx] = count;
-        sumOfConut += [count intValue];
+        sumOfCount += [count intValue];
     }];
     
-    if (sumOfConut) {
-        _badgeValue = sumOfConut;
-        self.navigationController.tabBarItem.badgeValue = [@(sumOfConut) stringValue];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+    _badgeValue = sumOfCount;
+    
+    if (_badgeValue) {
+        self.navigationController.tabBarItem.badgeValue = [@(sumOfCount) stringValue];
+    } else {
+        self.navigationController.tabBarItem.badgeValue = nil;
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfCount];
 }
 
 @end

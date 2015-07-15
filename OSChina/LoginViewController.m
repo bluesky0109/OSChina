@@ -13,6 +13,7 @@
 #import "OSCUser.h"
 #import "Utils.h"
 #import "Config.h"
+#import "OSCThread.h"
 
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
@@ -266,6 +267,7 @@
               
               [Config saveOwnAccount:_accountField.text andPassword:_passwordField.text];
               [Config saveOwnID:user.userID];
+              [OSCThread startPollingNotice];
               
               [self.navigationController popViewControllerAnimated:YES];
               

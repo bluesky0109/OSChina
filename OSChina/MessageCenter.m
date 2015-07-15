@@ -34,7 +34,7 @@
     if (self) {
         
         __weak typeof(self) weakSelf = self;
-        [self dealWithNotices:noticeCounts];
+        [self dealWithNotices:noticeCounts autoScroll:YES];
         
         [self.viewPager.controllers enumerateObjectsUsingBlock:^(OSCObjsViewController *vc, NSUInteger idx, BOOL *stop) {
             vc.didRefreshSucceed = ^ {
@@ -101,24 +101,28 @@
 }
 
 #pragma mark - 处理提示
-- (void)dealWithNotices:(NSArray *)noticeCounts {
+- (void)dealWithNotices:(NSArray *)noticeCounts autoScroll:(BOOL)needAutoScroll{
     __block BOOL scrolled = NO;
+    __block int sumOfCount = 0;
     
     [self.titleBar.titleButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         [self setBadgeValue:[noticeCounts[idx] stringValue] forButton:button];
+        sumOfCount += [[noticeCounts][idx] intValue];
         
-        if ([noticeCounts[idx] intValue] && !scrolled) {
+        if (needAutoScroll && [noticeCounts[idx] intValue] && !scrolled) {
             [self scrollToViewAtIndex:idx];
             scrolled = YES;
         }
     }];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfCount];
 }
 
 #pragma mark - 处理系统通知 （定时请求的）
 - (void)noticeUpdateHandler:(NSNotification *)notification {
     NSArray *noticeCounts = [notification object];
     
-    [self dealWithNotices:noticeCounts];
+    [self dealWithNotices:noticeCounts autoScroll:NO];
 }
 
 @end
