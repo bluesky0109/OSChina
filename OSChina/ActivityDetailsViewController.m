@@ -22,6 +22,9 @@
 
 
 @interface ActivityDetailsViewController ()<UIWebViewDelegate>
+{
+    OSCPostDetails *postDetails;
+}
 
 @property (nonatomic, readonly, strong) OSCActivity *activity;
 
@@ -57,10 +60,10 @@
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
              ONOXMLElement *postXML = [responseObject.rootElement firstChildWithTag:@"post"];
-             OSCPostDetails *postDetails = [[OSCPostDetails alloc] initWithXML:postXML];
+             postDetails = [[OSCPostDetails alloc] initWithXML:postXML];
              _HTML = [postDetails.body copy];
              
-             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+             [self.tableView reloadData];
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"wrong");
          }];
@@ -88,6 +91,9 @@
             cell.locationLabel.text = [NSString stringWithFormat:@"地点：%@ %@", _activity.city, _activity.location];
             [cell.applicationButton addTarget:self action:@selector(enrollActivity) forControlEvents:UIControlEventTouchUpInside];
             
+            if (postDetails.category == 4) {
+                [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
+            }
             return cell;
         }
           
@@ -166,12 +172,17 @@
 
 }
 
+// postDetails.status, postDetails.applyStatus
 #pragma mark - 报名
 - (void)enrollActivity
 {
-    ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
-    
-    [self.navigationController pushViewController:signUpVC animated:YES];
+    if (postDetails.category == 4) {
+        NSLog(@"站外活动");
+    } else {
+        ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
+        signUpVC.eventId = postDetails.postID;
+        [self.navigationController pushViewController:signUpVC animated:YES];
+    }
 }
 
 @end
