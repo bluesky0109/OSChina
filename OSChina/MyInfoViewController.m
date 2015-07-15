@@ -32,6 +32,7 @@
 
 @property (nonatomic, strong) OSCMyInfo *myInfo;
 @property (nonatomic, assign, readonly) int64_t myID;
+@property (nonatomic, strong) NSMutableArray *noticeCounts;
 
 @property (nonatomic, strong) UIImageView *portrait;
 @property (nonatomic, strong) UILabel     *nameLabel;
@@ -52,6 +53,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeUpdateHandler:) name:OSCAPI_USER_NOTICE object:nil];
+        _noticeCounts = [NSMutableArray arrayWithArray:@[@(0), @(0), @(0), @(0)]];
     }
     
     return self;
@@ -120,7 +122,7 @@
     
     if (indexPath.row == 0) {
         if (_badgeValue == 0) {
-            cell.accessoryView.hidden = YES;
+            cell.accessoryView = nil;
         } else {
             UILabel *accessoryBadge = [UILabel new];
             accessoryBadge.backgroundColor = [UIColor redColor];
@@ -134,7 +136,6 @@
             width = width > 26? width:26;
             accessoryBadge.frame = CGRectMake(0, 0, width, 26);
             cell.accessoryView = accessoryBadge;
-            cell.accessoryView.hidden = NO;
         }
     }
     
@@ -243,7 +244,13 @@
     switch (indexPath.row) {
         case 0: {
             
-            MessageCenter *messageCenterVC = [MessageCenter new];
+            _badgeValue = 0;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            });
+            self.navigationController.tabBarItem.badgeValue = nil;
+            
+            MessageCenter *messageCenterVC = [[MessageCenter alloc] initWithNoticeCounts:_noticeCounts];
             messageCenterVC.hidesBottomBarWhenPushed = YES;
             
             [self.navigationController pushViewController:messageCenterVC animated:YES];
@@ -324,13 +331,14 @@
 
 #pragma mark - 处理消息通知
 - (void)noticeUpdateHandler:(NSNotification *)notification {
-    NSArray *noticeCountsArray = [notification object];
+    NSArray *noticeCounts = [notification object];
     
-    int sumOfConut = 0;
+    __block int sumOfConut = 0;
     
-    for (NSNumber *noticeCount in noticeCountsArray) {
-        sumOfConut += [noticeCount intValue];
-    }
+    [noticeCounts enumerateObjectsUsingBlock:^(NSNumber *count, NSUInteger idx, BOOL *stop) {
+        _noticeCounts[idx] = count;
+        sumOfConut += [count intValue];
+    }];
     
     if (sumOfConut) {
         _badgeValue = sumOfConut;
