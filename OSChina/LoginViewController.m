@@ -80,6 +80,7 @@
     _accountField.keyboardType = UIKeyboardTypeEmailAddress;
     _accountField.delegate = self;
     _accountField.returnKeyType = UIReturnKeyNext;
+    _accountField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _accountField.enablesReturnKeyAutomatically = YES;
     
     self.passwordField = [UITextField new];
@@ -88,6 +89,7 @@
     _passwordField.secureTextEntry = YES;
     _passwordField.delegate = self;
     _passwordField.returnKeyType = UIReturnKeyDone;
+    _passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _passwordField.enablesReturnKeyAutomatically = YES;
     
     [_accountField addTarget:self action:@selector(returnOnKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
