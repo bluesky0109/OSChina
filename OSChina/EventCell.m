@@ -111,7 +111,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timeLabel]->=0-[_actionLabel]->=0-[_contentLabel]"
                                                                              options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-<=5@500-[_referenceText(>=0@500)]-<=5@500-[_thumbnail]-<=5@500-[_appclientLabel(>=lineHeight@500)]-8@900-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-5-[_referenceText(>=0@500)]-<=5-[_thumbnail]-<=5-[_appclientLabel(>=lineHeight@500)]-8-|"
                                       // 这里referenceText 跟 thumbnail 的位置应该交换，但因为交换后图片会上移(referenceText占位)，所以暂时这样，以后应处理。
                                                                              options:NSLayoutFormatAlignAllLeft metrics:metrics views:views]];
     

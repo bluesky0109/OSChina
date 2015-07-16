@@ -217,17 +217,19 @@ static NSString * const kEventCellID = @"EventCell";
 #pragma mark - 下载图片
 - (void)downloadImageThenReload:(NSURL *)imageURL
 {
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
-                                                          options:SDWebImageDownloaderUseNSURLCache
-                                                         progress:nil
-                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                            [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
-                                                            
-                                                            // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                [self.tableView reloadData];
-                                                            });
-                                                        }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
+                                                              options:SDWebImageDownloaderUseNSURLCache
+                                                             progress:nil
+                                                            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
+                                                                
+                                                                // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    [self.tableView reloadData];
+                                                                });
+                                                            }];
+    });
 }
 
 
