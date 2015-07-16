@@ -141,7 +141,7 @@
     _centerButton.frame = CGRectMake(origin.x - buttonSize.width / 2,origin.y - buttonSize.height/2, buttonSize.width, buttonSize.height);
     [_centerButton setCornerRadius:5.0];
 #else
-    _centerButton.frame = CGRectMake(origin.x - buttonSize.width / 2,origin.y - buttonSize.height/2, buttonSize.height, buttonSize.height);
+    _centerButton.frame = CGRectMake(origin.x - buttonSize.height / 2,origin.y - buttonSize.height/2, buttonSize.height, buttonSize.height);
     [_centerButton setCornerRadius:buttonSize.height/2];
 #endif
     [_centerButton setBackgroundColor:[UIColor colorWithHex:0x24a83d]];

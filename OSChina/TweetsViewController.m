@@ -184,7 +184,7 @@
             }
             height += image.size.height;
         }
-        return height + 39;
+        return height + 42;
     } else {
         return 60;
     }
