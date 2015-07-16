@@ -294,27 +294,20 @@
         NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
         
         hub.mode = MBProgressHUDModeCustomView;
-        switch (errorCode) {
-            case 1: {
-                _edittingArea.text = @"";
-                _imageView.image = nil;
-                hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
-                hub.labelText = @"动弹发表成功";
-                
-                [self dismissViewControllerAnimated:YES completion:nil];
-                break;
-            }
-            case 0:
-            case -2:
-            case -1: {
-                hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
-
-                break;
-            }
-                
-            default:
-                break;
+        
+        if (errorCode == 1) {
+            _edittingArea.text = @"";
+            _imageView.image = nil;
+            hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+            hub.labelText = @"动弹发表成功";
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+           
+        } else {
+            hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+            hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+            
+            
         }
         
         [hub hide:YES afterDelay:2];
