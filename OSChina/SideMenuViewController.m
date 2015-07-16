@@ -13,6 +13,7 @@
 #import "SoftwareCatalogVC.h"
 #import "SoftwareListVC.h"
 #import "MyInfoViewController.h"
+#import "LoginViewController.h"
 #import "SettingsPage.h"
 #import "Utils.h"
 #import "Config.h"
@@ -73,24 +74,29 @@
     UIView *headerView = [UIView new];
     headerView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *portrait = [UIImageView new];
-    portrait.contentMode = UIViewContentModeScaleAspectFit;
-    [portrait setCornerRadius:30];
-    [portrait loadPortrait:[NSURL URLWithString:@"http://static.oschina.net/uploads/user/1145/2290066_100.jpg?t=1418470437000"]];
-    portrait.userInteractionEnabled = YES;
-    portrait.translatesAutoresizingMaskIntoConstraints = NO;
-    [headerView addSubview:portrait];
-    
-    UILabel *titleLabel = [UILabel new];
-    titleLabel.text = @"bluesky0109";
-    titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    titleLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [headerView addSubview:titleLabel];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(portrait,titleLabel);
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[portrait(60)]-35-|" options:0 metrics:nil views:views]];
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-15-[portrait(60)]-8-[titleLabel]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    /*
+     UIImageView *portrait = [UIImageView new];
+     portrait.contentMode = UIViewContentModeScaleAspectFit;
+     [portrait setCornerRadius:30];
+     portrait.userInteractionEnabled = YES;
+     portrait.translatesAutoresizingMaskIntoConstraints = NO;
+     [headerView addSubview:portrait];
+     
+     UILabel *nameLabel = [UILabel new];
+     nameLabel.font = [UIFont boldSystemFontOfSize:20];
+     nameLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
+     nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+     [headerView addSubview:nameLabel];
+     
+     NSDictionary *views = NSDictionaryOfVariableBindings(portrait, nameLabel);
+     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[portrait(60)]-10-[nameLabel]-25-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-50-[portrait(60)]" options:0 metrics:nil views:views]];
+     
+     portrait.userInteractionEnabled = YES;
+     nameLabel.userInteractionEnabled = YES;
+     [portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
+     [nameLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
+     */
     
     return headerView;
 }
@@ -149,5 +155,17 @@
     [self.sideMenuViewController hideMenuViewController];
 }
 
+/*
+ #pragma mark - 点击头像
+ 
+ - (void)pushLoginPage
+ {
+ if ([Config getOwnID] == 0) {
+ [self setContentViewController:[LoginViewController new]];
+ } else {
+ return;
+ }
+ }
+ */
 
 @end
