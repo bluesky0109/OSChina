@@ -19,7 +19,7 @@
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
 #import <MBProgressHUD.h>
-
+#import <ReactiveCocoa.h>
 
 @interface TweetEditingVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -59,6 +59,9 @@
     [self setLayout];
     
     _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_edittingArea];
+    RAC(self.navigationItem.rightBarButtonItem, enabled) = [_edittingArea.rac_textSignal map:^(NSString *text) {
+        return @(text.length > 0);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -275,18 +278,8 @@
 #pragma mark - 发表动弹
 - (void)pubTweet {
     MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
-    if (_edittingArea.text.length == 0) {
-        hub.mode = MBProgressHUDModeCustomView;
-        hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-        hub.labelText = @"内容不能为空";
-        
-        [hub hide:YES afterDelay:2];
-        return;
-    } else {
-        hub.mode = MBProgressHUDModeIndeterminate;
-        hub.labelText = @"动弹发送中";
-    }
-    
+    hub.labelText = @"动弹发送中";
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
