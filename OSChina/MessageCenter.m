@@ -88,16 +88,10 @@
 #pragma mark - 处理badge
 - (void)setBadgeValue:(NSString *)badgeValue forButton:(UIButton *)button {
     if ([badgeValue isEqualToString:@"0"]) {
-        button.badge.hidden = YES;
         return;
     }
     
-    CGSize size = [button.titleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
-    button.badgeValue = badgeValue;
-    button.badgeOriginX = (button.frame.size.width + size.width) / 2;
-    button.badgeOriginY = (button.frame.size.height - button.badge.frame.size.height) / 2;
-    button.badgeBGColor = [UIColor redColor];
-    button.badgeTextColor = [UIColor whiteColor];
+    [button setTitle:[NSString stringWithFormat:@"%@(%@)", button.titleLabel.text, badgeValue] forState:UIControlStateNormal];
 }
 
 #pragma mark - 处理提示
