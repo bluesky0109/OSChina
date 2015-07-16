@@ -65,20 +65,8 @@ static NSString *kNewsCellID = @"NewsCell";
     if (indexPath.row < self.objects.count) {
         NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewsCellID forIndexPath:indexPath];
         OSCNews *news = self.objects[indexPath.row];
-        
-        if ([[Utils timeIntervalArrayFromString:news.pubDate][kKeyDays] integerValue] == 0) {
-            NSTextAttachment *textAttachment = [NSTextAttachment new];
-            textAttachment.image = [UIImage imageNamed:@"widget_today_icon.png"];
-            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-            NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:news.title]];
-            [cell.titleLabel setAttributedText:strTitle];
 
-        }else{
-            [cell.titleLabel setText:news.title];
-        }
-
+        [cell.titleLabel setAttributedText:news.attributedTitle];
         [cell.bodyLabel setText:news.body];
         [cell.authorLabel setText:news.author];
         [cell.timeLabel setText:[Utils intervalSinceNow:news.pubDate]];
@@ -95,20 +83,7 @@ static NSString *kNewsCellID = @"NewsCell";
     if (indexPath.row < self.objects.count) {
         OSCNews *news = self.objects[indexPath.row];
         
-        if ([[Utils timeIntervalArrayFromString:news.pubDate][kKeyDays] integerValue] == 0) {
-            NSTextAttachment *textAttachment = [NSTextAttachment new];
-            textAttachment.image = [UIImage imageNamed:@"widget_today_icon.png"];
-            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-            NSMutableAttributedString *strTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-            [strTitle appendAttributedString:[[NSAttributedString alloc] initWithString:news.title]];
-            
-            [self.label setAttributedText:strTitle];
-            
-        }else{
-            [self.label setText:news.title];
-        }
-        
+        [self.label setAttributedText:news.attributedTitle];
         self.label.font = [UIFont boldSystemFontOfSize:14];
         
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
