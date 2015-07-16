@@ -66,6 +66,8 @@
     pageControl.pageIndicatorTintColor = [UIColor colorWithHex:0xDCDCDC];
     pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
     
+    [[UITextField appearance] setTintColor:[UIColor nameColor]];
+    
     /**********检测通知（主动定时请求数据）**** 本地通知  *****/
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;

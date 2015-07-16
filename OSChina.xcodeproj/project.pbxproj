@@ -141,6 +141,7 @@
 		33CC0C681B467D48002819EE /* OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C671B467D48002819EE /* OSCMessage.m */; };
 		33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6A1B467F82002819EE /* MessageCell.m */; };
 		33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6D1B467FAD002819EE /* MessagesViewController.m */; };
+		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
 
@@ -415,6 +416,8 @@
 		33CC0C6A1B467F82002819EE /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		33CC0C6C1B467FAD002819EE /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		33CC0C6D1B467FAD002819EE /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
+		33E95E561B5771B900897BFE /* FeedbackPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackPage.h; sourceTree = "<group>"; };
+		33E95E571B5771B900897BFE /* FeedbackPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackPage.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB4FB560430AA3FE856197F /* libPods-OSChina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSChina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F030B4A42F6EA7111FC0DF49 /* Pods-OSChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.release.xcconfig"; sourceTree = "<group>"; };
@@ -585,6 +588,8 @@
 				3346CA541B568A4B0038BDFB /* AboutPage.m */,
 				3323CF2A1B56960B00622743 /* OSLicensePage.h */,
 				3323CF2B1B56960B00622743 /* OSLicensePage.m */,
+				33E95E561B5771B900897BFE /* FeedbackPage.h */,
+				33E95E571B5771B900897BFE /* FeedbackPage.m */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -1405,6 +1410,7 @@
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
 				337A8F581B50D7D300880209 /* ActivityDetailsCell.m in Sources */,
+				33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */,
 				333561141B45750B009A294C /* OSCSoftware.m in Sources */,
 				339741181B42949C0074D2EA /* OSCPost.m in Sources */,
 				337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */,
