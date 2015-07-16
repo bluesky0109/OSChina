@@ -103,7 +103,7 @@
         case 0: {
             SwipableViewController *newsSVC = [[SwipableViewController alloc] initWithTitle:@"技术问答" andSubTitles:@[@"提问", @"分享", @"综合", @"职业", @"站务"] andControllers:@[[[PostsViewController alloc] initWithPostsType:PostsTypeQA],[[PostsViewController alloc] initWithPostsType:PostsTypeShare],[[PostsViewController alloc] initWithPostsType:PostsTypeSynthesis],[[PostsViewController alloc] initWithPostsType:PostsTypeCaree],[[PostsViewController alloc] initWithPostsType:PostsTypeSiteManager]]];
             
-            [self setMenuContentViewController:newsSVC];
+            [self setContentViewController:newsSVC];
             
             break;
         }
@@ -112,7 +112,7 @@
             
             SwipableViewController *softwareSVC = [[SwipableViewController alloc] initWithTitle:@"开源软件" andSubTitles:@[@"分类", @"推荐", @"最新", @"热门",@"国产"] andControllers:@[[[SoftwareCatalogVC alloc] initWithTag:0],[[SoftwareListVC alloc] initWithSoftwaresType:SoftwaresTypeRecommended],[[SoftwareListVC alloc] initWithSoftwaresType:SoftwaresTypeNewest],[[SoftwareListVC alloc] initWithSoftwaresType:SoftwaresTypeHottest],[[SoftwareListVC alloc] initWithSoftwaresType:SoftwaresTypeCN]]];
             
-            [self setMenuContentViewController:softwareSVC];
+            [self setContentViewController:softwareSVC];
             
             break;
         }
@@ -122,7 +122,7 @@
             
             SwipableViewController *blogsSVC = [[SwipableViewController alloc] initWithTitle:@"博客区" andSubTitles:@[@"最新博客", @"推荐阅读"] andControllers:@[[[BlogsViewController alloc] initWithBlogsType:BlogsTypeLatest],[[BlogsViewController alloc] initWithBlogsType:BlogsTypeRecommended]]];
             
-            [self setMenuContentViewController:blogsSVC];
+            [self setContentViewController:blogsSVC];
             
             break;
         }
@@ -130,7 +130,7 @@
             
         case 3: {
             SettingsPage *settingPage = [SettingsPage new];
-            [self setMenuContentViewController:settingPage];
+            [self setContentViewController:settingPage];
             break;
         }
             
@@ -140,23 +140,14 @@
     }
 }
 
-- (void)setMenuContentViewController:(UIViewController *)viewController
+- (void)setContentViewController:(UIViewController *)viewController
 {
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToHomePage)];
+    viewController.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = (UINavigationController *)((UITabBarController *)self.sideMenuViewController.contentViewController).selectedViewController;
     
-    _reservedViewController = self.sideMenuViewController.contentViewController;
-    [self.sideMenuViewController setContentViewController:navigationController];
+    [nav pushViewController:viewController animated:NO];
     [self.sideMenuViewController hideMenuViewController];
 }
-
-
-- (void)backToHomePage
-{
-    [self.sideMenuViewController setContentViewController:_reservedViewController animated:NO];
-    [self.sideMenuViewController hideMenuViewController];
-}
-
 
 
 @end

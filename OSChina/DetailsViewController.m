@@ -183,7 +183,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backItem];
     
     //资讯和软件详情没有 “举报”选项
