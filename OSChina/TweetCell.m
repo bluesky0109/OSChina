@@ -70,24 +70,24 @@
     [self.contentView addSubview:self.authorLabel];
     
     self.timeLabel = [UILabel new];
-    self.timeLabel.font = [UIFont systemFontOfSize:14];
+    self.timeLabel.font = [UIFont systemFontOfSize:12];
     self.timeLabel.textColor = [UIColor colorWithHex:0xA0A3A7];
     [self.contentView addSubview:self.timeLabel];
     
     self.appclientLabel = [UILabel new];
-    self.appclientLabel.font = [UIFont systemFontOfSize:14];
+    self.appclientLabel.font = [UIFont systemFontOfSize:12];
     self.appclientLabel.textColor = [UIColor colorWithHex:0xA0A3A7];
     [self.contentView addSubview:self.appclientLabel];
     
     self.contentLabel = [UILabel new];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.contentLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:self.contentLabel];
     
     self.commentCount = [UILabel new];
-    self.commentCount.font = [UIFont systemFontOfSize:14];
+    self.commentCount.font = [UIFont systemFontOfSize:12];
     self.commentCount.textColor = [UIColor colorWithHex:0xA0A3A7];
-    self.contentLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:self.commentCount];
     
     self.thumbnail = [UIImageView new];
@@ -98,17 +98,15 @@
 
 - (void)setLayout
 {
-    for (UIView *view in [self.contentView subviews]) {
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-    }
+    for (UIView *view in self.contentView.subviews) {view.translatesAutoresizingMaskIntoConstraints = NO;}
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_portrait, _authorLabel, _timeLabel, _appclientLabel, _contentLabel, _commentCount, _thumbnail);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_portrait(36)]"
-                                                                             options:0 metrics:nil views:views]];
+#if 0
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_contentLabel]-8-|"
-                                                                             options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_portrait(36)]" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_contentLabel]-8-|" options:0 metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-5-[_authorLabel]->=5-[_commentCount]-8-|"
                                                                              options:NSLayoutFormatAlignAllTop metrics:nil views:views]];
@@ -119,11 +117,31 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_timeLabel]-5-[_appclientLabel]"
                                                                              options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
-    self.thumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-5-[_thumbnail]-8-|"
-                                                                        options:NSLayoutFormatAlignAllLeft metrics:nil views:views];
+    _thumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-5-[_thumbnail]-8-|"
+                                                                    options:NSLayoutFormatAlignAllLeft metrics:nil views:views];
     
-    self.noThumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-8-|"
-                                                                          options:0 metrics:nil views:views];
+    _noThumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-8-|" options:0 metrics:nil views:views];
+    
+#else
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_portrait(36)]" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-8-[_authorLabel]-8-|" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[_authorLabel]-5-[_contentLabel]"
+                                                                             options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
+                                                                             metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_timeLabel]-5-[_appclientLabel]->=5-[_commentCount]-8-|"
+                                                                             options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    _thumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-5-[_thumbnail]-6-[_timeLabel]-5-|"
+                                                                    options:NSLayoutFormatAlignAllLeft metrics:nil views:views];
+    
+    _noThumbnailConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_contentLabel]-6-[_timeLabel]-5-|"
+                                                                      options:NSLayoutFormatAlignAllLeft metrics:nil views:views];
+    
+#endif
 }
 
 - (void)setContentWithTweet:(OSCTweet *)tweet {
