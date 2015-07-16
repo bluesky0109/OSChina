@@ -43,16 +43,29 @@
     }];
 }
 
-- (void)setPlaceholder:(NSString *)placeholder {
-    _placeholderLabel.text = placeholder;
-}
-
 - (void)checkShouldHidePlaceholder {
     if ([self hasText]) {
         _placeholderLabel.hidden = YES;
     } else {
         _placeholderLabel.hidden = NO;
     }
+}
+
+#pragma mark - getter and setter
+- (void)setPlaceholder:(NSString *)placeholder {
+    _placeholderLabel.text = placeholder;
+}
+
+- (NSString *)placeholder {
+    return _placeholderLabel.text;
+}
+
+- (void)setPlaceholderFont:(UIFont *)placeholderFont {
+    _placeholderLabel.font = placeholderFont;
+}
+
+- (UIFont *)placeholderFont {
+    return _placeholderLabel.font;
 }
 
 @end

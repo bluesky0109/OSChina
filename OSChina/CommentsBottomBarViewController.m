@@ -61,7 +61,7 @@
         if (weakSelf.replyID == comment.commentID) {
             weakSelf.replyID = 0;
             weakSelf.replyUID = 0;
-            [weakSelf.editingBar.editView setPlaceholder:@"说点什么"];
+            weakSelf.editingBar.editView.placeholder = @"说点什么";
         } else {
             weakSelf.replyID = comment.commentID;
             weakSelf.replyUID = comment.authorID;

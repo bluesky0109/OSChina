@@ -19,8 +19,8 @@
 
 @interface FeedbackPage ()
 
-@property (nonatomic, strong) UITextView *feedbackTextView;
-@property (nonatomic, strong) MBProgressHUD *HUD;
+@property (nonatomic, strong) PlaceholderTextView *feedbackTextView;
+@property (nonatomic, strong) MBProgressHUD       *HUD;
 
 @end
 
@@ -53,7 +53,8 @@
 }
 
 - (void)setLayout {
-    _feedbackTextView = [UITextView new];//[[TextViewWithPlaceholder alloc] initWithPlaceholder:@"感谢您的反馈，请提出您的意见与建议"];
+    _feedbackTextView = [[PlaceholderTextView alloc] initWithPlaceholder:@"感谢您的反馈，请提出您的意见与建议"];
+    _feedbackTextView.placeholderFont = [UIFont systemFontOfSize:15];
     [_feedbackTextView setCornerRadius:3.0];
     _feedbackTextView.font = [UIFont systemFontOfSize:17];
     _feedbackTextView.translatesAutoresizingMaskIntoConstraints = NO;
