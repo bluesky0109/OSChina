@@ -65,14 +65,6 @@
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    MyInfoViewController *myInfoVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-1];
-    [myInfoVC refreshView];
-    [((UITableViewController *)myInfoVC.sideMenuViewController.leftMenuViewController).tableView reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -269,6 +261,7 @@
               [Config saveOwnID:user.userID];
               [OSCThread startPollingNotice];
               
+              [[NSNotificationCenter defaultCenter] postNotificationName:@"userRefresh" object:@(YES)];
               [self.navigationController popViewControllerAnimated:YES];
               
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
