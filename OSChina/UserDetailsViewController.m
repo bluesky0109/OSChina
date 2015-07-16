@@ -117,9 +117,10 @@
             UserHeaderCell *cell = [UserHeaderCell new];
             
             [cell setContentWithUser:_user];
-            
-            [cell.followsButton addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
-            [cell.fansButton addTarget:self action:@selector(pushFriendsSVC) forControlEvents:UIControlEventTouchUpInside];
+            cell.followsButton.tag = 0;
+            cell.fansButton.tag = 1;
+            [cell.followsButton addTarget:self action:@selector(pushFriendsSVC:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.fansButton addTarget:self action:@selector(pushFriendsSVC:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         } else {
             UserOperationCell *cell = [UserOperationCell new];
@@ -149,13 +150,16 @@
 
 #pragma mark - 处理页面跳转
 
-- (void)pushFriendsSVC {
+- (void)pushFriendsSVC:(UIButton *)button {
     SwipableViewController *friendsSVC = [[SwipableViewController alloc] initWithTitle:@"关注/粉丝"
                                                                             andSubTitles:@[@"关注", @"粉丝"]
                                                                           andControllers:@[
                                                                                            [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:1],
                                                                                            [[FriendsViewController alloc] initWithUserID:_user.userID andFriendsRelation:0]
                                                                                            ]];
+    if (button.tag == 1) {
+        [friendsSVC scrollToViewAtIndex:1];
+    }
     
     [self.navigationController pushViewController:friendsSVC animated:YES];
 }
