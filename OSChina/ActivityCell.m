@@ -42,14 +42,17 @@
     _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _descriptionLabel.textColor = [UIColor grayColor];
     [self.contentView addSubview:_descriptionLabel];
+    
+    _tabImageView = [UIImageView new];
+    [self.contentView addSubview:_tabImageView];
 }
 
 - (void)setLayout
 {
     for (UIView *view in self.contentView.subviews) {view.translatesAutoresizingMaskIntoConstraints = NO;}
-    NSDictionary *views = NSDictionaryOfVariableBindings(_posterView, _titleLabel, _descriptionLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_posterView, _titleLabel, _descriptionLabel, _tabImageView);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_posterView(40)]-8-[_titleLabel]-8-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_posterView(40)]-8-[_titleLabel]-28-|"
                                                                              options:NSLayoutFormatAlignAllTop
                                                                              metrics:nil views:views]];
     
@@ -58,6 +61,10 @@
                                                                              metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_posterView(60)]" options:0 metrics:nil views:views]];
+
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tabImageView(30)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_tabImageView(30)]|" options:0 metrics:nil views:views]];
+
 }
 
 
