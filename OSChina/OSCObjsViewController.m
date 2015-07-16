@@ -54,8 +54,9 @@
     }
     
     //无数据或未加载完自动进入刷新 刷新动画
-//    [self.refreshControl beginRefreshing];
-
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
     [self fetchObjectsOnPage:0 refresh:YES];
 }
 
