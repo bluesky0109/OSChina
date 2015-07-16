@@ -66,6 +66,7 @@
             weakSelf.replyID = comment.commentID;
             weakSelf.replyUID = comment.authorID;
             [weakSelf.editingBar.editView setPlaceholder:[NSString stringWithFormat:@"回复%@：", comment.author]];
+            [weakSelf.editingBar.editView becomeFirstResponder];
         }
     };
     

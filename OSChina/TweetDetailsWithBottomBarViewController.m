@@ -75,6 +75,7 @@
     _tweetDetailsVC.didCommentSelected = ^(OSCComment *comment) {
         NSString *stringToInsert = [NSString stringWithFormat:@"@%@",comment.author];
         [weakSelf.editingBar.editView replaceRange:weakSelf.editingBar.editView.selectedTextRange withText:stringToInsert];
+        [weakSelf.editingBar.editView becomeFirstResponder];
     };
 
     _tweetDetailsVC.didScroll = ^ {

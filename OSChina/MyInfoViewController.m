@@ -154,7 +154,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 158;
+    return 160;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -166,8 +166,8 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *header = [UIView new];
-    header.backgroundColor = [UIColor colorWithHex:0x00CD66];
+    UIImageView *header = [UIImageView new];
+    header.image = [UIImage imageNamed:@"user-background"];
     
     _portrait = [UIImageView new];
     _portrait.contentMode = UIViewContentModeScaleAspectFit;
@@ -184,6 +184,7 @@
     
     _nameLabel = [UILabel new];
     _nameLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
+    _nameLabel.font = [UIFont boldSystemFontOfSize:18];
     _nameLabel.text = _myID? _myInfo.name: @"点击头像登录";
     [header addSubview:_nameLabel];
     
@@ -208,6 +209,7 @@
         [button setTitleColor:[UIColor colorWithHex:0xEEEEEE] forState:UIControlStateNormal];
         button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
         [button setTitle:title forState:UIControlStateNormal];
         [countView addSubview:button];
     };
