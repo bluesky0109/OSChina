@@ -74,6 +74,13 @@
     UIView *footer = [UIView new];
     self.tableView.tableFooterView = footer;
     
+    NSArray *usersInformation = [Config getUsersInformation];
+    _nameLabel.text = usersInformation[0];
+    [_creditsBtn setTitle:usersInformation[1] forState:UIControlStateNormal];
+    [_collectionsBtn setTitle:usersInformation[2] forState:UIControlStateNormal];
+    [_followsBtn setTitle:usersInformation[3] forState:UIControlStateNormal];
+    [_fansBtn setTitle:usersInformation[4] forState:UIControlStateNormal];
+    
     [self refreshView];
 }
 
