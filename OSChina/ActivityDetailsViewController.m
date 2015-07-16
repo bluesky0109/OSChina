@@ -91,20 +91,23 @@
             cell.locationLabel.text = [NSString stringWithFormat:@"地点：%@ %@", _activity.city, _activity.location];
             
             
-            if (postDetails.applyStatus == 1) {
+            if (postDetails.applyStatus == 0) {
+                [cell.applicationButton setTitle:@"审核中" forState:UIControlStateNormal];
+            } else if (postDetails.applyStatus == 1) {
                 [cell.applicationButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                 [cell.applicationButton setTitle:@"你的报名已确认，现场可以扫描二维码签到！" forState:UIControlStateNormal];
                 cell.applicationButton.titleLabel.font = [UIFont systemFontOfSize:14];
                 [cell.applicationButton setBackgroundColor:[UIColor clearColor]];
             } else {
-                if (postDetails.category == 4) {
-                    [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
-                }
                 
                 if (postDetails.category == 2) {
                     [cell.applicationButton setTitle:@"出席人员" forState:UIControlStateNormal];
                 }
                 
+                if (postDetails.category == 4) {
+                    [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
+                }
+
                  [cell.applicationButton addTarget:self action:@selector(enrollActivity) forControlEvents:UIControlEventTouchUpInside];
             }
             
@@ -193,13 +196,18 @@
 {
     if (postDetails.category == 4) {
         [[UIApplication sharedApplication] openURL:postDetails.signUpUrl];
-    } else if (postDetails.category == 2) {
-        PresentMembersViewController *presentMembersViewController = [[PresentMembersViewController alloc] initWithEventID:postDetails.postID];
-        [self.navigationController pushViewController:presentMembersViewController animated:YES];
     } else {
-        ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
-        signUpVC.eventId = postDetails.postID;
-        [self.navigationController pushViewController:signUpVC animated:YES];
+        if (postDetails.applyStatus == 2) {
+            NSLog(@"出席人员列表");
+
+            PresentMembersViewController *presentMembersViewController = [[PresentMembersViewController alloc] initWithEventID:postDetails.postID];
+            [self.navigationController pushViewController:presentMembersViewController animated:YES];
+        } else {
+        
+            ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
+            signUpVC.eventId = postDetails.postID;
+            [self.navigationController pushViewController:signUpVC animated:YES];
+        }
     }
 }
 
