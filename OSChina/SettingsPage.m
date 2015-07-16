@@ -57,11 +57,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 1;
+            return 2;
             break;
             
         case 1:
-            return 3;
+            return 4;
             break;
         
         case 2:
@@ -80,8 +80,8 @@
     UITableViewCell *cell = [UITableViewCell new];
     
     NSArray *titles = @[
-                        @[@"清理缓存"],
-                        @[/*@"意见反馈", */@"给应用评分", @"关于", @"开源许可"],
+                        @[@"清理缓存",@"消息通知"],
+                        @[@"意见反馈", @"给应用评分", @"关于", @"开源许可"],
                         @[@"注销登录"],
                         ];
     cell.textLabel.text = titles[indexPath.section][indexPath.row];
@@ -131,11 +131,7 @@
         HUD.labelText = @"注销成功";
         [HUD hide:YES afterDelay:0.5];
         
-        RESideMenu *resideMenuVC = (RESideMenu *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        
-        UITabBarController *tabBarController = (UITabBarController *)resideMenuVC.sideMenuViewController.contentViewController;
-        MyInfoViewController *myInfoVC = ((UINavigationController *)tabBarController.viewControllers[4]).viewControllers[0];
-        [myInfoVC refreshView];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"userRefresh" object:@(YES)];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];

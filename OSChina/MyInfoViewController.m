@@ -53,6 +53,8 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeUpdateHandler:) name:OSCAPI_USER_NOTICE object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRefreshHandler:)  name:@"userRefresh"     object:nil];
+        
         _noticeCounts = [NSMutableArray arrayWithArray:@[@(0), @(0), @(0), @(0)]];
     }
     
@@ -83,19 +85,25 @@
     
     _myID = [Config getOwnID];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@?uid=%lld", OSCAPI_PREFIX, OSCAPI_MY_INFORMATION, _myID] parameters:nil success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
-        ONOXMLElement *userXML = [responseDocument.rootElement firstChildWithTag:@"user"];
-        _myInfo = [[OSCMyInfo alloc] initWithXML:userXML];
-        
+    if (_myID == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"网络异常，错误码:%ld",(long)error.code);
-    }];
+    } else {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+        
+        [manager GET:[NSString stringWithFormat:@"%@%@?uid=%lld", OSCAPI_PREFIX, OSCAPI_MY_INFORMATION, _myID] parameters:nil success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
+            ONOXMLElement *userXML = [responseDocument.rootElement firstChildWithTag:@"user"];
+            _myInfo = [[OSCMyInfo alloc] initWithXML:userXML];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"网络异常，错误码:%ld",(long)error.code);
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,7 +170,12 @@
     _portrait = [UIImageView new];
     _portrait.contentMode = UIViewContentModeScaleAspectFit;
     [_portrait setCornerRadius:25];
-    [_portrait loadPortrait:_myInfo.portraitURL];
+    if (_myID == 0) {
+        _portrait.image = [UIImage imageNamed:@"default-portrait"];
+    } else {
+        [_portrait loadPortrait:_myInfo.portraitURL];
+    }
+    
     _portrait.userInteractionEnabled = YES;
     [_portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPortrait)]];
     [header addSubview:_portrait];
@@ -329,7 +342,7 @@
     return _myQRCodeImageView;
 }
 
-#pragma mark - 处理消息通知
+#pragma mark - 处理通知
 - (void)noticeUpdateHandler:(NSNotification *)notification {
     NSArray *noticeCounts = [notification object];
     
@@ -354,5 +367,10 @@
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfCount];
 }
+
+- (void)userRefreshHandler:(NSNotification *)notification {
+    [self refreshView];
+}
+
 
 @end
