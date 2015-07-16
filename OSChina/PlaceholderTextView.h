@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TextViewWithPlaceholder : UITextView
+@interface PlaceholderTextView : UITextView
 
 - (instancetype)initWithPlaceholder:(NSString *)placeholder;
 - (void)setPlaceholder:(NSString *)placeholder;

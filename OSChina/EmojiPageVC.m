@@ -8,7 +8,7 @@
 
 #import "EmojiPageVC.h"
 #import "EmojiPanelVC.h"
-#import "TextViewWithPlaceholder.h"
+#import "PlaceholderTextView.h"
 
 @interface EmojiPageVC ()<UIPageViewControllerDataSource>
 
@@ -19,7 +19,7 @@
 
 @implementation EmojiPageVC
 
-- (instancetype)initWithTextView:(TextViewWithPlaceholder *)textView {
+- (instancetype)initWithTextView:(PlaceholderTextView *)textView {
     self = [super initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     if (self) {

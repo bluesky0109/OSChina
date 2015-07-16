@@ -11,7 +11,7 @@
 #import "OSCAPI.h"
 #import "Config.h"
 #import "Utils.h"
-#import "TextViewWithPlaceholder.h"
+#import "PlaceholderTextView.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <objc/runtime.h>
@@ -23,7 +23,7 @@
 
 @interface TweetEditingVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) TextViewWithPlaceholder *edittingArea;
+@property (nonatomic, strong) PlaceholderTextView *edittingArea;
 @property (nonatomic, strong) UIImageView             *imageView;
 @property (nonatomic, strong) UIToolbar               *toolBar;
 @property (nonatomic, strong) EmojiPageVC             *emojiPageVC;
@@ -81,7 +81,7 @@
 }
 
 - (void)initSubViews {
-    _edittingArea = [[TextViewWithPlaceholder alloc] initWithPlaceholder:@"今天你动弹了吗？ "];
+    _edittingArea = [[PlaceholderTextView alloc] initWithPlaceholder:@"今天你动弹了吗？ "];
     _edittingArea.scrollEnabled = NO;
     _edittingArea.font = [UIFont systemFontOfSize:18];
     _edittingArea.autocorrectionType = UITextAutocorrectionTypeNo;

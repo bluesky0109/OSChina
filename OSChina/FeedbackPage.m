@@ -7,7 +7,7 @@
 //
 
 #import "FeedbackPage.h"
-#import "TextViewWithPlaceholder.h"
+#import "PlaceholderTextView.h"
 #import "Utils.h"
 #import "OSCAPI.h"
 
