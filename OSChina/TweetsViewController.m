@@ -43,6 +43,7 @@
                 
             case TweetsTypeOwnTweets:
                 self.uid = [Config getOwnID];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRefreshHandler:)  name:@"userRefresh" object:nil];
                 if (self.uid == 0) {
                     //显示其他
                 }
@@ -78,6 +79,10 @@
     }
     
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setBlockAndClass
@@ -312,6 +317,14 @@
                   [HUD hide:YES afterDelay:1];
               }];
     };
+}
+
+#pragma mark - 处理消息通知
+- (void)userRefreshHandler:(NSNotification *)notification {
+    _uid = [Config getOwnID];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self refresh];
+    });
 }
 
 
