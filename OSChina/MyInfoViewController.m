@@ -140,11 +140,11 @@
             accessoryBadge.textColor = [UIColor whiteColor];
             accessoryBadge.textAlignment = NSTextAlignmentCenter;
             accessoryBadge.clipsToBounds = YES;
-            accessoryBadge.layer.cornerRadius = 13;
+            accessoryBadge.layer.cornerRadius = 11;
             
             CGFloat width = [accessoryBadge sizeThatFits:CGSizeMake(MAXFLOAT, 26)].width + 8;
-            width = width > 26? width:26;
-            accessoryBadge.frame = CGRectMake(0, 0, width, 26);
+            width = width > 26? width:22;
+            accessoryBadge.frame = CGRectMake(0, 0, width, 22);
             cell.accessoryView = accessoryBadge;
         }
     }
