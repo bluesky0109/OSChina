@@ -69,7 +69,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.lastCell.status == LastCellStatusNotVisible) {
+    if (self.lastCell.status == LastCellStatusNotVisible || _objects.count == 0) {
         return self.objects.count;
     }
     
