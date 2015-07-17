@@ -30,6 +30,7 @@
             [mutableAttributedString replaceCharactersInRange:textView.selectedRange withAttributedString:emojiAttributedString];
             textView.attributedText = [mutableAttributedString copy];
             [textView checkShouldHidePlaceholder];
+            [textView.delegate textViewDidChange:textView];
         };
         
         _deleteEmoji = ^ {
@@ -43,6 +44,7 @@
             textView.attributedText = [mutableAttributeString copy];
             textView.font = [UIFont systemFontOfSize:18];
             [textView checkShouldHidePlaceholder];
+            [textView.delegate textViewDidChange:textView];
         };
     }
         
