@@ -44,11 +44,7 @@
 }
 
 - (void)checkShouldHidePlaceholder {
-    if ([self hasText]) {
-        _placeholderLabel.hidden = YES;
-    } else {
-        _placeholderLabel.hidden = NO;
-    }
+    _placeholderLabel.hidden = [self hasText];
 }
 
 #pragma mark - getter and setter
