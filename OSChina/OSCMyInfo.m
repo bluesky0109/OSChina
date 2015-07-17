@@ -31,5 +31,11 @@
     return self;
 }
 
+- (void)setDetailInformationJointime:(NSString *)jointime andHometown:(NSString *)hometown andDevelopPlatform:(NSString *)developPlatform andExpertise:(NSString *)expertise {
+    _joinTime = jointime;
+    _hometown = hometown;
+    _developPlatform = developPlatform;
+    _expertise = expertise;
+}
 
 @end

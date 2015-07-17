@@ -125,7 +125,7 @@
         }
     } else if (section == 2) {
 
-        [Config saveOwnUserName:@"" andUserScore:0 andUserFavoriteCount:0 andUserFans:0 andUserFollower:0 andOwnID:0];
+        [Config saveOwnUserName:@"" andPortrait:nil andUserScore:0 andUserFavoriteCount:0 andUserFans:0 andUserFollower:0 andOwnID:0];
         
         NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (NSHTTPCookie *cookie in [cookieStorage cookies]) {
