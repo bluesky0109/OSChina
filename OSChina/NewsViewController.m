@@ -84,7 +84,7 @@ static NSString *kNewsCellID = @"NewsCell";
         OSCNews *news = self.objects[indexPath.row];
         
         [self.label setAttributedText:news.attributedTitle];
-        self.label.font = [UIFont boldSystemFontOfSize:14];
+        self.label.font = [UIFont boldSystemFontOfSize:15];
         
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
         
@@ -92,7 +92,7 @@ static NSString *kNewsCellID = @"NewsCell";
         self.label.font = [UIFont systemFontOfSize:13];
         height += [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 16, MAXFLOAT)].height;
         
-        return height + 41;
+        return height + 42;
 
     } else {
         return 60;

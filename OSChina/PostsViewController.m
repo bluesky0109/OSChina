@@ -79,7 +79,7 @@ static NSString *kPostCellID = @"PostCell";
         OSCPost *post = self.objects[indexPath.row];
         
         self.label.text = post.title;
-        self.label.font = [UIFont boldSystemFontOfSize:14];
+        self.label.font = [UIFont boldSystemFontOfSize:15];
         
         CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 62, MAXFLOAT)].height;
         
