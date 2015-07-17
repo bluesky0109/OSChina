@@ -195,7 +195,7 @@
     
     //资讯和软件详情没有 “举报”选项
     if (_commentType == CommentTypeNews || _commentType == CommentTypeSoftware) {
-        self.operationBar.items = [self.operationBar.items subarrayWithRange:NSMakeRange(0, 10)];
+        self.operationBar.items = [self.operationBar.items subarrayWithRange:NSMakeRange(0, 12)];
     }
     
     _detailsView = [UIWebView new];
@@ -227,7 +227,7 @@
              _commentCount = [[[XML firstChildWithTag:@"commentCount"] numberValue] intValue];
              [self performSelector:_loadMethod withObject:details];
              
-             UIBarButtonItem *commentsCountButton = self.operationBar.items[2];
+             UIBarButtonItem *commentsCountButton = self.operationBar.items[4];
              commentsCountButton.shouldHideBadgeAtZero = YES;
              commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", _commentCount];
              commentsCountButton.badgePadding = 1;
