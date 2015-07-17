@@ -54,7 +54,7 @@ static const double accelerationThreshold = 2.0f;
     self.view.backgroundColor = [UIColor whiteColor];
     
     if (self.navigationController.viewControllers.count <= 1) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClick)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClick)];
     }
     [self setLayout];
     
@@ -94,7 +94,7 @@ static const double accelerationThreshold = 2.0f;
 }
 #pragma mark -视图布局
 - (void)setLayout {
-    _layer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake"]];
+    _layer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shaking"]];
     _layer.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_layer];
 
@@ -114,18 +114,13 @@ static const double accelerationThreshold = 2.0f;
     
     // layer
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_layer(195)]-200-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|->=50-[_layer(168.75)]->=50-|"
-                                                                      options:NSLayoutFormatAlignAllCenterX
-                                                                      metrics:nil views:views]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual
+                                                             toItem:_layer    attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:50]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual
+                                                             toItem:_layer    attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_layer
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.f constant:0.f]];
-    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_layer(195)]"  options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_layer(168.75)]" options:0 metrics:nil views:views]];
     
     //Cell
 
