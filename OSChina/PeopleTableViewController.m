@@ -33,6 +33,7 @@ static NSString * const kPersonCellID = @"PersonCell";
         return [NSString stringWithFormat:@"%@%@?name=%@&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_SEARCH_USERS, userName, (unsigned long)page, OSCAPI_SUFFIX];
     };
     self.objClass = [OSCUser class];
+    self.needRefreshAnimation = NO;
     
     return self;
 }

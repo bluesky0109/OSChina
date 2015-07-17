@@ -38,7 +38,7 @@ static NSString * const kSoftware       = @"software";
     };
     
     self.objClass = [OSCSearchResult class];
-    
+    self.needRefreshAnimation = NO;
     return self;
 }
 

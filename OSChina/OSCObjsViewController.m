@@ -22,6 +22,7 @@
     
     if (self) {
         self.objects = [NSMutableArray new];
+        _needRefreshAnimation = YES;
     }
     
     return self;
@@ -44,6 +45,15 @@
     self.label.numberOfLines = 0;
     self.label.lineBreakMode = NSLineBreakByWordWrapping;
     self.label.font = [UIFont boldSystemFontOfSize:14];
+    
+    //自动进入刷新 刷新动画
+    if (_needRefreshAnimation) {
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                                animated:YES];
+    }
+
+    [self fetchObjectsOnPage:0 refresh:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,12 +62,6 @@
     if (self.objects.count > 0 || self.lastCell.status == LastCellStatusFinished) {
         return;
     }
-    
-    //无数据或未加载完自动进入刷新 刷新动画
-    [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
-                            animated:YES];
-    [self fetchObjectsOnPage:0 refresh:YES];
 }
 
 

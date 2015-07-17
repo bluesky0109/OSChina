@@ -60,7 +60,8 @@
             
             return weakSelf.webViewHeight + 60;
         };
-
+        
+        self.needRefreshAnimation = NO;
     }
     
     return self;
