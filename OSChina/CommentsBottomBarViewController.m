@@ -88,7 +88,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView][editingBar]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
 }
 
-- (void)sendComment {
+- (void)sendContent {
     MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
     HUD.labelText = @"评论发送中";
     

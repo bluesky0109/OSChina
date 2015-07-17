@@ -84,7 +84,7 @@
 }
 
 
-- (void)sendComment {
+- (void)sendContent {
     MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
     hub.labelText = @"评论发送中";
     

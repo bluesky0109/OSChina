@@ -32,7 +32,7 @@
     [super viewDidLoad];
 //    self.tableView.backgroundColor = [UIColor colorWithHex:0x15A230];
     self.tableView.bounces = NO;
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"01"]];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg02-1080x1920"]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
