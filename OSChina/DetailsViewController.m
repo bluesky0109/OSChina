@@ -235,7 +235,7 @@
 
              
              self.operationBar.isStarred = _isStarred;
-             [self.editingBar.sendButton addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
+             [self.editingBar.sendButton addTarget:self action:@selector(sendContent) forControlEvents:UIControlEventTouchUpInside];
              if (_commentType == CommentTypeSoftware) {
                  _objectID = ((OSCSoftwareDetails *)details).softwareID;
              }
