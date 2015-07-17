@@ -19,6 +19,7 @@ static NSString * const kAuthorID     = @"authorid";
 static NSString * const kPubDate      = @"pubDate";
 static NSString * const kNewsType     = @"newstype";
 static NSString * const kType         = @"type";
+static NSString * const kURL          = @"url";
 static NSString * const kAttachment   = @"attachment";
 static NSString * const kAuthorUID2   = @"authoruid2";
 
@@ -35,6 +36,7 @@ static NSString * const kAuthorUID2   = @"authoruid2";
         _commentCount           = [[[xml firstChildWithTag:kCommentCount] numberValue] intValue];
         _pubDate                = [[xml firstChildWithTag:kPubDate] stringValue];
 
+        _url                    = [NSURL URLWithString:[[xml firstChildWithTag:@"url"] stringValue]];
         ONOXMLElement *newsType = [xml firstChildWithTag:kNewsType];
         _type                   = [[[newsType firstChildWithTag:kType] numberValue] intValue];
         _attachment             = [[newsType firstChildWithTag:kAttachment] stringValue];
