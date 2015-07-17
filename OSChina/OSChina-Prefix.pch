@@ -1,0 +1,19 @@
+//
+//  OSChina-Prefix.pch
+//  OSChina
+//
+//  Created by sky on 15/7/17.
+//  Copyright (c) 2015年 bluesky. All rights reserved.
+//
+
+#ifndef OSChina_OSChina_Prefix_pch
+#define OSChina_OSChina_Prefix_pch
+
+#ifdef __OBJC__
+
+
+#import <tingyunApp/NBSAppAgent.h>
+
+#endif
+
+#endif
