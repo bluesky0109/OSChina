@@ -125,7 +125,7 @@ static NSString *kCommentCellID = @"CommentCell";
 
         NSArray *references = comment.references;
         if (references.count > 0) {
-            height += 6;
+            height += 3;
         }
 
         self.label.font = [UIFont systemFontOfSize:13];
@@ -133,7 +133,7 @@ static NSString *kCommentCellID = @"CommentCell";
             self.label.text = [NSString stringWithFormat:@"%@\n%@", reference.title, reference.body];
             height += [self.label sizeThatFits:CGSizeMake(width - (references.count-idx)*10, MAXFLOAT)].height + 13;
         }];
-        return height + 58;
+        return height + 60;
     } else {
         return 60;
     }

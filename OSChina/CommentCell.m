@@ -80,7 +80,7 @@
                                                                                views:views]];
     
 
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[_authorLabel]-4-[_timeLabel]->=5-[_contentLabel]-8-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_authorLabel]->=5-[_contentLabel]-8-[_timeLabel]-8-|"
                                                                              options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
                                                                              metrics:nil
                                                                                views:views]];
@@ -111,8 +111,8 @@
     _currentContainer = [UIView new];
     [self.contentView addSubview:_currentContainer];
     _currentContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = NSDictionaryOfVariableBindings(_timeLabel,_contentLabel,_currentContainer);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timeLabel]-8-[_currentContainer]-8-[_contentLabel]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_authorLabel,_contentLabel,_currentContainer);
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_authorLabel]-8-[_currentContainer]-8-[_contentLabel]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
     for (OSCReference *reference in [references reverseObjectEnumerator]) {
         [_currentContainer setBorderWidth:1.0 andColor:[UIColor lightGrayColor]];
