@@ -100,8 +100,7 @@
         [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-text"] forState:UIControlStateNormal];
         _editingBar.editView.inputView = _emojiPageVC.view;
         [_editingBar.editView reloadInputViews];
-        
-        [self setEditingBarHeight:216];
+
     }
 }
 
@@ -162,21 +161,31 @@
 #pragma mark - 跳转bar的高度
 - (void)keyboardWillShow:(NSNotification *)notification {
     CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    _editingBarYContraint.constant = keyboardBounds.size.height;
     
-    [self setEditingBarHeight:keyboardBounds.size.height];
+    [self setBottomBarHeightWithNotification:notification];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    [self setEditingBarHeight:0];
+    _editingBarYContraint.constant = 0;
+    
+    [self setBottomBarHeightWithNotification:notification];
 }
 
-- (void)setEditingBarHeight:(CGFloat)height {
-    _editingBarYContraint.constant = height;
+- (void)setBottomBarHeightWithNotification:(NSNotification *)notification {
+    NSTimeInterval animationDuration;
+    [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    
+    UIViewKeyframeAnimationOptions animationOptions;
+    animationOptions = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] << 16;
     [self.view setNeedsUpdateConstraints];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view layoutIfNeeded];
-    }];
+    [UIView animateKeyframesWithDuration:animationDuration
+                                   delay:0
+                                 options:animationOptions
+                              animations:^{
+                                  [self.view layoutIfNeeded];
+                              } completion:nil];
 }
 
 - (void)textDidUpdate:(NSNotification *)notification {

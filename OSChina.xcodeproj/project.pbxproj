@@ -782,6 +782,15 @@
 			name = "侧拉菜单";
 			sourceTree = "<group>";
 		};
+		337F12FA1B5949AD002C4C32 /* 编辑动弹 */ = {
+			isa = PBXGroup;
+			children = (
+				338776601B4CD24E001581A4 /* TweetEditingVC.h */,
+				338776611B4CD24E001581A4 /* TweetEditingVC.m */,
+			);
+			name = "编辑动弹";
+			sourceTree = "<group>";
+		};
 		33886F851B4F9863002B2537 /* EditingBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,8 +917,6 @@
 				339740EA1B4246AA0074D2EA /* OSCTabBarController.m */,
 				3387765D1B4CC568001581A4 /* OptionButton.h */,
 				3387765E1B4CC568001581A4 /* OptionButton.m */,
-				338776601B4CD24E001581A4 /* TweetEditingVC.h */,
-				338776611B4CD24E001581A4 /* TweetEditingVC.m */,
 			);
 			name = "Tab Bar";
 			sourceTree = "<group>";
@@ -972,6 +979,7 @@
 		339741021B4260850074D2EA /* 动弹 */ = {
 			isa = PBXGroup;
 			children = (
+				337F12FA1B5949AD002C4C32 /* 编辑动弹 */,
 				3335955E1B436D4300AC412A /* 动弹详情 */,
 				339741031B4260C00074D2EA /* TweetsViewController.h */,
 				339741041B4260C00074D2EA /* TweetsViewController.m */,
