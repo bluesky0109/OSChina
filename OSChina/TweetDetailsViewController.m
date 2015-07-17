@@ -90,9 +90,9 @@
                             <br/><a href='%@'><img style='max-width:300px;' src='%@'/></a>",
                             _tweet.body,  _tweet.bigImgURL, _tweet.bigImgURL];
              
-
-             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                                   withRowAnimation:UITableViewRowAnimationNone];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.tableView reloadData];
+             });
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [_HUD hide:YES];
          }];
@@ -152,7 +152,9 @@
         return;
     }
     _webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
     //设置为已经加载完成
     _isLoadingFinished = YES;
 }
