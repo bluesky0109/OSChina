@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "Utils.h"
 
-static NSString * const kID            = @"uid";
+static NSString * const kID            = @"id";
 static NSString * const kMessage       = @"message";
 static NSString * const kTweetImg      = @"tweetimage";
 
