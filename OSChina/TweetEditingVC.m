@@ -8,6 +8,7 @@
 
 #import "TweetEditingVC.h"
 #import "EmojiPageVC.h"
+#import "LoginViewController.h"
 #import "OSCAPI.h"
 #import "Config.h"
 #import "Utils.h"
@@ -309,6 +310,11 @@
 
 #pragma mark - 发表动弹
 - (void)pubTweet {
+    if ([Config getOwnID] == 0) {
+        [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        return;
+    }
+
     MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
     hub.labelText = @"动弹发送中";
     [hub hide:YES afterDelay:0.5];
