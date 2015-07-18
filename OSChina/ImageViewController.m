@@ -9,17 +9,20 @@
 // 参考 https://github.com/bogardon/GGFullscreenImageViewController
 
 #import "ImageViewController.h"
+#import "Utils.h"
 #import <UIImageView+WebCache.h>
+#import <SDImageCache.h>
+#import <MBProgressHUD.h>
 
 @interface ImageViewController ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIActivityIndicatorView *indicator;
+@property (nonatomic, strong) NSURL         *imageURL;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIImageView  *imageView;
-@property (nonatomic, strong) UIImageView  *thumbnail;
-@property (nonatomic, assign) CGPoint      location;
-@property (nonatomic, assign) CGRect       originalFrame;
+@property (nonatomic, strong) UIScrollView  *scrollView;
+@property (nonatomic, strong) UIImageView   *imageView;
+@property (nonatomic, assign) BOOL          zoomOut;
+
+@property (nonatomic, strong) MBProgressHUD *HUD;
 
 @end
 
@@ -30,11 +33,7 @@
     self = [super init];
     if (self) {
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        _imageView = [UIImageView new];
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_imageView sd_setImageWithURL:imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            _indicator.hidden = YES;
-        }];
+        _imageURL = imageURL;
     }
     
     return self;
@@ -53,6 +52,23 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
     
+    if (![[SDWebImageManager sharedManager] cachedImageExistsForURL:_imageURL]) {
+        _HUD = [Utils createHUDInWindowOfView:self.view];
+        _HUD.mode = MBProgressHUDModeAnnularDeterminate;
+    }
+    
+    _imageView = [UIImageView new];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.userInteractionEnabled = YES;
+    [_imageView sd_setImageWithURL:_imageURL
+                  placeholderImage:nil
+                           options:SDWebImageProgressiveDownload | SDWebImageContinueInBackground
+                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                              _HUD.progress = (CGFloat)receivedSize / (CGFloat)expectedSize;
+                          }
+                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                             [_HUD hide:YES];
+                         }];
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -62,24 +78,15 @@
     [singleTap requireGestureRecognizerToFail:doubleTap];
     [_imageView addGestureRecognizer:singleTap];
     
-    _imageView.userInteractionEnabled = YES;
     _scrollView.contentSize = _imageView.frame.size;
     [_scrollView addSubview:_imageView];
-    
-    
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _indicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin  | UIViewAutoresizingFlexibleBottomMargin |
-    UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    _indicator.color = [UIColor colorWithRed:54/255 green:54/255 blue:54/255 alpha:1.0];
-    _indicator.center = self.view.center;
-    [self.view addSubview:_indicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:animated];
     
     _imageView.frame = _scrollView.bounds;
 }
@@ -89,7 +96,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animated];
 }
 
 
@@ -101,9 +108,6 @@
     return self.imageView;
 }
 
-
-
-
 #pragma mark - handle gesture
 
 - (void)handleSingleTap
@@ -113,10 +117,9 @@
 
 - (void)handleDoubleTap:(UIGestureRecognizer *)recognizer
 {
-    static BOOL zoomOut = NO;
     
-    CGFloat power = zoomOut ? 1/_scrollView.maximumZoomScale : _scrollView.maximumZoomScale;
-    zoomOut = !zoomOut;
+    CGFloat power = _zoomOut ? 1/_scrollView.maximumZoomScale : _scrollView.maximumZoomScale;
+    _zoomOut = !_zoomOut;
     
     CGPoint pointInView = [recognizer locationInView:self.imageView];
     
