@@ -119,7 +119,7 @@ NSString * const kPositionName    = @"PositionName";
     if (userName) {
         return @[userName, score, favoriteCount, follower, fans, userID];
     }
-    return @[userName, score, favoriteCount, follower, fans, userID];
+    return @[@"点击头像登陆", @(0), @(0), @(0), @(0), @(0)];
 }
 
 + (UIImage *)getImage {
