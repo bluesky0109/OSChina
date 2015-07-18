@@ -257,7 +257,7 @@
 {
     OSCTweet *tweet = self.objects[recognizer.view.tag];
     
-    ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:tweet.bigImgURL thumbnail:(UIImageView *)recognizer.view];
+    ImageViewController *imageVC = [[ImageViewController alloc] initWithImageURL:tweet.bigImgURL];
     
     [self presentViewController:imageVC animated:YES completion:nil];
 }

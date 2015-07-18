@@ -169,7 +169,7 @@
             NSArray *array2 = [array1[1] componentsSeparatedByString:@"."];
             
             NSString *bigPortraitURL = [NSString stringWithFormat:@"%@_200.%@", array1[0], array2[1]];
-            ImageViewController *imgViewweVC = [[ImageViewController alloc] initWithImageURL:[NSURL URLWithString:bigPortraitURL] thumbnail:_portrait];
+            ImageViewController *imgViewweVC = [[ImageViewController alloc] initWithImageURL:[NSURL URLWithString:bigPortraitURL]];
             [self presentViewController:imgViewweVC animated:YES completion:nil];
         }
         

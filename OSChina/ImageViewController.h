@@ -12,6 +12,4 @@
 
 - (instancetype)initWithImageURL:(NSURL *)imageURL;
 
-- (instancetype)initWithImageURL:(NSURL *)imageURL thumbnail:(UIImageView *)thumbnail;
-
 @end
