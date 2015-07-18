@@ -26,6 +26,6 @@
 
 + (NSArray *)getUsersInformation;
 
-+ (UIImage *)getImage;
++ (UIImage *)getPortrait;
 
 @end

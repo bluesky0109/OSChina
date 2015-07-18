@@ -30,7 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:@"userRefresh" object:nil];
+    
     self.tableView.bounces = NO;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"menu-background(%dx%d)", (int)screenSize.width, (int)screenSize.height]];
@@ -75,32 +76,40 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSArray *userInformation = [Config getUsersInformation];
+    UIImage *portrait = [Config getPortrait];
+    
     UIView *headerView = [UIView new];
     headerView.backgroundColor = [UIColor clearColor];
     
-    /*
-     UIImageView *portrait = [UIImageView new];
-     portrait.contentMode = UIViewContentModeScaleAspectFit;
-     [portrait setCornerRadius:30];
-     portrait.userInteractionEnabled = YES;
-     portrait.translatesAutoresizingMaskIntoConstraints = NO;
-     [headerView addSubview:portrait];
-     
-     UILabel *nameLabel = [UILabel new];
-     nameLabel.font = [UIFont boldSystemFontOfSize:20];
-     nameLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
-     nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-     [headerView addSubview:nameLabel];
-     
-     NSDictionary *views = NSDictionaryOfVariableBindings(portrait, nameLabel);
-     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[portrait(60)]-10-[nameLabel]-25-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
-     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-50-[portrait(60)]" options:0 metrics:nil views:views]];
-     
-     portrait.userInteractionEnabled = YES;
-     nameLabel.userInteractionEnabled = YES;
-     [portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
-     [nameLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
-     */
+
+    UIImageView *portraitView = [UIImageView new];
+    portraitView.contentMode = UIViewContentModeScaleAspectFit;
+    [portraitView setCornerRadius:30];
+    portraitView.translatesAutoresizingMaskIntoConstraints = NO;
+    [headerView addSubview:portraitView];
+    
+    if (portrait == nil) {
+        portraitView.image = [UIImage imageNamed:@"default-portrait"];
+    } else {
+        portraitView.image = portrait;
+    }
+
+    UILabel *nameLabel = [UILabel new];
+    nameLabel.text = userInformation.firstObject;
+    nameLabel.font = [UIFont boldSystemFontOfSize:20];
+    nameLabel.textColor = [UIColor colorWithHex:0x696969];
+    nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [headerView addSubview:nameLabel];
+
+    NSDictionary *views = NSDictionaryOfVariableBindings(portraitView, nameLabel);
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[portraitView(60)]-10-[nameLabel]-25-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-50-[portraitView(60)]" options:0 metrics:nil views:views]];
+
+    portraitView.userInteractionEnabled = YES;
+    nameLabel.userInteractionEnabled = YES;
+    [portraitView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
+    [nameLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLoginPage)]];
     
     return headerView;
 }
@@ -159,17 +168,21 @@
     [self.sideMenuViewController hideMenuViewController];
 }
 
-/*
- #pragma mark - 点击头像
- 
- - (void)pushLoginPage
- {
- if ([Config getOwnID] == 0) {
- [self setContentViewController:[LoginViewController new]];
- } else {
- return;
- }
- }
- */
 
+#pragma mark - 点击头像
+
+- (void)pushLoginPage
+{
+    if ([Config getOwnID] == 0) {
+        [self setContentViewController:[LoginViewController new]];
+    } else {
+        return;
+    }
+}
+
+- (void)reload {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
 @end
