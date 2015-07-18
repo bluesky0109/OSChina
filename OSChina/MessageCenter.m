@@ -29,7 +29,7 @@
 - (instancetype)initWithNoticeCounts:(NSArray *)noticeCounts
 {
     
-    self = [super initWithTitle:@"消息中心" andSubTitles:@[@"我",@"评论",@"留言",@"粉丝"] andControllers:@[[[EventsViewController alloc] initWithCatalog:2],[[EventsViewController alloc] initWithCatalog:3],[MessagesViewController new],[[FriendsViewController alloc] initWithUserID:[Config getOwnID] andFriendsRelation:0]]];
+    self = [super initWithTitle:@"消息中心" andSubTitles:@[@"@我",@"评论",@"留言",@"粉丝"] andControllers:@[[[EventsViewController alloc] initWithCatalog:2],[[EventsViewController alloc] initWithCatalog:3],[MessagesViewController new],[[FriendsViewController alloc] initWithUserID:[Config getOwnID] andFriendsRelation:0]]];
     
     if (self) {
         
