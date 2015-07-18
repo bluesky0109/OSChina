@@ -19,7 +19,7 @@
 #import "TweetDetailsWithBottomBarViewController.h"
 #import "ImageViewController.h"
 #import <objc/runtime.h>
-
+#import <Reachability.h>
 
 @implementation Utils
 
@@ -334,6 +334,15 @@
     NSString *pattern = @"^(http|https)://.*?$(net|com|.com.cn|org|me|)";
     NSPredicate *urlPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     return [urlPredicate evaluateWithObject:string];
+}
+
++ (NSInteger)networkStatus {
+    Reachability *reach = [Reachability reachabilityWithHostName:@"www.oschina.net"];
+    return [reach currentReachabilityStatus];
+}
+
++ (BOOL)isNetworkExitst {
+    return [self networkStatus] > 0;
 }
 
 #pragma mark - UI处理

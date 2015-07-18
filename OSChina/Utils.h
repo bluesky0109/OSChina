@@ -46,6 +46,10 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (BOOL)isURL:(NSString *)string;
 
++ (NSInteger)networkStatus;
+
++ (BOOL)isNetworkExitst;
+
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
 
 + (MBProgressHUD *)createHUDInWindowOfView:(UIView *)view;

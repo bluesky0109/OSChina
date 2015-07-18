@@ -82,7 +82,7 @@
     [self.contentView addSubview:_referenceText];
     
     _appclientLabel = [UILabel new];
-    _appclientLabel.font = [UIFont systemFontOfSize:12];
+    _appclientLabel.font = [UIFont systemFontOfSize:14];
     _appclientLabel.textColor = [UIColor grayColor];
     [self.contentView addSubview:_appclientLabel];
     
