@@ -61,7 +61,13 @@ static NSString * const kAuthorUID2   = @"authoruid2";
     }
     
     return attributedTittle;
-    
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _newsID == ((OSCNews *)object).newsID;
+    }
+    return NO;
 }
 
 @end

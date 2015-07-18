@@ -25,4 +25,8 @@ static NSString * const kURL = @"url";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    return NO;
+}
+
 @end

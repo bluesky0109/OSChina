@@ -181,4 +181,13 @@ static NSString * const kObjectCatalog = @"objectcatalog";
     return _actionStr;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _eventID == ((OSCEvent *)object).eventID;
+    }
+    return NO;
+}
+
+
+
 @end

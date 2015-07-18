@@ -82,4 +82,12 @@ static NSString * const kRContent = @"rcontent";
     return [attributedText copy];
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _commentID == ((OSCComment *)object).commentID;
+    }
+    return NO;
+}
+
+
 @end

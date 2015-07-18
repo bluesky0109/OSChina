@@ -38,4 +38,11 @@ static NSString * const kPubDate     = @"pubDate";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _postID == ((OSCPost *)object).postID;
+    }
+    return NO;
+}
+
 @end

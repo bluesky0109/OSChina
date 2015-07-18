@@ -178,9 +178,20 @@
              /* 这里要添加一个去重步骤 */
              
              for (ONOXMLElement *objXML in objectsXML) {
+                 BOOL shouldBeAdded = YES;
                  id obj = [[self.objClass alloc] initWithXML:objXML];
-                 [self.objects addObject:obj];
-             }
+                 
+                 for (OSCBaseObject *baseObj in self.objects) {
+                     if ([obj isEqual:baseObj]) {
+                         shouldBeAdded = NO;
+                         break;
+                     }
+                 }
+                 if (shouldBeAdded) {
+                     [self.objects addObject:obj];
+
+                 }
+            }
              
              dispatch_async(dispatch_get_main_queue(), ^{
                  if (self.tableWillReload) {

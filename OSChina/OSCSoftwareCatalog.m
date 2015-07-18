@@ -30,4 +30,8 @@ static NSString * const kTag = @"tag";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    return NO;
+}
+
 @end

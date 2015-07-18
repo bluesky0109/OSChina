@@ -31,4 +31,11 @@ static NSString * const kJob = @"job";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _userID == ((OSCEventPersonInfo *)object).userID;
+    }
+    return NO;
+}
+
 @end

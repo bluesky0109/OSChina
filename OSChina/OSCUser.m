@@ -57,4 +57,11 @@ static NSString * const kLatestOnlineTime = @"latestonline";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _userID == ((OSCUser *)object).userID;
+    }
+    return NO;
+}
+
 @end

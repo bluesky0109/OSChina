@@ -52,4 +52,11 @@ static NSString * const kDocumentType = @"documentType";
     return attributedTittle;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([self class] == [object class]) {
+        return _blogID == ((OSCBlog *)object).blogID;
+    }
+    return NO;
+}
+
 @end
