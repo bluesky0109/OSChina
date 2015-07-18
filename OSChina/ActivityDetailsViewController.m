@@ -108,7 +108,7 @@
                 [cell.applicationButton setBackgroundColor:[UIColor clearColor]];
             } else {
                 
-                if (postDetails.category == 2) {
+                if (postDetails.applyStatus == 2) {
                     [cell.applicationButton setTitle:@"出席人员" forState:UIControlStateNormal];
                 }
                 

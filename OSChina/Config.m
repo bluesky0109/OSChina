@@ -13,23 +13,23 @@ NSString * const kService = @"OSChina";
 NSString * const kAccount = @"account";
 NSString * const kUserID  = @"userID";
 
-NSString * const kUserName          = @"name";
-NSString * const kPortrait = @"portrait";
-NSString * const kUserScore         = @"score";
-NSString * const kUserFavoriteCount = @"favoritecount";
-NSString * const kUserFans          = @"fans";
-NSString * const kUserFollowers     = @"followers";
+NSString * const kUserName      = @"name";
+NSString * const kPortrait      = @"portrait";
+NSString * const kUserScore     = @"score";
+NSString * const kFavoriteCount = @"favoritecount";
+NSString * const kFanCount      = @"fans";
+NSString * const kFollowerCount = @"followers";
 
 NSString * const kJointime        = @"jointime";
 NSString * const kDevelopPlatform = @"devplatform";
 NSString * const kExpertise       = @"expertise";
 NSString * const kHometown        = @"from";
 
-NSString * const kActorName       = @"Actor";
-NSString * const kSex             = @"Sex";
-NSString * const kTelephoneNumber = @"TelephoneNumber";
-NSString * const kCorporateName   = @"CorporateName";
-NSString * const kPositionName    = @"PositionName";
+NSString * const kName        = @"name";
+NSString * const kSex         = @"sex";
+NSString * const kPhoneNumber = @"phoneNumber";
+NSString * const kCorporation = @"corporation";
+NSString * const kPosition    = @"position";
 
 @implementation Config
 
@@ -41,14 +41,15 @@ NSString * const kPositionName    = @"PositionName";
     [SSKeychain setPassword:password forService:kService account:account];
 }
 
-+ (void)saveOwnUserName:(NSString *)userName andUserScore:(int)score andUserFavoriteCount:(int)favoriteCount andUserFans:(int)fans andUserFollower:(int)follower andOwnID:(int64_t)userID {
++ (void)saveOwnID:(int64_t)userID userName:(NSString *)userName score:(int)score favoriteCount:(int)favoriteCount fansCount:(int)fanCount andFollowerCount:(int)followerCount {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@(userID) forKey:kUserID];
     [userDefaults setObject:userName forKey:kUserName];
     [userDefaults setObject:@(score) forKey:kUserScore];
-    [userDefaults setObject:@(favoriteCount) forKey:kUserFavoriteCount];
-    [userDefaults setObject:@(fans) forKey:kUserFans];
-    [userDefaults setObject:@(follower) forKey:kUserFollowers];
-    [userDefaults setObject:@(userID) forKey:kUserID];
+    [userDefaults setObject:@(favoriteCount) forKey:kFavoriteCount];
+    [userDefaults setObject:@(fanCount) forKey:kFanCount];
+    [userDefaults setObject:@(followerCount) forKey:kFollowerCount];
+
     [userDefaults synchronize];
 }
 
@@ -59,14 +60,14 @@ NSString * const kPositionName    = @"PositionName";
     [userDefaults synchronize];
 }
 
-+ (void)saveActivityActorName:(NSString *)actorName andSex:(NSInteger)sex andTelephoneNumber:(NSString *)telephoneNumber andCorporateName:(NSString *)corporateName andPositionName:(NSString *)positionName {
++ (void)saveName:(NSString *)actorName sex:(NSInteger)sex phoneNumber:(NSString *)phoneNumber corporation:(NSString *)corporation andPosition:(NSString *)position {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    [userDefaults setObject:actorName forKey:kActorName];
+    [userDefaults setObject:actorName forKey:kName];
     [userDefaults setObject:@(sex) forKey:kSex];
-    [userDefaults setObject:telephoneNumber forKey:kTelephoneNumber];
-    [userDefaults setObject:corporateName forKey:kCorporateName];
-    [userDefaults setObject:positionName forKey:kPositionName];
+    [userDefaults setObject:phoneNumber forKey:kPhoneNumber];
+    [userDefaults setObject:corporation forKey:kCorporation];
+    [userDefaults setObject:position forKey:kPosition];
     
     [userDefaults synchronize];
 }
@@ -86,13 +87,13 @@ NSString * const kPositionName    = @"PositionName";
 + (NSArray *)getActivitySignUpInfomation {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *actorName = [userDefaults objectForKey:kActorName];
+    NSString *name = [userDefaults objectForKey:kName];
     NSNumber *sex = [userDefaults objectForKey:kSex];
-    NSString *telephoneNumber = [userDefaults objectForKey:kTelephoneNumber];
-    NSString *corporateName = [userDefaults objectForKey:kCorporateName];
-    NSString *positionName = [userDefaults objectForKey:kPositionName];
-    if (actorName) {
-        return @[actorName, sex, telephoneNumber, corporateName, positionName];
+    NSString *phoneNumber = [userDefaults objectForKey:kPhoneNumber];
+    NSString *corporation = [userDefaults objectForKey:kCorporation];
+    NSString *position = [userDefaults objectForKey:kPosition];
+    if (name) {
+        return @[name, sex, phoneNumber, corporation, position];
     }
     return nil;
 }
@@ -112,9 +113,9 @@ NSString * const kPositionName    = @"PositionName";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [userDefaults objectForKey:kUserName];
     NSNumber *score = [userDefaults objectForKey:kUserScore];
-    NSNumber *favoriteCount = [userDefaults objectForKey:kUserFavoriteCount];
-    NSNumber *fans = [userDefaults objectForKey:kUserFans];
-    NSNumber *follower = [userDefaults objectForKey:kUserFollowers];
+    NSNumber *favoriteCount = [userDefaults objectForKey:kFavoriteCount];
+    NSNumber *fans = [userDefaults objectForKey:kFanCount];
+    NSNumber *follower = [userDefaults objectForKey:kFollowerCount];
     NSNumber *userID = [userDefaults objectForKey:kUserID];
     if (userName) {
         return @[userName, score, favoriteCount, follower, fans, userID];
