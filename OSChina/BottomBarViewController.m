@@ -7,8 +7,10 @@
 //
 
 #import "BottomBarViewController.h"
+#import "LoginViewController.h"
 #import "GrowingTextView.h"
 #import "EmojiPageVC.h"
+#import "Config.h"
 
 @interface BottomBarViewController ()<UITextViewDelegate>
 
@@ -205,8 +207,13 @@
 #pragma mark -UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
-        [self sendContent];
-        [textView resignFirstResponder];
+        if ([Config getOwnID] == 0) {
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        } else {
+            [self sendContent];
+            [textView resignFirstResponder];
+        }
+        
         return NO;
     }
     return YES;
