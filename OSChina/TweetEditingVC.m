@@ -311,7 +311,8 @@
 - (void)pubTweet {
     MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
     hub.labelText = @"动弹发送中";
-
+    [hub hide:YES afterDelay:0.5];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     
@@ -340,14 +341,14 @@
             hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
         }
         
-        [hub hide:YES afterDelay:2];
+        [hub hide:YES afterDelay:0.5];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         hub.mode = MBProgressHUDModeCustomView;
         hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
         hub.labelText = @"网络异常，动弹发送失败";
         
-        [hub hide:YES afterDelay:2];
+        [hub hide:YES afterDelay:0.5];
     }];
 }
 

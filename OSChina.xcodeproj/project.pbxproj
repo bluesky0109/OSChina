@@ -93,6 +93,7 @@
 		337A8FB31B5278F500880209 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FB21B5278F500880209 /* UIBarButtonItem+Badge.m */; };
 		337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FB51B52792500880209 /* UIButton+Badge.m */; };
 		337A8FB91B52AA8B00880209 /* OSCMyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8FB81B52AA8B00880209 /* OSCMyInfo.m */; };
+		337F12FD1B595300002C4C32 /* ActivityDetailsWithBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337F12FC1B595300002C4C32 /* ActivityDetailsWithBarViewController.m */; };
 		3387765F1B4CC568001581A4 /* OptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3387765E1B4CC568001581A4 /* OptionButton.m */; };
 		338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 338776611B4CD24E001581A4 /* TweetEditingVC.m */; };
 		338776641B4D0BB4001581A4 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338776631B4D0BB4001581A4 /* emoji.plist */; };
@@ -320,6 +321,8 @@
 		337A8FB71B52AA8B00880209 /* OSCMyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMyInfo.h; sourceTree = "<group>"; };
 		337A8FB81B52AA8B00880209 /* OSCMyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMyInfo.m; sourceTree = "<group>"; };
 		337F12F91B5945B4002C4C32 /* OSChina-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSChina-Prefix.pch"; sourceTree = "<group>"; };
+		337F12FB1B595300002C4C32 /* ActivityDetailsWithBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsWithBarViewController.h; sourceTree = "<group>"; };
+		337F12FC1B595300002C4C32 /* ActivityDetailsWithBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsWithBarViewController.m; sourceTree = "<group>"; };
 		3387765D1B4CC568001581A4 /* OptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionButton.h; sourceTree = "<group>"; };
 		3387765E1B4CC568001581A4 /* OptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionButton.m; sourceTree = "<group>"; };
 		338776601B4CD24E001581A4 /* TweetEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetEditingVC.h; sourceTree = "<group>"; };
@@ -680,6 +683,8 @@
 				334687A31B5647C4004B3E75 /* ActivitySignUpViewController.m */,
 				3346CA4C1B5680710038BDFB /* PresentMembersViewController.h */,
 				3346CA4D1B5680710038BDFB /* PresentMembersViewController.m */,
+				337F12FB1B595300002C4C32 /* ActivityDetailsWithBarViewController.h */,
+				337F12FC1B595300002C4C32 /* ActivityDetailsWithBarViewController.m */,
 			);
 			name = "活动详情";
 			sourceTree = "<group>";
@@ -1424,6 +1429,7 @@
 				333595681B43728300AC412A /* OSCComment.m in Sources */,
 				338F92281B54E73D00BEAAD6 /* OSCReference.m in Sources */,
 				3335956B1B43748A00AC412A /* TweetDetailsViewController.m in Sources */,
+				337F12FD1B595300002C4C32 /* ActivityDetailsWithBarViewController.m in Sources */,
 				333595721B4385E300AC412A /* BlogsViewController.m in Sources */,
 				33C11ED41B451C6900728AE4 /* DiscoverTableVC.m in Sources */,
 				333595781B43912E00AC412A /* OSCBlogDetails.m in Sources */,

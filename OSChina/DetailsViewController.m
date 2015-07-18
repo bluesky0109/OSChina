@@ -285,22 +285,16 @@
                   MBProgressHUD *HUD = [Utils createHUDInWindowOfView:weakSelf.view];
                   HUD.mode = MBProgressHUDModeCustomView;
                   
-                  switch (errorCode) {
-                      case 1: {
-                          HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
-                          HUD.labelText = weakSelf.isStarred? @"删除收藏成功": @"添加收藏成功";
-                          weakSelf.isStarred = !weakSelf.isStarred;
-                          weakSelf.operationBar.isStarred = weakSelf.isStarred;
-                          break;
-                      }
-                      case 0:
-                      case -2:
-                      case -1: {
-                          HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                          HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
-                          break;
-                      }
-                      default: break;
+                  if (errorCode == 1) {
+                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                      HUD.labelText = weakSelf.isStarred? @"删除收藏成功": @"添加收藏成功";
+                      weakSelf.isStarred = !weakSelf.isStarred;
+                      weakSelf.operationBar.isStarred = weakSelf.isStarred;
+                      
+                  } else {
+                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                      HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+                      
                   }
                   
                   [HUD hide:YES afterDelay:1];
@@ -349,6 +343,7 @@
         [[UMSocialData defaultData].extConfig.sinaData.urlResource setResourceType:UMSocialUrlResourceTypeDefault url:weakSelf.mURL];
         
         //复制链接
+#if 0
         UMSocialSnsPlatform *snsPlatform = [[UMSocialSnsPlatform alloc] initWithPlatformName:@"CustomPlatform"];
         snsPlatform.displayName = @"复制链接";
         snsPlatform.bigImageName = @"UMS_facebook_icon";
@@ -365,7 +360,7 @@
         
         [UMSocialConfig addSocialSnsPlatform:@[snsPlatform]];
         [UMSocialConfig setSnsPlatformNames:@[UMShareToWechatTimeline, UMShareToWechatSession, UMShareToQQ, UMShareToSina, @"CustomPlatform"]];
-        
+#endif
         
         [UMSocialSnsService presentSnsIconSheetView:weakSelf
                                              appKey:@"55a12e3a67e58eb345002270"
@@ -559,7 +554,7 @@
         parameters = @{
                        @"blog": @(_objectID),
                        @"uid": @([Config getOwnID]),
-                       @"content": [Utils convertRichTextToRawText:self.editingBar.editView],
+                       @"content": content,
                        @"reply_id": @(0),
                        @"objuid": @(0)
                        };
@@ -569,7 +564,7 @@
                        @"catalog": @(_commentType),
                        @"id": @(_objectID),
                        @"uid": @([Config getOwnID]),
-                       @"content": [Utils convertRichTextToRawText:self.editingBar.editView],
+                       @"content": content,
                        @"isPostToMyZone": @(0)
                        };
     }
@@ -584,21 +579,15 @@
               
               HUD.mode = MBProgressHUDModeCustomView;
               
-              switch (errorCode) {
-                  case 1: {
-                      self.editingBar.editView.text = @"";
-                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
-                      HUD.labelText = @"评论发表成功";
-                      break;
-                  }
-                  case 0:
-                  case -2:
-                  case -1: {
-                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                      HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
-                      break;
-                  }
-                  default: break;
+              if (errorCode == 1) {
+                  self.editingBar.editView.text = @"";
+                  HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                  HUD.labelText = @"评论发表成功";
+                  
+              } else {
+                  HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                  HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+                  
               }
               
               [HUD hide:YES afterDelay:2];

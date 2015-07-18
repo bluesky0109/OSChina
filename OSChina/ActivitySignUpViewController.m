@@ -231,7 +231,7 @@
                   HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
               }
               
-              [HUD hide:YES afterDelay:2];
+              [HUD hide:YES afterDelay:0.5];
               
               [Config saveActivityActorName:_nameTextfield.text
                                      andSex:_sexSegmentCtl.selectedSegmentIndex

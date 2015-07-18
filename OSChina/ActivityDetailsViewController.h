@@ -10,7 +10,11 @@
 
 @class OSCActivity;
 
+@class ActivityDetailsWithBarViewController;
+
 @interface ActivityDetailsViewController : UITableViewController
+
+@property (nonatomic, weak) ActivityDetailsWithBarViewController *bottomBarVC;
 
 - (instancetype)initWithActivity:(OSCActivity *)activity;
 
