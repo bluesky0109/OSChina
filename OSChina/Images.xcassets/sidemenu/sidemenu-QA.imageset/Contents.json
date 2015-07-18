@@ -2,18 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "sidemenu-settings.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "sidemenu-settings@2x.png"
+      "filename" : "sidemenu-QA@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "sidemenu-settings@3x.png"
+      "filename" : "sidemenu-QA@3x.png"
     }
   ],
   "info" : {

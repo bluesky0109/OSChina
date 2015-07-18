@@ -2,18 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "sidemenu-software.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "sidemenu-software@2x.png"
+      "filename" : "menu-background(320x480)@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "sidemenu-software@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
