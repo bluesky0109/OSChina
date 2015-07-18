@@ -90,7 +90,7 @@
     if (_editingBar.editView.inputView == self.emojiPageVC.view) {
         [_editingBar.editView becomeFirstResponder];
         
-        [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"emoji"] forState:UIControlStateNormal];
+        [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-emoji2"] forState:UIControlStateNormal];
         _editingBar.editView.inputView = nil;
         _editingBar.editView.font = [UIFont systemFontOfSize:18];
         [_editingBar.editView reloadInputViews];
