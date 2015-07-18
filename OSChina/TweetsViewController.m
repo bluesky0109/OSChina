@@ -230,17 +230,17 @@
 #pragma mark - 下载图片
 - (void)downloadImageThenReload:(NSURL *)imageURL
 {
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL
-                                                          options:SDWebImageDownloaderUseNSURLCache
-                                                         progress:nil
-                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                            [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
-                                                            
-                                                            // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                [self.tableView reloadData];
-                                                            });
-                                                        }];
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:imageURL
+                                                        options:SDWebImageDownloaderUseNSURLCache
+                                                       progress:nil
+                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                          [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString toDisk:NO];
+                                                          
+                                                          // 单独刷新某一行会有闪烁，全部reload反而较为顺畅
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              [self.tableView reloadData];
+                                                          });
+                                                      }];
 }
 
 #pragma mark - 跳转到用户详情页
