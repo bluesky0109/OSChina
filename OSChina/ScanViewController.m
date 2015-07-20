@@ -116,7 +116,9 @@
                 HUD.mode = MBProgressHUDModeCustomView;
                 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                 HUD.labelText = @"您还没登录，请先登录再扫描签到";
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHUD:)]];
+                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+                [HUD hide:YES afterDelay:2];
+                
                 return;
             }
             
@@ -133,7 +135,8 @@
                 HUD.mode = MBProgressHUDModeCustomView;
                 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                 HUD.labelText = @"无效二维码";
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHUD:)]];
+                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+                [HUD hide:YES afterDelay:2];
                 return;
             }
             
@@ -141,8 +144,8 @@
                 MBProgressHUD *HUD = [Utils createHUD];
                 HUD.mode = MBProgressHUDModeText;
                 HUD.labelText = title;
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHUD:)]];
-                
+                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+                [HUD hide:YES afterDelay:2];
             } else {
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -152,7 +155,6 @@
                      success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
                          MBProgressHUD *HUD = [Utils createHUD];
                          HUD.mode = MBProgressHUDModeCustomView;
-                         [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHUD:)]];
                          
                          NSString *message = responseObject[@"msg"];
                          NSString *error   = responseObject[@"error"];
@@ -164,6 +166,9 @@
                              HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                              HUD.labelText = error;
                          }
+                         
+                         [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+                         [HUD hide:YES afterDelay:2];
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          MBProgressHUD *HUD = [Utils createHUD];
                          HUD.mode = MBProgressHUDModeCustomView;
@@ -177,17 +182,12 @@
             MBProgressHUD *HUD = [Utils createHUD];
             HUD.mode = MBProgressHUDModeText;
             HUD.labelText = message;
-            [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHUD:)]];
-            
+            [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+            [HUD hide:YES afterDelay:2];
         }
     }
-    
-}
 
-- (void)onTapHUD:(UIGestureRecognizer *)recognizer {
-    [(MBProgressHUD *)recognizer.view hide:YES];
-    
-    [_session startRunning];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
