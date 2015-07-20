@@ -10,6 +10,7 @@
 #import "ActivitySignUpViewController.h"
 #import "PresentMembersViewController.h"
 #import "ActivityDetailsWithBarViewController.h"
+#import "ActivitySignUpViewController.h"
 #import "OSCActivity.h"
 #import "ActivityBasicInfoCell.h"
 #import "ActivityDetailsCell.h"
@@ -21,7 +22,7 @@
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
 #import <Ono.h>
-
+#import <MBProgressHUD.h>
 
 @interface ActivityDetailsViewController ()<UIWebViewDelegate>
 
@@ -73,7 +74,12 @@
              });
 
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"wrong");
+             MBProgressHUD *HUD = [Utils createHUD];
+             HUD.mode = MBProgressHUDModeCustomView;
+             HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+             HUD.labelText = @"网络异常，加载失败";
+             
+             [HUD hide:YES afterDelay:1];
          }];
 
 }

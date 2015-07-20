@@ -205,7 +205,12 @@
               [self.navigationController popViewControllerAnimated:YES];
               
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSLog(@"网络异常，错误码：%ld", (long)error.code);
+              MBProgressHUD *HUD = [Utils createHUD];
+              HUD.mode = MBProgressHUDModeCustomView;
+              HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+              HUD.labelText = @"网络异常，登录失败";
+              
+              [HUD hide:YES afterDelay:1];
           }
      ];
 }
