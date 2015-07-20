@@ -138,7 +138,7 @@
     } else {
         NSString *title;
         if (self.tweet.commentCount) {
-            title = [NSString stringWithFormat:@"%d 条评论", self.tweet.commentCount];
+            title = [NSString stringWithFormat:@"%d 条评论", self.allCount];
         } else {
             title = @"没有评论";
         }

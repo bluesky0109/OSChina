@@ -108,30 +108,24 @@
               
               hub.mode = MBProgressHUDModeCustomView;
               
-              switch (errorCode) {
-                  case 1: {
-                      self.editingBar.editView.text = @"";
-                      hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
-                      hub.labelText = @"评论发表成功";
-                      break;
-                  }
-                  case 0:
-                  case -2:
-                  case -1: {
-                      hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                      hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
-                      break;
-                  }
-                  default: break;
+              if (errorCode == 1) {
+                  self.editingBar.editView.text = @"";
+                  hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                  hub.labelText = @"评论发表成功";
+              } else {
+                  hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                  hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
               }
               
-              [hub hide:YES afterDelay:2];
+              [hub hide:YES afterDelay:1];
+              [_tweetDetailsVC.tableView setContentOffset:CGPointZero animated:NO];
+              [_tweetDetailsVC refresh];
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               hub.mode = MBProgressHUDModeCustomView;
               hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
               hub.labelText = @"网络异常，动弹发送失败";
               
-              [hub hide:YES afterDelay:2];
+              [hub hide:YES afterDelay:1];
           }];
 
 }
