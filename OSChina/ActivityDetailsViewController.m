@@ -68,7 +68,10 @@
              commentsCountButton.badgePadding = 1;
              commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x24a83d];
              
-             [self.tableView reloadData];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.tableView reloadData];
+             });
+
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"wrong");
          }];
@@ -168,7 +171,7 @@
         case 1:
             return 35;
         case 2:
-            return _webViewHeight + 30;
+            return _isLoadingFinished? _webViewHeight + 30 : 400;
         default:
             return 0;
     }
