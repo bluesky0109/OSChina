@@ -24,9 +24,6 @@
 
 
 @interface ActivityDetailsViewController ()<UIWebViewDelegate>
-{
-    OSCPostDetails *postDetails;
-}
 
 @property (nonatomic, readonly, strong) OSCActivity *activity;
 
@@ -62,12 +59,12 @@
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
              ONOXMLElement *postXML = [responseObject.rootElement firstChildWithTag:@"post"];
-             postDetails = [[OSCPostDetails alloc] initWithXML:postXML];
-             _HTML = [NSString stringWithFormat:@"%@\n%@", @"<style>img {max-width: 100%;}</style>", [postDetails.body copy]];
+             _postDetails = [[OSCPostDetails alloc] initWithXML:postXML];
+             _HTML = [NSString stringWithFormat:@"%@\n%@", @"<style>img {max-width: 100%;}</style>", [_postDetails.body copy]];
              
              UIBarButtonItem *commentsCountButton = _bottomBarVC.operationBar.items[4];
              commentsCountButton.shouldHideBadgeAtZero = YES;
-             commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", postDetails.answerCount];
+             commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", _postDetails.answerCount];
              commentsCountButton.badgePadding = 1;
              commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x24a83d];
              
@@ -99,20 +96,20 @@
             cell.locationLabel.text = [NSString stringWithFormat:@"地点：%@ %@", _activity.city, _activity.location];
             
             
-            if (postDetails.applyStatus == 0) {
+            if (_postDetails.applyStatus == 0) {
                 [cell.applicationButton setTitle:@"审核中" forState:UIControlStateNormal];
-            } else if (postDetails.applyStatus == 1) {
+            } else if (_postDetails.applyStatus == 1) {
                 [cell.applicationButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                 [cell.applicationButton setTitle:@"你的报名已确认，现场可以扫描二维码签到！" forState:UIControlStateNormal];
                 cell.applicationButton.titleLabel.font = [UIFont systemFontOfSize:14];
                 [cell.applicationButton setBackgroundColor:[UIColor clearColor]];
             } else {
                 
-                if (postDetails.applyStatus == 2) {
+                if (_postDetails.applyStatus == 2) {
                     [cell.applicationButton setTitle:@"出席人员" forState:UIControlStateNormal];
                 }
                 
-                if (postDetails.category == 4) {
+                if (_postDetails.category == 4) {
                     [cell.applicationButton setTitle:@"报名链接" forState:UIControlStateNormal];
                 }
 
@@ -202,17 +199,17 @@
 #pragma mark - 报名
 - (void)enrollActivity
 {
-    if (postDetails.category == 4) {
-        [[UIApplication sharedApplication] openURL:postDetails.signUpUrl];
+    if (_postDetails.category == 4) {
+        [[UIApplication sharedApplication] openURL:_postDetails.signUpUrl];
     } else {
-        if (postDetails.applyStatus == 2) {
+        if (_postDetails.applyStatus == 2) {
 
-            PresentMembersViewController *presentMembersViewController = [[PresentMembersViewController alloc] initWithEventID:postDetails.postID];
+            PresentMembersViewController *presentMembersViewController = [[PresentMembersViewController alloc] initWithEventID:_postDetails.postID];
             [_bottomBarVC.navigationController pushViewController:presentMembersViewController animated:YES];
         } else {
         
             ActivitySignUpViewController *signUpVC = [ActivitySignUpViewController new];
-            signUpVC.eventId = postDetails.postID;
+            signUpVC.eventId = _postDetails.postID;
             [_bottomBarVC.navigationController pushViewController:signUpVC animated:YES];
         }
     }

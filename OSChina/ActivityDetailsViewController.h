@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class OSCActivity;
-
+@class OSCPostDetails;
 @class ActivityDetailsWithBarViewController;
 
 @interface ActivityDetailsViewController : UITableViewController
 
 @property (nonatomic, weak) ActivityDetailsWithBarViewController *bottomBarVC;
+@property (nonatomic, readonly, strong)OSCPostDetails *postDetails;
 
 - (instancetype)initWithActivity:(OSCActivity *)activity;
 
