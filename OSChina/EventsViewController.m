@@ -9,6 +9,8 @@
 #import "EventsViewController.h"
 #import "TweetDetailsWithBottomBarViewController.h"
 #import "DetailsViewController.h"
+#import "UserDetailsViewController.h"
+#import "ImageViewController.h"
 #import "OSCEvent.h"
 #import "OSCNews.h"
 #import "OSCTweet.h"
@@ -112,13 +114,10 @@ static NSString * const kEventCellID = @"EventCell";
             }
         }
 
-        
-#if 0
-        cell.portrait.tag = row; cell.authorLabel.tag = row; cell.thumbnail.tag = row;
+        cell.portrait.tag = row; cell.thumbnail.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
-        [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
         [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadLargeImage:)]];
-#endif
+
         
         return cell;
     } else {
@@ -232,5 +231,25 @@ static NSString * const kEventCellID = @"EventCell";
     });
 }
 
+#pragma mark - 跳转到用户详情页面
+- (void)pushUserDetailsView:(UITapGestureRecognizer *)recognizer {
+    OSCEvent *event = self.objects[recognizer.view.tag];
+    UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:event.authorID];
+    [self.navigationController pushViewController:userDetailsVC animated:YES];
+}
+
+
+#pragma mark - 加载大图
+- (void)loadLargeImage:(UITapGestureRecognizer *)recognizer {
+    OSCEvent *event = self.objects[recognizer.view.tag];
+    
+    NSMutableString *thumbURL = [NSMutableString stringWithString:event.tweetImg.absoluteString];
+    [thumbURL replaceCharactersInRange:NSMakeRange(thumbURL.length - 10, 10) withString:@".jpg"];
+    NSURL *bigImageURL = [NSURL URLWithString:thumbURL];
+    
+    ImageViewController *imageViewVC = [[ImageViewController alloc] initWithImageURL:bigImageURL];
+    
+    [self presentViewController:imageViewVC animated:YES completion:nil];
+}
 
 @end
