@@ -23,6 +23,7 @@
     
     if (self) {
         self.objects = [NSMutableArray new];
+        _page = 0;
         _needRefreshAnimation = YES;
     }
     
@@ -129,12 +130,8 @@
     if (self.lastCell.status == LastCellStatusFinished || self.lastCell.status == LastCellStatusLoading) {return;}
     
     [self.lastCell statusLoading];
-    [self fetchObjectsOnPage:(self.objects.count + 19)/20 refresh:NO];
+    [self fetchObjectsOnPage:++_page refresh:NO];
 }
-
-
-
-
 
 #pragma mark - 请求数据
 
@@ -150,6 +147,7 @@
              NSArray *objectsXML = [self parseXML:responseDocument];
              
              if (refresh) {
+                 _page = 0;
                  [self.objects removeAllObjects];
                  if (self.didRefreshSucceed) {
                      self.didRefreshSucceed();
@@ -179,7 +177,7 @@
                  if (self.tableWillReload) {
                      self.tableWillReload(objectsXML.count);
                  } else {
-                     objectsXML.count < 20? [self.lastCell statusFinished] : [self.lastCell statusMore];
+                     objectsXML.count ==0? [self.lastCell statusFinished] : [self.lastCell statusMore];
                  }
                  
                  [self.tableView reloadData];
