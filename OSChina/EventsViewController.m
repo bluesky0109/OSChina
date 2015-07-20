@@ -104,6 +104,7 @@ static NSString * const kEventCellID = @"EventCell";
         
 
         if (event.hasAnImage) {
+#if 0
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:event.tweetImg.absoluteString];
             
             // 有图就加载，无图则下载并reload tableview
@@ -112,10 +113,13 @@ static NSString * const kEventCellID = @"EventCell";
             } else {
                 [cell.thumbnail setImage:image];
             }
+#else
+            [cell.thumbnail sd_setImageWithURL:event.tweetImg placeholderImage:[UIImage imageNamed:@"placeholder"]];
+#endif
         }
 
         cell.portrait.tag = row; cell.thumbnail.tag = row;
-        [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushDetailsView:)]];
+        [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetailsView:)]];
         [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadLargeImage:)]];
 
         
@@ -151,9 +155,13 @@ static NSString * const kEventCellID = @"EventCell";
         }
         
         if (event.hasAnImage) {
+#if 0
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:event.tweetImg.absoluteString];
             if (!image) {image = [UIImage imageNamed:@"portrait_loading"];}
             height += image.size.height + 5;
+#else
+            height += 85;
+#endif
         }
 
         return height;
