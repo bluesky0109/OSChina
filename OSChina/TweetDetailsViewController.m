@@ -70,7 +70,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _HUD = [Utils createHUDInWindowOfView:self.view];
+    _HUD = [Utils createHUD];
     _HUD.userInteractionEnabled = NO;
     _HUD.dimBackground = YES;
     

@@ -212,7 +212,7 @@
     
     [self.editingBar.modeSwitchButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     
-    _HUD = [Utils createHUDInWindowOfView:self.view];
+    _HUD = [Utils createHUD];
     _HUD.userInteractionEnabled = NO;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -282,7 +282,7 @@
                   int errorCode = [[[result firstChildWithTag:@"errorCode"] numberValue] intValue];
                   NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
                   
-                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:weakSelf.view];
+                  MBProgressHUD *HUD = [Utils createHUD];
                   HUD.mode = MBProgressHUDModeCustomView;
                   
                   if (errorCode == 1) {
@@ -299,7 +299,7 @@
                   
                   [HUD hide:YES afterDelay:1];
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:weakSelf.view];
+                  MBProgressHUD *HUD = [Utils createHUD];
                   HUD.mode = MBProgressHUDModeCustomView;
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   HUD.labelText = @"网络异常，操作失败";
@@ -511,14 +511,14 @@
                         @"url":         _URL
                         }
               success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
-                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+                  MBProgressHUD *HUD = [Utils createHUD];
                   HUD.mode = MBProgressHUDModeCustomView;
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
                   HUD.labelText = @"举报成功";
                   
                   [HUD hide:YES afterDelay:1];
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+                  MBProgressHUD *HUD = [Utils createHUD];
                   HUD.mode = MBProgressHUDModeCustomView;
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   HUD.labelText = @"网络异常，操作失败";
@@ -532,7 +532,7 @@
 
 - (void)sendComment
 {
-    MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+    MBProgressHUD *HUD = [Utils createHUD];
     HUD.labelText = @"评论发送中";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

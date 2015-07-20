@@ -87,7 +87,7 @@
 
 
 - (void)sendContent {
-    MBProgressHUD *hub = [Utils createHUDInWindowOfView:self.view];
+    MBProgressHUD *hub = [Utils createHUD];
     hub.labelText = @"评论发送中";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -72,7 +72,7 @@
 - (void)sendContent {
     [self.editingBar.editView resignFirstResponder];
     
-    MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+    MBProgressHUD *HUD = [Utils createHUD];
     HUD.labelText = @"留言发送中";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

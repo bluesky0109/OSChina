@@ -342,7 +342,7 @@
 - (void)tapPortrait {
     //没网
     if (![Utils isNetworkExitst]) {
-        MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+        MBProgressHUD *HUD = [Utils createHUD];
         HUD.mode = MBProgressHUDModeText;
         HUD.labelText = @"网络无连接，请检查网络";
         
@@ -360,7 +360,7 @@
 #pragma mark - 二维码相关
 
 - (void)tapQRCodeImage {
-    MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+    MBProgressHUD *HUD = [Utils createHUD];
     HUD.mode = MBProgressHUDModeCustomView;
     HUD.color = [UIColor whiteColor];
 

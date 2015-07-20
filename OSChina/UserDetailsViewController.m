@@ -191,14 +191,14 @@
                                                 withRowAnimation:UITableViewRowAnimationNone];
                       });
                   } else {
-                      MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+                      MBProgressHUD *HUD = [Utils createHUD];
                       HUD.mode = MBProgressHUDModeCustomView;
                       HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                       HUD.labelText = errorMessage;
                   }
                   
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+                  MBProgressHUD *HUD = [Utils createHUD];
                   HUD.mode = MBProgressHUDModeCustomView;
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   HUD.labelText = @"网络异常，操作失败";
@@ -215,7 +215,7 @@
 
 - (void)sendMessage {
     if ([Config getOwnID] == 0) {
-        MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+        MBProgressHUD *HUD = [Utils createHUD];
         HUD.mode = MBProgressHUDModeText;
         HUD.labelText = @"请先登录";
         [HUD hide:YES afterDelay:0.5];
@@ -226,7 +226,7 @@
 
 - (void)showUserInformation {
 
-    MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
+    MBProgressHUD *HUD = [Utils createHUD];
     HUD.mode = MBProgressHUDModeCustomView;
     HUD.color = [UIColor colorWithHex:0xEEEEEE];
     
