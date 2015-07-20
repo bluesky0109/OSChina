@@ -17,6 +17,8 @@
 #import "Config.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+static NSString * const kTweetCellID = @"TweetCell";
+
 @interface TweetsViewController ()
 
 @property (nonatomic, assign) int64_t uid;
@@ -108,8 +110,7 @@
     [super viewDidLoad];
     
     // tableView设置
-    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweeWithoutImagetCellID];
-    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetWithImageCellID];
+    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,12 +140,12 @@
     NSInteger row = indexPath.row;
     if (row < self.objects.count) {
         OSCTweet *tweet = self.objects[row];
-        NSString *cellID = tweet.hasAnImage? kTweetWithImageCellID : kTweeWithoutImagetCellID;
-        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:kTweetCellID forIndexPath:indexPath];
         
         [self setBlockForTweetCell:cell];
         [cell setContentWithTweet:tweet];
         if (tweet.hasAnImage) {
+            cell.thumbnail.hidden = NO;
             UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:tweet.smallImgURL.absoluteString];
             // 有图就加载，无图则下载并reload tableview
             if (!image) {
@@ -153,6 +154,8 @@
             } else {
                 [cell.thumbnail setImage:image];
             }
+        } else {
+            cell.thumbnail.hidden = YES;
         }
         cell.portrait.tag = row;
         cell.authorLabel.tag = row;
