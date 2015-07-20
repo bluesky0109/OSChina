@@ -9,6 +9,7 @@
 #import "TweetDetailsViewController.h"
 #import "UserDetailsViewController.h"
 #import "ImageViewController.h"
+#import "UserDetailsViewController.h"
 #import "TweetDetailsCell.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
@@ -49,6 +50,8 @@
                 [cell.authorLabel setText:weakSelf.tweet.author];
                 [cell.timeLabel setText:[Utils intervalSinceNow:weakSelf.tweet.pubDate]];
                 [cell.appclientLabel setText:[Utils getAppclient:weakSelf.tweet.appclient]];
+                [cell.portrait    addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushUserDetails)]];
+                [cell.authorLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushUserDetails)]];
                 cell.webView.delegate = weakSelf;
                 [cell.webView loadHTMLString:weakSelf.tweet.body baseURL:nil];
             }
@@ -162,9 +165,10 @@
     _webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+        
+        //设置为已经加载完成
+        _isLoadingFinished = YES;
     });
-    //设置为已经加载完成
-    _isLoadingFinished = YES;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -172,5 +176,11 @@
     [Utils analysis:[request.URL absoluteString] andNavController:self.navigationController];
     return [request.URL.absoluteString isEqualToString:@"about:blank"];
 }
+
+#pragma mark - 头像点击事件
+- (void)pushUserDetails {
+    [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithUserID:_tweet.authorID] animated:YES];
+}
+
 
 @end
