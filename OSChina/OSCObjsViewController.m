@@ -177,7 +177,11 @@
                  if (self.tableWillReload) {
                      self.tableWillReload(objectsXML.count);
                  } else {
-                     objectsXML.count ==0? [self.lastCell statusFinished] : [self.lastCell statusMore];
+                     if (objectsXML.count == 0 ||(_page == 0 && objectsXML.count < 20)) {
+                         [self.lastCell statusFinished];
+                     } else {
+                         [self.lastCell statusMore];
+                     }
                  }
                  
                  [self.tableView reloadData];
