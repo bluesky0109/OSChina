@@ -317,7 +317,7 @@
     
     MBProgressHUD *HUD = [Utils createHUDInWindowOfView:self.view];
     HUD.labelText = @"动弹发送中";
-    [HUD hide:YES afterDelay:0.5];
+    [HUD hide:YES afterDelay:1.0];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -345,7 +345,7 @@
                               NSString *errorMessage = [[result firstChildWithTag:@"errorMessage"] stringValue];
                               
                               HUD.mode = MBProgressHUDModeCustomView;
-                              
+                              [HUD show:YES];
                               if (errorCode == 1) {
                                   _edittingArea.text = @"";
                                   _imageView.image = nil;
