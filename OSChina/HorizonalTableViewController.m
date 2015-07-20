@@ -118,6 +118,9 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
 #pragma mark -- public
 - (void)scrollToViewAtIndex:(NSUInteger)index {
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    if (self.viewDidAppear) {
+        self.viewDidAppear(index);
+    }
 }
 
 @end
