@@ -119,7 +119,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 
@@ -133,8 +133,8 @@
     [cell setSelectedBackgroundView:selectedBackground];
     
     cell.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
-    cell.textLabel.text = @[@"消息", @"博客"][indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@[@"me-message", @"me-blog"][indexPath.row]];
+    cell.textLabel.text = @[@"消息", @"博客",@"团队"][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:@[@"me-message", @"me-blog",@"me-team"][indexPath.row]];
     
     if (indexPath.row == 0) {
         if (_badgeValue == 0) {
@@ -316,6 +316,15 @@
             break;
         }
 
+        case 2: {
+            MBProgressHUD *HUD = [Utils createHUD];
+            HUD.mode = MBProgressHUDModeText;
+            HUD.labelText = @"即将推出团队功能，敬请期待";
+            [HUD hide:YES afterDelay:1];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            break;
+        }
         default: break;
     }
 }
