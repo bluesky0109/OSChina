@@ -105,6 +105,8 @@
               }
               
               [HUD hide:YES afterDelay:1];
+              [_tweetsViewController.tableView setContentOffset:CGPointZero animated:NO];
+              [_tweetsViewController refresh];
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               HUD.mode = MBProgressHUDModeCustomView;
               HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];

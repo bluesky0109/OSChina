@@ -103,6 +103,10 @@
               }
               
               [HUD hide:YES afterDelay:1];
+              
+              [_messageBubbleVC.tableView setContentOffset:CGPointZero animated:NO];
+              [_messageBubbleVC refresh];
+              
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               HUD.mode = MBProgressHUDModeCustomView;
               HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
