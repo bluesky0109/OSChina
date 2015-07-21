@@ -11,9 +11,11 @@
 
 @interface GrowingTextView : PlaceholderTextView
 
-@property (nonatomic, assign, readonly) NSUInteger numberOfLines;
 @property (nonatomic, assign) NSUInteger maxNumberOfLines;
+@property (nonatomic, assign, readonly) CGFloat maxHeight;
 
 - (instancetype)initWithPlaceholder:(NSString *)placeholder;
+
+- (CGFloat)measureHeight;
 
 @end
