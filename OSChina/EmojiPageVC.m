@@ -34,15 +34,7 @@
         };
         
         _deleteEmoji = ^ {
-            NSMutableAttributedString *mutableAttributeString = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
-            NSRange range = textView.selectedRange;
-            if (range.length == 0 && range.location != 0) {
-                [mutableAttributeString deleteCharactersInRange:NSMakeRange(range.location - 1, 1)];
-            } else {
-                [mutableAttributeString deleteCharactersInRange:textView.selectedRange];
-            }
-            textView.attributedText = [mutableAttributeString copy];
-            textView.font = [UIFont systemFontOfSize:18];
+            [textView deleteBackward];
             [textView checkShouldHidePlaceholder];
             [textView.delegate textViewDidChange:textView];
         };
