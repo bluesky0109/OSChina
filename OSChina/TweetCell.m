@@ -135,14 +135,15 @@
 - (void)setContentWithTweet:(OSCTweet *)tweet {
     [self.portrait loadPortrait:tweet.portraitURL];
     [self.authorLabel setText:tweet.author];
-    [self.timeLabel setText:[Utils intervalSinceNow:tweet.pubDate]];
-    [self.appclientLabel setText:[Utils getAppclient:tweet.appclient]];
+    [self.timeLabel setAttributedText:tweet.attributedTimes];
+    [self.commentCount setAttributedText:tweet.attributedCommentCount];
+    [self.appclientLabel setAttributedText:[Utils getAppclient:tweet.appclient]];
     if (tweet.isLike) {
         [self.likeButton setImage:[UIImage imageNamed:@"ic_liked"] forState:UIControlStateNormal];
     } else {
         [self.likeButton setImage:[UIImage imageNamed:@"ic_unlike"] forState:UIControlStateNormal];
     }
-    [self.commentCount setText:[NSString stringWithFormat:@"评论：%d", tweet.commentCount]];
+
     [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
     
     [_likeListLabel setText:tweet.likersString];

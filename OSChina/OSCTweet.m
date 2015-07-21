@@ -6,8 +6,10 @@
 //  Copyright (c) 2014年 oschina. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "OSCTweet.h"
 #import "OSCUser.h"
+#import "Utils.h"
 
 static NSString * const kID = @"id";
 static NSString * const kPortrait = @"portrait";
@@ -127,9 +129,33 @@ static NSString * const kUser = @"user";
             _likersString = @"";
             return _likersString;
         }
-
     }
+}
 
+-(NSAttributedString *)attributedTimes {
+    NSMutableAttributedString *attributedTime;
+
+    NSTextAttachment *textAttachment = [NSTextAttachment new];
+    textAttachment.image = [UIImage imageNamed:@"time"];
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    attributedTime = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+    [attributedTime appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    [attributedTime appendAttributedString:[[NSAttributedString alloc] initWithString:[Utils intervalSinceNow:_pubDate]]];
+
+    return attributedTime;
+}
+
+-(NSAttributedString *)attributedCommentCount {
+    NSMutableAttributedString *attributedCommentCount;
+
+    NSTextAttachment *textAttachment = [NSTextAttachment new];
+    textAttachment.image = [UIImage imageNamed:@"comment"];
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
+    
+    return attributedCommentCount;
 }
 
 @end

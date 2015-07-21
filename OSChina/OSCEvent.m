@@ -188,6 +188,17 @@ static NSString * const kObjectCatalog = @"objectcatalog";
     return NO;
 }
 
+-(NSAttributedString *)attributedCommentCount {
+    NSMutableAttributedString *attributedCommentCount;
 
+    NSTextAttachment *textAttachment = [NSTextAttachment new];
+    textAttachment.image = [UIImage imageNamed:@"comment"];
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
+
+    return attributedCommentCount;
+}
 
 @end

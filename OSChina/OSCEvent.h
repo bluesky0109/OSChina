@@ -39,4 +39,6 @@
 
 @property (nonatomic, strong, readonly) NSMutableAttributedString *actionStr;
 
+- (NSAttributedString *)attributedCommentCount;
+
 @end
