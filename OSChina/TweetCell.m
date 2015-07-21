@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "Utils.h"
 #import "OSCTweet.h"
+#import "OSCUser.h"
 
 @interface TweetCell()
 
@@ -79,6 +80,12 @@
     self.contentLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:self.contentLabel];
     
+    self.likeLabel = [UILabel new];
+    self.likeLabel.font = [UIFont systemFontOfSize:12];
+    self.likeLabel.userInteractionEnabled = YES;
+    self.likeLabel.textColor = [UIColor colorWithHex:0xA0A3A7];
+    [self.contentView addSubview:self.likeLabel];
+    
     self.commentCount = [UILabel new];
     self.commentCount.font = [UIFont systemFontOfSize:12];
     self.commentCount.textColor = [UIColor colorWithHex:0xA0A3A7];
@@ -89,13 +96,19 @@
     self.thumbnail.clipsToBounds = YES;
     self.thumbnail.userInteractionEnabled = YES;
     [self.contentView addSubview:self.thumbnail];
+    
+    //点赞列表
+    _likeListLabel = [UILabel new];
+    _likeListLabel.font = [UIFont systemFontOfSize:12];
+    _likeListLabel.textColor = [UIColor colorWithHex:0xA0A3A7];
+    [self.contentView addSubview:_likeListLabel];
 }
 
 - (void)setLayout
 {
     for (UIView *view in self.contentView.subviews) {view.translatesAutoresizingMaskIntoConstraints = NO;}
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait, _authorLabel, _timeLabel, _appclientLabel, _contentLabel, _commentCount, _thumbnail);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait, _authorLabel, _timeLabel, _appclientLabel, _contentLabel, _likeLabel, _commentCount, _likeListLabel, _thumbnail);
     
 
     
@@ -103,15 +116,17 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-8-[_authorLabel]-8-|" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_authorLabel]-5-[_contentLabel]-<=5-[_thumbnail(80)]-6-[_timeLabel]-5-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_authorLabel]-5-[_contentLabel]-<=5-[_thumbnail(80)]-6-[_likeListLabel]-5-[_timeLabel]-5-|"
                                                                              options:NSLayoutFormatAlignAllLeft
                                                                              metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_thumbnail(80)]"
                                                                              options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_timeLabel]-5-[_appclientLabel]->=5-[_commentCount]-8-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_timeLabel]-5-[_appclientLabel]->=5-[_likeLabel]-5-[_commentCount]-8-|"
                                                                              options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_likeListLabel]-8-|" options:0 metrics:nil views:views]];
     
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_authorLabel  attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual
                                                                     toItem:_contentLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
@@ -123,8 +138,16 @@
     [self.authorLabel setText:tweet.author];
     [self.timeLabel setText:[Utils intervalSinceNow:tweet.pubDate]];
     [self.appclientLabel setText:[Utils getAppclient:tweet.appclient]];
+    [self.likeLabel setText:[NSString stringWithFormat:@"👍：%d", tweet.likeCount]];
     [self.commentCount setText:[NSString stringWithFormat:@"评论：%d", tweet.commentCount]];
     [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
+    
+    [_likeListLabel setText:tweet.userLikeList];
+    if (tweet.likeList.count > 0) {
+        _likeListLabel.hidden = NO;
+    } else {
+        _likeListLabel.hidden = YES;
+    }
 }
 
 #pragma mark - 处理长按操作
