@@ -20,6 +20,7 @@ static NSString * const kPubDate      = @"pubDate";
 static NSString * const kNewsType     = @"newstype";
 static NSString * const kType         = @"type";
 static NSString * const kURL          = @"url";
+static NSString * const kEventURL     = @"eventurl";
 static NSString * const kAttachment   = @"attachment";
 static NSString * const kAuthorUID2   = @"authoruid2";
 
@@ -41,6 +42,7 @@ static NSString * const kAuthorUID2   = @"authoruid2";
         _type                   = [[[newsType firstChildWithTag:kType] numberValue] intValue];
         _attachment             = [[newsType firstChildWithTag:kAttachment] stringValue];
         _authorUID2             = [[[newsType firstChildWithTag:kAuthorUID2] numberValue] longLongValue];
+        _eventURL = [NSURL URLWithString:[[newsType firstChildWithTag:@"eventurl"] stringValue]];
     }
     return self;
 }

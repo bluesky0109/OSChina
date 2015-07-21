@@ -109,7 +109,7 @@ static NSString * const kActivityCellID = @"ActivityCell";
     if (row < self.objects.count) {
         OSCActivity *activity = self.objects[indexPath.row];
         
-        ActivityDetailsWithBarViewController *activityDetailsVC = [[ActivityDetailsWithBarViewController alloc] initWithActivity:activity];
+        ActivityDetailsWithBarViewController *activityDetailsVC = [[ActivityDetailsWithBarViewController alloc] initWithActivityID:activity.activityID];
         [self.navigationController pushViewController:activityDetailsVC animated:YES];
     } else {
         [self fetchMore];

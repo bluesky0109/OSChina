@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class OSCActivity;
 @class OSCPostDetails;
 @class ActivityDetailsWithBarViewController;
 
@@ -17,6 +16,6 @@
 @property (nonatomic, weak) ActivityDetailsWithBarViewController *bottomBarVC;
 @property (nonatomic, readonly, strong)OSCPostDetails *postDetails;
 
-- (instancetype)initWithActivity:(OSCActivity *)activity;
+- (instancetype)initWithActivityID:(int64_t)activityID;
 
 @end
