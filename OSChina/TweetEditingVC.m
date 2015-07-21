@@ -9,6 +9,7 @@
 #import "TweetEditingVC.h"
 #import "EmojiPageVC.h"
 #import "LoginViewController.h"
+#import "ImageViewController.h"
 #import "OSCAPI.h"
 #import "Config.h"
 #import "Utils.h"
@@ -127,6 +128,7 @@
     _imageView.clipsToBounds = YES;
     _imageView.userInteractionEnabled = YES;
     _imageView.image = _image;
+    [_imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImagePreview)]];
     _image = nil;
     [_contentView addSubview:_imageView];
     
@@ -240,10 +242,21 @@
 
 #pragma mark - TollBar操作
 
-#pragma mark - 增删照片
+#pragma mark - 图片相关
 - (void)addImage {
     
     [[[UIActionSheet alloc] initWithTitle:@"添加图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil] showInView:self.view];
+}
+
+- (void)showImagePreview {
+    if (_imageView.image) {
+        [self.navigationController presentViewController:[[ImageViewController alloc] initWithImage:_imageView.image] animated:YES completion:nil];
+    }
+}
+
+- (void)deleteImage {
+    _imageView.image = nil;
+    _deleteImageButton.hidden = YES;
 }
 
 #pragma mark - 插入字符串操作（@人 和 引用软件）
@@ -325,13 +338,6 @@
     //UIImageWriteToSavedPhotosAlbum(edit, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-#pragma mark - handle long press gesture
-- (void)deleteImage {
-    _imageView.image = nil;
-    _deleteImageButton.hidden = YES;
 }
 
 #pragma mark - 发表动弹

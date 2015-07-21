@@ -11,5 +11,6 @@
 @interface ImageViewController : UIViewController
 
 - (instancetype)initWithImageURL:(NSURL *)imageURL;
+- (instancetype)initWithImage:(UIImage *)image;
 
 @end

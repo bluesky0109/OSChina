@@ -17,6 +17,7 @@
 @interface ImageViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSURL         *imageURL;
+@property (nonatomic, strong) UIImage       *image;
 
 @property (nonatomic, strong) UIScrollView  *scrollView;
 @property (nonatomic, strong) UIImageView   *imageView;
@@ -38,6 +39,19 @@
     
     return self;
 }
+
+- (instancetype)initWithImage:(UIImage *)image {
+    self = [super init];
+    if (self) {
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        _image = image;
+    }
+    
+    return self;
+}
+
+
+
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
@@ -52,23 +66,30 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
     
-    if (![[SDWebImageManager sharedManager] cachedImageExistsForURL:_imageURL]) {
-        _HUD = [Utils createHUD];
-        _HUD.mode = MBProgressHUDModeAnnularDeterminate;
-    }
-    
     _imageView = [UIImageView new];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.userInteractionEnabled = YES;
-    [_imageView sd_setImageWithURL:_imageURL
-                  placeholderImage:nil
-                           options:SDWebImageProgressiveDownload | SDWebImageContinueInBackground
-                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                              _HUD.progress = (CGFloat)receivedSize / (CGFloat)expectedSize;
-                          }
-                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                             [_HUD hide:YES];
-                         }];
+    
+    if (_image) {
+        _imageView.image = _image;
+    } else {
+        if (![[SDWebImageManager sharedManager] cachedImageExistsForURL:_imageURL]) {
+            _HUD = [Utils createHUD];
+            _HUD.mode = MBProgressHUDModeAnnularDeterminate;
+        }
+        
+        [_imageView sd_setImageWithURL:_imageURL
+                      placeholderImage:nil
+                               options:SDWebImageProgressiveDownload | SDWebImageContinueInBackground
+                              progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                  _HUD.progress = (CGFloat)receivedSize / (CGFloat)expectedSize;
+                              }
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                 [_HUD hide:YES];
+                             }];
+
+    }
+    
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
