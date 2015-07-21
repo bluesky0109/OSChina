@@ -16,4 +16,7 @@
 @property (nonatomic, strong) UILabel     *appclientLabel;
 @property (nonatomic, strong) UIWebView   *webView;
 
+@property (nonatomic, strong) UIButton    *likeButton;
+@property (nonatomic, strong) UILabel     *likeListLabel;
+
 @end

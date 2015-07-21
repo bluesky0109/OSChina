@@ -164,10 +164,10 @@ static NSString * const kTweetCellID = @"TweetCell";
         cell.portrait.tag = row;
         cell.authorLabel.tag = row;
         cell.thumbnail.tag = row;
-        cell.likeLabel.tag = row;
+        cell.likeButton.tag = row;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetailsView:)]];
         [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadLargeImage:)]];
-        [cell.likeLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserPraise:)]];
+        [cell.likeButton addTarget:self action:@selector(togglePraise:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else {
         return self.lastCell;
@@ -186,7 +186,7 @@ static NSString * const kTweetCellID = @"TweetCell";
         [self.label setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
         height += [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)].height;
         
-        [self.label setText:tweet.userLikeList];
+        [self.label setText:tweet.likersString];
         self.label.font = [UIFont systemFontOfSize:12];
         height += [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)].height + 5;
         
@@ -356,8 +356,8 @@ static NSString * const kTweetCellID = @"TweetCell";
 }
 
 #pragma mark - 点赞功能
-- (void)pushUserPraise:(UITapGestureRecognizer *)tapGestureRecog {
-    OSCTweet *tweet = self.objects[tapGestureRecog.view.tag];
+- (void)togglePraise:(UIButton *)button {
+    OSCTweet *tweet = self.objects[button.tag];
 
     [self toPraise:tweet];
 }
