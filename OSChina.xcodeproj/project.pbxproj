@@ -142,6 +142,8 @@
 		33CC0C681B467D48002819EE /* OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C671B467D48002819EE /* OSCMessage.m */; };
 		33CC0C6B1B467F82002819EE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6A1B467F82002819EE /* MessageCell.m */; };
 		33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C6D1B467FAD002819EE /* MessagesViewController.m */; };
+		33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8831B5DF3C700BA9976 /* MemberCell.m */; };
+		33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */; };
 		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
 		73DF8796A9187E683F47DE57 /* libPods-OSChina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB4FB560430AA3FE856197F /* libPods-OSChina.a */; };
 /* End PBXBuildFile section */
@@ -420,6 +422,11 @@
 		33CC0C6A1B467F82002819EE /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		33CC0C6C1B467FAD002819EE /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		33CC0C6D1B467FAD002819EE /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
+		33DFB87F1B5DF35900BA9976 /* TeamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamAPI.h; sourceTree = "<group>"; };
+		33DFB8821B5DF3C700BA9976 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
+		33DFB8831B5DF3C700BA9976 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		33DFB8851B5DF3FE00BA9976 /* TeamMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMemberViewController.h; sourceTree = "<group>"; };
+		33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMemberViewController.m; sourceTree = "<group>"; };
 		33E95E561B5771B900897BFE /* FeedbackPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackPage.h; sourceTree = "<group>"; };
 		33E95E571B5771B900897BFE /* FeedbackPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackPage.m; sourceTree = "<group>"; };
 		BD362B5DACE1B368B8D435D5 /* Pods-OSChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSChina/Pods-OSChina.debug.xcconfig"; sourceTree = "<group>"; };
@@ -852,6 +859,7 @@
 		339740C01B423F590074D2EA /* OSChina */ = {
 			isa = PBXGroup;
 			children = (
+				33DFB8801B5DF38A00BA9976 /* Team */,
 				3323CF261B56958700622743 /* Resource */,
 				337A8F5F1B510CC400880209 /* UMSocial_Sdk_4.2.1 */,
 				333561041B457250009A294C /* 软件 */,
@@ -944,39 +952,8 @@
 		339740ED1B4260350074D2EA /* API */ = {
 			isa = PBXGroup;
 			children = (
-				33CC0C561B465853002819EE /* Blog */,
-				33CC0C551B46584D002819EE /* Post */,
-				33CC0C541B465843002819EE /* News */,
-				3335610E1B45748B009A294C /* Software */,
-				339740EF1B42605E0074D2EA /* OSCBaseObject.h */,
-				339740F01B42605E0074D2EA /* OSCBaseObject.m */,
-				339740F11B42605E0074D2EA /* OSCTweet.h */,
-				339740F21B42605E0074D2EA /* OSCTweet.m */,
-				339740F31B42605E0074D2EA /* OSCAPI.h */,
-				333595661B43728300AC412A /* OSCComment.h */,
-				333595671B43728300AC412A /* OSCComment.m */,
-				3335958F1B43C48E00AC412A /* OSCUser.h */,
-				333595901B43C48E00AC412A /* OSCUser.m */,
-				33C11ED81B451E6F00728AE4 /* OSCEvent.h */,
-				33C11ED91B451E6F00728AE4 /* OSCEvent.m */,
-				33CC0C581B4658C0002819EE /* OSCFavorite.h */,
-				33CC0C591B4658C0002819EE /* OSCFavorite.m */,
-				33CC0C661B467D48002819EE /* OSCMessage.h */,
-				33CC0C671B467D48002819EE /* OSCMessage.m */,
-				33525B851B4FF70400D16125 /* OSCRandomMessage.h */,
-				33525B861B4FF70400D16125 /* OSCRandomMessage.m */,
-				337A8F3F1B50A99B00880209 /* OSCSearchResult.h */,
-				337A8F401B50A99B00880209 /* OSCSearchResult.m */,
-				337A8F4C1B50D11A00880209 /* OSCActivity.h */,
-				337A8F4D1B50D11A00880209 /* OSCActivity.m */,
-				337A8FB71B52AA8B00880209 /* OSCMyInfo.h */,
-				337A8FB81B52AA8B00880209 /* OSCMyInfo.m */,
-				338F92231B54E58F00BEAAD6 /* OSCReply.h */,
-				338F92241B54E58F00BEAAD6 /* OSCReply.m */,
-				338F92261B54E73D00BEAAD6 /* OSCReference.h */,
-				338F92271B54E73D00BEAAD6 /* OSCReference.m */,
-				3346CA491B567FD10038BDFB /* OSCEventPersonInfo.h */,
-				3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */,
+				33DFB87E1B5DF31800BA9976 /* Team */,
+				33DFB87D1B5DF30D00BA9976 /* 主站 */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1159,6 +1136,73 @@
 				33CC0C6D1B467FAD002819EE /* MessagesViewController.m */,
 			);
 			name = "留言列表";
+			sourceTree = "<group>";
+		};
+		33DFB87D1B5DF30D00BA9976 /* 主站 */ = {
+			isa = PBXGroup;
+			children = (
+				33CC0C561B465853002819EE /* Blog */,
+				33CC0C551B46584D002819EE /* Post */,
+				33CC0C541B465843002819EE /* News */,
+				3335610E1B45748B009A294C /* Software */,
+				339740EF1B42605E0074D2EA /* OSCBaseObject.h */,
+				339740F01B42605E0074D2EA /* OSCBaseObject.m */,
+				339740F11B42605E0074D2EA /* OSCTweet.h */,
+				339740F21B42605E0074D2EA /* OSCTweet.m */,
+				339740F31B42605E0074D2EA /* OSCAPI.h */,
+				333595661B43728300AC412A /* OSCComment.h */,
+				333595671B43728300AC412A /* OSCComment.m */,
+				3335958F1B43C48E00AC412A /* OSCUser.h */,
+				333595901B43C48E00AC412A /* OSCUser.m */,
+				33C11ED81B451E6F00728AE4 /* OSCEvent.h */,
+				33C11ED91B451E6F00728AE4 /* OSCEvent.m */,
+				33CC0C581B4658C0002819EE /* OSCFavorite.h */,
+				33CC0C591B4658C0002819EE /* OSCFavorite.m */,
+				33CC0C661B467D48002819EE /* OSCMessage.h */,
+				33CC0C671B467D48002819EE /* OSCMessage.m */,
+				33525B851B4FF70400D16125 /* OSCRandomMessage.h */,
+				33525B861B4FF70400D16125 /* OSCRandomMessage.m */,
+				337A8F3F1B50A99B00880209 /* OSCSearchResult.h */,
+				337A8F401B50A99B00880209 /* OSCSearchResult.m */,
+				337A8F4C1B50D11A00880209 /* OSCActivity.h */,
+				337A8F4D1B50D11A00880209 /* OSCActivity.m */,
+				337A8FB71B52AA8B00880209 /* OSCMyInfo.h */,
+				337A8FB81B52AA8B00880209 /* OSCMyInfo.m */,
+				338F92231B54E58F00BEAAD6 /* OSCReply.h */,
+				338F92241B54E58F00BEAAD6 /* OSCReply.m */,
+				338F92261B54E73D00BEAAD6 /* OSCReference.h */,
+				338F92271B54E73D00BEAAD6 /* OSCReference.m */,
+				3346CA491B567FD10038BDFB /* OSCEventPersonInfo.h */,
+				3346CA4A1B567FD10038BDFB /* OSCEventPersonInfo.m */,
+			);
+			name = "主站";
+			sourceTree = "<group>";
+		};
+		33DFB87E1B5DF31800BA9976 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				33DFB87F1B5DF35900BA9976 /* TeamAPI.h */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		33DFB8801B5DF38A00BA9976 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				33DFB8811B5DF39B00BA9976 /* 团队成员 */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		33DFB8811B5DF39B00BA9976 /* 团队成员 */ = {
+			isa = PBXGroup;
+			children = (
+				33DFB8821B5DF3C700BA9976 /* MemberCell.h */,
+				33DFB8831B5DF3C700BA9976 /* MemberCell.m */,
+				33DFB8851B5DF3FE00BA9976 /* TeamMemberViewController.h */,
+				33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */,
+			);
+			name = "团队成员";
 			sourceTree = "<group>";
 		};
 		33E95E5A1B578E6500897BFE /* 关于 */ = {
@@ -1367,6 +1411,7 @@
 				338F219E1B4DFFAB006B9507 /* PersonSearchViewController.m in Sources */,
 				339740FF1B42606C0074D2EA /* UIView+Util.m in Sources */,
 				3335610D1B4573F4009A294C /* SoftwareCatalogVC.m in Sources */,
+				33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */,
 				3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */,
 				33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */,
 				330380FF1B536795003527B5 /* UserHeaderCell.m in Sources */,
@@ -1401,6 +1446,7 @@
 				3323CF2C1B56960B00622743 /* OSLicensePage.m in Sources */,
 				3387765F1B4CC568001581A4 /* OptionButton.m in Sources */,
 				33886F881B4F9894002B2537 /* OperationBar.m in Sources */,
+				33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */,
 				335EB1E01B42CC3100D28C80 /* OSCObjsViewController.m in Sources */,
 				33C11ECC1B450C2E00728AE4 /* EmojiPageVC.m in Sources */,
 				333595621B436DA900AC412A /* CommentsViewController.m in Sources */,
