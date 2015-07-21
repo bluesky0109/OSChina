@@ -99,6 +99,7 @@
     [self.view addSubview:_scrollView];
     
     _contentView = [[UIView alloc] initWithFrame:_scrollView.bounds];
+    _contentView.userInteractionEnabled = YES;
     [_scrollView addSubview:_contentView];
     _scrollView.contentSize = _contentView.bounds.size;
     
@@ -131,6 +132,8 @@
     [_imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImagePreview)]];
     _image = nil;
     [_contentView addSubview:_imageView];
+    
+    [_contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:_edittingArea action:@selector(becomeFirstResponder)]];
     
     /**** toolBar*******/
     _toolBar = [UIToolbar new];
