@@ -70,8 +70,10 @@ static NSString *kNewsCellID = @"NewsCell";
         [cell.titleLabel setAttributedText:news.attributedTitle];
         [cell.bodyLabel setText:news.body];
         [cell.authorLabel setText:news.author];
-        [cell.timeLabel setText:[Utils intervalSinceNow:news.pubDate]];
-        [cell.commentCount setText:[NSString stringWithFormat:@"%d评", news.commentCount]];
+//        [cell.timeLabel setText:[Utils intervalSinceNow:news.pubDate]];
+//        [cell.commentCount setText:[NSString stringWithFormat:@"%d评", news.commentCount]];
+        [cell.timeLabel setAttributedText:news.attributedTimes];
+        [cell.commentCount setAttributedText:news.attributedCommentCount];
         
         return cell;
     } else {
