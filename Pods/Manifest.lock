@@ -40,6 +40,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - SSKeychain (1.2.3)
   - tingyunApp (2.1.4.1)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - AFOnoResponseSerializer (~> 1.0.0)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7.1)
   - SSKeychain
   - tingyunApp
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -64,5 +66,6 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   tingyunApp: dc2649d29de0a5ae7d6b60862afaf4d9e3ce8807
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.37.2

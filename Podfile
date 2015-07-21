@@ -14,6 +14,8 @@ pod 'Reachability'
 
 pod 'tingyunApp'
 
+pod 'TTTAttributedLabel'
+
 end
 
 target 'OSChinaTests' do
