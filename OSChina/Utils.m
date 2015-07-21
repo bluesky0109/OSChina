@@ -377,6 +377,7 @@
 + (MBProgressHUD *)createHUD {
     UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
     MBProgressHUD *hub = [[MBProgressHUD alloc] initWithWindow:window];
+    hub.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
     [window addSubview:hub];
     [hub show:YES];
     
