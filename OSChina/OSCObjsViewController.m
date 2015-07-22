@@ -185,7 +185,10 @@
                  }
                  
                  [self.tableView reloadData];
-                 if (refresh) {[self.refreshControl endRefreshing];}
+                 if (refresh) {
+                     [self.refreshControl endRefreshing];
+                     [self.tableView setContentOffset:CGPointZero animated:YES];
+                 }
              });
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -200,6 +203,7 @@
              [self.tableView reloadData];
              if (refresh) {
                  [self.refreshControl endRefreshing];
+                 [self.tableView setContentOffset:CGPointZero animated:YES];
              }
          }
      ];
