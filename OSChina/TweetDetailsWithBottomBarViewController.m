@@ -82,6 +82,7 @@
 
     _tweetDetailsVC.didScroll = ^ {
         [weakSelf.editingBar.editView resignFirstResponder];
+        [weakSelf hideEmojiPageView];
     };
 }
 

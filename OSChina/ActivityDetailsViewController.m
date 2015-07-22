@@ -233,4 +233,11 @@
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_bottomBarVC.didScroll) {
+        _bottomBarVC.didScroll();
+    }
+}
+
 @end

@@ -159,6 +159,11 @@
                                     shareToSnsNames:@[UMShareToWechatTimeline, UMShareToWechatSession, UMShareToQQ, UMShareToSina]
                                            delegate:nil];
     };
+    
+    self.didScroll = ^ {
+        [weakSelf.editingBar.editView resignFirstResponder];
+        [weakSelf hideEmojiPageView];
+    };
 }
 
 - (NSString *)mURL {

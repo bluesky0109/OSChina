@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) EmojiPageVC *emojiPageVC;
 @property (nonatomic, assign) BOOL hasAModeSwitchButton;
+@property (nonatomic, assign) BOOL isEmojiPageOnScreen;
 
 @end
 
@@ -51,6 +52,12 @@
 - (void)setup {
     [self addBottomBar];
     _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_editingBar.editView];
+    [self.view addSubview:_emojiPageVC.view];
+    _emojiPageVC.view.hidden = YES;
+    _emojiPageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"emojiPage": _emojiPageVC.view};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[emojiPage(216)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[emojiPage]|" options:0 metrics:nil views:views]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -89,19 +96,20 @@
 }
 
 - (void)switchInputView {
-    if (_editingBar.editView.inputView == self.emojiPageVC.view) {
+    if (_isEmojiPageOnScreen) {
+        _emojiPageVC.view.hidden = YES;
         [_editingBar.editView becomeFirstResponder];
         
         [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-emoji2"] forState:UIControlStateNormal];
-        _editingBar.editView.inputView = nil;
-        [_editingBar.editView reloadInputViews];
+        _isEmojiPageOnScreen = NO;
     } else {
-        [_editingBar.editView becomeFirstResponder];
+        [_editingBar.editView resignFirstResponder];
         
         [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-text"] forState:UIControlStateNormal];
-        _editingBar.editView.inputView = _emojiPageVC.view;
-        [_editingBar.editView reloadInputViews];
-
+        _editingBarYContraint.constant = 216;
+        [self setBottomBarHeight];
+        _emojiPageVC.view.hidden = NO;
+        _isEmojiPageOnScreen = YES;
     }
 }
 
@@ -178,16 +186,20 @@
     CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _editingBarYContraint.constant = keyboardBounds.size.height;
     
-    [self setBottomBarHeight];//WithNotification:notification];
+    _emojiPageVC.view.hidden = YES;
+    _isEmojiPageOnScreen = NO;
+    [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-emoji2"] forState:UIControlStateNormal];
+
+    [self setBottomBarHeight];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     _editingBarYContraint.constant = 0;
     
-    [self setBottomBarHeight];//WithNotification:notification];
+    [self setBottomBarHeight];
 }
 
-- (void)setBottomBarHeight//WithNotification:(NSNotification *)notification
+- (void)setBottomBarHeight
 {
 #if 0
         NSTimeInterval animationDuration;
@@ -205,6 +217,18 @@
                                   animations:^{
                                       [self.view layoutIfNeeded];
                                   } completion:nil];
+}
+
+#pragma mark - 收起表情面板
+- (void)hideEmojiPageView {
+    if (_editingBarYContraint.constant != 0) {
+        _emojiPageVC.view.hidden = YES;
+        _isEmojiPageOnScreen = NO;
+
+        [_editingBar.inputViewButton setImage:[UIImage imageNamed:@"toolbar-emoji2"] forState:UIControlStateNormal];
+        _editingBarYContraint.constant = 0;
+        [self setBottomBarHeight];
+    }
 }
 
 
