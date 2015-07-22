@@ -33,7 +33,7 @@
 @property (nonatomic, strong) UILabel             *deleteImageButton;
 @property (nonatomic, strong) UIToolbar           *toolBar;
 @property (nonatomic, strong) EmojiPageVC         *emojiPageVC;
-
+@property (nonatomic, assign) BOOL                isEmojiPageOnScreen;
 @property (nonatomic, strong) UIImage             *image;
 
 @property (nonatomic, strong) NSLayoutConstraint  *keyboardHeightConstraint;
@@ -64,8 +64,6 @@
     
     [self initSubViews];
     [self setLayout];
-    
-    _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_edittingArea];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -123,6 +121,11 @@
     [_deleteImageButton setCornerRadius:11];
     [_deleteImageButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImage)]];
     [_contentView addSubview:_deleteImageButton];
+    
+    _emojiPageVC = [[EmojiPageVC alloc] initWithTextView:_edittingArea];
+    _emojiPageVC.view.hidden = YES;
+    _emojiPageVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_emojiPageVC.view];
     
     _imageView = [UIImageView new];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -183,7 +186,7 @@
     
     [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_edittingArea]-8-|" options:0 metrics:nil views:views]];
     _textViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_edittingArea attribute:NSLayoutAttributeHeight         relatedBy:NSLayoutRelationEqual
-                                                                toItem:nil           attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:48];
+                                                                toItem:nil           attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:48];
     [_contentView addConstraint:_textViewHeightConstraint];
     
     
@@ -192,19 +195,23 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_toolBar]|" options:0 metrics:nil views:views]];
     _keyboardHeightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual
-                                                                toItem:_toolBar  attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0];
+                                                                toItem:_toolBar  attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     [self.view addConstraint:_keyboardHeightConstraint];
     
-    
+    /*** emojiPage ***/
+
+    NSDictionary *view = @{@"emojiPage": _emojiPageVC.view};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[emojiPage(216)]|" options:0 metrics:nil views:view]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[emojiPage]|" options:0 metrics:nil views:view]];
     
     /*** delete button ***/
     
     [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_deleteImageButton(22)]" options:0 metrics:nil views:views]];
     [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_deleteImageButton(22)]"   options:0 metrics:nil views:views]];
     [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView         attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual
-                                                                toItem:_deleteImageButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+                                                                toItem:_deleteImageButton attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView         attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual
-                                                                toItem:_deleteImageButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+                                                                toItem:_deleteImageButton attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 
 - (void)cancelButtonClicked {
@@ -212,35 +219,29 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - ToolBar高度相关
 - (void)keyboardWillShow:(NSNotification *)notification {
     CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _keyboardHeightConstraint.constant = keyboardBounds.size.height;
 
-    
-    NSTimeInterval animationDuration;
-    [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    
-    UIViewKeyframeAnimationOptions animationOptions;
-    animationOptions = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] << 16;
-
-    [self.view setNeedsUpdateConstraints];
-    [UIView animateKeyframesWithDuration:animationDuration
-                                   delay:0
-                                 options:animationOptions
-                              animations:^{
-                                  [self.view layoutIfNeeded];
-                              } completion:nil];
+    [self updateBarHeight];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     _keyboardHeightConstraint.constant = 0;
     [self.view setNeedsUpdateConstraints];
     
-    NSTimeInterval animationDuration;
-    [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [UIView animateWithDuration:animationDuration animations:^{
-        [self.view layoutIfNeeded];
-    }];
+    [self updateBarHeight];
+}
+
+- (void)updateBarHeight {
+    [self.view setNeedsUpdateConstraints];
+    [UIView animateKeyframesWithDuration:0.25
+                                   delay:0
+                                 options:7 << 16
+                              animations:^{
+                                  [self.view layoutIfNeeded];
+                              } completion:nil];
 }
 
 #pragma mark - TollBar操作
@@ -274,19 +275,20 @@
 #pragma mark - 表情面板和键盘切换
 - (void)switchInputView {
     //还要考虑一下用外接键盘输入时，置空inputview后 字体小得情况
-    if (_edittingArea.inputView == self.emojiPageVC.view) {
+    if (_isEmojiPageOnScreen) {
+        [_edittingArea becomeFirstResponder];
         [_toolBar.items[7] setImage:[[UIImage imageNamed:@"toolbar-emoji"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        _edittingArea.inputView = nil;
+
         _edittingArea.font = [UIFont systemFontOfSize:18];
-        [_edittingArea reloadInputViews];
     } else {
-        _keyboardHeightConstraint.constant = 216;
-        [self.view layoutIfNeeded];
+        [_edittingArea resignFirstResponder];
         
         [_toolBar.items[7] setImage:[[UIImage imageNamed:@"toolbar-text"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        _edittingArea.inputView = self.emojiPageVC.view;
-        [_edittingArea reloadInputViews];
+        _keyboardHeightConstraint.constant = 216;
+        [self updateBarHeight];
     }
+    _emojiPageVC.view.hidden = !_emojiPageVC.view.hidden;
+    _isEmojiPageOnScreen = !_isEmojiPageOnScreen;
 }
 
 - (void)insertEditingString:(NSString *)string {
@@ -408,6 +410,14 @@
     if ([text isEqualToString:@"\n"]) {
         [self pubTweet];
         [textView resignFirstResponder];
+        if (_keyboardHeightConstraint.constant != 0) {
+            _emojiPageVC.view.hidden = YES;
+            _isEmojiPageOnScreen = NO;
+            [_toolBar.items[7] setImage:[[UIImage imageNamed:@"toolbar-emoji"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
+            _keyboardHeightConstraint.constant = 0;
+            [self updateBarHeight];
+        }
         return NO;
     }
     return YES;
