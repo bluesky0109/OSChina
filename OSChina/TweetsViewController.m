@@ -11,6 +11,7 @@
 #import "TweetDetailsWithBottomBarViewController.h"
 #import "UserDetailsViewController.h"
 #import "ImageViewController.h"
+#import "TweetsLikeListViewController.h"
 #import "OSCTweet.h"
 #import "TweetCell.h"
 #import "Utils.h"
@@ -26,10 +27,6 @@ static NSString * const kTweetCellID = @"TweetCell";
 @end
 
 @implementation TweetsViewController
-
-/*! Primary view has been loaded for this view controller
- 
- */
 
 - (instancetype)initWithTweetsType:(TweetsType)type {
     self = [super init];
@@ -165,9 +162,13 @@ static NSString * const kTweetCellID = @"TweetCell";
         cell.authorLabel.tag = row;
         cell.thumbnail.tag = row;
         cell.likeButton.tag = row;
+        cell.likeListLabel.tag = row;
+        
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetailsView:)]];
         [cell.thumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadLargeImage:)]];
         [cell.likeButton addTarget:self action:@selector(togglePraise:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.likeListLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(PushToLikeList:)]];
+        
         return cell;
     } else {
         return self.lastCell;
@@ -201,7 +202,7 @@ static NSString * const kTweetCellID = @"TweetCell";
             height += 85;
 #endif
         }
-        return height + 39;
+        return height + 41;
     } else {
         return 60;
     }
@@ -267,6 +268,13 @@ static NSString * const kTweetCellID = @"TweetCell";
     OSCTweet *tweet = self.objects[recognizer.view.tag];
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:tweet.authorID];
     [self.navigationController pushViewController:userDetailsVC animated:YES];
+}
+
+#pragma mark - 跳转到点赞列表
+- (void)PushToLikeList:(UITapGestureRecognizer *)tap {
+    OSCTweet *tweet = self.objects[tap.view.tag];
+    TweetsLikeListViewController *likeListCtl = [[TweetsLikeListViewController alloc] initWithTweetID:tweet.tweetID];
+    [self.navigationController pushViewController:likeListCtl animated:YES];
 }
 
 #pragma mark - 加载大图
