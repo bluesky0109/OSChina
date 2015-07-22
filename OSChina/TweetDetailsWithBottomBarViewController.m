@@ -115,14 +115,15 @@
                   
                   hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
                   hub.labelText = @"评论发表成功";
+                  
+                  [_tweetDetailsVC.tableView setContentOffset:CGPointZero animated:NO];
+                  [_tweetDetailsVC refresh];
               } else {
                   hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   hub.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
               }
               
               [hub hide:YES afterDelay:1];
-              [_tweetDetailsVC.tableView setContentOffset:CGPointZero animated:NO];
-              [_tweetDetailsVC refresh];
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               hub.mode = MBProgressHUDModeCustomView;
               hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
