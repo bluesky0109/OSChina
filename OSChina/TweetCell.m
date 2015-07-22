@@ -146,7 +146,7 @@
 
     [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
     
-    [_likeListLabel setText:tweet.likersString];
+    [_likeListLabel setAttributedText:tweet.likersString];
     if (tweet.likeList.count > 0) {
         _likeListLabel.hidden = NO;
     } else {
