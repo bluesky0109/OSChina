@@ -7,6 +7,7 @@
 //
 
 #import "MessageBubbleViewController.h"
+#import "UserDetailsViewController.h"
 #import "MessageBubbleCell.h"
 #import "OSCComment.h"
 #import "Config.h"
@@ -60,7 +61,8 @@
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:kMessageBubbleOthers forIndexPath:indexPath];
         }
-        
+        cell.portrait.tag = message.authorID;
+        [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetails:)]];
         [cell setContent:message.content andPortrait:message.portraitURL];
         
         return cell;
@@ -91,6 +93,11 @@
     if (scrollView == self.tableView && self.didScroll) {
         self.didScroll();
     }
+}
+
+#pragma mark - 头像点击处理
+- (void)pushUserDetails:(UIGestureRecognizer *)recognizer {
+    [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithUserID:recognizer.view.tag] animated:YES];
 }
 
 @end
