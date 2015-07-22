@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.tableView.backgroundColor = [UIColor themeColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
