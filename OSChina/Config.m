@@ -109,6 +109,15 @@ NSString * const kPosition    = @"position";
     return 0;
 }
 
++ (NSString *)getOwnUserName {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [userDefaults objectForKey:kUserName];
+    if (userName) {
+        return userName;
+    }
+    return @"";
+}
+
 + (NSArray *)getUsersInformation {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [userDefaults objectForKey:kUserName];

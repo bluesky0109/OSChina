@@ -229,6 +229,7 @@
     tweet.isLike = !tweet.isLike;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     [manager POST:postUrl
        parameters:@{
@@ -263,7 +264,7 @@
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               HUD.mode = MBProgressHUDModeCustomView;
               HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-              HUD.labelText = error.userInfo[NSLocalizedDescriptionKey];
+              HUD.detailsLabelText = error.userInfo[NSLocalizedDescriptionKey];
               
               [HUD hide:YES afterDelay:1];
           }];
