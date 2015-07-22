@@ -110,6 +110,8 @@
               
               if (errorCode == 1) {
                   self.editingBar.editView.text = @"";
+                  [self updateInputBarHeight];
+                  
                   hub.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
                   hub.labelText = @"评论发表成功";
               } else {

@@ -139,6 +139,21 @@
 }
 
 #pragma mark - 编辑框相关
+
+- (void)textDidUpdate:(NSNotification *)notification {
+    [self updateInputBarHeight];
+}
+
+- (void)updateInputBarHeight {
+    CGFloat inputbarHeight = [self appropriateInputbarHeight];
+    
+    if (inputbarHeight != self.editingBarHeightContraint.constant) {
+        self.editingBarHeightContraint.constant = inputbarHeight;
+        
+        [self.view layoutIfNeeded];
+    }
+}
+
 - (CGFloat)appropriateInputbarHeight {
     CGFloat height = 0;
     CGFloat minimumHeight = [self minimumInputbarHeight];
@@ -146,9 +161,7 @@
     CGFloat maxHeight = self.textView.maxHeight;
     
     self.textView.scrollEnabled = newSizeHeight >= maxHeight;
-    
-    
-#if 1
+
     if (newSizeHeight < minimumHeight) {
         height = minimumHeight;
     } else if (newSizeHeight < self.textView.maxHeight) {
@@ -156,14 +169,7 @@
     } else {
         height = self.textView.maxHeight;
     }
-#else
-    if (newSizeHeight < minimumHeight || !self.textView) {
-        height = minimumHeight;
-    } else if (maxHeight && newSizeHeight > maxHeight) {
-        height = maxHeight;
-    }
-#endif
-    
+
     return roundf(height);
 }
 
@@ -201,15 +207,6 @@
                                   } completion:nil];
 }
 
-- (void)textDidUpdate:(NSNotification *)notification {
-    CGFloat inputbarHeight = [self appropriateInputbarHeight];
-    
-    if (inputbarHeight != self.editingBarHeightContraint.constant) {
-        self.editingBarHeightContraint.constant = inputbarHeight;
-
-        [self.view layoutIfNeeded];
-    }
-}
 
 #pragma mark -UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
