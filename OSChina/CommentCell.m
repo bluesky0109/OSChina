@@ -114,8 +114,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_authorLabel,_contentLabel,_currentContainer);
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_authorLabel]-8-[_currentContainer]-8-[_contentLabel]" options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
-    NSUInteger count = references.count;
-    [references enumerateObjectsUsingBlock:^(OSCReference *reference, NSUInteger idx, BOOL *stop) {
+    [references enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(OSCReference *reference, NSUInteger idx, BOOL *stop) {
         [_currentContainer setBorderWidth:1.0 andColor:[UIColor lightGrayColor]];
         _currentContainer.backgroundColor = [UIColor colorWithHex:0xFFFAF0];
         
@@ -126,7 +125,7 @@
         
         NSMutableAttributedString *referenceText = [[NSMutableAttributedString alloc] initWithString:reference.title
                                                                                           attributes:@{NSForegroundColorAttributeName:[UIColor nameColor]}];
-        [referenceText appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@", ((OSCReference *)references[count-1-idx]).body]]];
+        [referenceText appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@", reference.body]]];
         label.attributedText = referenceText;
         label.backgroundColor = [UIColor colorWithHex:0xFFFAF0];
         [_currentContainer addSubview:label];
@@ -139,11 +138,18 @@
         }
         NSDictionary *views = NSDictionaryOfVariableBindings(label, container);
         
-        [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[container]-<=5-[label]-4-|"
-                                                                                  options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
-                                                                                  metrics:nil views:views]];
-        
-        [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-4-[container]-4-|" options:0 metrics:nil views:views]];
+        if (idx == 0) {
+            container.hidden = YES;
+            [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[label]-4-|"
+                                                                                      options:0 metrics:nil views:views]];
+            [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-4-[label]-4-|" options:0 metrics:nil views:views]];
+        } else {
+            [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[container]-<=5-[label]-4-|"
+                                                                                      options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight
+                                                                                      metrics:nil views:views]];
+            
+            [_currentContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-4-[container]-4-|" options:0 metrics:nil views:views]];
+        }
         
         _currentContainer = container;
     }];
