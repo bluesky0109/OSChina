@@ -113,15 +113,16 @@ static NSString *kCommentCellID = @"CommentCell";
     } else if (indexPath.row < self.objects.count) {
         OSCComment *comment = self.objects[indexPath.row];
         
+        self.label.font = [UIFont boldSystemFontOfSize:14];
         NSMutableAttributedString *contentString = [[NSMutableAttributedString alloc] initWithAttributedString:[Utils emojiStringFromRawString:comment.content]];
         if (comment.replies.count > 0) {
             [contentString appendAttributedString:[OSCComment attributedTextFromReplies:comment.replies]];
         }
         [self.label setAttributedText:contentString];
         
-        self.label.font = [UIFont boldSystemFontOfSize:14];
-        __block CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 57, MAXFLOAT)].height;
-        CGFloat width = self.tableView.frame.size.width - 57;
+        __block CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 60, MAXFLOAT)].height;
+
+        CGFloat width = self.tableView.frame.size.width - 60;
 
         NSArray *references = comment.references;
         if (references.count > 0) {
@@ -131,7 +132,7 @@ static NSString *kCommentCellID = @"CommentCell";
         self.label.font = [UIFont systemFontOfSize:13];
         [references enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(OSCReference *reference, NSUInteger idx, BOOL *stop) {
             self.label.text = [NSString stringWithFormat:@"%@\n%@", reference.title, reference.body];
-            height += [self.label sizeThatFits:CGSizeMake(width - (references.count-idx)*10, MAXFLOAT)].height + 13;
+            height += [self.label sizeThatFits:CGSizeMake(width - (references.count-idx)*8, MAXFLOAT)].height + 13;
         }];
         return height + 61;
     } else {
