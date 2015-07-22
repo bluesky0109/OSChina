@@ -24,8 +24,6 @@
 
 @interface TweetDetailsViewController ()<UIWebViewDelegate>
 
-@property (nonatomic, assign, readwrite) int64_t objectAuthorID;
-
 @property (nonatomic, strong) OSCTweet *tweet;
 @property (nonatomic, assign) int64_t  tweetID;
 

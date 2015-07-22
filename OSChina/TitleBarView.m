@@ -27,14 +27,6 @@
         CGFloat buttonWidth = frame.size.width / titles.count;
         CGFloat buttonHeight = frame.size.height;
         
-        NSUInteger i = 0;
-        for (NSString *title in titles) {
-            
-            
-
-            
-        }
-        
         [titles enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL *stop) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.backgroundColor = [UIColor colorWithHex:0xE1E1E1];
