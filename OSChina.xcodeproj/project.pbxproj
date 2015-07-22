@@ -967,6 +967,7 @@
 		339741021B4260850074D2EA /* 动弹 */ = {
 			isa = PBXGroup;
 			children = (
+				33AA2D001B5F41840059628C /* 动弹点赞列表 */,
 				337F12FA1B5949AD002C4C32 /* 编辑动弹 */,
 				3335955E1B436D4300AC412A /* 动弹详情 */,
 				339741031B4260C00074D2EA /* TweetsViewController.h */,
@@ -975,10 +976,6 @@
 				339741061B4260C00074D2EA /* TweetCell.m */,
 				337A8FAE1B52741E00880209 /* SoftwareCommentsViewController.h */,
 				337A8FAF1B52741E00880209 /* SoftwareCommentsViewController.m */,
-				33AA2CFA1B5F2E740059628C /* TweetLikeUserCell.h */,
-				33AA2CFB1B5F2E740059628C /* TweetLikeUserCell.m */,
-				33AA2CFD1B5F304C0059628C /* TweetsLikeListViewController.h */,
-				33AA2CFE1B5F304C0059628C /* TweetsLikeListViewController.m */,
 			);
 			name = "动弹";
 			sourceTree = "<group>";
@@ -1005,6 +1002,17 @@
 				3397411E1B4296550074D2EA /* NewsCell.m */,
 			);
 			name = "新闻";
+			sourceTree = "<group>";
+		};
+		33AA2D001B5F41840059628C /* 动弹点赞列表 */ = {
+			isa = PBXGroup;
+			children = (
+				33AA2CFA1B5F2E740059628C /* TweetLikeUserCell.h */,
+				33AA2CFB1B5F2E740059628C /* TweetLikeUserCell.m */,
+				33AA2CFD1B5F304C0059628C /* TweetsLikeListViewController.h */,
+				33AA2CFE1B5F304C0059628C /* TweetsLikeListViewController.m */,
+			);
+			name = "动弹点赞列表";
 			sourceTree = "<group>";
 		};
 		33B0EF791B43C6180037549E /* 用户 */ = {

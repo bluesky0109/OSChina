@@ -220,7 +220,7 @@
     manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
     [manager POST:postUrl
        parameters:@{
-                    @"user": @([Config getOwnID]),
+                    @"uid": @([Config getOwnID]),
                     @"tweetid": @(tweet.tweetID),
                     @"ownerOfTweet": @(tweet.authorID)
                     }
