@@ -162,7 +162,7 @@
                                 return [NSString stringWithFormat:@"%@%@?tag=%@&pageIndex=0&%@", OSCAPI_PREFIX, OSCAPI_POSTS_LIST, tag, OSCAPI_SUFFIX];
                             };
                             ((PostsViewController *)viewController).objClass = [OSCPost class];
-                            viewController.title = tag;
+                            viewController.navigationItem.title = [tag stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                         }
                     }
                 }
