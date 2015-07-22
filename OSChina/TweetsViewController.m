@@ -379,7 +379,6 @@ static NSString * const kTweetCellID = @"TweetCell";
     } else {
         postUrl = [NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_LIKE];
     }
-//    tweet.isLike = !tweet.isLike;
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];

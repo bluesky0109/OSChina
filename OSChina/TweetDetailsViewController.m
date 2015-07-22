@@ -13,6 +13,7 @@
 #import "TweetsLikeListViewController.h"
 #import "TweetDetailsCell.h"
 #import "OSCTweet.h"
+#import "OSCUser.h"
 #import "TweetCell.h"
 #import "Config.h"
 
@@ -226,7 +227,6 @@
     } else {
         postUrl = [NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_LIKE];
     }
-    tweet.isLike = !tweet.isLike;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -246,15 +246,44 @@
               
               if (errorCode == 1) {
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                 
+                  if (tweet.isLike) {
+                      //取消点赞
+                      for (OSCUser *user in tweet.likeList) {
+                          if ([user.name isEqualToString:[Config getOwnUserName]]) {
+                              [tweet.likeList removeObject:user];
+                              break;
+                          }
+                      }
+                      tweet.likeCount--;
+                  } else {
+                      //点赞
+                      OSCUser *user = [OSCUser new];
+                      user.userID = [Config getOwnID];
+                      user.name = [Config getOwnUserName];
+                      user.portraitURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [Config getPortrait]]];
+                      [tweet.likeList insertObject:user atIndex:0];
+                      tweet.likeCount++;
+                  }
+                  
+                  tweet.isLike = !tweet.isLike;
+                  tweet.likersString = nil;
+                  
                   if (tweet.isLike) {
                       HUD.labelText = @"点赞成功";
                   } else {
                       HUD.labelText = @"取消点赞成功";
                   }
-                  [self getTweetDetails];
+#if 0
+                  
                   dispatch_async(dispatch_get_main_queue(), ^{
                       [self.tableView reloadData];
                   });
+#else
+                  [self.tableView beginUpdates];
+                  [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                  [self.tableView endUpdates];
+#endif
               } else {
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
