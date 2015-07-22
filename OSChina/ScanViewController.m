@@ -114,64 +114,60 @@
         
         message = metadataObject.stringValue;
         
-        if ([message rangeOfString:@"scan_login"].location != NSNotFound) {
-            if ([Config getOwnID] == 0) {
-                MBProgressHUD *HUD = [Utils createHUD];
-                HUD.mode = MBProgressHUDModeCustomView;
-                HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                HUD.labelText = @"您还没登录，请先登录再扫描签到";
+        if ([message hasPrefix:@"{"]) {
+            [self signInWithJson:message];
+        } else if ([Utils isURL:message]) {
+            [Utils analysis:message andNavController:self.navigationController];
+        } else {
+            MBProgressHUD *HUD = [Utils createHUD];
+            HUD.mode = MBProgressHUDModeText;
+            HUD.detailsLabelText = message;
+            
+            [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+            [HUD hide:YES afterDelay:2];
+            
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
 
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-                [HUD hide:YES afterDelay:1];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
-                return;
-            }
+#pragma mark - 处理扫描结果
 
-            /*
-            NSArray *array = [message componentsSeparatedByString:@"="];
-            _webURL = [NSString stringWithFormat:@"http://192.168.1.118/action/user/scan_login?uuid=%@", array[1]];
-            */
-            _webURL = message;
+- (void)signInWithJson:(NSString *)jsonString
+{
+    if ([Config getOwnID] == 0) {
+        MBProgressHUD *HUD = [Utils createHUD];
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+        HUD.labelText = @"您还没登录，请先登录再扫描签到";
+        
+        [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+        [HUD hide:YES afterDelay:2];
+    } else {
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        NSNumber *requireLogin = json[@"require_login"];
+        NSString *title = json[@"title"];
+        NSNumber *type = json[@"type"];
+        NSString *URL = json[@"url"];
+        
+        if (!requireLogin || !title || !type || !URL) {
+            MBProgressHUD *HUD = [Utils createHUD];
+            HUD.mode = MBProgressHUDModeCustomView;
+            HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+            HUD.labelText = @"无效二维码";
             
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录网页" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            [alertView show];
-            
-            return;
-            
-        } else if ([message hasPrefix:@"{"]) {
-            if ([Config getOwnID] == 0) {
-                MBProgressHUD *HUD = [Utils createHUD];
-                HUD.mode = MBProgressHUDModeCustomView;
-                HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                HUD.labelText = @"您还没登录，请先登录再扫描签到";
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-                [HUD hide:YES afterDelay:2];
-                
-                return;
-            }
-            
-            NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            
-            NSNumber *requireLogin = json[@"require_login"];
-            NSString *title = json[@"title"];
-            NSString *type = json[@"type"];
-            NSString *URL = json[@"url"];
-            
-            if (!requireLogin || !title || !type || !URL) {
-                MBProgressHUD *HUD = [Utils createHUD];
-                HUD.mode = MBProgressHUDModeCustomView;
-                HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                HUD.labelText = @"无效二维码";
-                [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-                [HUD hide:YES afterDelay:2];
-                return;
-            }
-            
+            [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+            [HUD hide:YES afterDelay:2];
+        } else {
             if ([type intValue] != 1) {
                 MBProgressHUD *HUD = [Utils createHUD];
                 HUD.mode = MBProgressHUDModeText;
                 HUD.labelText = title;
+                
                 [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
                 [HUD hide:YES afterDelay:2];
             } else {
@@ -202,21 +198,18 @@
                          HUD.mode = MBProgressHUDModeCustomView;
                          HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                          HUD.labelText = @"网络连接故障";
+                         
+                         [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
+                         [HUD hide:YES afterDelay:2];
                      }];
             }
-        } else if ([Utils isURL:message]) {
-            [Utils analysis:message andNavController:self.navigationController];
-        } else {
-            MBProgressHUD *HUD = [Utils createHUD];
-            HUD.mode = MBProgressHUDModeText;
-            HUD.labelText = message;
-            [HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-            [HUD hide:YES afterDelay:2];
         }
     }
-
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
 }
+
 
 - (void)loginInWeb:(NSString *)webUrl {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -262,4 +255,7 @@
         [self loginInWeb:_webURL];
     }
 }
+
+
+
 @end
