@@ -8,6 +8,7 @@
 
 #import "MessagesViewController.h"
 #import "BubbleChatViewController.h"
+#import "UserDetailsViewController.h"
 #import "Config.h"
 #import "OSCMessage.h"
 #import "MessageCell.h"
@@ -54,6 +55,9 @@ static NSString * const kMessageCellID = @"MessageCell";
         MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kMessageCellID forIndexPath:indexPath];
         cell.backgroundColor = [UIColor themeColor];
         [cell.portrait loadPortrait:message.portraitURL];
+        cell.portrait.tag = message.friendID;
+        [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetails:)]];
+        
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", message.senderID == [Config getOwnID] ? @"发给" : @"来自", message.friendName];
         cell.contentLabel.text = message.content;
         cell.timeLabel.text = [Utils intervalSinceNow:message.pubDate];
@@ -99,6 +103,12 @@ static NSString * const kMessageCellID = @"MessageCell";
     } else {
         [self fetchMore];
     }
+}
+
+
+#pragma mark - 头像点击处理
+- (void)pushUserDetails:(UIGestureRecognizer *)recognizer {
+    [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithUserID:recognizer.view.tag] animated:YES];
 }
 
 @end
