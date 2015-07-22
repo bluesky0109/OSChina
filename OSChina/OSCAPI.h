@@ -29,6 +29,7 @@
 #define OSCAPI_TWEET_LIKE               @"tweet_like"
 #define OSCAPI_TWEET_UNLIKE             @"tweet_unlike"
 #define OSCAPI_TWEET_LIKE_LIST          @"tweet_like_list"
+#define OSCAPI_MY_TWEET_LIKE_LIST       @"my_tweet_like_list"
 #define OSCAPI_SOFTWARE_TWEET_PUB       @"software_tweet_pub"
 
 #define OSCAPI_ACTIVE_LIST              @"active_list"
