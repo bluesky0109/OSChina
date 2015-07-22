@@ -128,6 +128,7 @@
 
         [Config saveOwnID:0 userName:@"点击头像登录" score:0 favoriteCount:0 fansCount:0 andFollowerCount:0];
         [Config savePortrait:nil];
+        [Config clearCookie];
         
         NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (NSHTTPCookie *cookie in [cookieStorage cookies]) {

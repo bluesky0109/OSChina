@@ -53,6 +53,11 @@ NSString * const kPosition    = @"position";
     [userDefaults synchronize];
 }
 
++ (void)clearCookie {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"sessionCookies"];
+}
+
 + (void)savePortrait:(UIImage *)portrait {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:UIImagePNGRepresentation(portrait) forKey:kPortrait];

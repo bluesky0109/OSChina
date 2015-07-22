@@ -48,6 +48,8 @@
     self.window.rootViewController = sideMenuTabBarVC;
     [self.window makeKeyAndVisible];
     
+    [self loadCookies];
+    
     /******控件外观控制*********/
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHex:0x15A230]];
@@ -96,6 +98,15 @@
     
     return YES;
 }
+
+- (void)loadCookies {
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey: @"sessionCookies"]];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in cookies) {
+        [cookieStorage setCookie:cookie];
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
