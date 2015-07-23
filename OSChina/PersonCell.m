@@ -53,12 +53,12 @@
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait,_nameLabel,_infoLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_portrait, _nameLabel, _infoLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-8-[_nameLabel]-8-|" options:NSLayoutFormatAlignAllTop metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_portrait(36)]-8-[_nameLabel]-8-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_portrait(36)]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_nameLabel]-2-[_infoLabel]-8-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
-    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_nameLabel]-2-[_infoLabel]-8-|"
+                                                                             options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
 }
 
 @end

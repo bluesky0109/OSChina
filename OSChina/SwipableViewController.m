@@ -18,20 +18,23 @@
 
 @implementation SwipableViewController
 
-- (instancetype)initWithTitle:(NSString *)title andSubTitles:(NSArray *)subTitles andControllers:(NSArray *)controllers {
+- (instancetype)initWithTitle:(NSString *)title andSubTitles:(NSArray *)subTitles andControllers:(NSArray *)controllers underTabbar:(BOOL)underTabbar {
     self = [super init];
     if (self) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
         if (title) {
             self.title = title;
         }
         
         CGFloat titleBarHeight = 36;
-        self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, titleBarHeight) andTitles:subTitles];
+        self.titleBar = [[TitleBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, titleBarHeight) andTitles:subTitles];
         self.titleBar.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.titleBar];
         
         self.viewPager = [[HorizonalTableViewController alloc] initWithViewControllers:controllers];
-        self.viewPager.view.frame = CGRectMake(0, titleBarHeight, self.view.frame.size.width, self.view.frame.size.height - titleBarHeight);
+        CGFloat height = self.view.bounds.size.height - titleBarHeight - 64 - (underTabbar ? 49 : 0);
+        self.viewPager.view.frame = CGRectMake(0, titleBarHeight, self.view.bounds.size.width, height);
+
         [self addChildViewController:self.viewPager];
         [self.view addSubview:self.viewPager.view];
         
@@ -51,7 +54,7 @@
                     button.transform = CGAffineTransformMakeScale(1.2, 1.2);
                 }
             }
-
+            
             [weakViewPager scrollToViewAtIndex:index];
         };
         
@@ -83,9 +86,12 @@
     return self;
 }
 
+- (instancetype)initWithTitle:(NSString *)title andSubTitles:(NSArray *)subTitles andControllers:(NSArray *)controllers {
+    return [self initWithTitle:title andSubTitles:subTitles andControllers:controllers underTabbar:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor themeColor];
 }
 

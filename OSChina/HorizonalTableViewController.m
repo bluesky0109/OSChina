@@ -35,6 +35,7 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView = [UITableView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollsToTop = NO;
     self.tableView.transform = CGAffineTransformMakeRotation(-M_PI / 2);
@@ -107,6 +108,13 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
         
     }
     if (didScrollStop && self.changeIndex) {
+        /*
+        [_controllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
+            if ([vc isKindOfClass:[UITableViewController class]]) {
+                ((UITableViewController *)vc).tableView.scrollsToTop = (idx == focusIndex);
+            }
+        }];
+         */
         self.changeIndex(focusIndex);
     }
 }
