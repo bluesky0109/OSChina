@@ -39,7 +39,6 @@
     
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
     
     self.lastCell = [[LastCell alloc] initCell];
     
@@ -184,16 +183,17 @@
                          [self.lastCell statusMore];
                      }
                  }
-                 
-                 [self.tableView reloadData];
+
                  if (refresh) {
                      [self.refreshControl endRefreshing];
-                     if (_objects.count > 0) {
-                         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                                               atScrollPosition:UITableViewScrollPositionTop
-                                                       animated:YES];
-                     }
+//                     if (_objects.count > 0) {
+//                         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+//                                               atScrollPosition:UITableViewScrollPositionTop
+//                                                       animated:YES];
+//                     }
                  }
+                 
+                 [self.tableView reloadData];
              });
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -205,15 +205,17 @@
              [HUD hide:YES afterDelay:1];
              
              [self.lastCell statusError];
-             [self.tableView reloadData];
+
              if (refresh) {
                  [self.refreshControl endRefreshing];
-                 if (_objects.count > 0) {
-                     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                                           atScrollPosition:UITableViewScrollPositionTop
-                                                   animated:YES];
-                 }
+//                 if (_objects.count > 0) {
+//                     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+//                                           atScrollPosition:UITableViewScrollPositionTop
+//                                                   animated:YES];
+//                 }
              }
+             
+            [self.tableView reloadData];
          }
      ];
 }
