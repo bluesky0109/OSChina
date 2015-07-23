@@ -20,7 +20,6 @@
 @property (nonatomic, assign) int      documentType;
 
 - (NSAttributedString *)attributedTitle;
-- (NSAttributedString *)attributedTimes;
 - (NSAttributedString *)attributedCommentCount;
 
 @end

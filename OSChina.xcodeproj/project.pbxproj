@@ -105,6 +105,7 @@
 		338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F21A71B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m */; };
 		338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F92241B54E58F00BEAAD6 /* OSCReply.m */; };
 		338F92281B54E73D00BEAAD6 /* OSCReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F92271B54E73D00BEAAD6 /* OSCReference.m */; };
+		339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 339684061B606DDA00E0AB3F /* NSTextAttachment+Util.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -351,6 +352,8 @@
 		338F92241B54E58F00BEAAD6 /* OSCReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReply.m; sourceTree = "<group>"; };
 		338F92261B54E73D00BEAAD6 /* OSCReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCReference.h; sourceTree = "<group>"; };
 		338F92271B54E73D00BEAAD6 /* OSCReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReference.m; sourceTree = "<group>"; };
+		339684051B606DDA00E0AB3F /* NSTextAttachment+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextAttachment+Util.h"; sourceTree = "<group>"; };
+		339684061B606DDA00E0AB3F /* NSTextAttachment+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextAttachment+Util.m"; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -654,6 +657,8 @@
 				337A8FB51B52792500880209 /* UIButton+Badge.m */,
 				330381091B53BABA003527B5 /* UIImage+Util.h */,
 				3303810A1B53BABA003527B5 /* UIImage+Util.m */,
+				339684051B606DDA00E0AB3F /* NSTextAttachment+Util.h */,
+				339684061B606DDA00E0AB3F /* NSTextAttachment+Util.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1447,6 +1452,7 @@
 			files = (
 				33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */,
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
+				339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */,
 				33CC0C681B467D48002819EE /* OSCMessage.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				33AA2CFF1B5F304C0059628C /* TweetsLikeListViewController.m in Sources */,

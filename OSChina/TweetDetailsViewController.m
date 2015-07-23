@@ -50,7 +50,7 @@
             if (weakSelf.tweet) {
                 [cell.portrait loadPortrait:weakSelf.tweet.portraitURL];
                 [cell.authorLabel setText:weakSelf.tweet.author];
-                [cell.timeLabel setAttributedText:weakSelf.tweet.attributedTimes];
+                [cell.timeLabel setAttributedText:[Utils attributedTimeString:weakSelf.tweet.pubDate]];
                 [cell.appclientLabel setAttributedText:[Utils getAppclient:weakSelf.tweet.appclient]];
                 [cell.portrait    addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(pushUserDetails)]];
                 [cell.likeButton addTarget:weakSelf action:@selector(togglePraise) forControlEvents:UIControlEventTouchUpInside];
