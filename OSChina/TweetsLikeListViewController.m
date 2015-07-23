@@ -38,6 +38,7 @@ static NSString * const kTweetLikeUserCellID = @"TweetLikeUserCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.title = @"点赞列表";
     
     [self.tableView registerClass:[TweetLikeUserCell class] forCellReuseIdentifier:kTweetLikeUserCellID];

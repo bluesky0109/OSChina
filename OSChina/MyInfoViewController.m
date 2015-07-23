@@ -64,6 +64,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor colorWithHex:0xF5F5F5];
     self.navigationItem.title = @"我";
     

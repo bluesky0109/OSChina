@@ -74,9 +74,9 @@ static NSString * const kEventCellID = @"EventCell";
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:kEventCellID];
-   
 }
 
 - (void)didReceiveMemoryWarning {
