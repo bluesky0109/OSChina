@@ -47,6 +47,7 @@
     
     _genderImageView = [UIImageView new];
     _genderImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _genderImageView.hidden = YES;
     [self.contentView addSubview:_genderImageView];
     
     _nameLabel = [UILabel new];
@@ -121,8 +122,10 @@
     
     if ([user.gender isEqualToString:@"男"]) {
         [_genderImageView setImage:[UIImage imageNamed:@"userinfo_icon_male"]];
-    } else {
+        _genderImageView.hidden = NO;
+    } else if ([user.gender isEqualToString:@"女"]){
         [_genderImageView setImage:[UIImage imageNamed:@"userinfo_icon_female"]];
+        _genderImageView.hidden = NO;
     }
     
     [_creditsButton setTitle:[NSString stringWithFormat:@"积分\n%d", user.score]          forState:UIControlStateNormal];
