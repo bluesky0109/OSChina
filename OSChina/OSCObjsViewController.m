@@ -13,6 +13,7 @@
 @interface OSCObjsViewController ()
 
 @property (nonatomic, assign) BOOL refreshInProgress;
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 
 @end
 
@@ -25,6 +26,7 @@
         self.objects = [NSMutableArray new];
         _page = 0;
         _needRefreshAnimation = YES;
+        _needCache = YES;
     }
     
     return self;
@@ -54,7 +56,14 @@
         [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
                                 animated:YES];
     }
+    
+    _manager = [AFHTTPRequestOperationManager manager];
+    _manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
 
+    if (_needCache) {
+        _manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
+    }
+    
     [self fetchObjectsOnPage:0 refresh:YES];
 }
 
@@ -106,6 +115,7 @@
         _refreshInProgress = YES;
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            _manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
             [self fetchObjectsOnPage:0 refresh:YES];
             _refreshInProgress = NO;
         });
@@ -127,9 +137,12 @@
 
 - (void)fetchMore
 {
-    if (self.lastCell.status == LastCellStatusFinished || self.lastCell.status == LastCellStatusLoading) {return;}
+    if (self.lastCell.status == LastCellStatusFinished || self.lastCell.status == LastCellStatusLoading) {
+        return;
+    }
     
     [self.lastCell statusLoading];
+    _manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     [self fetchObjectsOnPage:++_page refresh:NO];
 }
 
@@ -137,10 +150,7 @@
 
 - (void)fetchObjectsOnPage:(NSUInteger)page refresh:(BOOL)refresh
 {
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    [manager GET:self.generateURL(page)
+    [_manager GET:self.generateURL(page)
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
              self.allCount = [[[responseDocument.rootElement firstChildWithTag:@"allCount"] numberValue] intValue];
