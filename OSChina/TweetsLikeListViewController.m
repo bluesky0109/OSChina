@@ -24,16 +24,15 @@ static NSString * const kTweetLikeUserCellID = @"TweetLikeUserCell";
 
 - (instancetype)initWithTweetID:(int64_t)tweetID {
     self = [super init];
-    if (!self) {
-        return nil;
-    }
-    
-    self.generateURL = ^NSString * (NSUInteger page) {
-        return [NSString stringWithFormat:@"%@%@?tweetid=%lld&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_TWEET_LIKE_LIST, tweetID, (unsigned long)page, OSCAPI_SUFFIX];
-    };
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+        
+        self.generateURL = ^NSString * (NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?tweetid=%lld&pageIndex=%lu&%@", OSCAPI_PREFIX, OSCAPI_TWEET_LIKE_LIST, tweetID, (unsigned long)page, OSCAPI_SUFFIX];
+        };
 
-    self.objClass = [OSCUser class];
-    
+        self.objClass = [OSCUser class];
+    }
     return self;
 }
 
