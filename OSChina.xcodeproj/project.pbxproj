@@ -107,6 +107,9 @@
 		338F92281B54E73D00BEAAD6 /* OSCReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F92271B54E73D00BEAAD6 /* OSCReference.m */; };
 		339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 339684061B606DDA00E0AB3F /* NSTextAttachment+Util.m */; };
 		3396840B1B609D8300E0AB3F /* TeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 3396840A1B609D8300E0AB3F /* TeamMember.m */; };
+		3396840E1B60D3B100E0AB3F /* TeamUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3396840D1B60D3B100E0AB3F /* TeamUser.m */; };
+		339684121B60D42E00E0AB3F /* TeamUserMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339684111B60D42E00E0AB3F /* TeamUserMainCell.m */; };
+		339684151B60D9E500E0AB3F /* TeamHomePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 339684141B60D9E500E0AB3F /* TeamHomePage.m */; };
 		339740C41B423F590074D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C31B423F590074D2EA /* main.m */; };
 		339740C71B423F590074D2EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 339740C61B423F590074D2EA /* AppDelegate.m */; };
 		339740CF1B423F590074D2EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339740CE1B423F590074D2EA /* Images.xcassets */; };
@@ -357,6 +360,12 @@
 		339684061B606DDA00E0AB3F /* NSTextAttachment+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextAttachment+Util.m"; sourceTree = "<group>"; };
 		339684091B609D8300E0AB3F /* TeamMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMember.h; sourceTree = "<group>"; };
 		3396840A1B609D8300E0AB3F /* TeamMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMember.m; sourceTree = "<group>"; };
+		3396840C1B60D3B100E0AB3F /* TeamUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamUser.h; sourceTree = "<group>"; };
+		3396840D1B60D3B100E0AB3F /* TeamUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamUser.m; sourceTree = "<group>"; };
+		339684101B60D42E00E0AB3F /* TeamUserMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamUserMainCell.h; sourceTree = "<group>"; };
+		339684111B60D42E00E0AB3F /* TeamUserMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamUserMainCell.m; sourceTree = "<group>"; };
+		339684131B60D9E500E0AB3F /* TeamHomePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamHomePage.h; sourceTree = "<group>"; };
+		339684141B60D9E500E0AB3F /* TeamHomePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamHomePage.m; sourceTree = "<group>"; };
 		339740BE1B423F590074D2EA /* OSChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339740C21B423F590074D2EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339740C31B423F590074D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -859,6 +868,17 @@
 			name = "找人";
 			sourceTree = "<group>";
 		};
+		3396840F1B60D40E00E0AB3F /* 主页 */ = {
+			isa = PBXGroup;
+			children = (
+				339684101B60D42E00E0AB3F /* TeamUserMainCell.h */,
+				339684111B60D42E00E0AB3F /* TeamUserMainCell.m */,
+				339684131B60D9E500E0AB3F /* TeamHomePage.h */,
+				339684141B60D9E500E0AB3F /* TeamHomePage.m */,
+			);
+			name = "主页";
+			sourceTree = "<group>";
+		};
 		339740B51B423F590074D2EA = {
 			isa = PBXGroup;
 			children = (
@@ -1233,6 +1253,8 @@
 				33DFB87F1B5DF35900BA9976 /* TeamAPI.h */,
 				339684091B609D8300E0AB3F /* TeamMember.h */,
 				3396840A1B609D8300E0AB3F /* TeamMember.m */,
+				3396840C1B60D3B100E0AB3F /* TeamUser.h */,
+				3396840D1B60D3B100E0AB3F /* TeamUser.m */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -1240,6 +1262,7 @@
 		33DFB8801B5DF38A00BA9976 /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				3396840F1B60D40E00E0AB3F /* 主页 */,
 				33DFB8811B5DF39B00BA9976 /* 团队成员 */,
 			);
 			name = Team;
@@ -1457,6 +1480,7 @@
 			files = (
 				33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */,
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
+				3396840E1B60D3B100E0AB3F /* TeamUser.m in Sources */,
 				339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */,
 				33CC0C681B467D48002819EE /* OSCMessage.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
@@ -1559,7 +1583,9 @@
 				337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */,
 				339BF4481B5F928F00C5D680 /* MyTweetLikeListCell.m in Sources */,
 				3346CA4E1B5680710038BDFB /* PresentMembersViewController.m in Sources */,
+				339684151B60D9E500E0AB3F /* TeamHomePage.m in Sources */,
 				33C11EC91B45079F00728AE4 /* EmojiPanelVC.m in Sources */,
+				339684121B60D42E00E0AB3F /* TeamUserMainCell.m in Sources */,
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3346CA521B568A2C0038BDFB /* SettingsPage.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,

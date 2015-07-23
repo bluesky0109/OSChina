@@ -16,6 +16,7 @@
 #import "SearchViewController.h"
 #import "MyBasicInfoViewController.h"
 #import "TeamMemberViewController.h"
+#import "TeamHomePage.h"
 
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
@@ -354,7 +355,7 @@
         case 2: {
 #if 1
             TeamMemberViewController *teamMemberVC = [TeamMemberViewController new];
-            [self.navigationController pushViewController:teamMemberVC animated:YES];
+            [self.navigationController pushViewController:[TeamHomePage new] animated:YES];
 #else
             
             MBProgressHUD *HUD = [Utils createHUD];

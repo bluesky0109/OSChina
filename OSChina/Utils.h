@@ -39,6 +39,10 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (NSString *)intervalSinceNow:(NSString *)dateStr;
 
++ (NSString *)getWeekdayFromDateComponents:(NSDateComponents *)dateComps;
+
++ (NSDateComponents *)getDateComponentsFromDate:(NSDate *)date;
+
 + (NSAttributedString *)emojiStringFromRawString:(NSString *)rawString;
 
 + (NSData *)compressImage:(UIImage *)image;
