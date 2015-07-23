@@ -188,7 +188,7 @@
                  [self.tableView reloadData];
                  if (refresh) {
                      [self.refreshControl endRefreshing];
-                     [self.tableView setContentOffset:CGPointZero animated:YES];
+//                     [self.tableView setContentOffset:CGPointZero animated:YES];
                  }
              });
          }
@@ -204,7 +204,7 @@
              [self.tableView reloadData];
              if (refresh) {
                  [self.refreshControl endRefreshing];
-                 [self.tableView setContentOffset:CGPointZero animated:YES];
+//                 [self.tableView setContentOffset:CGPointZero animated:YES];
              }
          }
      ];
