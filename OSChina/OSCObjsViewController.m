@@ -184,13 +184,8 @@
                      }
                  }
 
-                 if (refresh) {
+                 if (self.refreshControl.refreshing) {
                      [self.refreshControl endRefreshing];
-//                     if (_objects.count > 0) {
-//                         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-//                                               atScrollPosition:UITableViewScrollPositionTop
-//                                                       animated:YES];
-//                     }
                  }
                  
                  [self.tableView reloadData];
@@ -206,13 +201,8 @@
              
              [self.lastCell statusError];
 
-             if (refresh) {
+             if (self.refreshControl.refreshing) {
                  [self.refreshControl endRefreshing];
-//                 if (_objects.count > 0) {
-//                     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-//                                           atScrollPosition:UITableViewScrollPositionTop
-//                                                   animated:YES];
-//                 }
              }
              
             [self.tableView reloadData];
