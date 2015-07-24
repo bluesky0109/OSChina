@@ -33,4 +33,8 @@
 
 + (UIImage *)getPortrait;
 
++ (void)saveTweetText:(NSString *)tweetText andId:(int64_t)userID;
+
++ (NSString *)getTweetText;
+
 @end

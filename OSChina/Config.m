@@ -144,4 +144,22 @@ NSString * const kPosition    = @"position";
     return portrait;
 }
 
++ (void)saveTweetText:(NSString *)tweetText andId:(int64_t)userID {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *IdStr = [NSString stringWithFormat:@"tweetTmp_%lld", userID];
+    [userDefaults setObject:tweetText forKey:IdStr];
+
+    [userDefaults synchronize];
+}
+
++ (NSString *)getTweetText {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *IdStr = [NSString stringWithFormat:@"tweetTmp_%lld", [Config getOwnID]];
+    NSString *tweetText = [userDefaults objectForKey:IdStr];
+
+    return tweetText;
+}
+
 @end
