@@ -266,7 +266,6 @@ static NSString * const kTweetCellID = @"TweetCell";
 {
     OSCTweet *tweet = self.objects[recognizer.view.tag];
     UserDetailsViewController *userDetailsVC = [[UserDetailsViewController alloc] initWithUserID:tweet.authorID];
-    userDetailsVC.needCache = NO;
     [self.navigationController pushViewController:userDetailsVC animated:YES];
 }
 
@@ -274,7 +273,6 @@ static NSString * const kTweetCellID = @"TweetCell";
 - (void)PushToLikeList:(UITapGestureRecognizer *)tap {
     OSCTweet *tweet = self.objects[tap.view.tag];
     TweetsLikeListViewController *likeListCtl = [[TweetsLikeListViewController alloc] initWithTweetID:tweet.tweetID];
-    likeListCtl.needCache = NO;
     [self.navigationController pushViewController:likeListCtl animated:YES];
 }
 
