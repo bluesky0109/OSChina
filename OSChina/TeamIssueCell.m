@@ -70,7 +70,7 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[_titleLabel]-8-|" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_assignmentLabel]->=0-[_timeLabel]-8-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_assignmentLabel]->=0-[_commentLabel]-8-[_timeLabel]-8-|"
                                                                              options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
 }
 
@@ -80,7 +80,7 @@
     
     _projectNameLabel.text = issue.project.projectName;
     _timeLabel.attributedText = [Utils attributedTimeString:issue.createTime];
-    
+    _commentLabel.attributedText = [Utils attributedCommentCount:issue.replyCount];
     if (issue.user.name) {
         _assignmentLabel.text = [NSString stringWithFormat:@"%@ 指派给 %@", issue.author.name, issue.user.name];
     } else {

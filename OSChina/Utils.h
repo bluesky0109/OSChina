@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (NSAttributedString *)attributedTimeString:(NSString *)dateStr;
 
++ (NSAttributedString *)attributedCommentCount:(int)commentCount;
+
 + (NSString *)intervalSinceNow:(NSString *)dateStr;
 
 + (NSString *)getWeekdayFromDateComponents:(NSDateComponents *)dateComps;

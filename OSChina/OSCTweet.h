@@ -28,7 +28,6 @@
 @property (nonatomic, copy  ) NSMutableArray *likeList;
 @property (nonatomic, copy  ) NSMutableAttributedString *likersString;
 @property (nonatomic, copy  ) NSMutableAttributedString *likersDetailString;
-
-- (NSAttributedString *)attributedCommentCount;
+@property (nonatomic, strong) NSAttributedString *attributedCommentCount;
 
 @end
