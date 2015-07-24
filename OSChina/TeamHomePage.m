@@ -27,13 +27,15 @@
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
-    
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.backgroundColor = [UIColor themeColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

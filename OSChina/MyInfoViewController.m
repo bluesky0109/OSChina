@@ -17,6 +17,7 @@
 #import "MyBasicInfoViewController.h"
 #import "TeamMemberViewController.h"
 #import "TeamHomePage.h"
+#import "TeamIssueController.h"
 
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
@@ -362,17 +363,12 @@
         }
 
         case 2: {
-#if 1
-            TeamMemberViewController *teamMemberVC = [TeamMemberViewController new];
-            [self.navigationController pushViewController:[TeamHomePage new] animated:YES];
-#else
+            SwipableViewController *teamSVC = [[SwipableViewController alloc] initWithTitle:@"Team"
+                                                                               andSubTitles:@[@"主页", @"任务", @"成员"]
+                                                                             andControllers:@[[TeamHomePage new],[TeamIssueController new],[TeamMemberViewController new]]];
+            teamSVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:teamSVC animated:YES];
             
-            MBProgressHUD *HUD = [Utils createHUD];
-            HUD.mode = MBProgressHUDModeText;
-            HUD.labelText = @"即将推出团队功能，敬请期待";
-            [HUD hide:YES afterDelay:1];
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-#endif
             break;
         }
         default: break;
