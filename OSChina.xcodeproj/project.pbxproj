@@ -160,6 +160,7 @@
 		33DE61861B61BFC80086DA20 /* TeamProjectAuthority.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61851B61BFC80086DA20 /* TeamProjectAuthority.m */; };
 		33DE61891B61C0650086DA20 /* TeamIssueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61881B61C0650086DA20 /* TeamIssueController.m */; };
 		33DE618C1B61C1190086DA20 /* TeamActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE618B1B61C1190086DA20 /* TeamActivityViewController.m */; };
+		33DE618E1B6206E10086DA20 /* emojiToText.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33DE618D1B6206E10086DA20 /* emojiToText.plist */; };
 		33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8831B5DF3C700BA9976 /* MemberCell.m */; };
 		33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */; };
 		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
@@ -476,6 +477,7 @@
 		33DE61881B61C0650086DA20 /* TeamIssueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamIssueController.m; sourceTree = "<group>"; };
 		33DE618A1B61C1190086DA20 /* TeamActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamActivityViewController.h; sourceTree = "<group>"; };
 		33DE618B1B61C1190086DA20 /* TeamActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamActivityViewController.m; sourceTree = "<group>"; };
+		33DE618D1B6206E10086DA20 /* emojiToText.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emojiToText.plist; sourceTree = "<group>"; };
 		33DFB87F1B5DF35900BA9976 /* TeamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamAPI.h; sourceTree = "<group>"; };
 		33DFB8821B5DF3C700BA9976 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		33DFB8831B5DF3C700BA9976 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
@@ -952,6 +954,7 @@
 		339740C11B423F590074D2EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				33DE618D1B6206E10086DA20 /* emojiToText.plist */,
 				338776631B4D0BB4001581A4 /* emoji.plist */,
 				339740C21B423F590074D2EA /* Info.plist */,
 				339740C31B423F590074D2EA /* main.m */,
@@ -1473,6 +1476,7 @@
 				3323CF291B5695A400622743 /* OSLicense.html in Resources */,
 				337A8F961B510CC400880209 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				337A8F8E1B510CC400880209 /* UMShareEditViewController.xib in Resources */,
+				33DE618E1B6206E10086DA20 /* emojiToText.plist in Resources */,
 				337A8F8D1B510CC400880209 /* UMSCommentInputControlleriPad.xib in Resources */,
 				339740CF1B423F590074D2EA /* Images.xcassets in Resources */,
 				338776641B4D0BB4001581A4 /* emoji.plist in Resources */,
