@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class TTTAttributedLabel;
+@class TeamActivity;
 
 @interface TeamActivityCell : UITableViewCell
 
-@property (nonatomic, strong) TTTAttributedLabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UIImageView *portrait;
+@property (nonatomic, strong) UILabel *commentLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
+
+- (void)setContentWithActivity:(TeamActivity *)activity;
 
 @end

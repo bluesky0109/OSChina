@@ -7,6 +7,7 @@
 //
 
 #import "TeamHomePage.h"
+#import "TeamActivityViewController.h"
 #import "TeamUserMainCell.h"
 #import "TeamUser.h"
 #import "Utils.h"
@@ -147,6 +148,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0) {
+        return;
+    }
+    
+    if (indexPath.row == 0) {
+        [self.navigationController pushViewController:[TeamActivityViewController new] animated:YES];
+    }
 }
 
 @end

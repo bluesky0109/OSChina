@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "OSCObjsViewController.h"
 
-@interface TeamActivityViewController : UITableViewController
+@interface TeamActivityViewController : OSCObjsViewController
 
 @end

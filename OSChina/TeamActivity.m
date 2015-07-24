@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "TeamActivity.h"
 #import "TeamMember.h"
 
@@ -37,5 +38,15 @@
     return self;
 }
 
+- (NSAttributedString *)attributedTittle {
+    if (!_attributedTittle) {
+        _attributedTittle = [[NSAttributedString alloc] initWithData:[_title dataUsingEncoding:NSUnicodeStringEncoding]
+                                                             options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
+                                                  documentAttributes:nil
+                                                               error:nil];
+    }
+    
+    return _attributedTittle;
+}
 
 @end

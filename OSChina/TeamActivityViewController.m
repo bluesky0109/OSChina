@@ -9,16 +9,13 @@
 #import "TeamActivityViewController.h"
 #import "TeamAPI.h"
 #import "TeamActivity.h"
+#import "TeamActivityCell.h"
 
-#import <AFNetworking.h>
-#import <AFOnoResponseSerializer.h>
-#import <Ono.h>
+#import <TTTAttributedLabel.h>
 
 static NSString * const kActivityCellID = @"TeamActivityCell";
 
 @interface TeamActivityViewController ()
-
-@property (nonatomic, strong) NSMutableArray *activities;
 
 @end
 
@@ -27,7 +24,11 @@ static NSString * const kActivityCellID = @"TeamActivityCell";
 - (instancetype)init
 {
     if (self = [super init]) {
-        _activities = [NSMutableArray new];
+        self.generateURL = ^NSString * (NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?teamid=12375&type=all&pageIndex=%lu", TEAM_PREFIX, TEAM_ACTIVITY_LIST, (unsigned long)page];
+        };
+
+        self.objClass = [TeamActivity class];
     }
     
     return self;
@@ -38,27 +39,6 @@ static NSString * const kActivityCellID = @"TeamActivityCell";
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kActivityCellID];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    [manager GET:[NSString stringWithFormat:@"%@%@", TEAM_PREFIX, TEAM_ACTIVITY_LIST]
-      parameters:@{
-                   @"teamid": @(12375),
-                   @"type": @"all"
-                   }
-         success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
-             NSArray *activitiesXML = [[responseObject.rootElement firstChildWithTag:@"actives"] childrenWithTag:@"active"];
-             
-             for (ONOXMLElement *activityXML in activitiesXML) {
-                 [_activities addObject:[[TeamActivity alloc] initWithXML:activityXML]];
-             }
-             
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self.tableView reloadData];
-             });
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
-         }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,27 +46,31 @@ static NSString * const kActivityCellID = @"TeamActivityCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray *)parseXML:(ONOXMLDocument *)xml {
+    return [[xml.rootElement firstChildWithTag:@"actives"] childrenWithTag:@"active"];
+
+}
+
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.activities.count;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActivityCellID forIndexPath:indexPath];
-    NSInteger row = indexPath.row;
-    
-    if (row) {
-        TeamActivity *activity = _activities[indexPath.row];
-        cell.textLabel.text = activity.title;
+    if (indexPath.row < self.objects.count) {
+        TeamActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:kActivityCellID forIndexPath:indexPath];
+        TeamActivity *activity = self.objects[indexPath.row];
+        
+        [cell setContentWithActivity:activity];
+        
+        return cell;
+    } else {
+        return self.lastCell;
     }
     
-    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

@@ -75,7 +75,7 @@
 }
 
 
-- (void)setContentWithissue:(TeamIssue *)issue {
+- (void)setContentWithIssue:(TeamIssue *)issue {
     _titleLabel.text = issue.title;
     
     _projectNameLabel.text = issue.project.projectName;
