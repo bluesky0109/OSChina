@@ -161,6 +161,9 @@
 		33DE61891B61C0650086DA20 /* TeamIssueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61881B61C0650086DA20 /* TeamIssueController.m */; };
 		33DE618C1B61C1190086DA20 /* TeamActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE618B1B61C1190086DA20 /* TeamActivityViewController.m */; };
 		33DE618E1B6206E10086DA20 /* emojiToText.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33DE618D1B6206E10086DA20 /* emojiToText.plist */; };
+		33DE61921B6229EF0086DA20 /* TeamDiscussionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61911B6229EF0086DA20 /* TeamDiscussionCell.m */; };
+		33DE61951B622A8E0086DA20 /* TeamDiscussion.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61941B622A8E0086DA20 /* TeamDiscussion.m */; };
+		33DE61981B622DD00086DA20 /* TeamDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */; };
 		33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8831B5DF3C700BA9976 /* MemberCell.m */; };
 		33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */; };
 		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
@@ -478,6 +481,12 @@
 		33DE618A1B61C1190086DA20 /* TeamActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamActivityViewController.h; sourceTree = "<group>"; };
 		33DE618B1B61C1190086DA20 /* TeamActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamActivityViewController.m; sourceTree = "<group>"; };
 		33DE618D1B6206E10086DA20 /* emojiToText.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emojiToText.plist; sourceTree = "<group>"; };
+		33DE61901B6229EF0086DA20 /* TeamDiscussionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDiscussionCell.h; sourceTree = "<group>"; };
+		33DE61911B6229EF0086DA20 /* TeamDiscussionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussionCell.m; sourceTree = "<group>"; };
+		33DE61931B622A8E0086DA20 /* TeamDiscussion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDiscussion.h; sourceTree = "<group>"; };
+		33DE61941B622A8E0086DA20 /* TeamDiscussion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussion.m; sourceTree = "<group>"; };
+		33DE61961B622DD00086DA20 /* TeamDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDiscussionViewController.h; sourceTree = "<group>"; };
+		33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussionViewController.m; sourceTree = "<group>"; };
 		33DFB87F1B5DF35900BA9976 /* TeamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamAPI.h; sourceTree = "<group>"; };
 		33DFB8821B5DF3C700BA9976 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		33DFB8831B5DF3C700BA9976 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
@@ -897,6 +906,7 @@
 		3396840F1B60D40E00E0AB3F /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				33DE618F1B6229AF0086DA20 /* 讨论 */,
 				33DE61741B61BE040086DA20 /* 动态 */,
 				339684101B60D42E00E0AB3F /* TeamUserMainCell.h */,
 				339684111B60D42E00E0AB3F /* TeamUserMainCell.m */,
@@ -1255,6 +1265,17 @@
 			name = "动态";
 			sourceTree = "<group>";
 		};
+		33DE618F1B6229AF0086DA20 /* 讨论 */ = {
+			isa = PBXGroup;
+			children = (
+				33DE61901B6229EF0086DA20 /* TeamDiscussionCell.h */,
+				33DE61911B6229EF0086DA20 /* TeamDiscussionCell.m */,
+				33DE61961B622DD00086DA20 /* TeamDiscussionViewController.h */,
+				33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */,
+			);
+			name = "讨论";
+			sourceTree = "<group>";
+		};
 		33DFB87D1B5DF30D00BA9976 /* 主站 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1334,8 @@
 				33DE61821B61BF930086DA20 /* TeamProject.m */,
 				33DE61841B61BFC80086DA20 /* TeamProjectAuthority.h */,
 				33DE61851B61BFC80086DA20 /* TeamProjectAuthority.m */,
+				33DE61931B622A8E0086DA20 /* TeamDiscussion.h */,
+				33DE61941B622A8E0086DA20 /* TeamDiscussion.m */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -1543,6 +1566,7 @@
 				3396840E1B60D3B100E0AB3F /* TeamUser.m in Sources */,
 				339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */,
 				33CC0C681B467D48002819EE /* OSCMessage.m in Sources */,
+				33DE61981B622DD00086DA20 /* TeamDiscussionViewController.m in Sources */,
 				339740EB1B4246AA0074D2EA /* OSCTabBarController.m in Sources */,
 				33AA2CFF1B5F304C0059628C /* TweetsLikeListViewController.m in Sources */,
 				338F219E1B4DFFAB006B9507 /* PersonSearchViewController.m in Sources */,
@@ -1575,6 +1599,7 @@
 				337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */,
 				337A8F511B50D19F00880209 /* ActivityCell.m in Sources */,
 				3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */,
+				33DE61951B622A8E0086DA20 /* TeamDiscussion.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339BF44B1B5F92E600C5D680 /* MyTweetLikeListViewController.m in Sources */,
@@ -1628,6 +1653,7 @@
 				333595781B43912E00AC412A /* OSCBlogDetails.m in Sources */,
 				339740FE1B42606C0074D2EA /* Utils.m in Sources */,
 				3335958E1B43C40000AC412A /* Config.m in Sources */,
+				33DE61921B6229EF0086DA20 /* TeamDiscussionCell.m in Sources */,
 				3335957E1B4392A000AC412A /* DetailsViewController.m in Sources */,
 				339741121B4265D40074D2EA /* TitleBarView.m in Sources */,
 				339740F51B42605E0074D2EA /* OSCTweet.m in Sources */,

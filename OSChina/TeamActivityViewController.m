@@ -71,6 +71,20 @@ static NSString * const kActivityCellID = @"TeamActivityCell";
 }
 
 #pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.objects.count) {
+        TeamActivity *activity = self.objects[indexPath.row];
+        
+        self.label.attributedText = activity.attributedTittle;
+        
+        CGFloat height = [self.label sizeThatFits:CGSizeMake(tableView.bounds.size.width - 60, MAXFLOAT)].height;
+        
+        return height + 63;
+    } else {
+        return 50;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
