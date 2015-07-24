@@ -38,19 +38,15 @@
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleMe];
-    [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleOthers];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
     UIMenuController *menuController = [UIMenuController sharedMenuController];
     [menuController setMenuVisible:YES animated:YES];
     [menuController setMenuItems:@[
                                    [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyText:)],
                                    [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteMessage:)]
                                    ]];
+    
+    [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleMe];
+    [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleOthers];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -107,16 +107,12 @@ static NSString * const kTweetCellID = @"TweetCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // tableView设置
-    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
     UIMenuController *menuController = [UIMenuController sharedMenuController];
     [menuController setMenuItems:@[[[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyText:)],[[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteTweet:)]]];
     [menuController setMenuVisible:YES animated:YES];
+    
+    // tableView设置
+    [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
 }
 
 - (void)didReceiveMemoryWarning {
