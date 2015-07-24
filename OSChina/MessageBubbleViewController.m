@@ -11,6 +11,7 @@
 #import "MessageBubbleCell.h"
 #import "OSCComment.h"
 #import "Config.h"
+#import <MBProgressHUD.h>
 
 @interface MessageBubbleViewController ()
 
@@ -32,12 +33,24 @@
     
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleMe];
     [self.tableView registerClass:[MessageBubbleCell class] forCellReuseIdentifier:kMessageBubbleOthers];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    [menuController setMenuVisible:YES animated:YES];
+    [menuController setMenuItems:@[
+                                   [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyText:)],
+                                   [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteMessage:)]
+                                   ]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +77,8 @@
         cell.portrait.tag = message.authorID;
         [cell.portrait addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserDetails:)]];
         [cell setContent:message.content andPortrait:message.portraitURL];
+        
+        [self setBlockForMessageCell:cell];
         
         return cell;
         
@@ -98,6 +113,87 @@
 #pragma mark - 头像点击处理
 - (void)pushUserDetails:(UIGestureRecognizer *)recognizer {
     [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithUserID:recognizer.view.tag] animated:YES];
+}
+
+#pragma mark - 删除留言
+
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    return action == @selector(deleteMessage:);
+}
+
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+    // required
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)setBlockForMessageCell:(MessageBubbleCell *)cell {
+    cell.canPerformAction = ^ BOOL (UITableViewCell *cell, SEL action) {
+        if (action == @selector(copyText:)) {
+            return YES;
+        } else if (action == @selector(deleteMessage:)) {
+            return YES;
+        }
+
+        return NO;
+    };
+
+    cell.deleteMessage = ^ (UITableViewCell *cell) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        OSCComment *comment = self.objects[indexPath.row];
+
+        MBProgressHUD *HUD = [Utils createHUD];
+        HUD.labelText = @"正在删除留言";
+
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+        [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_COMMENT_DELETE]
+           parameters:@{@"catalog": @(4),
+                        @"id": @([Config getOwnID]),
+                        @"replyid": @(comment.commentID),
+                        @"authorid": @(comment.authorID)
+                        }
+              success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
+                  ONOXMLElement *resultXML = [responseObject.rootElement firstChildWithTag:@"result"];
+                  int errorCode = [[[resultXML firstChildWithTag: @"errorCode"] numberValue] intValue];
+                  NSString *errorMessage = [[resultXML firstChildWithTag:@"errorMessage"] stringValue];
+
+                  HUD.mode = MBProgressHUDModeCustomView;
+
+                  if (errorCode == 1) {
+                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
+                      HUD.labelText = @"留言删除成功";
+
+                      [self.objects removeObjectAtIndex:indexPath.row];
+                      self.allCount--;
+                      if (self.objects.count > 0) {
+                          [self.tableView beginUpdates];
+                          [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                          [self.tableView endUpdates];
+                      }
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          [self.tableView reloadData];
+                      });
+                  } else {
+                      HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                      HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+                  }
+                  
+                  [HUD hide:YES afterDelay:1];
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  HUD.mode = MBProgressHUDModeCustomView;
+                  HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+                  HUD.detailsLabelText = error.userInfo[NSLocalizedDescriptionKey];
+                  
+                  [HUD hide:YES afterDelay:1];
+              }];
+    };
 }
 
 @end
