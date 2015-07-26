@@ -225,7 +225,6 @@
 
 - (void)toPraise:(OSCTweet *)tweet
 {
-    MBProgressHUD *HUD = [Utils createHUD];
     NSString *postUrl;
     if (tweet.isLike) {
         postUrl = [NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_UNLIKE];
@@ -247,11 +246,8 @@
               int errorCode = [[[resultXML firstChildWithTag: @"errorCode"] numberValue] intValue];
               NSString *errorMessage = [[resultXML firstChildWithTag:@"errorMessage"] stringValue];
               
-              HUD.mode = MBProgressHUDModeCustomView;
-              
               if (errorCode == 1) {
-                  HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-done"]];
-                 
+                  
                   if (tweet.isLike) {
                       //取消点赞
                       for (OSCUser *user in tweet.likeList) {
@@ -274,11 +270,6 @@
                   tweet.isLike = !tweet.isLike;
                   tweet.likersString = nil;
                   
-                  if (tweet.isLike) {
-                      HUD.labelText = @"点赞成功";
-                  } else {
-                      HUD.labelText = @"取消点赞成功";
-                  }
 #if 0
                   
                   dispatch_async(dispatch_get_main_queue(), ^{
@@ -290,12 +281,16 @@
                   [self.tableView endUpdates];
 #endif
               } else {
+                  MBProgressHUD *HUD = [Utils createHUD];
+                  HUD.mode = MBProgressHUDModeCustomView;
+                  
                   HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
                   HUD.labelText = [NSString stringWithFormat:@"错误：%@", errorMessage];
+                  [HUD hide:YES afterDelay:1];
               }
-              
-              [HUD hide:YES afterDelay:1];
+
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              MBProgressHUD *HUD = [Utils createHUD];
               HUD.mode = MBProgressHUDModeCustomView;
               HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
               HUD.detailsLabelText = error.userInfo[NSLocalizedDescriptionKey];
