@@ -145,7 +145,20 @@
         [self.likeButton setImage:[UIImage imageNamed:@"ic_unlike"] forState:UIControlStateNormal];
     }
 
-    [self.contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
+    // 添加语音图片
+    if (tweet.attach.length) {
+        //有语音
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        textAttachment.image = [UIImage imageNamed:@"audioTweet"];
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        NSMutableAttributedString *attributedTweetBody = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+        [attributedTweetBody appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [attributedTweetBody appendAttributedString:[Utils emojiStringFromRawString:tweet.body]];
+
+        [_contentLabel setAttributedText:attributedTweetBody];
+    } else {
+        [_contentLabel setAttributedText:[Utils emojiStringFromRawString:tweet.body]];
+    }
     
     [_likeListLabel setAttributedText:tweet.likersString];
     if (tweet.likeList.count > 0) {
