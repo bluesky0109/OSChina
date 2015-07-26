@@ -38,20 +38,20 @@
     return self;
 }
 
-- (NSMutableAttributedString *)attributedTittle {
-    if (!_attributedTittle) {
-        _attributedTittle = [[NSMutableAttributedString alloc] initWithData:[_title dataUsingEncoding:NSUnicodeStringEncoding]
+- (NSMutableAttributedString *)attributedTitle {
+    if (!_attributedTitle) {
+        _attributedTitle = [[NSMutableAttributedString alloc] initWithData:[_title dataUsingEncoding:NSUnicodeStringEncoding]
                                                                     options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
                                                          documentAttributes:nil
                                                                       error:nil];
 
-        [_attributedTittle deleteCharactersInRange:NSMakeRange(_attributedTittle.length-1, 1)];
+        [_attributedTitle deleteCharactersInRange:NSMakeRange(_attributedTitle.length-1, 1)];
         
-        [_attributedTittle addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
-                                   range:NSMakeRange(0, _attributedTittle.length)];
+        [_attributedTitle addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                                   range:NSMakeRange(0, _attributedTitle.length)];
     }
     
-    return _attributedTittle;
+    return _attributedTitle;
 }
 
 @end

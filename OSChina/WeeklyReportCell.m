@@ -1,19 +1,19 @@
 //
-//  TeamActivityCell.m
+//  WeeklyReportCell.m
 //  OSChina
 //
-//  Created by sky on 15/7/24.
+//  Created by sky on 15/7/26.
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
-#import "TeamActivityCell.h"
-#import "TeamActivity.h"
-#import "TeamMember.h"
+#import "WeeklyReportCell.h"
+#import "TeamWeeklyReport.h"
 #import "Utils.h"
 
-@implementation TeamActivityCell
+@implementation WeeklyReportCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -32,22 +32,22 @@
 
 - (void)initSubviews
 {
-    _titleLabel = [UILabel new];
-    _titleLabel.numberOfLines = 0;
-    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.contentView addSubview:_titleLabel];
-    
     _nameLabel = [UILabel new];
     _nameLabel.numberOfLines = 0;
     _nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _nameLabel.textColor = [UIColor nameColor];
-    _nameLabel.font = [UIFont systemFontOfSize:14];
+    _nameLabel.font = [UIFont boldSystemFontOfSize:14];
     [self.contentView addSubview:_nameLabel];
     
     _portrait = [UIImageView new];
     _portrait.contentMode = UIViewContentModeScaleAspectFit;
     [_portrait setCornerRadius:5.0];
     [self.contentView addSubview:_portrait];
+    
+    _titleLabel = [UILabel new];
+    _titleLabel.numberOfLines = 0;
+    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.contentView addSubview:_titleLabel];
     
     _timeLabel = [UILabel new];
     _timeLabel.font = [UIFont systemFontOfSize:12];
@@ -83,14 +83,14 @@
 }
 
 
-- (void)setContentWithActivity:(TeamActivity *)activity
+- (void)setContentWithWeeklyReport:(TeamWeeklyReport *)weeklyReport
 {
-    _nameLabel.text = activity.author.name;
-    [_portrait loadPortrait:activity.author.portraitURL];
-    _commentLabel.attributedText = [Utils attributedCommentCount:activity.replyCount];
-    _timeLabel.attributedText = [Utils attributedTimeString:activity.createTime];
-    
-    _titleLabel.attributedText = activity.attributedTitle;
+    _titleLabel.attributedText = weeklyReport.attributedTitle;
+    _nameLabel.text = weeklyReport.author.name;
+    [_portrait loadPortrait:weeklyReport.author.portraitURL];
+    _timeLabel.attributedText = [Utils attributedTimeString:weeklyReport.createTime];
+    _commentLabel.attributedText = [Utils attributedCommentCount:weeklyReport.replyCount];
 }
+
 
 @end

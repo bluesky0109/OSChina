@@ -57,6 +57,10 @@
 		3376924C1B6471C400E07001 /* TeamTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3376924B1B6471C400E07001 /* TeamTeam.m */; };
 		337692501B6472A900E07001 /* TeamCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3376924F1B6472A900E07001 /* TeamCenter.m */; };
 		337692561B64764700E07001 /* TeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337692551B64764700E07001 /* TeamCell.m */; };
+		3376925A1B64880F00E07001 /* WeeklyReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337692591B64880F00E07001 /* WeeklyReportCell.m */; };
+		3376925D1B64882F00E07001 /* TeamWeeklyReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3376925C1B64882F00E07001 /* TeamWeeklyReport.m */; };
+		337692601B6488A000E07001 /* WeeklyReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3376925F1B6488A000E07001 /* WeeklyReportViewController.m */; };
+		337692631B6488B800E07001 /* WeeklyReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337692621B6488B800E07001 /* WeeklyReportTableViewController.m */; };
 		337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F3B1B4FF87800880209 /* RandomMessageCell.m */; };
 		337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F401B50A99B00880209 /* OSCSearchResult.m */; };
 		337A8F441B50AA2200880209 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F431B50AA2200880209 /* SearchViewController.m */; };
@@ -285,6 +289,14 @@
 		3376924F1B6472A900E07001 /* TeamCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCenter.m; sourceTree = "<group>"; };
 		337692541B64764700E07001 /* TeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCell.h; sourceTree = "<group>"; };
 		337692551B64764700E07001 /* TeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCell.m; sourceTree = "<group>"; };
+		337692581B64880F00E07001 /* WeeklyReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportCell.h; sourceTree = "<group>"; };
+		337692591B64880F00E07001 /* WeeklyReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportCell.m; sourceTree = "<group>"; };
+		3376925B1B64882F00E07001 /* TeamWeeklyReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamWeeklyReport.h; sourceTree = "<group>"; };
+		3376925C1B64882F00E07001 /* TeamWeeklyReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamWeeklyReport.m; sourceTree = "<group>"; };
+		3376925E1B6488A000E07001 /* WeeklyReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportViewController.h; sourceTree = "<group>"; };
+		3376925F1B6488A000E07001 /* WeeklyReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportViewController.m; sourceTree = "<group>"; };
+		337692611B6488B800E07001 /* WeeklyReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportTableViewController.h; sourceTree = "<group>"; };
+		337692621B6488B800E07001 /* WeeklyReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportTableViewController.m; sourceTree = "<group>"; };
 		337A8F3A1B4FF87800880209 /* RandomMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomMessageCell.h; sourceTree = "<group>"; };
 		337A8F3B1B4FF87800880209 /* RandomMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomMessageCell.m; sourceTree = "<group>"; };
 		337A8F3F1B50A99B00880209 /* OSCSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchResult.h; sourceTree = "<group>"; };
@@ -736,6 +748,19 @@
 			name = "Team切换";
 			sourceTree = "<group>";
 		};
+		337692571B6487F200E07001 /* 周报 */ = {
+			isa = PBXGroup;
+			children = (
+				337692581B64880F00E07001 /* WeeklyReportCell.h */,
+				337692591B64880F00E07001 /* WeeklyReportCell.m */,
+				3376925E1B6488A000E07001 /* WeeklyReportViewController.h */,
+				3376925F1B6488A000E07001 /* WeeklyReportViewController.m */,
+				337692611B6488B800E07001 /* WeeklyReportTableViewController.h */,
+				337692621B6488B800E07001 /* WeeklyReportTableViewController.m */,
+			);
+			name = "周报";
+			sourceTree = "<group>";
+		};
 		337A8F3D1B50A8D000880209 /* 详情页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +957,7 @@
 		3396840F1B60D40E00E0AB3F /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				337692571B6487F200E07001 /* 周报 */,
 				33DE618F1B6229AF0086DA20 /* 讨论 */,
 				33DE61741B61BE040086DA20 /* 动态 */,
 				339684101B60D42E00E0AB3F /* TeamUserMainCell.h */,
@@ -1368,6 +1394,8 @@
 				337692451B646BB300E07001 /* TeamDiscussionDetails.m */,
 				3376924A1B6471C400E07001 /* TeamTeam.h */,
 				3376924B1B6471C400E07001 /* TeamTeam.m */,
+				3376925B1B64882F00E07001 /* TeamWeeklyReport.h */,
+				3376925C1B64882F00E07001 /* TeamWeeklyReport.m */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -1634,10 +1662,13 @@
 				337A8F511B50D19F00880209 /* ActivityCell.m in Sources */,
 				3346879E1B55F029004B3E75 /* MessageCenter.m in Sources */,
 				33DE61951B622A8E0086DA20 /* TeamDiscussion.m in Sources */,
+				3376925D1B64882F00E07001 /* TeamWeeklyReport.m in Sources */,
+				337692601B6488A000E07001 /* WeeklyReportViewController.m in Sources */,
 				339741071B4260C00074D2EA /* TweetsViewController.m in Sources */,
 				339741151B4293310074D2EA /* OSCNews.m in Sources */,
 				339BF44B1B5F92E600C5D680 /* MyTweetLikeListViewController.m in Sources */,
 				33DE618C1B61C1190086DA20 /* TeamActivityViewController.m in Sources */,
+				337692631B6488B800E07001 /* WeeklyReportTableViewController.m in Sources */,
 				333561111B4574AF009A294C /* OSCSoftwareCatalog.m in Sources */,
 				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
@@ -1676,6 +1707,7 @@
 				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
 				337A8FB91B52AA8B00880209 /* OSCMyInfo.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipableViewController.m in Sources */,
+				3376925A1B64880F00E07001 /* WeeklyReportCell.m in Sources */,
 				3376924C1B6471C400E07001 /* TeamTeam.m in Sources */,
 				339BF4441B5F91D600C5D680 /* OSCMyTweetLikeList.m in Sources */,
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
