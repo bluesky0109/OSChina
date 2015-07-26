@@ -15,9 +15,10 @@
 #import "LoginViewController.h"
 #import "SearchViewController.h"
 #import "MyBasicInfoViewController.h"
-#import "TeamMemberViewController.h"
-#import "TeamHomePage.h"
-#import "TeamIssueController.h"
+
+#import "TeamTeam.h"
+#import "TeamCenter.h"
+#import "TeamAPI.h"
 
 #import "OSCMyInfo.h"
 #import "OSCAPI.h"
@@ -363,12 +364,26 @@
         }
 
         case 2: {
-            SwipableViewController *teamSVC = [[SwipableViewController alloc] initWithTitle:@"Team"
-                                                                               andSubTitles:@[@"主页", @"任务", @"成员"]
-                                                                             andControllers:@[[TeamHomePage new],[TeamIssueController new],[TeamMemberViewController new]]];
-            teamSVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:teamSVC animated:YES];
-            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+            [manager GET:[NSString stringWithFormat:@"%@%@", TEAM_PREFIX, TEAM_LIST]
+            parameters:@([Config getOwnID])
+                 success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
+                     NSMutableArray *teams = [NSMutableArray new];
+                     NSArray *teamsXML = [[responseObject.rootElement firstChildWithTag:@"teams"] childrenWithTag:@"team"];
+
+                     for (ONOXMLElement *teamXML in teamsXML) {
+                         TeamTeam *team = [[TeamTeam alloc] initWithXML:teamXML];
+                         [teams addObject:team];
+                     }
+                     
+                     TeamCenter *teamCenter = [[TeamCenter alloc] initWithTeams:teams];
+                     teamCenter.hidesBottomBarWhenPushed = YES;
+                     
+                     [self.navigationController pushViewController:teamCenter animated:YES];
+                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"failure");
+                 }];
             break;
         }
         default: break;
