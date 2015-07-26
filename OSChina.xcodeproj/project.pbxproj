@@ -52,6 +52,8 @@
 		335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EB1E61B42D8AB00D28C80 /* PostsCell.m */; };
 		33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A341B44C57500FDC8D4 /* GrowingTextView.m */; };
 		33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */; };
+		337692461B646BB300E07001 /* TeamDiscussionDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 337692451B646BB300E07001 /* TeamDiscussionDetails.m */; };
+		337692491B646C1000E07001 /* DiscussionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337692481B646C1000E07001 /* DiscussionDetailsViewController.m */; };
 		337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F3B1B4FF87800880209 /* RandomMessageCell.m */; };
 		337A8F411B50A99B00880209 /* OSCSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F401B50A99B00880209 /* OSCSearchResult.m */; };
 		337A8F441B50AA2200880209 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337A8F431B50AA2200880209 /* SearchViewController.m */; };
@@ -270,6 +272,10 @@
 		33744A341B44C57500FDC8D4 /* GrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowingTextView.m; sourceTree = "<group>"; };
 		33744A361B44E7F800FDC8D4 /* BottomBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBarViewController.h; sourceTree = "<group>"; };
 		33744A371B44E7F800FDC8D4 /* BottomBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBarViewController.m; sourceTree = "<group>"; };
+		337692441B646BB300E07001 /* TeamDiscussionDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDiscussionDetails.h; sourceTree = "<group>"; };
+		337692451B646BB300E07001 /* TeamDiscussionDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussionDetails.m; sourceTree = "<group>"; };
+		337692471B646C1000E07001 /* DiscussionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionDetailsViewController.h; sourceTree = "<group>"; };
+		337692481B646C1000E07001 /* DiscussionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionDetailsViewController.m; sourceTree = "<group>"; };
 		337A8F3A1B4FF87800880209 /* RandomMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomMessageCell.h; sourceTree = "<group>"; };
 		337A8F3B1B4FF87800880209 /* RandomMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomMessageCell.m; sourceTree = "<group>"; };
 		337A8F3F1B50A99B00880209 /* OSCSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchResult.h; sourceTree = "<group>"; };
@@ -1272,6 +1278,8 @@
 				33DE61911B6229EF0086DA20 /* TeamDiscussionCell.m */,
 				33DE61961B622DD00086DA20 /* TeamDiscussionViewController.h */,
 				33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */,
+				337692471B646C1000E07001 /* DiscussionDetailsViewController.h */,
+				337692481B646C1000E07001 /* DiscussionDetailsViewController.m */,
 			);
 			name = "讨论";
 			sourceTree = "<group>";
@@ -1336,6 +1344,8 @@
 				33DE61851B61BFC80086DA20 /* TeamProjectAuthority.m */,
 				33DE61931B622A8E0086DA20 /* TeamDiscussion.h */,
 				33DE61941B622A8E0086DA20 /* TeamDiscussion.m */,
+				337692441B646BB300E07001 /* TeamDiscussionDetails.h */,
+				337692451B646BB300E07001 /* TeamDiscussionDetails.m */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -1584,6 +1594,7 @@
 				33C11EDA1B451E6F00728AE4 /* OSCEvent.m in Sources */,
 				33C11EDD1B45233800728AE4 /* EventCell.m in Sources */,
 				333595851B43AB5C00AC412A /* OSCPostDetails.m in Sources */,
+				337692461B646BB300E07001 /* TeamDiscussionDetails.m in Sources */,
 				337A8FB01B52741E00880209 /* SoftwareCommentsViewController.m in Sources */,
 				330381081B53B7CF003527B5 /* MessageBubbleViewController.m in Sources */,
 				33B4C0401B441A3500637952 /* UIImageView+Util.m in Sources */,
@@ -1683,6 +1694,7 @@
 				33B0EF7D1B43C6430037549E /* LoginViewController.m in Sources */,
 				3346CA521B568A2C0038BDFB /* SettingsPage.m in Sources */,
 				3321C2251B43C6E5003B73C8 /* MyInfoViewController.m in Sources */,
+				337692491B646C1000E07001 /* DiscussionDetailsViewController.m in Sources */,
 				338F21A21B4E3687006B9507 /* PeopleTableViewController.m in Sources */,
 				33886F8C1B4FB1B7002B2537 /* ScanViewController.m in Sources */,
 				337A8FB31B5278F500880209 /* UIBarButtonItem+Badge.m in Sources */,
