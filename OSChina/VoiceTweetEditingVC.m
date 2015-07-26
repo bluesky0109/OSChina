@@ -21,18 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface VoiceTweetEditingVC() <UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
-{
-    NSTimer *timer;
-    int recordTime;
-    int minute;
-    int second;
-    BOOL isPlay;
-    BOOL hasVoice;
-    int recordNumber;
-    
-    int playDuration;
-    int playTimes;
-}
+
 @property (nonatomic, strong) PlaceholderTextView   *edittingArea;
 @property (nonatomic, strong) UILabel *tweetTextLabel;
 @property (nonatomic, strong) UIImageView *voiceImageView;
@@ -50,6 +39,17 @@
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) AVAudioSession *audioSession;
 
+@property (nonatomic, strong) NSTimer *timer;
+
+@property (nonatomic, assign) int  recordTime;
+@property (nonatomic, assign) int  minute;
+@property (nonatomic, assign) int  second;
+@property (nonatomic, assign) BOOL isPlay;
+@property (nonatomic, assign) BOOL hasVoice;
+@property (nonatomic, assign) int  recordNumber;
+
+@property (nonatomic, assign) int  playDuration;
+@property (nonatomic, assign) int  playTimes;
 
 @end
 
@@ -58,6 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.title = @"弹一弹";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消"
@@ -69,7 +70,8 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(judgeVoice)];
-    self.view.backgroundColor = [UIColor whiteColor];
+
+    self.navigationItem.rightBarButtonItem.enabled = _hasVoice;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
     tap.cancelsTouchesInView = NO;
@@ -80,7 +82,7 @@
     
     [self prepareForAudio];
     
-    recordNumber = 1;
+    _recordNumber = 1;
 }
 
 - (void)initSubViews
@@ -89,7 +91,6 @@
     _edittingArea.delegate = self;
     _edittingArea.placeholderFont = [UIFont systemFontOfSize:16];
     _edittingArea.returnKeyType = UIReturnKeySend;
-    _edittingArea.enablesReturnKeyAutomatically = YES;
     _edittingArea.scrollEnabled = NO;
     _edittingArea.font = [UIFont systemFontOfSize:16];
     _edittingArea.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -223,7 +224,7 @@
 {
     
     //判断是否是第一次录制
-    if (recordNumber > 1) {
+    if (_recordNumber > 1) {
         [self recordAgain];
     }
     
@@ -231,9 +232,10 @@
     
     if (!_audioRecorder.recording) {
         
-        recordNumber++;
+        _recordNumber++;
         
-        hasVoice = YES;
+        _hasVoice = YES;
+        self.navigationItem.rightBarButtonItem.enabled = _hasVoice;
         _timesLabel.hidden = NO;
         _textLabel.text = @"放开  停止";
         
@@ -244,7 +246,7 @@
         [_audioRecorder peakPowerForChannel:0.0];
         [_audioRecorder record];
         
-        recordTime = 0;
+        _recordTime = 0;
         
         [self recordTimeStart];
     }
@@ -253,18 +255,18 @@
 #pragma mark - 录音时间
 - (void)recordTimeStart
 {
-    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(recordTime) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(recordTime) userInfo:nil repeats:YES];
 }
 
 - (void)recordTime
 {
-    recordTime += 1;
-    if (recordTime == 30) {
-        recordTime = 0;
+    _recordTime += 1;
+    if (_recordTime == 30) {
+        _recordTime = 0;
         [_audioRecorder stop];
         [[AVAudioSession sharedInstance] setActive:NO error:nil];
         
-        [timer invalidate];
+        [_timer invalidate];
         _timesLabel.text = @"00:00";
         
         return;
@@ -273,10 +275,10 @@
 }
 - (void)updateRecordTime
 {
-    minute = recordTime/60.0;
-    second = recordTime-minute*60;
+    _minute = _recordTime/60.0;
+    _second = _recordTime-_minute*60;
     
-    _timesLabel.text = [NSString stringWithFormat:@"%02d:%02d", minute, second];
+    _timesLabel.text = [NSString stringWithFormat:@"%02d:%02d", _minute, _second];
 }
 
 #pragma mark- 放开长按 停止录音
@@ -286,7 +288,7 @@
     _audioSession = [AVAudioSession sharedInstance];
     
     if (_audioRecorder.isRecording) {
-        int seconds = minute*60+second;
+        int seconds = _minute*60+_second;
         _voiceTimes.text = [NSString stringWithFormat:@"%d\" ",seconds];
         
         _voiceImageView.hidden = NO;
@@ -295,7 +297,7 @@
         
         [_audioRecorder stop];
         [_audioSession setActive:NO error:nil];
-        [timer invalidate];
+        [_timer invalidate];
         
         [self updateRecordTime];
     }
@@ -304,13 +306,13 @@
 #pragma mark - 播放录音
 - (void)PlayVoice
 {
-    if (hasVoice) {
+    if (_hasVoice) {
         _audioSession = [AVAudioSession sharedInstance];
         
-        if (isPlay) {
+        if (_isPlay) {
             NSLog(@"暂停");
             [_playButton setImage:[UIImage imageNamed:@"voice_play.png"] forState:UIControlStateNormal];
-            isPlay = NO;
+            _isPlay = NO;
             
             [_voiceImageView stopAnimating];
             
@@ -323,7 +325,7 @@
             [_voiceImageView startAnimating];
             
             [_playButton setImage:[UIImage imageNamed:@"voice_pause.png"] forState:UIControlStateNormal];
-            isPlay = YES;
+            _isPlay = YES;
             
             [_audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
             [_audioSession setActive:YES error:nil];
@@ -342,8 +344,8 @@
             [_audioPlayer play];
             
             //播放时间
-            playDuration = (int)_audioPlayer.duration;
-            playTimes = 0;
+            _playDuration = (int)_audioPlayer.duration;
+            _playTimes = 0;
             [self audioPlayTimesStart];
         }
         
@@ -360,30 +362,30 @@
 
 - (void)audioPlayTimesStart
 {
-    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(playTimeTick) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(playTimeTick) userInfo:nil repeats:YES];
 }
 
 - (void)playTimeTick
 {
     //当播放时长等于音频时长时，停止跳动。
-    if (playDuration == playTimes) {
+    if (_playDuration == _playTimes) {
         
-        isPlay = NO;
+        _isPlay = NO;
         [_playButton setImage:[UIImage imageNamed:@"voice_play.png"] forState:UIControlStateNormal];
         [_voiceImageView stopAnimating];
         
         
-        playTimes = 0;
+        _playTimes = 0;
         [_audioPlayer stop];
         [[AVAudioSession sharedInstance] setActive:NO error:nil];
         
-        [timer invalidate];
+        [_timer invalidate];
         return;
     }
     if (!_audioPlayer.isPlaying) {
         return;
     }
-    playTimes += 1;
+    _playTimes += 1;
 }
 
 - (void)recordAgain
@@ -392,9 +394,9 @@
     [_audioRecorder stop];
     [_audioSession setActive:NO error:nil];
     
-    [timer invalidate];
-    recordTime = 0;
-    playTimes = 0;
+    [_timer invalidate];
+    _recordTime = 0;
+    _playTimes = 0;
 }
 
 #pragma mark - 删除录音
@@ -402,7 +404,8 @@
 {
     _audioSession = [AVAudioSession sharedInstance];
     
-    hasVoice = NO;
+    _hasVoice = NO;
+    self.navigationItem.rightBarButtonItem.enabled = _hasVoice;
     [_audioRecorder deleteRecording];
     
     _voiceImageView.hidden = YES;
@@ -419,7 +422,7 @@
 #pragma mark - 发送语音动弹
 
 - (void)judgeVoice {
-    if (hasVoice) {
+    if (_hasVoice) {
         [self pubTweet];
     } else {
         MBProgressHUD *HUD = [Utils createHUD];
@@ -436,6 +439,20 @@
         return;
     }
     
+    if (!_hasVoice) {
+        MBProgressHUD *HUD = [Utils createHUD];
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.labelText = @"还没有语音，请录音";
+        [HUD hide:YES afterDelay:1];
+        return;
+    }
+    NSString *message = [NSString new];
+    if ([Utils convertRichTextToRawText:_edittingArea].length) {
+        message = [Utils convertRichTextToRawText:_edittingArea];
+    } else {
+        message = @"#语音动弹#";
+    }
+    
     MBProgressHUD *HUD = [Utils createHUD];
     HUD.labelText = @"语音动弹发送中";
     [HUD hide:YES afterDelay:1];
@@ -446,7 +463,7 @@
     [manager POST:[NSString stringWithFormat:@"%@%@", OSCAPI_PREFIX, OSCAPI_TWEET_PUB]
        parameters:@{
                     @"uid": @([Config getOwnID]),
-                    @"msg": [Utils convertRichTextToRawText:_edittingArea]
+                    @"msg": message
                     }
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
