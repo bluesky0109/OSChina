@@ -11,13 +11,16 @@
 #import "TeamHomePage.h"
 #import "TeamIssueController.h"
 #import "TeamMemberViewController.h"
-#import "TeamPickerViewController.h"
+#import "TeamCell.h"
 
-@interface TeamCenter ()
+static CGFloat teamCellHeight = 35;
+static CGFloat pickerWidth    = 140;
+static NSString * kTeamCellID = @"TeamCell";
+
+@interface TeamCenter ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *teams;
-@property (nonatomic, strong) UIPopoverController *teamPicker;
-@property (nonatomic, strong) UITableView *teamTableView;
+@property (nonatomic, strong) UITableView *teamPicker;
 
 @end
 
@@ -33,7 +36,27 @@
                                   [TeamMemberViewController new]
                                   ]];
     
-    //if (self) {_teams = teams;}
+    if (self) {
+        _teams = teams;
+
+        UIButton *dropdownButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [dropdownButton setTitle:((TeamTeam *)_teams[0]).name forState:UIControlStateNormal];
+        [dropdownButton addTarget:self action:@selector(navButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.titleView = dropdownButton;
+
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        _teamPicker = [[UITableView alloc] initWithFrame:CGRectMake((screenSize.width - pickerWidth)/2, 0, pickerWidth, _teams.count * teamCellHeight + 20)];
+        [_teamPicker registerClass:[TeamCell class] forCellReuseIdentifier:kTeamCellID];
+        _teamPicker.dataSource = self;
+        _teamPicker.delegate = self;
+        _teamPicker.hidden = YES;
+
+        _teamPicker.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_teamPicker setCornerRadius:3];
+        _teamPicker.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _teamPicker.backgroundColor = [UIColor colorWithHex:0x555555];
+        [self.view addSubview:_teamPicker];
+    }
     
     return self;
 }
@@ -46,16 +69,20 @@
     UIButton *dropdownButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [dropdownButton setTitle:((TeamTeam *)_teams[0]).name forState:UIControlStateNormal];
     [dropdownButton addTarget:self action:@selector(navButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    dropdownButton.frame = CGRectMake(0, 0, 44, 32);
     self.navigationItem.titleView = dropdownButton;
     
-    UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:[[TeamPickerViewController alloc] initWithTeams:_teams]];
-    self.preferredContentSize = CGSizeMake(150, 25 * _teams.count);
-    
-    
-    [self.view addSubview:_teamTableView];
+    _teamPicker = [[TeamPickerViewController alloc] initWithTeams:_teams];
+    [self addChildViewController:_teamPicker];
+    [self.view addSubview:_teamPicker.view];
+    _teamPicker.view.hidden = YES;
 #endif
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_teamPicker selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,23 +92,52 @@
 
 - (void)navButtonTapped
 {
-    BOOL toggle = (_teamTableView.frame.origin.y == 64) ? YES : NO;
-    [self toggleDropdownView:toggle animated:YES];
+    _teamPicker.hidden = !_teamPicker.hidden;
 }
 
 
-- (void)toggleDropdownView:(BOOL)toggle animated:(BOOL)animated
-{
-    CGRect destination = _teamTableView.frame;
+#pragma mark - UITableDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.teams.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TeamCell *cell = [tableView dequeueReusableCellWithIdentifier:kTeamCellID forIndexPath:indexPath];
+    [cell setCornerRadius:3];
+    cell.backgroundColor = [UIColor colorWithHex:0x555555];
+    UIView *selectedBackground = [UIView new];
+    selectedBackground.backgroundColor = [UIColor colorWithHex:0x333333];
+    cell.selectedBackgroundView = selectedBackground;
     
-    destination.origin.y = (toggle) ? -destination.size.height+64 : 64;
-    NSTimeInterval duration = (animated) ? 0.4 : 0;
-    [UIView animateWithDuration:duration animations:^{
-        _teamTableView.frame = destination;
-        
-    }];
-    [_teamTableView reloadData];
+    cell.textLabel.text = ((TeamTeam *)_teams[indexPath.row]).name;
+    cell.textLabel.textColor = [UIColor colorWithHex:0xEEEEEE];
+    
+    return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return teamCellHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithHex:0x555555];
+    return view;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithHex:0x555555];
+    return view;
+}
 
 @end

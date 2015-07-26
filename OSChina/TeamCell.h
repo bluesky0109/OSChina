@@ -1,5 +1,5 @@
 //
-//  TeamPickerViewController.h
+//  TeamCell.h
 //  OSChina
 //
 //  Created by sky on 15/7/26.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeamPickerViewController : UITableViewController
-
-- (instancetype)initWithTeams:(NSArray *)teams;
+@interface TeamCell : UITableViewCell
 
 @end
