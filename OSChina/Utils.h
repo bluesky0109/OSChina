@@ -53,6 +53,8 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (NSString *)escapeHTML:(NSString *)originalHTML;
 
++ (NSString *)deleteHTMLTag:(NSString *)HTML;
+
 + (BOOL)isURL:(NSString *)string;
 
 + (NSInteger)networkStatus;

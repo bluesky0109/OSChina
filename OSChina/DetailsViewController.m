@@ -52,17 +52,18 @@
 @property (nonatomic, assign) int64_t objectID;
 @property (nonatomic, assign) BOOL isStarred;
 
-@property (nonatomic, strong) OSCNews   *news;
-@property (nonatomic, copy  ) NSString  *detailsURL;
-@property (nonatomic, assign, readonly) int commentCount;
-@property (nonatomic, copy  ) NSString  *URL;
-@property (nonatomic, copy  ) NSString  *mURL;
-@property (nonatomic, copy  ) NSString  *objectTitle;
-@property (nonatomic, strong) UIWebView *detailsView;
-@property (nonatomic, copy  ) NSString  *tag;
-@property (nonatomic, copy  ) NSString  *softwareName;
-@property (nonatomic, assign) SEL       loadMethod;
-@property (nonatomic, assign) Class     detailsClass;
+@property (nonatomic, strong          ) OSCNews   *news;
+@property (nonatomic, copy            ) NSString  *detailsURL;
+@property (nonatomic, assign, readonly) int       commentCount;
+@property (nonatomic, copy            ) NSString  *webURL;
+@property (nonatomic, copy            ) NSString  *mURL;
+@property (nonatomic, copy            ) NSString  *objectTitle;
+@property (nonatomic, strong          ) UIWebView *detailsView;
+@property (nonatomic, copy            ) NSString  *tag;
+@property (nonatomic, copy            ) NSString  *softwareName;
+@property (nonatomic, copy            ) NSString  *digest;
+@property (nonatomic, assign          ) SEL       loadMethod;
+@property (nonatomic, assign          ) Class     detailsClass;
 
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) MBProgressHUD *HUD;
@@ -379,7 +380,7 @@
         
         [UMSocialSnsService presentSnsIconSheetView:weakSelf
                                              appKey:@"55a12e3a67e58eb345002270"
-                                          shareText:[NSString stringWithFormat:@"《%@》，分享来自 %@", weakSelf.objectTitle, weakSelf.mURL]
+                                          shareText:[NSString stringWithFormat:@"《%@》，分享来自 %@", weakSelf.digest, weakSelf.mURL]
                                          shareImage:[UIImage imageNamed:@"logo"]
                                     shareToSnsNames:@[UMShareToWechatTimeline, UMShareToWechatSession, UMShareToQQ, UMShareToSina, @"CustomPlatform"]
                                            delegate:nil];
@@ -389,7 +390,7 @@
     //举报
     self.operationBar.report = ^ {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"举报"
-                                                            message:[NSString stringWithFormat:@"链接地址：%@", weakSelf.URL]
+                                                            message:[NSString stringWithFormat:@"链接地址：%@", weakSelf.webURL]
                                                            delegate:weakSelf
                                                   cancelButtonTitle:@"取消"
                                                   otherButtonTitles:@"确定", nil];
@@ -404,7 +405,7 @@
     if (_mURL) {
         return _mURL;
     } else {
-        NSMutableString *strUrl = [NSMutableString stringWithFormat:@"%@",self.URL];
+        NSMutableString *strUrl = [NSMutableString stringWithFormat:@"%@",self.webURL];
         if (_commentType == CommentTypeBlog) {
             strUrl = [NSMutableString stringWithFormat:@"http://m.oschina.net/blog/%i", (int)self.objectID];
         } else {
@@ -432,8 +433,12 @@
     
     [self.detailsView loadHTMLString:html baseURL:nil];
     _isStarred = newsDetails.isFavorite;
-    _URL = [newsDetails.url absoluteString];
+    _webURL = [newsDetails.url absoluteString];
     _objectTitle = newsDetails.title;
+    
+    NSString *trimmedHTML = [Utils deleteHTMLTag:newsDetails.body];
+    NSInteger length = trimmedHTML.length < 60 ? trimmedHTML.length : 60;
+    _digest = [[Utils deleteHTMLTag:newsDetails.body] substringToIndex:length];
 }
 
 - (void)loadBlogDetails:(OSCBlogDetails *)blogDetails
@@ -444,8 +449,12 @@
     
     [self.detailsView loadHTMLString:html baseURL:nil];
     _isStarred = blogDetails.isFavorite;
-    _URL = [blogDetails.url absoluteString];
+    _webURL = [blogDetails.url absoluteString];
     _objectTitle = blogDetails.title;
+    
+    NSString *trimmedHTML = [Utils deleteHTMLTag:blogDetails.body];
+    NSInteger length = trimmedHTML.length < 60 ? trimmedHTML.length : 60;
+    _digest = [[Utils deleteHTMLTag:blogDetails.body] substringToIndex:length];
 }
 
 - (void)loadPostDetails:(OSCPostDetails *)postDetails
@@ -457,9 +466,13 @@
     
     [self.detailsView loadHTMLString:html baseURL:nil];
     _isStarred = postDetails.isFavorite;
-    _URL = [postDetails.url absoluteString];
+    _webURL = [postDetails.url absoluteString];
     _commentCount = postDetails.answerCount;
     _objectTitle = postDetails.title;
+    
+    NSString *trimmedHTML = [Utils deleteHTMLTag:postDetails.body];
+    NSInteger length = trimmedHTML.length < 60 ? trimmedHTML.length : 60;
+    _digest = [[Utils deleteHTMLTag:postDetails.body] substringToIndex:length];
 }
 
 - (void)loadSoftwareDetails:(OSCSoftwareDetails *)softwareDetails
@@ -473,9 +486,13 @@
     
     [self.detailsView loadHTMLString:html baseURL:nil];
     _isStarred = softwareDetails.isFavorite;
-    _URL = [softwareDetails.url absoluteString];
+    _webURL = [softwareDetails.url absoluteString];
     _commentCount = softwareDetails.tweetCount;
-    _objectTitle = softwareDetails.title;
+    _objectTitle = titleStr;
+
+    NSString *trimmedHTML = [Utils deleteHTMLTag:softwareDetails.body];
+    NSInteger length = trimmedHTML.length < 60 ? trimmedHTML.length : 60;
+    _digest = [[Utils deleteHTMLTag:softwareDetails.body] substringToIndex:length];
 }
 
 - (NSString *)createButtonsWithHomepageURL:(NSString *)homepageURL andDocumentURL:(NSString *)documentURL andDownloadURL:(NSString *)downloadURL
@@ -525,7 +542,7 @@
                         @"memo":        [alertView textFieldAtIndex:0].text.length == 0? @"其他原因": [alertView textFieldAtIndex:0],
                         @"obj_id":      @(_objectID),
                         @"obj_type":    @"4",
-                        @"url":         _URL
+                        @"url":         _webURL
                         }
               success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseObject) {
                   MBProgressHUD *HUD = [Utils createHUD];
