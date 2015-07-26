@@ -31,7 +31,8 @@ typedef NS_ENUM(int, NewsType)
 @property (nonatomic, copy  ) NSString *attachment;
 @property (nonatomic, assign) int64_t  authorUID2;
 
-- (NSAttributedString *)attributedTitle;
-- (NSAttributedString *)attributedCommentCount;
+
+@property (nonatomic, strong) NSMutableAttributedString *attributedTitle;
+@property (nonatomic, strong) NSMutableAttributedString *attributedCommentCount;
 
 @end

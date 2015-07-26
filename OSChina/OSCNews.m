@@ -48,36 +48,36 @@ static NSString * const kAuthorUID2   = @"authoruid2";
 }
 
 - (NSAttributedString *)attributedTitle {
-    
-    NSMutableAttributedString *attributedTittle;
-
-    if ([[Utils timeIntervalArrayFromString:_pubDate][kKeyDays] integerValue] == 0) {
-        NSTextAttachment *textAttachment = [NSTextAttachment new];
-        textAttachment.image = [UIImage imageNamed:@"widget_taday"];
-        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-        attributedTittle = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
-        [attributedTittle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-        [attributedTittle appendAttributedString:[[NSAttributedString alloc] initWithString:_title]];
-    } else {
-        attributedTittle = [[NSMutableAttributedString alloc] initWithString:_title];
+    if (!_attributedTitle) {
+        if ([[Utils timeIntervalArrayFromString:_pubDate][kKeyDays] integerValue] == 0) {
+            NSTextAttachment *textAttachment = [NSTextAttachment new];
+            textAttachment.image = [UIImage imageNamed:@"widget_taday"];
+            NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+            _attributedTitle = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+            [_attributedTitle appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+            [_attributedTitle appendAttributedString:[[NSAttributedString alloc] initWithString:_title]];
+        } else {
+            _attributedTitle = [[NSMutableAttributedString alloc] initWithString:_title];
+        }
+        
     }
     
-    return attributedTittle;
+    return _attributedTitle;
 }
 
 - (NSAttributedString *)attributedCommentCount {
-    NSMutableAttributedString *attributedCommentCount;
-
-    NSTextAttachment *textAttachment = [NSTextAttachment new];
-    textAttachment.image = [UIImage imageNamed:@"comment"];
-    [textAttachment adjustY:-1];
+    if (!_attributedCommentCount) {
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        textAttachment.image = [UIImage imageNamed:@"comment"];
+        [textAttachment adjustY:-1];
+        
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        _attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
+    }
     
-    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-    attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
-    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
-
-    return attributedCommentCount;
+    return _attributedCommentCount;
 }
 
 - (BOOL)isEqual:(id)object {
