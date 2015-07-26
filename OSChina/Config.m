@@ -144,11 +144,11 @@ NSString * const kPosition    = @"position";
     return portrait;
 }
 
-+ (void)saveTweetText:(NSString *)tweetText andId:(int64_t)userID {
++ (void)saveTweetText:(NSString *)tweetText forUser:(int64_t)userID {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *IdStr = [NSString stringWithFormat:@"tweetTmp_%lld", userID];
-    [userDefaults setObject:tweetText forKey:IdStr];
+    NSString *key = [NSString stringWithFormat:@"tweetTmp_%lld", userID];
+    [userDefaults setObject:tweetText forKey:key];
 
     [userDefaults synchronize];
 }
