@@ -20,15 +20,17 @@ static NSString * const kIssueCellID = @"IssueCell";
 
 @interface TeamIssueController ()
 
+@property (nonatomic, assign)int teamID;
+
 @end
 
 @implementation TeamIssueController
 
-- (instancetype)init {
+- (instancetype)initWithTeamID:(int)teamID {
     self = [super init];
     if (self) {
         self.generateURL = ^NSString * (NSUInteger page) {
-            return [NSString stringWithFormat:@"%@%@?teamid=12375&project=-1&pageIndex=%lu", TEAM_PREFIX, TEAM_ISSUE_LIST, (unsigned long)page];
+            return [NSString stringWithFormat:@"%@%@?teamid=%d&project=-1&pageIndex=%lu", TEAM_PREFIX, TEAM_ISSUE_LIST, teamID, (unsigned long)page];
         };
         
         self.objClass = [TeamIssue class];
@@ -49,6 +51,15 @@ static NSString * const kIssueCellID = @"IssueCell";
 
 - (NSArray *)parseXML:(ONOXMLDocument *)xml {
     return [[xml.rootElement firstChildWithTag:@"issues"] childrenWithTag:@"issue"];
+}
+
+#pragma mark - 切换团队
+- (void)switchToTeam:(int)teamID {
+    self.generateURL = ^NSString * (NSUInteger page) {
+        return [NSString stringWithFormat:@"%@%@?teamid=%d&project=-1&pageIndex=%lu", TEAM_PREFIX, TEAM_ISSUE_LIST, teamID, (unsigned long)page];
+    };
+
+    [self refresh];
 }
 
 #pragma mark - Table view data source

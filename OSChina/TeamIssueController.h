@@ -10,4 +10,7 @@
 #import "OSCObjsViewController.h"
 @interface TeamIssueController : OSCObjsViewController
 
+- (instancetype)initWithTeamID:(int)teamID;
+- (void)switchToTeam:(int)teamID;
+
 @end

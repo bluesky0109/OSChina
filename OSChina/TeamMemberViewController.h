@@ -10,4 +10,8 @@
 
 @interface TeamMemberViewController : UICollectionViewController
 
+- (instancetype)initWithTeamID:(int)teamID;
+
+- (void)switchToTeam:(int)teamID;
+
 @end
