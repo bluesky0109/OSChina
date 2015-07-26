@@ -64,6 +64,7 @@
 @property (nonatomic, assign) SEL       loadMethod;
 @property (nonatomic, assign) Class     detailsClass;
 
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) MBProgressHUD *HUD;
 
 @end
@@ -192,6 +193,7 @@
     
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backItem];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStyleDone target:self action:@selector(refresh)];
     
     //资讯和软件详情没有 “举报”选项
     if (_commentType == CommentTypeNews || _commentType == CommentTypeSoftware) {
@@ -215,41 +217,11 @@
     _HUD = [Utils createHUD];
     _HUD.userInteractionEnabled = NO;
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
-    manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
-    [manager GET:self.detailsURL
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
-             ONOXMLElement *XML = [responseDocument.rootElement firstChildWithTag:self.tag];
-             
-             id details = [[self.detailsClass alloc] initWithXML:XML];
-             _commentCount = [[[XML firstChildWithTag:@"commentCount"] numberValue] intValue];
-             [self performSelector:_loadMethod withObject:details];
-             
-             UIBarButtonItem *commentsCountButton = self.operationBar.items[4];
-             commentsCountButton.shouldHideBadgeAtZero = YES;
-             commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", _commentCount];
-             commentsCountButton.badgePadding = 1;
-             commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x24A83D];
-
-             
-             self.operationBar.isStarred = _isStarred;
+    _manager = [AFHTTPRequestOperationManager manager];
+    _manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
+    _manager.responseSerializer = [AFOnoResponseSerializer XMLResponseSerializer];
+    [self fetchDetails];
     
-             if (_commentType == CommentTypeSoftware) {
-                 _objectID = ((OSCSoftwareDetails *)details).softwareID;
-             }
-             [self setBlockForOperationBar];
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             MBProgressHUD *HUD = [Utils createHUD];
-             HUD.mode = MBProgressHUDModeCustomView;
-             HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-             HUD.labelText = @"网络异常，加载详情失败";
-             
-             [HUD hide:YES afterDelay:1];
-         }
-     ];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -266,6 +238,44 @@
     [super didReceiveMemoryWarning];
    
 }
+
+- (void)fetchDetails {
+    [_manager GET:_detailsURL
+       parameters:nil
+          success:^(AFHTTPRequestOperation *operation, ONOXMLDocument *responseDocument) {
+              ONOXMLElement *XML = [responseDocument.rootElement firstChildWithTag:_tag];
+
+              id details = [[_detailsClass alloc] initWithXML:XML];
+              _commentCount = [[[XML firstChildWithTag:@"commentCount"] numberValue] intValue];
+              [self performSelector:_loadMethod withObject:details];
+
+              self.operationBar.isStarred = _isStarred;
+
+              UIBarButtonItem *commentsCountButton = self.operationBar.items[4];
+              commentsCountButton.shouldHideBadgeAtZero = YES;
+              commentsCountButton.badgeValue = [NSString stringWithFormat:@"%i", _commentCount];
+              commentsCountButton.badgePadding = 1;
+              commentsCountButton.badgeBGColor = [UIColor colorWithHex:0x24a83d];
+
+              if (_commentType == CommentTypeSoftware) {_objectID = ((OSCSoftwareDetails *)details).softwareID;}
+
+              [self setBlockForOperationBar];
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              _HUD.mode = MBProgressHUDModeCustomView;
+              _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+              _HUD.labelText = @"网络异常，加载详情失败";
+              
+              [_HUD hide:YES afterDelay:1];
+          }
+     ];
+}
+
+- (void)refresh {
+    _manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+    [self fetchDetails];
+}
+
 
 - (void)setBlockForOperationBar {
     __weak typeof(self) weakSelf = self;
