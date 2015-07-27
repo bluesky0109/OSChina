@@ -121,7 +121,7 @@ static NSString * const kMessageCellID = @"MessageCell";
 }
 
 - (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-    return action == @selector(deleteMessage:);
+    return action == @selector(deleteObject:);
 }
 
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
