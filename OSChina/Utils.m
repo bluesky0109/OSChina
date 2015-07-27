@@ -17,6 +17,7 @@
 #import "DetailsViewController.h"
 #import "PostsViewController.h"
 #import "TweetDetailsWithBottomBarViewController.h"
+#import "TweetTopicViewController.h"
 #import "ImageViewController.h"
 #import <objc/runtime.h>
 #import <Reachability.h>
@@ -166,6 +167,13 @@
                             };
                             ((PostsViewController *)viewController).objClass = [OSCPost class];
                             viewController.navigationItem.title = [tag stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                        } else if ([type isEqualToString:@"tweet-topic"]) {
+                            //话题
+                            url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                            urlComponents = [url componentsSeparatedByString:@"/"];
+
+                            viewController = [[TweetTopicViewController alloc] initWithTopic:urlComponents[2]];
+                            viewController.navigationItem.title = [NSString stringWithFormat:@"#%@#", urlComponents[2]];
                         }
                     }
                 }

@@ -161,6 +161,7 @@
 		33C72EC71B65BCA4000D96CE /* TeamIssueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EC61B65BCA4000D96CE /* TeamIssueListViewController.m */; };
 		33C72ECB1B65BFF6000D96CE /* TeamIssueDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72ECA1B65BFF6000D96CE /* TeamIssueDetailController.m */; };
 		33C72ECE1B65CB93000D96CE /* TeamIssueList.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72ECD1B65CB93000D96CE /* TeamIssueList.m */; };
+		33C72ED21B65D70B000D96CE /* TweetTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72ED11B65D70B000D96CE /* TweetTopicViewController.m */; };
 		33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C591B4658C0002819EE /* OSCFavorite.m */; };
 		33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5C1B465A57002819EE /* FavoritesViewController.m */; };
 		33CC0C601B467245002819EE /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5F1B467245002819EE /* PersonCell.m */; };
@@ -498,6 +499,8 @@
 		33C72ECA1B65BFF6000D96CE /* TeamIssueDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamIssueDetailController.m; sourceTree = "<group>"; };
 		33C72ECC1B65CB93000D96CE /* TeamIssueList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamIssueList.h; sourceTree = "<group>"; };
 		33C72ECD1B65CB93000D96CE /* TeamIssueList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamIssueList.m; sourceTree = "<group>"; };
+		33C72ED01B65D70B000D96CE /* TweetTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTopicViewController.h; sourceTree = "<group>"; };
+		33C72ED11B65D70B000D96CE /* TweetTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTopicViewController.m; sourceTree = "<group>"; };
 		33CC0C581B4658C0002819EE /* OSCFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCFavorite.h; sourceTree = "<group>"; };
 		33CC0C591B4658C0002819EE /* OSCFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavorite.m; sourceTree = "<group>"; };
 		33CC0C5B1B465A57002819EE /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
@@ -1124,6 +1127,7 @@
 		339741021B4260850074D2EA /* 动弹 */ = {
 			isa = PBXGroup;
 			children = (
+				33C72ECF1B65D6CD000D96CE /* 话题类别 */,
 				337692641B648C8700E07001 /* 语音动弹 */,
 				33AA2D001B5F41840059628C /* 动弹点赞列表 */,
 				337F12FA1B5949AD002C4C32 /* 编辑动弹 */,
@@ -1301,6 +1305,15 @@
 				33C72ECA1B65BFF6000D96CE /* TeamIssueDetailController.m */,
 			);
 			name = "任务详情";
+			sourceTree = "<group>";
+		};
+		33C72ECF1B65D6CD000D96CE /* 话题类别 */ = {
+			isa = PBXGroup;
+			children = (
+				33C72ED01B65D70B000D96CE /* TweetTopicViewController.h */,
+				33C72ED11B65D70B000D96CE /* TweetTopicViewController.m */,
+			);
+			name = "话题类别";
 			sourceTree = "<group>";
 		};
 		33CC0C541B465843002819EE /* News */ = {
@@ -1726,6 +1739,7 @@
 				330381051B53B6CE003527B5 /* MessageBubbleCell.m in Sources */,
 				33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */,
 				330381021B53695B003527B5 /* UserOperationCell.m in Sources */,
+				33C72ED21B65D70B000D96CE /* TweetTopicViewController.m in Sources */,
 				333595911B43C48E00AC412A /* OSCUser.m in Sources */,
 				338776621B4CD24E001581A4 /* TweetEditingVC.m in Sources */,
 				337A8FB61B52792500880209 /* UIButton+Badge.m in Sources */,

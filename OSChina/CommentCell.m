@@ -184,8 +184,8 @@
     [pastedBoard setString:_contentLabel.text];
 }
 
-- (void)deleteComment:(id)sender {
-    _deleteComment(self);
+- (void)deleteObject:(id)sender {
+    _deleteObject(self);
 }
 
 @end

@@ -91,8 +91,8 @@
     return YES;
 }
 
-- (void)deleteMessage:(id)sender {
-    _deleteMessage(self);
+- (void)deleteObject:(id)sender {
+    _deleteObject(self);
 }
 
 @end

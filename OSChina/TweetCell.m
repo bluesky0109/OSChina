@@ -182,8 +182,8 @@
     [pastedBoard setString:_contentLabel.text];
 }
 
-- (void)deleteTweet:(id)sender {
-    _deleteTweet(self);
+- (void)deleteObject:(id)sender {
+    _deleteObject(self);
 }
 
 @end

@@ -43,10 +43,6 @@ static NSString * const kMessageCellID = @"MessageCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIMenuController *menuController = [UIMenuController sharedMenuController];
-    [menuController setMenuVisible:YES animated:YES];
-    [menuController setMenuItems:@[[[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteMessage:)]]];
-    
     [self.tableView registerClass:[MessageCell class] forCellReuseIdentifier:kMessageCellID];
 }
 
@@ -140,13 +136,13 @@ static NSString * const kMessageCellID = @"MessageCell";
 
 - (void)setBlockForMessageCell:(MessageCell *)cell {
     cell.canPerformAction = ^ BOOL (UITableViewCell *cell, SEL action) {
-        if (action == @selector(deleteMessage:)) {
+        if (action == @selector(deleteObject:)) {
             return YES;
         }
         return NO;
     };
 
-    cell.deleteMessage = ^ (UITableViewCell *cell) {
+    cell.deleteObject = ^ (UITableViewCell *cell) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         OSCMessage *message = self.objects[indexPath.row];
 

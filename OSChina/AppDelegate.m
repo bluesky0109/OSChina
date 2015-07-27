@@ -71,6 +71,14 @@
     
     [[UITextField appearance] setTintColor:[UIColor nameColor]];
     
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+
+    [menuController setMenuVisible:YES animated:YES];
+    [menuController setMenuItems:@[
+                                    [[UIMenuItem alloc] initWithTitle:@"复制" action:NSSelectorFromString(@"copyText:")],
+                                    [[UIMenuItem alloc] initWithTitle:@"删除" action:NSSelectorFromString(@"deleteObject:")]
+                                    ]];
+    
     /**********检测通知（主动定时请求数据）**** 本地通知  *****/
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;

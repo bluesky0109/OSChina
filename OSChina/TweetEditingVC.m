@@ -35,6 +35,7 @@
 @property (nonatomic, strong) EmojiPageVC         *emojiPageVC;
 @property (nonatomic, assign) BOOL                isEmojiPageOnScreen;
 @property (nonatomic, strong) UIImage             *image;
+@property (nonatomic, strong) NSString            *topicName;
 
 @property (nonatomic, strong) NSLayoutConstraint  *keyboardHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint  *textViewHeightConstraint;
@@ -52,6 +53,15 @@
     return self;
 }
 
+- (instancetype)initWithTopic:(NSString *)topic {
+    self = [super init];
+    if (self) {
+        _topicName = topic;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -65,7 +75,9 @@
     [self initSubViews];
     [self setLayout];
     
-    _edittingArea.text = [Config getTweetText];
+    if (!_edittingArea.text.length) {
+        _edittingArea.text = [Config getTweetText];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,6 +120,7 @@
     _edittingArea = [[PlaceholderTextView alloc] initWithPlaceholder:@"今天你动弹了吗？ "];
     _edittingArea.delegate = self;
     _edittingArea.placeholderFont = [UIFont systemFontOfSize:17];
+    _edittingArea.text = [NSString stringWithFormat:@"#%@#", _topicName];
     _edittingArea.returnKeyType = UIReturnKeySend;
     _edittingArea.enablesReturnKeyAutomatically = YES;
     _edittingArea.scrollEnabled = NO;

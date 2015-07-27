@@ -24,7 +24,6 @@ static NSString * const kTweetCellID = @"TweetCell";
 @interface TweetsViewController ()
 
 @property (nonatomic, assign) int64_t uid;
-@property (nonatomic, strong) UIMenuController *menuController;
 
 @end
 
@@ -107,10 +106,6 @@ static NSString * const kTweetCellID = @"TweetCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _menuController = [UIMenuController sharedMenuController];
-    [_menuController setMenuItems:@[[[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyText:)],[[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteTweet:)]]];
-    [_menuController setMenuVisible:YES animated:YES];
     
     // tableView设置
     [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:kTweetCellID];
@@ -291,7 +286,7 @@ static NSString * const kTweetCellID = @"TweetCell";
     cell.canPerformAction = ^ BOOL (UITableViewCell *cell, SEL action) {
         if (action == @selector(copyText:)) {
             return YES;
-        } else if (action == @selector(deleteTweet:)) {
+        } else if (action == @selector(deleteObject:)) {
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             OSCTweet *tweet = self.objects[indexPath.row];
             
@@ -301,7 +296,7 @@ static NSString * const kTweetCellID = @"TweetCell";
         return NO;
     };
     
-    cell.deleteTweet = ^ (UITableViewCell *cell) {
+    cell.deleteObject = ^ (UITableViewCell *cell) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         OSCTweet *tweet = self.objects[indexPath.row];
         
