@@ -164,6 +164,9 @@
 		33C72ED21B65D70B000D96CE /* TweetTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72ED11B65D70B000D96CE /* TweetTopicViewController.m */; };
 		33C72ED81B65FA20000D96CE /* WeeklyReportTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72ED71B65FA20000D96CE /* WeeklyReportTitleBar.m */; };
 		33C72EDB1B65FA90000D96CE /* WeeklyReportContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EDA1B65FA90000D96CE /* WeeklyReportContentViewController.m */; };
+		33C72EDE1B6609A5000D96CE /* TimeLineNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */; };
+		33C72EE11B660D8B000D96CE /* TeamWeeklyReportDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */; };
+		33C72EE51B6625BA000D96CE /* WeeklyReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */; };
 		33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C591B4658C0002819EE /* OSCFavorite.m */; };
 		33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5C1B465A57002819EE /* FavoritesViewController.m */; };
 		33CC0C601B467245002819EE /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5F1B467245002819EE /* PersonCell.m */; };
@@ -507,6 +510,12 @@
 		33C72ED71B65FA20000D96CE /* WeeklyReportTitleBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportTitleBar.m; sourceTree = "<group>"; };
 		33C72ED91B65FA90000D96CE /* WeeklyReportContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportContentViewController.h; sourceTree = "<group>"; };
 		33C72EDA1B65FA90000D96CE /* WeeklyReportContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportContentViewController.m; sourceTree = "<group>"; };
+		33C72EDC1B6609A5000D96CE /* TimeLineNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineNodeCell.h; sourceTree = "<group>"; };
+		33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineNodeCell.m; sourceTree = "<group>"; };
+		33C72EDF1B660D8B000D96CE /* TeamWeeklyReportDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamWeeklyReportDetail.h; sourceTree = "<group>"; };
+		33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamWeeklyReportDetail.m; sourceTree = "<group>"; };
+		33C72EE31B6625BA000D96CE /* WeeklyReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportDetailViewController.h; sourceTree = "<group>"; };
+		33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportDetailViewController.m; sourceTree = "<group>"; };
 		33CC0C581B4658C0002819EE /* OSCFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCFavorite.h; sourceTree = "<group>"; };
 		33CC0C591B4658C0002819EE /* OSCFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavorite.m; sourceTree = "<group>"; };
 		33CC0C5B1B465A57002819EE /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
@@ -1327,6 +1336,10 @@
 				337692591B64880F00E07001 /* WeeklyReportCell.m */,
 				337692611B6488B800E07001 /* WeeklyReportTableViewController.h */,
 				337692621B6488B800E07001 /* WeeklyReportTableViewController.m */,
+				33C72EDC1B6609A5000D96CE /* TimeLineNodeCell.h */,
+				33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */,
+				33C72EE31B6625BA000D96CE /* WeeklyReportDetailViewController.h */,
+				33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */,
 			);
 			name = "周报列表";
 			sourceTree = "<group>";
@@ -1340,6 +1353,17 @@
 				33C72EDA1B65FA90000D96CE /* WeeklyReportContentViewController.m */,
 			);
 			name = "周报页面组件";
+			sourceTree = "<group>";
+		};
+		33C72EE21B661CAE000D96CE /* 周报 */ = {
+			isa = PBXGroup;
+			children = (
+				3376925B1B64882F00E07001 /* TeamWeeklyReport.h */,
+				3376925C1B64882F00E07001 /* TeamWeeklyReport.m */,
+				33C72EDF1B660D8B000D96CE /* TeamWeeklyReportDetail.h */,
+				33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */,
+			);
+			name = "周报";
 			sourceTree = "<group>";
 		};
 		33CC0C541B465843002819EE /* News */ = {
@@ -1476,6 +1500,7 @@
 		33DFB87E1B5DF31800BA9976 /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				33C72EE21B661CAE000D96CE /* 周报 */,
 				33DFB87F1B5DF35900BA9976 /* TeamAPI.h */,
 				339684091B609D8300E0AB3F /* TeamMember.h */,
 				3396840A1B609D8300E0AB3F /* TeamMember.m */,
@@ -1495,8 +1520,6 @@
 				337692451B646BB300E07001 /* TeamDiscussionDetails.m */,
 				3376924A1B6471C400E07001 /* TeamTeam.h */,
 				3376924B1B6471C400E07001 /* TeamTeam.m */,
-				3376925B1B64882F00E07001 /* TeamWeeklyReport.h */,
-				3376925C1B64882F00E07001 /* TeamWeeklyReport.m */,
 				33C72ECC1B65CB93000D96CE /* TeamIssueList.h */,
 				33C72ECD1B65CB93000D96CE /* TeamIssueList.m */,
 			);
@@ -1807,6 +1830,7 @@
 				338F92251B54E58F00BEAAD6 /* OSCReply.m in Sources */,
 				330380FB1B533F90003527B5 /* MyBasicInfoViewController.m in Sources */,
 				337A8F471B50ABE500880209 /* SearchResultsViewController.m in Sources */,
+				33C72EE11B660D8B000D96CE /* TeamWeeklyReportDetail.m in Sources */,
 				339740F41B42605E0074D2EA /* OSCBaseObject.m in Sources */,
 				337A8F3C1B4FF87800880209 /* RandomMessageCell.m in Sources */,
 				3335957B1B43916700AC412A /* OSCNewsDetails.m in Sources */,
@@ -1875,7 +1899,9 @@
 				33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */,
 				3335958B1B43C1F500AC412A /* EditingBar.m in Sources */,
 				337A8FAC1B5243E600880209 /* SideMenuViewController.m in Sources */,
+				33C72EE51B6625BA000D96CE /* WeeklyReportDetailViewController.m in Sources */,
 				33C72EDB1B65FA90000D96CE /* WeeklyReportContentViewController.m in Sources */,
+				33C72EDE1B6609A5000D96CE /* TimeLineNodeCell.m in Sources */,
 				335EB1E71B42D8AB00D28C80 /* PostsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
