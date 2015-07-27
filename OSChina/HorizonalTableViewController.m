@@ -22,7 +22,7 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
 - (instancetype)initWithViewControllers:(NSArray *)controllers {
     self = [super init];
     if (self) {
-        self.controllers = controllers;
+        self.controllers = [NSMutableArray arrayWithArray:controllers];
         
         for (UIViewController *controller in controllers) {
             [self addChildViewController:controller];
@@ -103,7 +103,9 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
             if (focusIndex > animationIndex) {
                 offsetRatio = 1 - offsetRatio;
             }
-            self.scrollView(offsetRatio,focusIndex,animationIndex);
+            if (self.scrollView) {
+                self.scrollView(offsetRatio,focusIndex,animationIndex);
+            }
         }
         
     }
@@ -115,7 +117,9 @@ static NSString *kHorizonalCellID = @"HorizonalCell";
             }
         }];
          */
-        self.changeIndex(focusIndex);
+        if (self.changeIndex) {
+            self.changeIndex(focusIndex);
+        }
     }
 }
 

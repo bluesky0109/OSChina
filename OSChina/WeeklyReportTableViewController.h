@@ -10,6 +10,9 @@
 
 @interface WeeklyReportTableViewController : OSCObjsViewController
 
-- (instancetype)initWithTeamID:(int)teamID year:(int)year andWeek:(int)week;
+@property (nonatomic, readonly, assign) NSInteger year;
+@property (nonatomic, readonly, assign) NSInteger week;
+
+- (instancetype)initWithTeamID:(int)teamID year:(NSInteger)year andWeek:(NSInteger)week;
 
 @end

@@ -9,7 +9,7 @@
 #import "TeamHomePage.h"
 #import "TeamActivityViewController.h"
 #import "TeamDiscussionViewController.h"
-#import "WeeklyReportTableViewController.h"
+#import "WeeklyReportViewController.h"
 #import "ProjectListViewController.h"
 #import "TeamUserMainCell.h"
 #import "TeamUser.h"
@@ -175,7 +175,7 @@
     } else if (indexPath.row == 2) {
         [self.navigationController pushViewController:[[TeamDiscussionViewController alloc] initWithTeamID:_teamID] animated:YES];
     } else if (indexPath.row == 3) {
-        [self.navigationController pushViewController:[[WeeklyReportTableViewController alloc] initWithTeamID:_teamID year:2015 andWeek:16] animated:YES];
+        [self.navigationController pushViewController:[[WeeklyReportViewController alloc] initWithTeamID:_teamID] animated:YES];
     }
 }
 

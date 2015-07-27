@@ -205,7 +205,7 @@
     
     NSDate *date = [dateFormatter dateFromString:dateStr];
     
-    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitWeekday | NSCalendarUnitDay  | NSCalendarUnitHour  | NSCalendarUnitMinute;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *compsPast = [calendar components:unitFlags fromDate:date];
     NSDateComponents *compsNow = [calendar components:unitFlags fromDate:[NSDate date]];
