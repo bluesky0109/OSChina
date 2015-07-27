@@ -10,6 +10,7 @@
 #import "TeamActivityViewController.h"
 #import "TeamDiscussionViewController.h"
 #import "WeeklyReportTableViewController.h"
+#import "ProjectListViewController.h"
 #import "TeamUserMainCell.h"
 #import "TeamUser.h"
 #import "Utils.h"
@@ -168,6 +169,9 @@
     
     if (indexPath.row == 0) {
         [self.navigationController pushViewController:[[TeamActivityViewController alloc] initWithTeamID:_teamID] animated:YES];
+    } else if (indexPath.row == 1) {
+        ProjectListViewController *teamProjectListVC = [ProjectListViewController new];
+        [self.navigationController pushViewController:teamProjectListVC animated:YES];
     } else if (indexPath.row == 2) {
         [self.navigationController pushViewController:[[TeamDiscussionViewController alloc] initWithTeamID:_teamID] animated:YES];
     } else if (indexPath.row == 3) {

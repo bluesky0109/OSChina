@@ -7,6 +7,7 @@
 //
 
 #import "TeamIssueController.h"
+#import "TeamIssueDetailController.h"
 #import "TeamAPI.h"
 #import "TeamIssue.h"
 #import "TeamIssueCell.h"
@@ -25,6 +26,19 @@ static NSString * const kIssueCellID = @"IssueCell";
 @end
 
 @implementation TeamIssueController
+
+- (instancetype)initWithProjectId:(int)projectId userId:(int64_t)userId source:(NSString*)source catalogId:(int64_t)catalogId {
+    self = [super init];
+    if (self) {
+        self.generateURL = ^NSString * (NSUInteger page) {
+            return [NSString stringWithFormat:@"%@%@?uid=%lldll&teamid=12375&projectid=%d&source=%@&catalogid=%llu", TEAM_PREFIX, TEAM_ISSUE_LIST, userId,projectId,source,catalogId];
+        };
+
+        self.objClass = [TeamIssue class];
+    }
+    
+    return self;
+}
 
 - (instancetype)initWithTeamID:(int)teamID {
     self = [super init];
@@ -106,6 +120,9 @@ static NSString * const kIssueCellID = @"IssueCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    TeamIssueDetailController *teamIssueDetailVC = [TeamIssueDetailController new];
+    [self.navigationController pushViewController:teamIssueDetailVC animated:YES];
 }
 
 

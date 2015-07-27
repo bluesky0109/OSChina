@@ -11,5 +11,6 @@
 @interface TeamActivityViewController : OSCObjsViewController
 
 - (instancetype)initWithTeamID:(int)teamID;
+- (instancetype)initWithProjectId:(int)projectId;
 
 @end
