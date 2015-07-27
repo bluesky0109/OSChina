@@ -173,7 +173,6 @@
                             urlComponents = [url componentsSeparatedByString:@"/"];
 
                             viewController = [[TweetTopicViewController alloc] initWithTopic:urlComponents[2]];
-                            viewController.navigationItem.title = [NSString stringWithFormat:@"#%@#", urlComponents[2]];
                         }
                     }
                 }
