@@ -172,6 +172,9 @@ static NSString * const kTweetCellID = @"TweetCell";
 {
     if (indexPath.row < self.objects.count) {
         OSCTweet *tweet = self.objects[indexPath.row];
+        if (tweet.cellHeight) {
+            return tweet.cellHeight;
+        }
         
         self.label.font = [UIFont systemFontOfSize:14];
         [self.label setText:tweet.author];
@@ -197,7 +200,9 @@ static NSString * const kTweetCellID = @"TweetCell";
             height += 86;
 #endif
         }
-        return height + 39;
+        tweet.cellHeight = height + 39;
+        
+        return tweet.cellHeight;
     } else {
         return 60;
     }
@@ -411,7 +416,8 @@ static NSString * const kTweetCellID = @"TweetCell";
                   
                   tweet.isLike = !tweet.isLike;
                   tweet.likersString = nil;
-                
+                  tweet.cellHeight = 0;
+                  
                   dispatch_async(dispatch_get_main_queue(), ^{
                       [self.tableView reloadData];
                   });
