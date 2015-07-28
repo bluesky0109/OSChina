@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 bluesky. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "OSCBaseObject.h"
 
 @interface OSCEvent : OSCBaseObject
@@ -40,5 +41,6 @@
 @property (nonatomic, strong, readonly) NSMutableAttributedString *actionStr;
 @property (nonatomic, strong) NSMutableAttributedString *attributedCommentCount;
 
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @end

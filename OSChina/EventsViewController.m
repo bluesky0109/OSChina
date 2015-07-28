@@ -164,7 +164,9 @@ static NSString * const kEventCellID = @"EventCell";
 {
     if (indexPath.row < self.objects.count) {
         OSCEvent *event = self.objects[indexPath.row];
-        
+        if (event.cellHeight) {
+            return event.cellHeight;
+        }
         self.label.font = [UIFont systemFontOfSize:15];
         [self.label setAttributedText:[Utils emojiStringFromRawString:event.message]];
         CGSize size = [self.label sizeThatFits:CGSizeMake(tableView.frame.size.width - 51, MAXFLOAT)];
@@ -195,7 +197,9 @@ static NSString * const kEventCellID = @"EventCell";
 #endif
         }
 
-        return height;
+        event.cellHeight = height;
+        
+        return event.cellHeight;
     } else {
         return 60;
     }
