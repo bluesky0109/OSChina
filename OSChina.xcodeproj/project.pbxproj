@@ -190,6 +190,8 @@
 		33DE61951B622A8E0086DA20 /* TeamDiscussion.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61941B622A8E0086DA20 /* TeamDiscussion.m */; };
 		33DE61981B622DD00086DA20 /* TeamDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */; };
 		33DF576C1B674CDF00F7B2D7 /* WeeklyReportContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */; };
+		33DF57701B67765900F7B2D7 /* MemberDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF576F1B67765900F7B2D7 /* MemberDetailCell.m */; };
+		33DF57731B67768900F7B2D7 /* TeamMemberDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF57721B67768900F7B2D7 /* TeamMemberDetailViewController.m */; };
 		33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8831B5DF3C700BA9976 /* MemberCell.m */; };
 		33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */; };
 		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
@@ -565,6 +567,10 @@
 		33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussionViewController.m; sourceTree = "<group>"; };
 		33DF576A1B674CDF00F7B2D7 /* WeeklyReportContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportContentCell.h; sourceTree = "<group>"; };
 		33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportContentCell.m; sourceTree = "<group>"; };
+		33DF576E1B67765900F7B2D7 /* MemberDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberDetailCell.h; sourceTree = "<group>"; };
+		33DF576F1B67765900F7B2D7 /* MemberDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberDetailCell.m; sourceTree = "<group>"; };
+		33DF57711B67768900F7B2D7 /* TeamMemberDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMemberDetailViewController.h; sourceTree = "<group>"; };
+		33DF57721B67768900F7B2D7 /* TeamMemberDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMemberDetailViewController.m; sourceTree = "<group>"; };
 		33DFB87F1B5DF35900BA9976 /* TeamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamAPI.h; sourceTree = "<group>"; };
 		33DFB8821B5DF3C700BA9976 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		33DFB8831B5DF3C700BA9976 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
@@ -1016,6 +1022,7 @@
 		3396840F1B60D40E00E0AB3F /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				33C72EBA1B65B5EC000D96CE /* 项目 */,
 				33C72EE91B662AB2000D96CE /* 动态详情 */,
 				337692571B6487F200E07001 /* 周报 */,
 				33DE618F1B6229AF0086DA20 /* 讨论 */,
@@ -1306,6 +1313,7 @@
 		33C72EBA1B65B5EC000D96CE /* 项目 */ = {
 			isa = PBXGroup;
 			children = (
+				33C72EC11B65BC5A000D96CE /* 任务分组列表 */,
 				33C72EBB1B65B653000D96CE /* ProjectCell.h */,
 				33C72EBC1B65B653000D96CE /* ProjectCell.m */,
 				33C72EBE1B65B9A7000D96CE /* ProjectListViewController.h */,
@@ -1446,6 +1454,7 @@
 		33DE61731B61BDF80086DA20 /* 任务 */ = {
 			isa = PBXGroup;
 			children = (
+				33C72EC81B65BFD2000D96CE /* 任务详情 */,
 				33DE61781B61BE6D0086DA20 /* TeamIssueCell.h */,
 				33DE61791B61BE6D0086DA20 /* TeamIssueCell.m */,
 				33DE61871B61C0650086DA20 /* TeamIssueController.h */,
@@ -1489,6 +1498,17 @@
 				33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */,
 			);
 			name = "周报详情";
+			sourceTree = "<group>";
+		};
+		33DF576D1B67754400F7B2D7 /* 团队成员详情 */ = {
+			isa = PBXGroup;
+			children = (
+				33DF576E1B67765900F7B2D7 /* MemberDetailCell.h */,
+				33DF576F1B67765900F7B2D7 /* MemberDetailCell.m */,
+				33DF57711B67768900F7B2D7 /* TeamMemberDetailViewController.h */,
+				33DF57721B67768900F7B2D7 /* TeamMemberDetailViewController.m */,
+			);
+			name = "团队成员详情";
 			sourceTree = "<group>";
 		};
 		33DFB87D1B5DF30D00BA9976 /* 主站 */ = {
@@ -1565,9 +1585,6 @@
 		33DFB8801B5DF38A00BA9976 /* Team */ = {
 			isa = PBXGroup;
 			children = (
-				33C72EC81B65BFD2000D96CE /* 任务详情 */,
-				33C72EC11B65BC5A000D96CE /* 任务分组列表 */,
-				33C72EBA1B65B5EC000D96CE /* 项目 */,
 				3376924D1B64727E00E07001 /* Team切换 */,
 				33DE61731B61BDF80086DA20 /* 任务 */,
 				3396840F1B60D40E00E0AB3F /* 主页 */,
@@ -1579,6 +1596,7 @@
 		33DFB8811B5DF39B00BA9976 /* 团队成员 */ = {
 			isa = PBXGroup;
 			children = (
+				33DF576D1B67754400F7B2D7 /* 团队成员详情 */,
 				33DFB8821B5DF3C700BA9976 /* MemberCell.h */,
 				33DFB8831B5DF3C700BA9976 /* MemberCell.m */,
 				33DFB8851B5DF3FE00BA9976 /* TeamMemberViewController.h */,
@@ -1805,6 +1823,7 @@
 				33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */,
 				3335610A1B45730F009A294C /* SoftwareListVC.m in Sources */,
 				33C11ED71B451E2C00728AE4 /* EventsViewController.m in Sources */,
+				33DF57701B67765900F7B2D7 /* MemberDetailCell.m in Sources */,
 				330380FF1B536795003527B5 /* UserHeaderCell.m in Sources */,
 				337A8F5B1B50D83B00880209 /* ActivityBasicInfoCell.m in Sources */,
 				33B0EF801B43C65C0037549E /* UserDetailsViewController.m in Sources */,
@@ -1844,6 +1863,7 @@
 				33B4C0431B4423F400637952 /* ImageViewController.m in Sources */,
 				339740C71B423F590074D2EA /* AppDelegate.m in Sources */,
 				33DE617D1B61BEEE0086DA20 /* TeamActivity.m in Sources */,
+				33DF57731B67768900F7B2D7 /* TeamMemberDetailViewController.m in Sources */,
 				338F21A81B4E6018006B9507 /* TweetDetailsWithBottomBarViewController.m in Sources */,
 				337692501B6472A900E07001 /* TeamCenter.m in Sources */,
 				335EB1E41B42D89200D28C80 /* PostsViewController.m in Sources */,

@@ -7,10 +7,12 @@
 //
 
 #import "TeamMemberViewController.h"
+#import "TeamMemberDetailViewController.h"
 #import "TeamAPI.h"
 #import "MemberCell.h"
 #import "TeamMember.h"
 #import "Utils.h"
+#import "Config.h"
 
 #import <AFNetworking.h>
 #import <AFOnoResponseSerializer.h>
@@ -130,6 +132,14 @@ static NSString * const kMemberCellID = @"MemberCell";
 
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 	
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    TeamMember *member = _members[indexPath.section * 3 + indexPath.row];
+    TeamMemberDetailViewController *memberDetailVC = [[TeamMemberDetailViewController alloc]initWithLoginUserId:[Config getOwnID] visitUserId:member.memberID];
+    [self.navigationController pushViewController:memberDetailVC animated:YES];
+
+    //    NSLog(@"row:%ld section:%ld",(long)indexPath.row,(long)indexPath.section);
 }
 
 
