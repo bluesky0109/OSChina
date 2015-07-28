@@ -167,6 +167,9 @@
 		33C72EDE1B6609A5000D96CE /* TimeLineNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */; };
 		33C72EE11B660D8B000D96CE /* TeamWeeklyReportDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */; };
 		33C72EE51B6625BA000D96CE /* WeeklyReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */; };
+		33C72EE81B662A84000D96CE /* TeamIssueDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EE71B662A84000D96CE /* TeamIssueDetailCell.m */; };
+		33C72EEC1B662ACD000D96CE /* TeamActivityInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EEB1B662ACD000D96CE /* TeamActivityInfoCell.m */; };
+		33C72EEF1B662AE1000D96CE /* TeamActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C72EEE1B662AE1000D96CE /* TeamActivityDetailViewController.m */; };
 		33CC0C5A1B4658C0002819EE /* OSCFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C591B4658C0002819EE /* OSCFavorite.m */; };
 		33CC0C5D1B465A57002819EE /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5C1B465A57002819EE /* FavoritesViewController.m */; };
 		33CC0C601B467245002819EE /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC0C5F1B467245002819EE /* PersonCell.m */; };
@@ -516,6 +519,12 @@
 		33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamWeeklyReportDetail.m; sourceTree = "<group>"; };
 		33C72EE31B6625BA000D96CE /* WeeklyReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportDetailViewController.h; sourceTree = "<group>"; };
 		33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportDetailViewController.m; sourceTree = "<group>"; };
+		33C72EE61B662A84000D96CE /* TeamIssueDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamIssueDetailCell.h; sourceTree = "<group>"; };
+		33C72EE71B662A84000D96CE /* TeamIssueDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamIssueDetailCell.m; sourceTree = "<group>"; };
+		33C72EEA1B662ACD000D96CE /* TeamActivityInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamActivityInfoCell.h; sourceTree = "<group>"; };
+		33C72EEB1B662ACD000D96CE /* TeamActivityInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamActivityInfoCell.m; sourceTree = "<group>"; };
+		33C72EED1B662AE1000D96CE /* TeamActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamActivityDetailViewController.h; sourceTree = "<group>"; };
+		33C72EEE1B662AE1000D96CE /* TeamActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamActivityDetailViewController.m; sourceTree = "<group>"; };
 		33CC0C581B4658C0002819EE /* OSCFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCFavorite.h; sourceTree = "<group>"; };
 		33CC0C591B4658C0002819EE /* OSCFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavorite.m; sourceTree = "<group>"; };
 		33CC0C5B1B465A57002819EE /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
@@ -1003,6 +1012,7 @@
 		3396840F1B60D40E00E0AB3F /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				33C72EE91B662AB2000D96CE /* 动态详情 */,
 				337692571B6487F200E07001 /* 周报 */,
 				33DE618F1B6229AF0086DA20 /* 讨论 */,
 				33DE61741B61BE040086DA20 /* 动态 */,
@@ -1316,6 +1326,8 @@
 			children = (
 				33C72EC91B65BFF6000D96CE /* TeamIssueDetailController.h */,
 				33C72ECA1B65BFF6000D96CE /* TeamIssueDetailController.m */,
+				33C72EE61B662A84000D96CE /* TeamIssueDetailCell.h */,
+				33C72EE71B662A84000D96CE /* TeamIssueDetailCell.m */,
 			);
 			name = "任务详情";
 			sourceTree = "<group>";
@@ -1364,6 +1376,17 @@
 				33C72EE01B660D8B000D96CE /* TeamWeeklyReportDetail.m */,
 			);
 			name = "周报";
+			sourceTree = "<group>";
+		};
+		33C72EE91B662AB2000D96CE /* 动态详情 */ = {
+			isa = PBXGroup;
+			children = (
+				33C72EEA1B662ACD000D96CE /* TeamActivityInfoCell.h */,
+				33C72EEB1B662ACD000D96CE /* TeamActivityInfoCell.m */,
+				33C72EED1B662AE1000D96CE /* TeamActivityDetailViewController.h */,
+				33C72EEE1B662AE1000D96CE /* TeamActivityDetailViewController.m */,
+			);
+			name = "动态详情";
 			sourceTree = "<group>";
 		};
 		33CC0C541B465843002819EE /* News */ = {
@@ -1753,6 +1776,7 @@
 			files = (
 				33069DDF1B548C25002122EC /* BubbleChatViewController.m in Sources */,
 				333595881B43ABBF00AC412A /* OSCSoftwareDetails.m in Sources */,
+				33C72EE81B662A84000D96CE /* TeamIssueDetailCell.m in Sources */,
 				3396840E1B60D3B100E0AB3F /* TeamUser.m in Sources */,
 				33C72EC71B65BCA4000D96CE /* TeamIssueListViewController.m in Sources */,
 				339684071B606DDA00E0AB3F /* NSTextAttachment+Util.m in Sources */,
@@ -1839,12 +1863,14 @@
 				3346CA4B1B567FD10038BDFB /* OSCEventPersonInfo.m in Sources */,
 				337A8F4E1B50D11A00880209 /* OSCActivity.m in Sources */,
 				339740C41B423F590074D2EA /* main.m in Sources */,
+				33C72EEF1B662AE1000D96CE /* TeamActivityDetailViewController.m in Sources */,
 				3303810B1B53BABA003527B5 /* UIImage+Util.m in Sources */,
 				337A8FB91B52AA8B00880209 /* OSCMyInfo.m in Sources */,
 				3397410C1B4265860074D2EA /* SwipableViewController.m in Sources */,
 				3376925A1B64880F00E07001 /* WeeklyReportCell.m in Sources */,
 				33C72ECE1B65CB93000D96CE /* TeamIssueList.m in Sources */,
 				3376924C1B6471C400E07001 /* TeamTeam.m in Sources */,
+				33C72EEC1B662ACD000D96CE /* TeamActivityInfoCell.m in Sources */,
 				339BF4441B5F91D600C5D680 /* OSCMyTweetLikeList.m in Sources */,
 				33CC0C6E1B467FAD002819EE /* MessagesViewController.m in Sources */,
 				33744A351B44C57500FDC8D4 /* GrowingTextView.m in Sources */,

@@ -10,4 +10,6 @@
 
 @interface ProjectListViewController : OSCObjsViewController
 
+- (instancetype)initWithTeamId:(int)teamId;
+
 @end

@@ -10,6 +10,6 @@
 
 @interface TeamIssueListViewController : OSCObjsViewController
 
-- (instancetype)initWithProjectId:(int)projectId source:(NSString*)source;
+- (instancetype)initWithTeamId:(int)teamId projectId:(int)projectId source:(NSString*)source;
 
 @end
