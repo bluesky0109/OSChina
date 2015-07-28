@@ -188,17 +188,20 @@ static NSString * const kObjectCatalog = @"objectcatalog";
     return NO;
 }
 
--(NSAttributedString *)attributedCommentCount {
-    NSMutableAttributedString *attributedCommentCount;
+-(NSMutableAttributedString *)attributedCommentCount {
+    
+    if (!_attributedCommentCount) {
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        textAttachment.image = [UIImage imageNamed:@"comment"];
+        [textAttachment adjustY:-2];
 
-    NSTextAttachment *textAttachment = [NSTextAttachment new];
-    textAttachment.image = [UIImage imageNamed:@"comment"];
-    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-    attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
-    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-    [attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
-
-    return attributedCommentCount;
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        _attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
+    }
+    
+    return _attributedCommentCount;
 }
 
 @end

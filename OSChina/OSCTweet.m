@@ -77,9 +77,7 @@ static NSString * const kUser = @"user";
 
 - (NSMutableAttributedString *)likersString
 {
-    if (_likersString) {
-        return _likersString;
-    } else {
+    if (!_likersString) {
         _likersString = [NSMutableAttributedString new];
         
         if (_likeList.count > 0) {
@@ -97,19 +95,18 @@ static NSString * const kUser = @"user";
             }
             
             [_likersString appendAttributedString:[[NSAttributedString alloc] initWithString:@"觉得很赞"]];
-            return _likersString;
+
         } else {
             [_likersString deleteCharactersInRange:NSMakeRange(0, _likersString.length)];
             [_likersString appendAttributedString:[[NSAttributedString alloc] initWithString:@""]];
-            return _likersString;
         }
     }
+    
+    return _likersString;
 }
 
 - (NSMutableAttributedString *)likersDetailString {
-    if (_likersDetailString) {
-        return _likersDetailString;
-    } else {
+    if (!_likersDetailString) {
         _likersDetailString = [NSMutableAttributedString new];
         
         if (_likeList.count > 0) {
@@ -127,21 +124,28 @@ static NSString * const kUser = @"user";
             }
             
             [_likersDetailString appendAttributedString:[[NSAttributedString alloc] initWithString:@"觉得很赞"]];
-            return _likersDetailString;
         } else {
             [_likersDetailString deleteCharactersInRange:NSMakeRange(0, _likersDetailString.length)];
             [_likersDetailString appendAttributedString:[[NSAttributedString alloc] initWithString:@""]];
-            return _likersDetailString;
+
         }
     }
     
+    return _likersDetailString;
 }
 
--(NSAttributedString *)attributedCommentCount {
+-(NSMutableAttributedString *)attributedCommentCount {
     if (!_attributedCommentCount) {
-        _attributedCommentCount = [Utils attributedCommentCount:_commentCount];
+
+        NSTextAttachment *textAttachment = [NSTextAttachment new];
+        textAttachment.image = [UIImage imageNamed:@"comment"];
+        [textAttachment adjustY:-2];
+
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        _attributedCommentCount = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [_attributedCommentCount appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", _commentCount]]];
     }
-    
     return _attributedCommentCount;
 }
 
