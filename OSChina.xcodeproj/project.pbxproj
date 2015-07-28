@@ -189,6 +189,7 @@
 		33DE61921B6229EF0086DA20 /* TeamDiscussionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61911B6229EF0086DA20 /* TeamDiscussionCell.m */; };
 		33DE61951B622A8E0086DA20 /* TeamDiscussion.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61941B622A8E0086DA20 /* TeamDiscussion.m */; };
 		33DE61981B622DD00086DA20 /* TeamDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */; };
+		33DF576C1B674CDF00F7B2D7 /* WeeklyReportContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */; };
 		33DFB8841B5DF3C700BA9976 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8831B5DF3C700BA9976 /* MemberCell.m */; };
 		33DFB8871B5DF3FE00BA9976 /* TeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DFB8861B5DF3FE00BA9976 /* TeamMemberViewController.m */; };
 		33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E95E571B5771B900897BFE /* FeedbackPage.m */; };
@@ -562,6 +563,8 @@
 		33DE61941B622A8E0086DA20 /* TeamDiscussion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussion.m; sourceTree = "<group>"; };
 		33DE61961B622DD00086DA20 /* TeamDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDiscussionViewController.h; sourceTree = "<group>"; };
 		33DE61971B622DD00086DA20 /* TeamDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDiscussionViewController.m; sourceTree = "<group>"; };
+		33DF576A1B674CDF00F7B2D7 /* WeeklyReportContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyReportContentCell.h; sourceTree = "<group>"; };
+		33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyReportContentCell.m; sourceTree = "<group>"; };
 		33DFB87F1B5DF35900BA9976 /* TeamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamAPI.h; sourceTree = "<group>"; };
 		33DFB8821B5DF3C700BA9976 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		33DFB8831B5DF3C700BA9976 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
@@ -799,6 +802,7 @@
 		337692571B6487F200E07001 /* 周报 */ = {
 			isa = PBXGroup;
 			children = (
+				33DF57691B674C8A00F7B2D7 /* 周报详情 */,
 				33C72ED51B65F9FD000D96CE /* 周报页面组件 */,
 				33C72ED41B65F9D5000D96CE /* 周报列表 */,
 				3376925E1B6488A000E07001 /* WeeklyReportViewController.h */,
@@ -1348,10 +1352,6 @@
 				337692591B64880F00E07001 /* WeeklyReportCell.m */,
 				337692611B6488B800E07001 /* WeeklyReportTableViewController.h */,
 				337692621B6488B800E07001 /* WeeklyReportTableViewController.m */,
-				33C72EDC1B6609A5000D96CE /* TimeLineNodeCell.h */,
-				33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */,
-				33C72EE31B6625BA000D96CE /* WeeklyReportDetailViewController.h */,
-				33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */,
 			);
 			name = "周报列表";
 			sourceTree = "<group>";
@@ -1476,6 +1476,19 @@
 				337692481B646C1000E07001 /* DiscussionDetailsViewController.m */,
 			);
 			name = "讨论";
+			sourceTree = "<group>";
+		};
+		33DF57691B674C8A00F7B2D7 /* 周报详情 */ = {
+			isa = PBXGroup;
+			children = (
+				33C72EDC1B6609A5000D96CE /* TimeLineNodeCell.h */,
+				33C72EDD1B6609A5000D96CE /* TimeLineNodeCell.m */,
+				33C72EE31B6625BA000D96CE /* WeeklyReportDetailViewController.h */,
+				33C72EE41B6625BA000D96CE /* WeeklyReportDetailViewController.m */,
+				33DF576A1B674CDF00F7B2D7 /* WeeklyReportContentCell.h */,
+				33DF576B1B674CDF00F7B2D7 /* WeeklyReportContentCell.m */,
+			);
+			name = "周报详情";
 			sourceTree = "<group>";
 		};
 		33DFB87D1B5DF30D00BA9976 /* 主站 */ = {
@@ -1902,6 +1915,7 @@
 				337A8F4A1B50C4ED00880209 /* CommentsBottomBarViewController.m in Sources */,
 				3397411C1B4296380074D2EA /* NewsViewController.m in Sources */,
 				33744A381B44E7F800FDC8D4 /* BottomBarViewController.m in Sources */,
+				33DF576C1B674CDF00F7B2D7 /* WeeklyReportContentCell.m in Sources */,
 				33DE61861B61BFC80086DA20 /* TeamProjectAuthority.m in Sources */,
 				337A8F581B50D7D300880209 /* ActivityDetailsCell.m in Sources */,
 				33E95E581B5771B900897BFE /* FeedbackPage.m in Sources */,

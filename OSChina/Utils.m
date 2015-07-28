@@ -348,6 +348,13 @@
     return emojiString;
 }
 
++ (NSMutableAttributedString *)attributedStringFromHTML:(NSString *)HTML {
+    return [[NSMutableAttributedString alloc] initWithData:[HTML dataUsingEncoding:NSUnicodeStringEncoding]
+                                                   options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
+                                        documentAttributes:nil
+                                                     error:nil];
+}
+
 + (NSData *)compressImage:(UIImage *)image {
     CGSize size = [self scaleSize:image.size];
     UIGraphicsBeginImageContext(size);

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TeamWeeklyReportDetail.h"
+#import "Utils.h"
 
 @implementation TeamWeeklyReportDetail
 
@@ -23,7 +24,13 @@
         ONOXMLElement *authorXML = [xml firstChildWithTag:@"author"];
         _author = [[TeamMember alloc] initWithXML:authorXML];
         
-        _summary = [[xml firstChildWithTag:@"summary"] stringValue];
+        NSString *summaryHTML = [[xml firstChildWithTag:@"summary"] stringValue];
+        NSMutableAttributedString *attributedSummary = [Utils attributedStringFromHTML:summaryHTML];
+        [attributedSummary deleteCharactersInRange:NSMakeRange(attributedSummary.length-1, 1)];
+        [attributedSummary addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
+                                   range:NSMakeRange(0, attributedSummary.length)];
+        _summary = attributedSummary;
+
         
         ONOXMLElement *detailsXML = [xml firstChildWithTag:@"detail"];
         NSArray *tags = @[@"sun", @"sat", @"fri", @"thu", @"wed", @"tue", @"mon"];
@@ -31,10 +38,7 @@
         NSMutableArray *mutableDetails = [NSMutableArray new];
         [tags enumerateObjectsUsingBlock:^(NSString *tag, NSUInteger idx, BOOL *stop) {
             NSString *HTML = [detailsXML firstChildWithTag:tag].stringValue;
-            NSMutableAttributedString *attributedDetail = [[NSMutableAttributedString alloc] initWithData:[HTML dataUsingEncoding:NSUnicodeStringEncoding]
-                                                                                                  options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
-                                                                                       documentAttributes:nil
-                                                                                                    error:nil];
+            NSMutableAttributedString *attributedDetail = [Utils attributedStringFromHTML:HTML];
             
             [attributedDetail addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
                                       range:NSMakeRange(0, attributedDetail.length)];

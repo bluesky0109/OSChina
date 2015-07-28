@@ -11,14 +11,14 @@
 
 @interface TeamWeeklyReportDetail : OSCBaseObject
 
-@property (nonatomic, assign) int        reportID;
-@property (nonatomic, copy  ) NSString   *title;
-@property (nonatomic, assign) int        replyCount;
-@property (nonatomic, copy  ) NSString   *createTime;
+@property (nonatomic, assign) int                reportID;
+@property (nonatomic, copy  ) NSString           *title;
+@property (nonatomic, assign) int                replyCount;
+@property (nonatomic, copy  ) NSString           *createTime;
 
-@property (nonatomic, strong) TeamMember *author;
-@property (nonatomic, copy  ) NSString   *summary;
-@property (nonatomic, strong) NSArray    *details;
-@property (nonatomic, assign) int        days;
+@property (nonatomic, strong) TeamMember         *author;
+@property (nonatomic, copy  ) NSAttributedString *summary;
+@property (nonatomic, strong) NSArray            *details;
+@property (nonatomic, assign) int                days;
 
 @end
