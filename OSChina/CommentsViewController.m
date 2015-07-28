@@ -109,6 +109,10 @@ static NSString *kCommentCellID = @"CommentCell";
     } else if (indexPath.row < self.objects.count) {
         OSCComment *comment = self.objects[indexPath.row];
         
+        if (comment.cellHeight) {
+            return comment.cellHeight;
+        }
+        
         self.label.font = [UIFont boldSystemFontOfSize:14];
         NSMutableAttributedString *contentString = [[NSMutableAttributedString alloc] initWithAttributedString:[Utils emojiStringFromRawString:comment.content]];
         if (comment.replies.count > 0) {
@@ -130,7 +134,9 @@ static NSString *kCommentCellID = @"CommentCell";
             self.label.text = [NSString stringWithFormat:@"%@\n%@", reference.title, reference.body];
             height += [self.label sizeThatFits:CGSizeMake(width - (references.count-idx)*8, MAXFLOAT)].height + 13;
         }];
-        return height + 61;
+        
+        comment.cellHeight = height + 61;
+        return comment.cellHeight;
     } else {
         return 60;
     }
