@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    
+    NSLog(@"just for test");
     [self loadViewControllers];
 }
 
