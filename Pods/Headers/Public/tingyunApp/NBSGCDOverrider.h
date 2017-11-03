@@ -1,1 +1,0 @@
-../../../tingyunApp/nbs-newlens-ios-2.1.4.1/tingyunApp.framework/Versions/A/Headers/NBSGCDOverrider.h
